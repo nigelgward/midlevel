@@ -1,0 +1,77 @@
+for feature #1 se vo -50  +0,    the three most correlated features are 
+     #1 se vo -50  +0   at 1.00
+     #2 se vo -100 -50   at 0.86
+     #6 se hp -50  +0   at 0.80
+     #3 se vo -200 -100   at 0.71
+   the least correlated feature is: 
+       #8 se cr -200  +0    at 0.38
+for feature #2 se vo -100 -50,    the three most correlated features are 
+     #2 se vo -100 -50   at 1.00
+     #1 se vo -50  +0   at 0.86
+     #3 se vo -200 -100   at 0.82
+     #6 se hp -50  +0   at 0.79
+   the least correlated feature is: 
+       #8 se cr -200  +0    at 0.40
+for feature #3 se vo -200 -100,    the three most correlated features are 
+     #3 se vo -200 -100   at 1.00
+     #2 se vo -100 -50   at 0.82
+     #4 se vo -400 -200   at 0.76
+     #1 se vo -50  +0   at 0.71
+   the least correlated feature is: 
+       #8 se cr -200  +0    at 0.44
+for feature #4 se vo -400 -200,    the three most correlated features are 
+     #4 se vo -400 -200   at 1.00
+     #3 se vo -200 -100   at 0.76
+     #11 se wp -200  +0   at 0.63
+     #2 se vo -100 -50   at 0.63
+   the least correlated feature is: 
+       #5 se lp -50  +0    at 0.42
+for feature #5 se lp -50  +0,    the three most correlated features are 
+     #5 se lp -50  +0   at 1.00
+     #8 se cr -200  +0   at 0.67
+     #11 se wp -200  +0   at 0.59
+     #2 se vo -100 -50   at 0.52
+   the least correlated feature is: 
+       #10 se np -200  +0    at 0.40
+for feature #6 se hp -50  +0,    the three most correlated features are 
+     #6 se hp -50  +0   at 1.00
+     #1 se vo -50  +0   at 0.80
+     #2 se vo -100 -50   at 0.79
+     #3 se vo -200 -100   at 0.67
+   the least correlated feature is: 
+       #8 se cr -200  +0    at 0.40
+for feature #7 se sr -1000  +0,    the three most correlated features are 
+     #7 se sr -1000  +0   at 1.00
+     #4 se vo -400 -200   at 0.60
+     #11 se wp -200  +0   at 0.57
+     #3 se vo -200 -100   at 0.51
+   the least correlated feature is: 
+       #10 se np -200  +0    at 0.26
+for feature #8 se cr -200  +0,    the three most correlated features are 
+     #8 se cr -200  +0   at 1.00
+     #5 se lp -50  +0   at 0.67
+     #11 se wp -200  +0   at 0.64
+     #7 se sr -1000  +0   at 0.48
+   the least correlated feature is: 
+       #10 se np -200  +0    at 0.20
+for feature #9 se fp -200  +0,    the three most correlated features are 
+     #9 se fp -200  +0   at 1.00
+     #10 se np -200  +0   at 0.99
+     #3 se vo -200 -100   at 0.64
+     #2 se vo -100 -50   at 0.59
+   the least correlated feature is: 
+       #8 se cr -200  +0    at 0.21
+for feature #10 se np -200  +0,    the three most correlated features are 
+     #10 se np -200  +0   at 1.00
+     #9 se fp -200  +0   at 0.99
+     #3 se vo -200 -100   at 0.64
+     #2 se vo -100 -50   at 0.59
+   the least correlated feature is: 
+       #8 se cr -200  +0    at 0.20
+for feature #11 se wp -200  +0,    the three most correlated features are 
+     #11 se wp -200  +0   at 1.00
+     #3 se vo -200 -100   at 0.67
+     #8 se cr -200  +0   at 0.64
+     #6 se hp -50  +0   at 0.64
+   the least correlated feature is: 
+       #10 se np -200  +0    at 0.36

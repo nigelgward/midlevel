@@ -1,0 +1,35 @@
+#minicrunch.txt
+# This file specifies which prosodic features to gather up, 
+#  at various temporal offsets,
+#  preparatory to principal component analysis.
+# Thus it's a "time-crunch specification file"
+#
+# Nigel Ward, UTEP, December 2012
+
+# Note that getfeaturespec.m parses this by offsets
+#  so when adding new features, make sure the fields vertically align
+
+# this set of features is just for testing the workflow; 
+# larger sets will be used for the actual PCA work
+
+vo   -50 to     0 self     r # volume window immediately to the left of now
+vo  -100 to   -50 self
+vo  -200 to  -100 self
+vo  -400 to  -200 self     
+#vo  -800 to  -400 self
+#vo -1600 to  -800 self
+#vo -3200 to -1600 self
+
+lp   -50 to     0 self   
+hp   -50 to     0 self   
+
+#pr   -50 to     0 self
+sr -1000 to     0 self
+cr  -200 to     0 self
+
+#vo  -200 to     0 inte
+
+fp  -200 to     0 self 
+np  -200 to     0 self 
+
+wp  -200 to     0 self 

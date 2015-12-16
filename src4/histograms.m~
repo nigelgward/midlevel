@@ -1,0 +1,4 @@
+function histograms (refvals, l2vals)
+
+% creates a bunch of histograms, so that you can 
+% eyeball the differences between the disti

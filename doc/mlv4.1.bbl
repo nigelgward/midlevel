@@ -1,0 +1,50 @@
+\begin{thebibliography}{}
+
+\bibitem[Ward, 2014a]{mid-level-features}
+Ward, N. (2014a).
+\newblock Mid-level prosodic features for systematically investigating dialog
+  prosody.
+\newblock manuscript.
+
+\bibitem[Ward, 2014b]{prosodic-elements}
+Ward, N.~G. (2014b).
+\newblock Automatic discovery of simply-composable prosodic elements.
+\newblock In {\em Speech Prosody}, pages 915--919.
+
+\bibitem[Ward et~al., 2015a]{ward-vcip}
+Ward, N.~G., Jurado, C.~N., Garcia, R.~A., and Ramos, F.~A. (submitted, 2015a).
+\newblock On the possibility of predicting gaze aversion to improve video-chat
+  efficiency.
+\newblock In {\em IEEE International Conference on Visual Communications and
+  Image Processing}.
+
+\bibitem[Ward et~al., 2012]{dimensions-uh-huh}
+Ward, N.~G., Novick, D.~G., and Vega, A. (2012).
+\newblock Where in dialog space does uh-huh occur?
+\newblock In {\em Interdisciplinary Workshop on Feedback Behaviors in Dialog,
+  at Interspeech 2012}.
+
+\bibitem[Ward and Richart-Ruiz, 2013]{sigdial-codec}
+Ward, N.~G. and Richart-Ruiz, K.~A. (2013).
+\newblock Patterns of importance variation in spoken dialog.
+\newblock In {\em 14th SigDial}.
+
+\bibitem[Ward and Vega, 2012a]{dialog-dimensions}
+Ward, N.~G. and Vega, A. (2012a).
+\newblock A bottom-up exploration of the dimensions of dialog state in spoken
+  interaction.
+\newblock In {\em 13th Annual SIGdial Meeting on Discourse and Dialogue}.
+
+\bibitem[Ward and Vega, 2012b]{pca-lm}
+Ward, N.~G. and Vega, A. (2012b).
+\newblock Towards empirical dialog-state modeling and its use in language
+  modeling.
+\newblock In {\em Interspeech}.
+
+\bibitem[Ward et~al., 2015b]{prosody-ir}
+Ward, N.~G., Werner, S.~D., Garcia, F., and Sanchis, E. (2015b).
+\newblock A prosody-based vector-space model of dialog activity for information
+  retrieval.
+\newblock {\em Speech Communication}, 68:86--96.
+
+\end{thebibliography}

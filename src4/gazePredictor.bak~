@@ -1,0 +1,105 @@
+function gazePredictor()
+
+% Nigel Ward, University of Texas at El Paso, April 2015
+
+% intended to be run from the directory isg/speech/gaze/singapore
+% addpath('../../ppca/src4')
+% addpath('../../ppca/voicebox')
+% gazePredictor();
+
+featurelist = getfeaturespec('../../ppca/src4/eyemouth.fss');  
+featurelist = getfeaturespec('../nigel/gazefive.fss');  % gaze features only 
+tracklist = gettracklist('sixtracks.tl');
+tracklist = gettracklist('twotracks.tl');
+
+% create the model using all files but the last
+trainingData = makeMultiTrackMonster(tracklist(1:end-1), featurelist);
+%scatter(1:length(trainingData), trainingData(:,1));
+
+[h w] = size(trainingData);
+fprintf('  training data height and width: %d, %d \n', h, w);
+% it might help to strip out blinks in training to simplify learning
+model = trainModel(trainingData(:,1), trainingData(:,2:end));
+displayModel(model, featurelist(2:end));   % first feature is predictee
+
+%clf
+%hold on 
+%plot(1:10000, trainingData(1:10000,1), 'r');  %gaze on/off
+%plot(1:10000, .1 * trainingData(1:10000,3), 'g');  %gaze up
+%plot(1:10000, .1 * trainingData(1:10000,5), 'b');  %gaze down
+%axis([-100 10100 -.5 1.5]);
+
+% test it on the left-out file
+[flf, testData] = makeTrackMonster(tracklist{end}, featurelist);
+
+gazeAversions = 1 - testData(flf:end,1);
+for threshold = 0.40:.05:1.20
+  fprintf('at threshold %.2f\n', threshold);
+  [predictions, likelihoods] = applyModel(model, threshold, testData(flf:end,2:end)); 
+  evaluatePredictions(predictions, gazeAversions); 
+end
+
+end
+
+%-----------------------------------------------------------------------------
+function model =  trainModel(trainingOutcomes, trainingFeatureValues)
+  % seems to die in here 
+  % the next line is old code
+  fprintf('starting to regress');
+  %   weights = regress(trainingOutcomes, trainingFeatureValues); % old code 
+  [npoints nfeatures] = size(trainingFeatureValues);
+  rinput = [ones(npoints, 1) trainingFeatureValues];
+  weights = regress(trainingOutcomes, rinput);
+  model = weights;
+  fprintf('done with regression');
+end
+
+%-----------------------------------------------------------------------------
+function displayModel(model, featurenames)
+  length(model)
+length(featurenames)
+  fprintf('Regression-model weights for predicting gaze-on are: \n');
+    fprintf('  %6.3f for %s\n', model(1), 'constant term'); 
+  % the first item in featurenames the to-be-predicted buy, so skip it
+  for i = 1:length(featurenames)
+    fprintf('  %6.3f for %s\n',  model(i+1), featurenames(i).abbrev);
+
+  end
+end
+
+%-----------------------------------------------------------------------------
+% predict gaze-off
+function [predictions, likelihoods] = ...
+	    applyModel(weights, threshold, testsetFeatureValues)
+  minput = [ones(length(testsetFeatureValues),1) testsetFeatureValues];
+  likelihoods = minput * weights;
+%  fprintf('  mean(likelihoods) is %f\n', mean(likelihoods));
+  predictions = likelihoods < threshold;    
+end   
+
+%-----------------------------------------------------------------------------
+% compute precision and recall for gaze-off decisions
+function fMeasure = evaluatePredictions(decisions, actualResults)
+  % compare predictions (decisions) with ground truth (actualResults)
+  nGazeOff = sum(actualResults);
+  nGazeOn = sum(1-actualResults);
+  nPredictedOff = sum(decisions);
+  nPredictedOn = sum(1-decisions);
+  truePositives = sum(decisions & actualResults);   % truly off, wisely not sent
+  trueNegatives = sum((1-decisions) & (1-actualResults));   % truly on, sent 
+  falseNegatives = sum((1-decisions) & actualResults);   % truly off, sent 
+  recall = truePositives / sum(actualResults);
+  precision = truePositives / sum(decisions);
+  fMeasure = recall * precision / (recall + precision);
+
+  fprintf('  reduction=%.2f', nPredictedOff/length(actualResults));
+
+  framesViewed = 0.93 * trueNegatives + 0.13 * falseNegatives;
+  utilityRatio = framesViewed / nPredictedOn; % viewed / sent
+  fprintf('  utility ratio=%.2f', utilityRatio);
+
+  fprintf('  Recall is %.2f (= %d/%d)', recall, truePositives, sum(actualResults));
+  fprintf('  Precision is %.2f (= %d/%d)', precision, truePositives, sum(decisions));
+  fprintf('  F Measure is %.3f\n', fMeasure);
+  end
+

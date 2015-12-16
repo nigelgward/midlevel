@@ -1,0 +1,42 @@
+
+Notes on the Centos 64 bit experimental installation
+
+Jan 9, 2012 Nigel Ward
+
+
+pdflatex and evince work fine, and are faster
+
+firefox works fine, although flash is lacking
+
+matlob and python work fine
+
+silk? probably okay if recompile
+
+srilm? probably okay if recompile
+
+weka, praat? (never worked on linux before, but maybe can install now)
+
+respond/dede ... recompiled okay but ...
+
+   problem 1: missing /dev/dsp
+
+  simple solution: prefix "padsp", as in "padsp dede test.au"
+  this claims to enable oss emulation in PulseAudio, however
+  on playback it sounds like underwater; ie. audio coding is wrong
+
+  proper solution: recode the audio functions of the whole suite 
+  in PulseAudio ... probably not too hard since all audio functions
+  are everything's isolated in auutil.c
+
+
+respond/dede problem 2: f0calc fails
+
+   can't even tell what's wrong; to do this need to get
+   the Japanese fonts to display in kterm
+
+   Long-term solution is to switch to another pitch tracker,
+   for example the one in Snack/Wavesurfer
+
+printing ... works using gedit, as before
+
+Notes: kmix is the mixer; aplay works as before

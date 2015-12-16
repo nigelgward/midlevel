@@ -1,0 +1,11 @@
+To release a new version of ppca
+
+- update current-version.txt in this directory
+
+- in src, rm -i *~, and other junk files
+
+- verify no other large junk has crept in (du -sh . should be 7 MB)
+
+- cd .. and tar cvfz ppca.tga ppca (4 megabytes)
+
+- upload to website

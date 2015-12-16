@@ -1,0 +1,133 @@
+rotation generated fromsingletrack.tl, using featuresminicrunch.fss, at04-Aug-2015 16:45:17
+
+dimension1  0.33  se vo -50  +0
+dimension1  0.35  se vo -100 -50
+dimension1  0.34  se vo -200 -100
+dimension1  0.31  se vo -400 -200
+dimension1  0.27  se lp -50  +0
+dimension1  0.33  se hp -50  +0
+dimension1  0.25  se sr -1000  +0
+dimension1  0.24  se cr -200  +0
+dimension1  0.29  se fp -200  +0
+dimension1  0.29  se np -200  +0
+dimension1  0.31  se wp -200  +0
+
+dimension2  -0.06  se vo -50  +0
+dimension2  -0.08  se vo -100 -50
+dimension2  -0.08  se vo -200 -100
+dimension2  0.01  se vo -400 -200
+dimension2  0.28  se lp -50  +0
+dimension2  -0.07  se hp -50  +0
+dimension2  0.33  se sr -1000  +0
+dimension2  0.49  se cr -200  +0
+dimension2  -0.47  se fp -200  +0
+dimension2  -0.48  se np -200  +0
+dimension2  0.30  se wp -200  +0
+
+dimension3  -0.33  se vo -50  +0
+dimension3  -0.29  se vo -100 -50
+dimension3  -0.16  se vo -200 -100
+dimension3  -0.12  se vo -400 -200
+dimension3  0.51  se lp -50  +0
+dimension3  -0.26  se hp -50  +0
+dimension3  -0.15  se sr -1000  +0
+dimension3  0.40  se cr -200  +0
+dimension3  0.36  se fp -200  +0
+dimension3  0.36  se np -200  +0
+dimension3  -0.07  se wp -200  +0
+
+dimension4  -0.35  se vo -50  +0
+dimension4  -0.24  se vo -100 -50
+dimension4  0.14  se vo -200 -100
+dimension4  0.51  se vo -400 -200
+dimension4  -0.30  se lp -50  +0
+dimension4  -0.34  se hp -50  +0
+dimension4  0.55  se sr -1000  +0
+dimension4  -0.10  se cr -200  +0
+dimension4  0.12  se fp -200  +0
+dimension4  0.12  se np -200  +0
+dimension4  0.01  se wp -200  +0
+
+dimension5  0.20  se vo -50  +0
+dimension5  -0.01  se vo -100 -50
+dimension5  -0.36  se vo -200 -100
+dimension5  -0.31  se vo -400 -200
+dimension5  0.25  se lp -50  +0
+dimension5  0.16  se hp -50  +0
+dimension5  0.67  se sr -1000  +0
+dimension5  -0.24  se cr -200  +0
+dimension5  0.07  se fp -200  +0
+dimension5  0.08  se np -200  +0
+dimension5  -0.36  se wp -200  +0
+
+dimension6  -0.20  se vo -50  +0
+dimension6  -0.27  se vo -100 -50
+dimension6  -0.29  se vo -200 -100
+dimension6  -0.27  se vo -400 -200
+dimension6  -0.44  se lp -50  +0
+dimension6  0.50  se hp -50  +0
+dimension6  0.10  se sr -1000  +0
+dimension6  0.17  se cr -200  +0
+dimension6  0.17  se fp -200  +0
+dimension6  0.14  se np -200  +0
+dimension6  0.46  se wp -200  +0
+
+dimension7  0.11  se vo -50  +0
+dimension7  0.15  se vo -100 -50
+dimension7  0.10  se vo -200 -100
+dimension7  -0.08  se vo -400 -200
+dimension7  -0.44  se lp -50  +0
+dimension7  0.01  se hp -50  +0
+dimension7  0.07  se sr -1000  +0
+dimension7  0.66  se cr -200  +0
+dimension7  0.02  se fp -200  +0
+dimension7  0.04  se np -200  +0
+dimension7  -0.56  se wp -200  +0
+
+dimension8  0.19  se vo -50  +0
+dimension8  -0.28  se vo -100 -50
+dimension8  -0.48  se vo -200 -100
+dimension8  0.66  se vo -400 -200
+dimension8  0.07  se lp -50  +0
+dimension8  0.33  se hp -50  +0
+dimension8  -0.20  se sr -1000  +0
+dimension8  0.06  se cr -200  +0
+dimension8  -0.06  se fp -200  +0
+dimension8  -0.05  se np -200  +0
+dimension8  -0.22  se wp -200  +0
+
+dimension9  0.59  se vo -50  +0
+dimension9  0.02  se vo -100 -50
+dimension9  -0.39  se vo -200 -100
+dimension9  -0.02  se vo -400 -200
+dimension9  -0.21  se lp -50  +0
+dimension9  -0.57  se hp -50  +0
+dimension9  -0.01  se sr -1000  +0
+dimension9  0.08  se cr -200  +0
+dimension9  0.12  se fp -200  +0
+dimension9  0.11  se np -200  +0
+dimension9  0.32  se wp -200  +0
+
+dimension10  -0.43  se vo -50  +0
+dimension10  0.75  se vo -100 -50
+dimension10  -0.48  se vo -200 -100
+dimension10  0.14  se vo -400 -200
+dimension10  -0.03  se lp -50  +0
+dimension10  -0.05  se hp -50  +0
+dimension10  -0.00  se sr -1000  +0
+dimension10  0.02  se cr -200  +0
+dimension10  0.02  se fp -200  +0
+dimension10  0.02  se np -200  +0
+dimension10  0.05  se wp -200  +0
+
+dimension11  0.00  se vo -50  +0
+dimension11  -0.00  se vo -100 -50
+dimension11  -0.01  se vo -200 -100
+dimension11  -0.01  se vo -400 -200
+dimension11  -0.01  se lp -50  +0
+dimension11  -0.00  se hp -50  +0
+dimension11  -0.00  se sr -1000  +0
+dimension11  0.00  se cr -200  +0
+dimension11  -0.70  se fp -200  +0
+dimension11  0.71  se np -200  +0
+dimension11  0.02  se wp -200  +0

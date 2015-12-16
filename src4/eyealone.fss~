@@ -1,0 +1,182 @@
+# eyemouth.fss
+
+# this is a copy of gazefive.fss (aka nodelay.fss) with no self features
+#  more recent than -300 included
+
+# this is the specification of the gaze features
+# Started with a coarse set, then added refinement where it seemed useful,
+#  e.g. "gazeon -500 0 self" had a high weight, so split up that window
+# Adding more features decreases performance 
+#   25 self + 14 inte = 39 features, training on one side to predict other, 
+#   did worse than about 25 total features
+#   in particular, adding interlocutor features didn't help 
+# best seen on nodelay.fss: recall .76, precision .87 at threshold .6
+#
+
+# gaze-on: what we want to predict
+# note that  makeTrackMonster knows that 0-duration means special 
+go     300 to 300 self    % self is the receiver side
+
+
+### Self Features
+gu -1600 to -800 self 
+gu  -800 to -300 self 
+
+gd -1600 to -800 self 
+gd  -800 to -300 self 
+
+gl -1600 to -800 self 
+gl  -800 to -300 self 
+
+gr -1600 to -800 self 
+gr  -800 to -300 self 
+
+ga -3200 to -1600 self 
+ga -1600 to  -800 self 
+ga  -800 to  -500 self 
+ga  -500 to  -300 self 
+
+go -3200 to -1600 self 
+go -1600 to  -800 self 
+go  -800 to  -600 self 
+go  -600 to  -400 self 
+go  -400 to  -300 self 
+
+
+
+### Interlocutor Features
+gu -1600 to -800 inte 
+gu  -800 to -400 inte 
+gu  -400 to   -0 inte 
+
+gd -1600 to -800 inte 
+gd  -800 to -400 inte 
+gd  -400 to   -0 inte 
+
+gl -1600 to -800 inte 
+gl  -800 to -400 inte 
+gl  -400 to   -0 inte 
+
+gr -1600 to -800 inte 
+gr  -800 to -400 inte 
+gr  -400 to   -0 inte 
+
+ga -3200 to -1600 inte 
+ga -1600 to  -800 inte 
+ga  -800 to  -400 inte 
+ga  -400 to  -200 inte 
+ga  -200 to    -0 inte 
+
+go -3200 to -1600 inte 
+go -1600 to  -800 inte 
+go  -800 to  -400 inte 
+go  -400 to  -300 inte 
+go  -300 to  -200 inte 
+go  -200 to  -100 inte 
+go  -100 to    50 inte 
+go  -50 to     0 inte 
+
+#------------------------------------------------------------------
+# Audio Features
+
+
+### Self Features
+## volume 
+vo -3200 to -1600 self
+vo -1600 to  -800 self
+vo  -800 to  -400 self
+vo  -400 to  -300 self
+
+## creaky
+cr -1600 to  -800 self
+cr  -800 to  -400 self
+cr  -400 to  -300 self
+
+#
+### pitch lowness
+tl -1600 to  -800 self
+tl  -800 to  -400 self
+tl  -400 to  -300 self
+
+## pitch highness
+th -1600 to  -800 self
+th  -800 to  -400 self
+th  -400 to  -300 self
+
+## narrow pitch
+np -1600 to  -800 self
+np  -800 to  -400 self
+np  -400 to  -300 self
+
+## wide pitch
+wp -1600 to  -800 self
+wp  -800 to  -400 self
+wp  -400 to  -300 self
+
+## speaking rate 
+sr -1600 to  -800 self
+sr  -800 to  -500 self
+sr  -500 to  -300 self
+
+
+###  Interlocutor Features 
+
+## volume 
+vo -3200 to -1600 inte
+vo -1600 to  -800 inte
+vo  -800 to  -400 inte
+vo  -400 to  -300 inte
+vo  -300 to  -200 inte
+vo  -200 to  -100 inte
+vo  -100 to   -50 inte
+vo   -50 to     0 inte
+
+## creaky
+cr -1600 to  -800 inte
+cr  -800 to  -400 inte
+cr  -400 to  -300 inte
+cr  -300 to  -200 inte
+cr  -200 to  -100 inte
+cr  -100 to   -50 inte
+cr   -50 to     0 inte
+
+
+### pitch lowness
+tl -1600 to  -800 inte
+tl  -800 to  -400 inte
+tl  -400 to  -300 inte
+tl  -300 to  -200 inte
+tl  -200 to  -100 inte
+tl  -100 to   -50 inte
+tl   -50 to     0 inte
+
+## pitch highness
+th -1600 to  -800 inte
+th  -800 to  -400 inte
+th  -400 to  -300 inte
+th  -300 to  -200 inte
+th  -200 to  -100 inte
+th  -100 to   -50 inte
+th   -50 to     0 inte
+
+## narrow pitch
+np -1600 to  -800 inte
+np  -800 to  -400 inte
+np  -400 to  -300 inte
+np  -300 to  -200 inte
+np  -200 to    -0 inte
+
+## wide pitch
+wp -1600 to  -800 inte
+wp  -800 to  -400 inte
+wp  -400 to  -300 inte
+wp  -300 to  -200 inte
+wp  -200 to    -0 inte
+
+## speaking rate 
+sr -1600 to  -800 inte
+sr  -800 to  -400 inte
+sr  -400 to  -200 inte
+sr  -200 to  -100 inte
+sr  -100 to    -0 inte
+
