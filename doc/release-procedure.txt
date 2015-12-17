@@ -9,3 +9,5 @@ To release a new version of ppca
 - cd .. and tar cvfz ppca.tga ppca (4 megabytes)
 
 - upload to website
+
+Also push to github, following git-cheatsheet.txt

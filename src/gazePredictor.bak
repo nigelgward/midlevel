@@ -1,0 +1,150 @@
+function [recalls, precisions, values, reductions, utilities] = gazePredictor()
+
+% Nigel Ward, University of Texas at El Paso, April 2015
+
+% intended to be run from the directory isg/speech/gaze/singapore
+% addpath('../../ppca/src4')
+% addpath('../../ppca/voicebox')
+% gazePredictor();
+%  or 
+% [v, r, u] = gazePredictor();
+% clf;hold;
+% plot(1:30, mean(r),'r.');
+% plot(1:30, mean(v),'b--');
+% plot(1:30, mean((r+2*v)/3),'k', '-');    % play with the weight to get it concave
+% axis([0 14 0 1])
+% xlabel('aggressiveness of gaze-off prediction');
+% legend('reduction', 'value', 'weighted sum');
+
+fssfile = '../../ppca/src4/eyemouth.fss';  
+fssfile = 'gazefive.fss';   % gaze features only 
+featurelist = getfeaturespec(fssfile);
+trackfile = 'twelvetracks.tl';
+trackfile = 'twotracks.tl';
+tracklist = gettracklist(trackfile);
+
+% first a little experiment to see the correlation coefficients
+trainingData = makeMultiTrackMonster(tracklist, featurelist);
+for col=1:length(featurelist)
+  nmeans(col) = mean(trainingData(:,col));
+  nstds(col) = std(trainingData(:,col));
+  normedData(:,col) = (trainingData(:,col) - nmeans(col)) / nstds(col);
+end
+[r,p] = corrcoef(trainingData);
+significance = (p / (length(featurelist) - 1)) < 0.05;
+fid = fopen('gz-corr.txt', 'w');
+fprintf('\nCorrelations for %s using features %s\n', trackfile, fssfile);
+for i=1:length(featurelist)
+  fprintf(' %5.2f     %d %s\n', ...
+	  r(1,i), significance(1,i), featurelist(i).abbrev );
+end
+
+
+%return
+
+trainingTracks = {};
+for testTrackNum = 1:length(tracklist)
+  fprintf('\n-------------- beginning to test performance on track %d\n\n', ...
+	  testTrackNum);
+  for i = 1:length(tracklist)
+    if i ~= testTrackNum
+      trainingTracks{end+1} = tracklist{i};
+    end
+  end 
+
+  trainingData = makeMultiTrackMonster(trainingTracks, featurelist);
+
+  model = trainModel(trainingData(:,1), trainingData(:,2:end));
+  displayModel(model, featurelist(2:end));   % first feature is predictee
+
+  [flf, testData] = makeTrackMonster(tracklist{testTrackNum}, featurelist);
+
+  gazeAversions = 1 - testData(flf:end,1);
+  for thresholdNum = 1:30
+    threshold =  0.05 * (thresholdNum - 1);
+    fprintf('\nat threshold %.2f\n', threshold);
+    [predictions, likelihoods] = applyModel(model, threshold, testData(flf:end,2:end)); 
+    [recall, precision, value, reduction, utility] = ...
+	    evaluatePredictions(predictions, gazeAversions); 
+    recalls(testTrackNum, thresholdNum) = recall;
+    precisions(testTrackNum, thresholdNum) = precision;
+    values(testTrackNum, thresholdNum) = value;
+    reductions(testTrackNum, thresholdNum) = reduction;
+    utilities(testTrackNum, thresholdNum) = utility;
+  end
+end
+
+end
+
+%-----------------------------------------------------------------------------
+function model =  trainModel(trainingOutcomes, trainingFeatureValues)
+  % seems to die in here 
+  % the next line is old code
+  fprintf('starting to regress');
+  %   weights = regress(trainingOutcomes, trainingFeatureValues); % old code 
+  [npoints nfeatures] = size(trainingFeatureValues);
+  rinput = [ones(npoints, 1) trainingFeatureValues];
+  weights = regress(trainingOutcomes, rinput);
+  model = weights;
+  fprintf('done with regression');
+end
+
+%-----------------------------------------------------------------------------
+function displayModel(model, featurenames)
+  fprintf('Regression-model weights for predicting gaze-on are: \n');
+  fprintf('  %6.3f for %s\n', model(1), 'constant term'); 
+  % the first item in featurenames the to-be-predicted buy, so skip it
+  for i = 1:length(featurenames)
+    fprintf('  %6.3f for %s\n',  model(i+1), featurenames(i).abbrev);
+  end
+end
+
+%-----------------------------------------------------------------------------
+% predict gaze-off
+function [predictions, likelihoods] = ...
+	    applyModel(weights, threshold, testsetFeatureValues)
+  minput = [ones(length(testsetFeatureValues),1) testsetFeatureValues];
+  likelihoods = minput * weights;
+%  fprintf('  mean(likelihoods) is %f\n', mean(likelihoods));
+  predictions = likelihoods < threshold;    
+end   
+
+%-----------------------------------------------------------------------------
+% compute precision and recall for gaze-off decisions
+% compare predictions (decisions) with ground truth (actualResults)
+function [recall, precision, value, reduction, utility] = ...
+	    evaluatePredictions(decisions, actualResults)
+  nframes = length(actualResults);
+  nGazeOff = sum(actualResults);
+  nGazeOn = sum(1-actualResults);
+  nPredictedOff = sum(decisions);
+  nPredictedOn = sum(1-decisions);
+
+  correctlyNotSent = sum(decisions & actualResults);   
+  correctlySent = sum((1-decisions) & (1-actualResults));
+  incorrectlySent = sum((1-decisions) & actualResults);   
+
+  recall = correctlyNotSent / nGazeOff;
+  precision = correctlyNotSent / nPredictedOff;
+  fMeasure = recall * precision / (recall + precision);
+
+  reduction = nPredictedOff/nframes;
+  fprintf('  reduction=%.2f', reduction);
+
+  framesViewed = 0.93 * correctlySent + 0.13 * incorrectlySent;
+  if nPredictedOn == 0
+     utility = 1.0;   % prevent NaN
+  else
+     utility = framesViewed / nPredictedOn; % viewed / sent
+  end
+  fprintf('  utility =%.2f', utility);
+  fprintf('=%.1f / %d\n', framesViewed, nPredictedOn);
+
+  value = correctlySent / nframes;
+  fprintf('  value is %.2f (= %d/%d)\n', ...
+	  value, correctlySent, nframes);
+  fprintf('  Recall is %.2f (= %d/%d)', recall, correctlyNotSent, nGazeOff);
+  fprintf('  Precision is %.2f (= %d/%d)', precision, correctlyNotSent, nPredictedOff);
+  fprintf('  F Measure is %.3f\n', fMeasure);
+  end
+

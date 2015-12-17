@@ -1,1 +1,1 @@
-Version 4.4.1, Nigel Ward, August 13, 2015
+Version 5.0, Nigel Ward, December 17, 2015
