@@ -1,19 +1,21 @@
-function patvis(featureVals, featurespecfile, plotname, isLoadings)
+function patvis(featureVals, featurespecfile, plotname, isLoadings, footnote)
+
+% mostly obsolete; mostly replaced by patvis2
 
 % pattern visualization, Nigel Ward, UTEP, April 2015
 % If isLoadings is true, shows values as the loadings for a pattern
 %  otherwise shows values as the unnormalized and unrotated prosodic
 %  features at a specific point in time in an audio file 
 
-% This is called by graphPF, a top-level function, and by diagramDimensions
+% This is called by graphPF, a top-level function, 
 % It's also designed to be used by other functions, for example
 %  to create a visualization of what's happening at points extreme 
 %  on some dimension; or to visualize the loadings on a dimension 
 %  (to replace visualizeDresden.m)
 
   global interFeatureYOffset;     interFeatureYOffset = 5;
-  global leftEdgeMs;              leftEdgeMs = -2000;
-  global rightEdgeMs;             rightEdgeMs = 2000;
+  global leftEdgeMs;              leftEdgeMs = -1600;
+  global rightEdgeMs;             rightEdgeMs = 1580;
 
   featureList = getfeaturespec(featurespecfile);
   if length(featureVals) ~= length(featureList)
@@ -22,7 +24,7 @@ function patvis(featureVals, featurespecfile, plotname, isLoadings)
   end
 
   if isLoadings
-    yg = 10 * [1, 1, 1, 1, 1];   % ygain 
+    yg = 10 * [1, 1, 1, 1, 1, 1];   % ygain 
   else 
     yg = [0.6, 0.3, 5.0, 0.1, 2.4];  % appropriate for unnormalized values
   end
@@ -30,7 +32,8 @@ function patvis(featureVals, featurespecfile, plotname, isLoadings)
   clf;    
   hold on; 
 
-  for side = 0:1    % self, then interlocutor
+  for side = 0:1      % self, then interlocutor
+    paContour = assembleContour(side, 'pa', featureVals, featureList);
     voContour = assembleContour(side, 'vo', featureVals, featureList);
     thContour = assembleContour(side, 'th', featureVals, featureList);
     tlContour = assembleContour(side, 'tl', featureVals, featureList);
@@ -58,14 +61,15 @@ function patvis(featureVals, featurespecfile, plotname, isLoadings)
     ntypes = 5;   % vo, sr, ph, pr, cr
     nplots = ntypes * 2;   % self and interlocutor
     offset = nplots - 1.05 * side * ntypes;
-    plotFeature('Volume',      offset - 1, 2, voContour * yg(1), color, lineStyle);
-    plotFeature('S. Rate',     offset - 2, 2, srContour * yg(2), color, lineStyle);
+    plotFeature('PP Align''t', offset - 0, 2, paContour * yg(1), color, lineStyle);
+    plotFeature('Intensity',      offset - 1, 2, voContour * yg(1), color, lineStyle);
+    plotFeature('Rate',     offset - 2, 2, srContour * yg(2), color, lineStyle);
       if (sum(phContour) == 0)
     plotFeature('PH Old',      offset - 3, 2, hoContour * yg(3), color, lineStyle);
       else
-    plotFeature('Pitch Height',offset - 3, 2, phContour * yg(3), [0 0 0], lineStyle);
+    plotFeature('F0 Height',offset - 3, 2, phContour * yg(3), color * .65, lineStyle);
       end
-    plotFeature('Pitch Range', offset - 4, 2, prContour * yg(4), color, lineStyle);
+    plotFeature('F0 Range', offset - 4, 2, prContour * yg(4), color, lineStyle);
     plotFeature('Creakiness',  offset - 5, 2, crContour * yg(5), color, lineStyle);
   end   % end for-each side
 
@@ -117,8 +121,8 @@ function plotFeature(displayName, yposition, width, contour, color, lineStyle)
 	 'color', color, 'lineStyle', lineStyle, 'lineWidth', width);
     dotXValues = leftEdgeMs:100:rightEdgeMs;
     dotOnes = ones(1,length(dotXValues));
-    scatter(dotXValues, ybase * dotOnes, dotOnes,'k');
-    text(leftEdgeMs - 870, ybase, displayName);
+    scatter(dotXValues, ybase * dotOnes, .8, 'k');
+    text(leftEdgeMs - 600, ybase, displayName);
     pbaspect([1.1 1 1]);
 end
 
