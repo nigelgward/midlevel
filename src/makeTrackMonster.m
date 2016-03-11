@@ -176,7 +176,8 @@ for featureNum = 1 : length(featurelist)
       featurevec = computeRate(relevantEnergy, duration)';
     case 'cr'    % creakiness
       featurevec = computeCreakiness(relevantPitch, duration); 
-
+    case 'pd'    % peakDisalignment
+      featurevec = computeWindowedSlips(relevantEnergy, relevantPitchPer, duration)';
     case 'rf'    % running fraction
       featurevec = windowize(relevantRF, duration)';  % note, transpose
     case 'mi'    % motion initiation

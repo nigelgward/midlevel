@@ -1,4 +1,6 @@
 function done = ppVisualize( path,dimension )
+% I think this now obsolete (NW, Jan 2016) 
+
 %PPATTERN_NEW saves the plot of loadings
 % input   path is the location for the separated loading files for each dimension
 %         dimension is the desired dimension

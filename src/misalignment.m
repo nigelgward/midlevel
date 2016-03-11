@@ -10,6 +10,9 @@
 % 
 % Note that misalignments are only salient if they come at a peak.
 % see also comments in ../sliptest/README.TXT
+%
+% note that "misalignment" is a misnomer, since these things are 
+%  not errors
 
 function estimate = misalignment(epeaky, ppeaky)
 

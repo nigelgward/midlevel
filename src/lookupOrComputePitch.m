@@ -20,7 +20,8 @@ if (exist(pitchFileName, 'file' ) == 2)
    load(pitchFileName)
 else
   fprintf('computing pitch for %s %s  \n', savekey);
-tic
+
+  tic
   [pitch, startsAndEnds] = fxrapt(signal, rate, 'u');
 toc
   save( pitchFileName, 'pitch', 'startsAndEnds');      % write it as a .mat file

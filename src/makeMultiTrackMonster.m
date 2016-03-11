@@ -17,7 +17,6 @@ function totalMonster = makeMultiTrackMonster(trackspecs, flist)
      [h2, w2] = size(totalMonster);
      fprintf('trackMonster size is %d %d, totalMonster size is %d %d\n', ...
   	   h1, w1, h2, w2);
-
      if totalMonsterInitialized
        totalMonster = vertcat(totalMonster,trackMonster);
      else 

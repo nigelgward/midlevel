@@ -15,7 +15,7 @@ for time = times
   figure()   % so the next one doesn't overwrite this feature 
   graphname = sprintf('prosody around %.2f for %s track of %s using %s\n', ...
         time, side, audioFile, featurespecfile);  
-  patvis(monster(floor(time *100),:), featurespecfile, graphname, false);
+  patvis(monster(floor(time *100),:), featurespecfile, graphname, false, ' ');
 end
 
 end

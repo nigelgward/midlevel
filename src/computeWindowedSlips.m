@@ -2,17 +2,16 @@
 % Nigel Ward, University of Texas at El Paso and Kyoto University
 % January 2016
 
-%! for compatibility with the rest of 
+% Computes a smoothed measure of how misaligned are pitch and energy peaks
+% Also includes code for plotting things to see how it's being computed
+% NB, unlike all the other mid-level features, this one is almost everywhere
+%  very near zero
 
 function smoothed = computeWindowedSlips(energy, pitch, duration)
-  if length(energy) ~= length(pitch)
-    %fprintf('computeWindowedSlips: warning: ');
-    %fprintf(' lengths not equal; energy %d, pitch %d\n', ...
-    %	    length(energy), length(pitch));
     if length(energy) == length(pitch) + 1
-      % not sure why this happens, but just patch it
+      % not sure why this sometimes happens, but just patch it
       energy = energy(1:end-1);
-    else 
+    else if length(energy) ~= length(pitch)
       return;  % if a larger discrepancy, can't patch it
     end
   end
@@ -20,13 +19,15 @@ function smoothed = computeWindowedSlips(energy, pitch, duration)
   epeaky = epeakness(energy);
   ppeaky = ppeakness(pitch);
 
-  [slippage, pulls] = computeSlip(epeaky', ppeaky);
+%  [slippage, pulls] = computeSlip(epeaky', ppeaky);
+%  smoothedOld = smooth(slippage, rectangularFilter(duration));
+
   misa = misalignment(epeaky', ppeaky);
-  smoothed = smooth(slippage, rectangularFilter(duration));
-  smoothed2 = smooth(misa, rectangularFilter(duration));
+  smoothed = smooth(misa, rectangularFilter(duration))';
   % very valuable for debugging and tuning  
-  plotSlips(000, 2000000, energy, pitch, epeaky, ppeaky, slippage, smoothed, pulls, misa, smoothed2);
+  plotSlips(24000, 30000, energy, pitch, epeaky, ppeaky, misa, smoothed);
 end
+
 
 
 % (Implementation note: maybe rewrite the other windowization functions
@@ -37,8 +38,7 @@ end
 
 
 function  plotSlips(startframe, endframe, ...
-		    energy, pitch, epeaky, ppeaky, ...
-		    slippage, smoothed, pulls,  misa, sm2)
+		    energy, pitch, epeaky, ppeaky, misa, smoothed)
   startframe = max(startframe, 1);
   endframe = min(endframe, length(energy));
 
@@ -49,19 +49,19 @@ function  plotSlips(startframe, endframe, ...
   h = zoom;
   set(h,'Motion','horizontal','Enable','on');
   plot(xAxis, 0.5 * zNormalize(energy(startframe:endframe)) + 5);
-  plot(xAxis, 4.0 * pitch(startframe:endframe) + 5);
+  plot(xAxis, 2.0 * pitch(startframe:endframe) + 7);
 
-  plot(xAxis, 4 * epeaky(startframe:endframe) + 10);
-  plot(xAxis, 50 * ppeaky(startframe:endframe) + 10);
+  plot(xAxis, 4 * epeaky(startframe:endframe) + 12);
+  plot(xAxis, 40 * ppeaky(startframe:endframe) + 15.5);
 
-  plot(xAxis, 400 * slippage(startframe:endframe) + 15);
-  plot(xAxis, 400 * smoothed(startframe:endframe) + 15);
+%  plot(xAxis, 400 * slippage(startframe:endframe) + 15);
+%  plot(xAxis, 400 * smoothed(startframe:endframe) + 15);
 
   plot(xAxis, 5000 * misa(startframe:endframe) + 25);
-  plot(xAxis, 20000 * sm2(startframe:endframe) + 25);
+  plot(xAxis, 20000 * smoothed(startframe:endframe) + 25);
 
-  plot(xAxis, zeros(1,length(xAxis)) + 10); % baseline
-  plot(xAxis, zeros(1,length(xAxis)) + 15); % baseline
+%  plot(xAxis, zeros(1,length(xAxis)) + 10); % baseline
+%  plot(xAxis, zeros(1,length(xAxis)) + 15); % baseline
 
   legend('energy', 'pitch', ...
 	 'epeaky', 'ppeaky', 'slippage', 'smoothed');

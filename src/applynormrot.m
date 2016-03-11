@@ -10,7 +10,7 @@ function allRotated = applynormrot(tlfile, featuresetSpec, outdir)
 load rotationspec   % get nmeans, nstds, and coeff, written by findDimensions.m
 featurelist = getfeaturespec(featuresetSpec);
 % clear statistics file, since we'll be appending to it; ok if this fails
-%system('rm summary-stats.txt');   
+% system('rm summary-stats.txt');   
 
 tracklist = gettracklist(tlfile);
 

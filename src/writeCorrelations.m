@@ -1,4 +1,7 @@
 function writeCorrelations(cmatrix, featurelist, outdir, filename);
+%
+% Nigel Ward, University of Texas at El Paso, 2015
+%
 % helps discover some key information in a correlation matrix
 % for each feature, shows the other features that correlate well
 %   with it, and one that is pretty much uncorrelated.
@@ -10,8 +13,12 @@ function writeCorrelations(cmatrix, featurelist, outdir, filename);
 %   a = importdata('....')
 %   data = a.data
 
-[outdir filename];
 fd = fopen([outdir filename], 'w');
+
+if length(cmatrix) < 4
+  fprintf('writeCorrelations: skipping this since too few features\n');
+  return
+end
 
 for columni = 1:length(cmatrix)
   [sortedValues,sortIndex] = sort(cmatrix(columni,:), 'descend');

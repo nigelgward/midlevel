@@ -12,7 +12,8 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 		 'lp', 'hp', 'cr', 'fp', 'np', 'wp', ...
 		 'tl', 'th', ...
 		 'rf', 'mi', 'ju', ...
-		 'go', 'gf', 'ga', 'gl', 'gr', 'gu', 'gd'};
+		 'go', 'gf', 'ga', 'gl', 'gr', 'gu', 'gd', ...
+		 'pd'};
 % vo = volume
 % ph = (old) pitch height
 % lp = low pitch 
@@ -34,6 +35,7 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 % gr = gaze right
 % gf = gaze face  % old
 % ga = gaze awayness (distance)
+% pd = peak disalignment 
 
 fprintf('reading %s\n', crunchspec);
 
@@ -68,7 +70,7 @@ while ischar(tline);
 	
      duration = endms - startms;
      if (duration < 0 || duration > 10000)
-	printf('strange duration %d in getfeaturespec; check file format', duration);
+	fprintf('strange duration %d in getfeaturespec; check file format', duration);
      end
 
      flist(fcounter).featname = feat;

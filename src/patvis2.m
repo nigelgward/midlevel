@@ -1,4 +1,5 @@
-function patvis2(plotTitle, featureVals, featurespecfile, leftedge, rightedge)
+function patvis2(plotTitle, featureVals, featurespecfile, plotspec, ...
+		 leftedge, rightedge)
 
 % pattern visualization, Nigel Ward, UTEP and Kyoto U
 % Janaury 2016.  based on patvis.m, but more flexible
@@ -19,11 +20,6 @@ function patvis2(plotTitle, featureVals, featurespecfile, leftedge, rightedge)
   global leftEdgeMs;              leftEdgeMs = leftedge;
   global rightEdgeMs;             rightEdgeMs = rightedge;
 
-  dustyPurple = [140/256 106/256 186/256];    
-  darkGreen  = [127/256 190/256 92/256];     
-  mexicanFlagRed = [206/256  17/256  38/256]; 
-  mexicanFlagGreen = [  0/256 104/256 71/256];
-
   featureList = getfeaturespec(featurespecfile);
   if length(featureVals) ~= length(featureList)
     fprintf('patvis2: number of values %d not equal to number of features %d\n', ...
@@ -33,20 +29,6 @@ function patvis2(plotTitle, featureVals, featurespecfile, leftedge, rightedge)
   clf;    
   hold on; 
 
-  % this should logically be defined outside this file!
-  % side, feature type, label, ybaseline, ygain, color, linestyle
-  % note that y = 0 is at the lower left
-  plotspec =[{'self'}, {'vo'}, {'Volume'},     105, 10, dustyPurple, {'-'}; ...
-	     {'self'}, {'cr'}, {'Creakiness'},  95, 10, dustyPurple, {'-'}; ...
-	     {'self'}, {'sr'}, {'S. Rate'},     85, 10, dustyPurple, {'-'}; ...
-	     {'self'}, {'ph'}, {'Pitch Height'},75, 10, dustyPurple, {'-'}; ...
-	     {'self'}, {'pr'}, {'Pitch Range'}, 65, 10, dustyPurple, {'-'}; ...
-	     ...
-	     {'inte'}, {'vo'}, {'Volume'},      50, 10, darkGreen, {'-'}; ...
-	     {'inte'}, {'cr'}, {'Creakiness'},  40, 10, darkGreen, {'-'}; ...
-	     {'inte'}, {'sr'}, {'S. Rate'},     30, 10, darkGreen, {'-'}; ...
-	     {'inte'}, {'ph'}, {'Pitch Height'},20, 10, darkGreen, {'-'}; ...
-	     {'inte'}, {'pr'}, {'Pitch Range'}, 10, 10, darkGreen, {'-'}; ];
 
 
   % NB ygains appropriate for unnormalized feature values are: 
@@ -75,7 +57,7 @@ function patvis2(plotTitle, featureVals, featurespecfile, leftedge, rightedge)
     plotContour(contour, ybase, label, color, linestyle, 2);
   end
 
-  axis([leftEdgeMs rightEdgeMs 0 115]);
+  axis([leftEdgeMs rightEdgeMs -10 125]); % shouldn't be hardcoded
   set(gca, 'YTick', []);   % turn off y-axis ticks
   set(gca, 'XTick', [-2000 -1500 -1000 -500  0 500 1000 1500 2000]);
   plot([0 0], [-1000 1000], 'color', [.8 .8 .8]);    % vertical hairline

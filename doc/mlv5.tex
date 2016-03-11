@@ -410,13 +410,15 @@ writes a large, human-readable file called {\tt
 to visualize the loadings.  This can be done with:
 
 \begin{verbatim}
-   load rotationspec;
-   diagramDimensions(coeff, 'xxx.fss');
+   diagramDimensions('rotationspec.mat', 'xxx.fss');
 \end{verbatim}
 
 Where xxx.fss is the name of the feature file used to create the
 rotationspec.  (If you don't remember, look at the value of {\tt
-  rotation\_provenance} after you load the rotationspec.)
+  rotation\_provenance} after you load the rotationspec.  The only
+reasons why you need to specify this by hand is that 1) rotationspecs
+written by earlier versions don't include the name of the fssfile, and
+2) the fssfile may be in a distant directory.)
 
 This creates a {\tt loadingplots} directory and writes a bunch of
 .png diagrams there. 

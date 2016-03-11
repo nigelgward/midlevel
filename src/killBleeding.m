@@ -23,6 +23,7 @@ clearDifference = 0.8;
   pitchesHalved = pitchl./pitchr > 1.90 & pitchl./pitchr < 2.10;
   pitchesSuspect = pitchesSame | pitchesDoubled | pitchesHalved;
 
+  % note: crashes at this point are often due to stale pitchCache files
   bleedingToLeft = rightLouder' & pitchesSuspect;
   bleedingToRight = leftLouder' & pitchesSuspect;
   cleanPitchl = pitchl;
