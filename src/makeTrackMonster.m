@@ -42,7 +42,7 @@ for featureNum = 1 : length(featurelist)
    if  ismember(thisfeature.featname, ['rf', 'mi', 'ju'])
 	processKeystrokes = true;
    end
-   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr'])
+   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd'])
 	processAudio = true;
    end
 end
