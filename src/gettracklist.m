@@ -23,7 +23,8 @@ while ischar(tline)
         % is a comment line, so skip it
   elseif  directoryseen
 	% else process the line
-       fields = strsplit(tline);
+%       fields = strsplit(tline);
+    fields = strread(tline, '%s', 'delimiter', ' ');
        sidecell = fields(1);
        trackspecs{trackindex}.side = sidecell{1};  % 'l' or 'r' 
        filenamecell = fields(2);

@@ -18,7 +18,7 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 % ph = (old) pitch height
 % lp = low pitch 
 % hp = high pitch 
-% tl = truly-low pitch
+% tl = truly-low pitch 
 % th = truly-high pitch 
 % cr = creaky
 % pr = (old) pitch range 
@@ -49,7 +49,8 @@ while ischar(tline);
      % is a comment line, so skip it
   else
     % process the line, painfully, because strread is uncooperative 
-     fields = strsplit(tline);
+    % fields = strsplit(tline); % only in newer matlab
+    fields = strread(tline, '%s', 'delimiter', ' ');
      featurecell = fields(1);
      feat = featurecell{1}; 
      validatestring(feat, validFeatures, 'getfeaturespec', tline);
