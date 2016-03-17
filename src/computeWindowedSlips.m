@@ -2,7 +2,8 @@
 % Nigel Ward, University of Texas at El Paso and Kyoto University
 % January 2016
 
-% Computes a smoothed measure of how misaligned are pitch and energy peaks
+% Computes a smoothed measure of disalignment between pitch and energy peaks,
+%  that is, the "slip" between the pitch and the energy
 % Also includes code for plotting things to see how it's being computed
 % NB, unlike all the other mid-level features, this one is almost everywhere
 %  very near zero
@@ -26,6 +27,8 @@ function smoothed = computeWindowedSlips(energy, pitch, duration)
   smoothed = smooth(misa, rectangularFilter(duration))';
   % very valuable for debugging and tuning  
   plotSlips(24000, 30000, energy, pitch, epeaky, ppeaky, misa, smoothed);
+  % misuse this function to obtain a list of extreme values
+  findExtremes([smoothed smoothed], 'unknown side', 'unknown track', '/tmp/', 'computeWindowedSlips');
 end
 
 

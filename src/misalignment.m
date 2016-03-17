@@ -12,7 +12,7 @@
 % see also comments in ../sliptest/README.TXT
 %
 % note that "misalignment" is a misnomer, since these things are 
-%  not errors
+%  not errors; perhaps "disalignment"
 
 function estimate = misalignment(epeaky, ppeaky)
 

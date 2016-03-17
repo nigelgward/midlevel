@@ -1,6 +1,4 @@
 function findExtremes(rotated, side, trackname, outdir, provenance)
-%function findExtremes(rotated, side, trackname, outdir, provenance, selfAblatedRotated, inteAblatedRotated)
-%function findExtremes(rotated, side, trackname, outdir, provenance)
 % We often want to examine places which are very high or very low on some dimension.
 % For each dimension this function finds such places and writes information to a file 
 %
@@ -38,7 +36,7 @@ for dim=1:dimensionsToWrite
     %  Since the earlier dimensions tend to have larger values than later ones
     %    we make the threshold lower for later dimensions
     %    Empirically this equation kills 20-90% of the timepoints, which is fine.
-          lThresh = 1 / sqrt(dim);
+          %lThresh = 1 / sqrt(dim);
           dimsliceForMin = -1 * dimslice;
           %dimsliceForMin( abs(dimslice) < lThresh * abs(max(rotated,[],2))) = 0;   
           dimsliceForMax = dimslice;
@@ -58,7 +56,6 @@ for dim=1:dimensionsToWrite
           maxIndices = findIndicesOfMaxima(dimsliceForMax);
           %fprintf('for Max got \n');
           %disp(maxIndices);
-
 
     fprintf(fid, '%s\n', provenance);
     fprintf(fid, 'Low\n');
