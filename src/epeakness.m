@@ -25,7 +25,7 @@ function peakness = epeakness(vec)
   iSFW = 6;  % in-syllable filter width, in frames
   iFFW = 15; % in-foot filter width, in frames
 
-  height = sqrt(vec - min(vec) / (max(vec) - min(vec))); 
+  height = sqrt( (vec - min(vec)) / (max(vec) - min(vec))); 
   inSyllablePeakness = myconv(vec, laplacianOfGaussian(iSFW), iSFW * 2.5);
   inFootPeakness     = myconv(vec, laplacianOfGaussian(iFFW), iFFW * 2.5);
 
