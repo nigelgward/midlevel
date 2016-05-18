@@ -546,9 +546,12 @@ p_f^p = percentile(p_f^r)
 \end{equation}
 
 where the percentile is based on the distribution of pitch values in
-all voiced regions in the entire track.  (As described below,
-percentalized pitch is used for the highness and lowless featurs; but
-raw pitch is used for the for creaky, wide and narrow features.)
+all voiced regions in the entire track.  These are mapped to the range
+0 to 1; thus the lowest pitch value in the track thus maps to 0.0, the
+highest to 1.0, and the median pitch value to 0.5.  As described
+below, percentalized pitch is used for the highness and lowless
+featurs; but raw pitch is used for the for creaky, wide and narrow
+features.
 
 Energy is normalized as described below. (It is not done at the frame
 level, but over larger windows, because I suspect that frame-level
@@ -648,9 +651,29 @@ The thresholds are based roughly on what is known about maximum
 human-achievable variation in pitch.  This is reported to be 61.3
 semitones per second up and 70.6 semitones per second
 down\cite{xu02-pitch-change-rate}.  Since a semitone is a 6\% rise or
-fall, this means excursions greater than and 3.6\% per frame up or
+fall, this means excursions greater than 3.6\% per frame up or
 4.2\% per frame down are not normal pitch movements. 
 
+Accordingly, in the equation the first clause detects pitch halving: a
+pitch point within 5\% of half the value of a neighboring pitch point
+counts as evidence for creaky voice.  Similarly the last clause
+considers a pitch point that is within 5\% of twice the value of a
+neighboring pitch point to also be evidence for creaky voice.  The
+tolerance (5\%) is a little wider than Xu's results would imply,
+mostly because pitch tracking of spontaneous speech is not always
+highly accurate.
+
+The second and third clauses detect variation in pitch that is too
+large to be a normal pitch movement.  Again the 5\% criterion is used,
+for the same reason.  
+
+To explain this equation in another way, every pair of pitch points
+counts as evidence for creaky voice except, a) those that are probably
+due to normal pitch movements, with a ratio of between 0.95 and 1.05,
+which are the vast majority, and b) those that are probably due to
+noise of some kind, namely those with a ratio below .475 or above
+2.10, or a ratio between 0.525 and 0.80, or a ratio between 1.25 and
+1.90.  These specific thresholds are based purely on experience.
 
 %--------------
 \subsubsection{Narrowness}
@@ -907,7 +930,7 @@ The Mid-Level Features draft document is in
 
 %%=========================================================
 \bibliographystyle{IEEEtran}
-\bibliography{../../bib}
+\bibliography{../../z/bib}
 
 %%=========================================================
 \end{document}
