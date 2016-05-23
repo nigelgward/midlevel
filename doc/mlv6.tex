@@ -88,7 +88,7 @@ welcome.
 The code is at {\tt https://github.com/nigelgward/midlevel }.  It requires:
 \begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
 \item Matlab (this was developed mostly on release r2015a, but seems
-  to work on earlier releases through 2010)
+  to work on earlier releases back through 2010)
 \item Mike Brookes' Voicebox code, for audio file input and the pitch
   computation, available from {\tt
     http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html }.
@@ -621,8 +621,8 @@ h_{a,b} = \frac{1}{b-a} \sum\limits_{i=a}^b (p_i^p -.5 | p_i^p> .5 \operatorname
 \end{equation}
 
 where $a$ is the start of the window and $b$ is the end, both in
-frames.  We use windows of various sizes, thus $a-b$ may be 50
-milliseconds, 100ms, etc.
+frames.  We use windows of various sizes, thus $a-b$ may be 5 (for a
+50 milliseconds window), 10 (for a 10 ms window), etc.
 
 Note that this computation uses the pitch
 percentile values.
@@ -682,7 +682,9 @@ noise of some kind, namely those with a ratio below .475 or above
 n_{a,b} = \frac{1}{b-a} \sum\limits_{i=a}^b \sum\limits_{i-50}^{i+49} \enspace 1 \enspace \operatorname{if} 0.98 <  \frac{p_i}{p_{i-1}} < 1.02 
 \end{equation}
 
-where 50 refers to 50 frames.
+where 50 refers to 50 frames.  With the nested {\em for} loop this is
+somewhat inefficient, but this has not been a problem in practice.
+
 
 % the normal declination across utterances ranges from 8 to 1
 %semitones per second \cite{yuan-declination}.
@@ -695,7 +697,7 @@ w_{a,b} = \frac{1}{b-a} \sum\limits_{i=a}^b \sum\limits_{i-50}^{i+49} \enspace 1
 \end{equation}
 
 Note that if the ratio is more extreme, one of the two pitch points is
-quite possibly spurious, so we don't consider such cases to be evidence. 
+likely, so we don't consider such cases to be evidence.
 
 
 %--------------
@@ -830,8 +832,8 @@ parameterizable, and documented everything.  I also created some
 features, used for social speech; and fulltest/slim.fss, 78 features
 (48 self and 30 interlocutor), as used for the narrow-pitch work.
 This involved two features which are now obsolete: ph (pitch height)
-and pr (pitch range).  This was the version shared with Columbia,
-Naver, and Parc.
+and pr (pitch range).  
+%This was the version shared with Columbia, Naver, and Parc.
 
 Version 4.  In Fall 2014 I began to reimplement everything again, this
 time in Matlab.  Paola Gallardo did some of the functions, as noted in
@@ -856,6 +858,8 @@ well as Linux.
 Version 6, April 2016.  I added the late-pitch-peak feature was added, and
 documented the computations for the features.
 
+%Thanks for comments on code and/or documentation: Divesh Lala,
+%Narimasa Watanabe.
 
 %==================================================================
 \section{Future Work}
