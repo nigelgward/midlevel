@@ -25,12 +25,9 @@ function smoothed = computeWindowedSlips(energy, pitch, duration)
 
   misa = misalignment(epeaky', ppeaky);
   smoothed = smooth(misa, rectangularFilter(duration))';
-  % very valuable for debugging and tuning  
+  % plot, useful for debugging and tuning  
   plotSlips(24000, 30000, energy, pitch, epeaky, ppeaky, misa, smoothed);
-  % misuse this function to obtain a list of extreme values
-  findExtremes([smoothed smoothed], 'unknown side', 'unknown track', '/tmp/', 'computeWindowedSlips');
 end
-
 
 
 % (Implementation note: maybe rewrite the other windowization functions
@@ -66,8 +63,8 @@ function  plotSlips(startframe, endframe, ...
 %  plot(xAxis, zeros(1,length(xAxis)) + 10); % baseline
 %  plot(xAxis, zeros(1,length(xAxis)) + 15); % baseline
 
-  legend('energy', 'pitch', ...
-	 'epeaky', 'ppeaky', 'slippage', 'smoothed');
+%  legend('energy', 'pitch', ...
+%	 'epeaky', 'ppeaky', 'slippage', 'smoothed');
 
 % plotIndividualEvidence(xAxis,pulls);
   grid on

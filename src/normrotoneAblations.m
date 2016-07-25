@@ -45,6 +45,6 @@ function rotated = ...
 
   findExtremes(rotated, trackspec.side, trackspec.filename, ...
 	       extremesdir, provenance);   
-  writeSummaryStats([filecode '-' trackcode], pcheader, rotated);  
+%  writeSummaryStats([filecode '-' trackcode], pcheader, rotated);  
 
 
