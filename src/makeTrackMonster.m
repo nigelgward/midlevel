@@ -178,6 +178,12 @@ for featureNum = 1 : length(featurelist)
       featurevec = computeCreakiness(relevantPitch, duration); 
     case 'pd'    % peakDisalignment
       featurevec = computeWindowedSlips(relevantEnergy, relevantPitchPer, duration)';
+      if ~exist('extremeMisalignmentsWritten')
+        writeExtremesToFile('highlyMisaligned.txt', featurevec, ...
+			  sprintf('%s %s', trackspec.filename, trackspec.side));
+        extremeMisalignmentsWritten = true;
+      end
+
     case 'rf'    % running fraction
       featurevec = windowize(relevantRF, duration)';  % note, transpose
     case 'mi'    % motion initiation
