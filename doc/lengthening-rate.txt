@@ -1,0 +1,131 @@
+Lengthening and Rate
+
+ h:/nigel/midlevel/doc/lengthening-rate.txt
+
+ Nigel Ward, December 2016
+
+Regarding the implementation of the new lengthening feature ('le')
+
+
+Motivation and Goals 
+
+The percept I'm aiming for here is lengthening.
+
+The main target is lengthened vowels.  One reason is that those are
+heavily involved in turn-taking etc.  (Lengthened consonants seem to
+be more about emotion.)  The second reason is that the most salient
+lengthenings, which we care about most, can be quite it's quite long,
+and this is, most often, I think, more commonly involving vowels.  
+
+In some abstract sense, if the speaking rate is slow, then lengthening
+must be happening.  However I doubt that rate measures
+(syllble/phoneme rate) correlate well.  And the standard rate measures
+are tuned on non-dialog speach.
+
+The immediate motivation for this new feature is the observation that
+my speaking-rate proxy, sr, in computeRate.m, seems (often) to be
+reflecting phonetic reduction, more than rate, let alone lengthening.
+The reason I've been using it is because it's simple and because it
+outperformed mrate for language modeling.  But it's based on
+energy-flux (energy differences between adjacent frames), so really
+it's not well suited for detecting if a single phoneme is stretched
+out.
+
+I'm not concerned about pinpointing where the lengthening is, nor
+about quantifying it exactly.  Rather it's adequate to identify
+whether it's present somewhere in some region, and perhaps also how
+perceptually strong it is.
+
+
+Techniques Considered
+
+One way to detect this would be to actually measure the length
+of a syllable, based on some syllable-delimiting process.
+But I think this would probably be non-robust to transient noise,
+such as clicks. 
+
+The fancy way would be to compute all these things and from those,
+compute a composite measure that correlates most highly with perceived
+lengthening.  But then I'd lose the traceability back to the original
+signal that comes with a simple computation, and also perhaps
+robustness to different speakers, dialog types, recording conditions,
+etc.
+
+What I tried first was to use energy flux, but in a different way from
+'sr'.  That is, rather than using the average variation between
+adjacent frames, I used measure of how close they were across some
+time.  This was done in the same way I found pitch stability to find
+pitch narrowness in computePitchRange.m.  Sadly, it worked poorly.
+Observations regarding missing predictions using this method: energy
+is very variable in creaky regions; lengthened syllables often have a
+smooth fall off in energy, when they're utterance-final. There were
+also many false alarms using this method, largely because energy dips
+at consonants can be quite small during fast/reduced speech.  So it
+was clear that it would never work.
+
+Finally I tried spectral flux (actually cepstral flux).  To reduce
+false alarms in regions of silence or of inbreaths, I divided this by
+the energy.  I then inverted it to make it a measure of lengthening,
+not diversity.  This worked decently (.33 F-measure, with a suitable
+threshold, in validateFeature, compared to .14 for sr). This is
+implemented using ceptralFlux.m, building on mfcc.m, and dividing this
+in makeTrackMonster.m.
+
+Evaluation 
+
+I've labeled midlevel/flowtest/21d.au as follows
+    1 when strongly lengthened,
+    0 (implicitly) when not lengthened (includes normal rate words and silence)
+    .5 or other intermediate values, when somewhat lengthened  
+  -.2 when clearly not lengthened
+
+The negative value is not because the lengthening feature should also
+represent speed-ups (that's handled, kind of, by computeRate) but
+because we really don't want fast things to count as slow. 
+
+When labeling, it seems that my perceptions of duration are also
+influenced by loudness, and that my perceptions and may differ for
+fillers versus other words.
+
+
+Eyeballing the plots also; they look very good. Most of the
+discrepancies were, upon re-listening, due to poor annotations.  After
+fixing this, the coverage is around 50% and the accuracy around 40%.
+Here I use validateFeature.m, to see how well the output of this
+feature computation matches labels.
+
+However this measure fails to detect lengthening when it's strongly
+creaky.
+
+A possible way to improve the accuracy would be to add a stability
+consideration, to consider stability beyond just across adjacent
+frames, as done in computePitchRange.m
+
+
+Notes re Fast Rate
+
+The 'sr' feature respond somewhat to rate, it seems, but also to noisy
+exhalations, creaky voice, clearing the throat; thus there are many
+false alarms.  All these are low volume, so even tho this feature is
+tricked by them, downstream the PCA is probably dealing with them in
+some way.
+
+The coverage is about 50% and accuracy about 10%, with a F-measure of
+0.18% Thus accuracy/coverage are low and may be no better than
+something that just looks for speech.  However visually, inspecting
+the graph, its peaks correlate decently well with the labeled fast
+regions.  Visually, this feature is very noisy.
+
+Examining the correlation between sr and le; it's almost nil; so keep
+both features.
+
+
+For fun
+
+I plotted the first 8 dimensions of a PCA using lengthening features
+alone.  The first dimension represents one speaker lengthening
+throughout, and the other not at all.  This is probably speaker vs
+active listener.  The second dimension represents a single short
+episode of lengthening or the opposite waves of lengthening.  The
+third may represent the rhythm of talkspurts, each starting fast and
+ending slow. 
