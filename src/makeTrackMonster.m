@@ -42,7 +42,7 @@ for featureNum = 1 : length(featurelist)
    if  ismember(thisfeature.featname, ['rf', 'mi', 'ju'])
 	processKeystrokes = true;
    end
-   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd'])
+   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le'])
 	processAudio = true;
    end
 end
@@ -66,27 +66,37 @@ end
 
 if processAudio 
   % ------ First, compute frame-level features: left track then right track ------
+  stereop = decideIfStereo(trackspec, featurelist);
   [rate, signalPair] = readtracks(trackspec.path);
-
+  if size(signalPair,2) < 2 && stereop
+    fprintf('contrary to expectation, %s is not a stereo file, exiting\n', ...
+	    trackspec.path)'
+  end
+  
   samplesPerFrame = msPerFrame * (rate / 1000);
-  plotEndSec = 8;  % plot the first few seconds of the signal and featueres
 
   [plraw, pCenters] = lookupOrComputePitch(...
         trackspec.directory, [trackspec.filename 'l'], signalPair(:,1), rate);
-  [prraw, pCenters] = lookupOrComputePitch( ...
-	trackspec.directory, [trackspec.filename 'r'], signalPair(:,2), rate);
-
   energyl = computeLogEnergy(signalPair(:,1)', samplesPerFrame);
-  energyr = computeLogEnergy(signalPair(:,2)', samplesPerFrame);
+  pitchl = plraw;  
+  leftSignal = signalPair(:,1);
+  cepstralFluxl = cepstralFlux(leftSignal, rate, energyl);
 
- %pitchl = plraw; pitchr = prraw;  % old
- [pitchl, pitchr] = killBleeding(plraw, prraw, energyl, energyr); 
-
+  if stereop
+    [prraw, pCenters] = lookupOrComputePitch( ...
+	trackspec.directory, [trackspec.filename 'r'], signalPair(:,2), rate);
+    energyr = computeLogEnergy(signalPair(:,2)', samplesPerFrame);
+    [pitchl, pitchr] = killBleeding(plraw, prraw, energyl, energyr);
+    rightSignal= signalPair(:,2);
+    cepstralFluxr = cepstralFlux(rightSignal, rate, energyr);
+  end
+  
 nframes = floor(length(signalPair(:,1)) / samplesPerFrame);
 lastCompleteFrame = min(nframes, lastCompleteFrame);
 
 % --- plot left-track signal, for visual inspection ---
 if  plotThings
+  plotEndSec = 8;  % plot the first few seconds of the signal and featueres
   hold on
   yScalingSignal = .005;
   yScalingEnergy = 6;
@@ -105,9 +115,11 @@ end
 
 maxPitch = 500;
 pitchLper = percentilizePitch(pitchl, maxPitch);
-pitchRper = percentilizePitch(pitchr, maxPitch);
+if stereop
+  pitchRper = percentilizePitch(pitchr, maxPitch);
+end
 
-end 
+end
 
 % ------ Second, compute derived features, and add to monster ------
 
@@ -127,10 +139,13 @@ for featureNum = 1 : length(featurelist)
       relevantPitch = pitchl;
       relevantPitchPer = pitchLper;
       relevantEnergy = energyl;
+      relevantFlux = cepstralFluxl;
     else 
+      % if stereop is false then this should not be reached 
       relevantPitch = pitchr;
       relevantPitchPer = pitchRper;
       relevantEnergy = energyr;
+      relevantFlux = cepstralFluxr;
     end
   end 
 
@@ -183,6 +198,8 @@ for featureNum = 1 : length(featurelist)
 			  sprintf('%s %s', trackspec.filename, trackspec.side));
         extremeMisalignmentsWritten = true;
       end
+    case 'le'    % lengthening
+      featurevec = computeLengthening(relevantEnergy, relevantFlux);
 
     case 'rf'    % running fraction
       featurevec = windowize(relevantRF, duration)';  % note, transpose
@@ -245,9 +262,27 @@ for featureNum = 1 : length(featurelist)
 end   % loop back to do the next feature
 
 monster = cell2mat(features_array);  % flatten it to be ready for princomp
+end
 
 
 % this is tested by calling findDimensions for a small audio file (e.g. short.au)
 %  and a small set of features (e.g. minicrunch.fss)
 % and then uncommenting various of the "scatter" commands above
 %  and examining whether the feature values look appropriate for the audio input
+
+
+% true if trackspec is a right channel or any feature is inte
+function stereop = decideIfStereo(trackspec, featurelist)
+  stereop = false;
+  if trackspec.side == 'r'
+    stereop = true;
+  end
+  for featureNum = 1 : length(featurelist)
+    thisfeature = featurelist(featureNum);
+    if thisfeature.side == 'inte'
+      stereop = true;
+    end
+  end
+end
+
+
