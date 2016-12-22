@@ -13,7 +13,7 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 		 'tl', 'th', ...
 		 'rf', 'mi', 'ju', ...
 		 'go', 'gf', 'ga', 'gl', 'gr', 'gu', 'gd', ...
-		 'pd'};
+		 'pd', 'le'};
 % vo = volume
 % ph = (old) pitch height
 % lp = low pitch 
@@ -35,7 +35,8 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 % gr = gaze right
 % gf = gaze face  % old
 % ga = gaze awayness (distance)
-% pd = peak disalignment 
+% pd = peak disalignment
+% le = lengthening
 
 fprintf('reading %s\n', crunchspec);
 

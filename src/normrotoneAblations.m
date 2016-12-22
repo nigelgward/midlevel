@@ -36,7 +36,7 @@ function rotated = ...
   % Write the final rotated features (aka factor values) as a .pc file, 
   trackcode = trackspec.side;     % either l or r
   aufilename = trackspec.filename;
-  filecode = aufilename(1:length(aufilename) - 3);    % remove extension to g et, e.g. sw2105
+  filecode = aufilename(1:length(aufilename) - 3);    % remove extension to get, e.g. sw2105
 
   pcfile = [pcfilesdir filecode  '-'  trackcode  '.pc'];
   pcheader = [provenance];

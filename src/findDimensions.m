@@ -2,9 +2,8 @@ function findDimensions(tracklistFile, fsspecFile)
 
 % this is one of the top-level functions
 
-% test calls:
-%   findDimensions('../minitest/singletrack.tl','../minitest/minicrunch.fss')
-%   findDimensions('../minitest/minitracklist.tl','../minitest/minicrunch.fss')
+% test call:
+%   findDimensions('../flowtest/singletrack.tl','../flowtest/minicrunch.fss')
 
 % This is memory intensive: the princomp phase freezes my machine (6GB)
 %  if more than about 200 features x 6 files x 2 sides x 10 minutes per file
@@ -16,11 +15,15 @@ function findDimensions(tracklistFile, fsspecFile)
 flist = getfeaturespec(fsspecFile);
 trackspecs = gettracklist(tracklistFile);
 
-
 totalMonster = makeMultiTrackMonster(trackspecs, flist);
+if sum(sum(isnan(totalMonster))) > 0
+  fprintf('NaN in totalMonster\n');
+end
+
 
 % downsample; convert from every 10ms to every 20ms to same time and space
-totalMonster = totalMonster(2:2:end,:); 
+totalMonster = totalMonster(2:2:end,:);
+totalMonster = totalMonster(3:3:end,:); 
 
 tic
 for col=1:length(flist)

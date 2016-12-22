@@ -2,6 +2,7 @@ function indices = indicesOfSeparatedMaxima(vec)
   % returns locations of 10 highly-valued and well-separated points
   % Nigel Ward, UTEP, 2015-2016
   % vec is some set of values associated with every 10ms timepoint
+
   minInterPeakDistance = 200;   % 2 seconds spacing
   numOfExtremesPerTrack = 10;
   indices = ones(numOfExtremesPerTrack,1);

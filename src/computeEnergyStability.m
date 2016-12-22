@@ -1,4 +1,4 @@
-function [range] = computePitchRange(pitch, windowSize,rangeType )
+function [range] = computeEnergyStability(energy, windowSize )
 % Calculates evidence for different types of pitch ranges
 % i.e. f = flat   (within .99-1.0 difference)
 %      n = narrow (within .98-1.02 difference)
@@ -16,10 +16,10 @@ function [range] = computePitchRange(pitch, windowSize,rangeType )
 rangeCount = [];
 msPerWindow = 10;
 framesPerWindow = windowSize/msPerWindow;
-relevantSpan = 1000;
-framesPerHalfSpan = floor((relevantSpan / 2) / framesPerWindow);
+relevantSpan = 200;  %temporary
+framesPerHalfSpan = (relevantSpan / 2) / framesPerWindow;
 
-for i=1:length(pitch)
+for i=1:length(energy)
     %%get offset of 500 ms
     startNeighbors = i - framesPerHalfSpan;
     endNeighbors = i + framesPerHalfSpan;
@@ -27,30 +27,21 @@ for i=1:length(pitch)
     if(startNeighbors < 1)
         startNeighbors = 1;
     end
-    if(endNeighbors > length(pitch))
-        endNeighbors = length(pitch);
+    if(endNeighbors > length(energy))
+        endNeighbors = length(energy);
     end
     
     %%set of neighbors with pitch point in center
-    % here we could take every other point, to save time, with probably
-    % no performance penalty, since never changes much over just 10ms
-    neighbors = pitch(startNeighbors:endNeighbors);
+    neighbors = energy(startNeighbors:endNeighbors);
     %%obtain evidence
-    ratios = neighbors/pitch(i);
+    ratios = neighbors/energy(i);
     %%based on ratio difference to center, count points with evidence
     %%for specified pitch range
-    switch rangeType
-        case 'f'
-             %does not seem to be usefully different from narrow
-            rangeCount(i) = sum( ratios>=.99 & ratios <=1.01 );       
-        case 'n'
-            rangeCount(i) = sum(ratios>.98 & ratios<1.02);  
-        case 'w'
-            %if difference is <.70 or >1.3, most likely spurious pitch
-            %point
-            rangeCount(i) = sum((ratios>.70 & ratios<.90)  |  (ratios >1.1 & ratios<1.3));
-    end
+    rangeCount(i) = sum(ratios>.90 & ratios<1.10);  
 end
+
+
+
 
 %%same old trick of integral image
 integralImage = [0 cumsum(rangeCount)];

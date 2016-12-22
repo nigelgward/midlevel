@@ -33,7 +33,9 @@ function diagramDimensions(rotationspecfile, fssfile)
 
   plotspec = makeStdPlotspec();
 
+  featurespec = getfeaturespec(fssfile);
   for dim = 1:min(30,length(coeff))
+    fprintf('doing dimension %2d\n', dim);
     for side =  -1:2:1
        if side == -1
          filename = sprintf('%s/dim%02dlo', directoryName, dim);
@@ -42,7 +44,8 @@ function diagramDimensions(rotationspecfile, fssfile)
          filename = sprintf('%s/dim%02dhi', directoryName, dim);
     	 titleString = sprintf('dimension %2d high', dim);
       end
-      patvis2(titleString, side * coeff(:,dim), fssfile, plotspec, ...
+      patvis2(titleString, side * coeff(:,dim), ...
+	      featurespec, plotspec, ...
 	     -1700, 1700);
       set(gcf, 'PaperPositionMode', 'auto');
       saveas(gcf, filename, 'png');

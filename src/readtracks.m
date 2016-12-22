@@ -3,7 +3,7 @@ function [rate, signals] = readtracks(file)
 %  reads the file and returns two signals 
 % Best to avoid wav files; they can cause strong problems downstream
 
-% test with readtracks('../minitest/21d.au')
+% test with [r,s] = readtracks('../minitest/21d.au')
 
 % don't forget to make readau findable: addpath('../voicebox');
   disp(file);
@@ -24,7 +24,7 @@ function [rate, signals] = readtracks(file)
   dimensions = size(signals);
   channels = dimensions(2);
   if channels ~= 2 
-      warning ('not a stereo file');
+%      warning ('not a stereo file');
       return
   end
 

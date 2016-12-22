@@ -1,4 +1,4 @@
-function patvis2(plotTitle, featureVals, featurespecfile, plotspec, ...
+function patvis2(plotTitle, featureVals, featureList, plotspec, ...
 		 leftedge, rightedge)
 
 % pattern visualization, Nigel Ward, UTEP and Kyoto U
@@ -11,36 +11,40 @@ function patvis2(plotTitle, featureVals, featurespecfile, plotspec, ...
 % - showing the values of all raw features (unnormalized and unrotated)
 %   at one specific timepoint in a file
 
+% units for leftedge and rightedge ar milliseconds
+
 % time is on the x axis
 % we aggregate all features of a certain type, and draw one line for them
-% Bug: can't visually distinguish a feature with value zero over some time
-%  and a feature we didn't include in the featurespec over some time
+% Design Flaw: can't visually distinguish features with value zero over
+%  and features not include in the featurespec over some time
 
-  global interFeatureYOffset;     interFeatureYOffset = 5;
-  global leftEdgeMs;              leftEdgeMs = leftedge;
-  global rightEdgeMs;             rightEdgeMs = rightedge;
+	 % NB ygains appropriate for unnormalized feature values are: 
+	 %  [0.6, 0.3, 5.0, 0.1, 2.4];  
 
-  featureList = getfeaturespec(featurespecfile);
   if length(featureVals) ~= length(featureList)
-    fprintf('patvis2: number of values %d not equal to number of features %d\n', ...
+    fprintf('patvis2: number of values %d ~=  number of features %d\n', ...
   	  length(featureVals), length(featureList));
   end
 
   clf;    
   hold on; 
 
-
-
-  % NB ygains appropriate for unnormalized feature values are: 
-  %  [0.6, 0.3, 5.0, 0.1, 2.4];  
-
   numberOfLines = size(plotspec,1);
   for f = 1:numberOfLines 
-    linespec = plotspec(f,:);
+    [side, fcode, label, ybase, ygain, color, linestyle] = ...
+      parseLinespec(plotspec(f,:));
+    assembleAndPlotContour(side, fcode, featureVals, featureList, ...
+			   ybase, ygain, label, color, linestyle);
+  end
+  reshapeAndDecorate(leftedge, rightedge, numberOfLines, plotTitle);
+end
+
+    
+function [side, fcode, label, ybase, ygain, color, linestyle] = parseLinespec(linespec)
     sidecell = linespec(1);
     side = sidecell{1};
-    codecell = linespec(2);
-    code = codecell{1};
+    fcodecell = linespec(2);
+    fcode = fcodecell{1};
     labelcell = linespec(3);
     label = labelcell{1};
     ybasecell = linespec(4);
@@ -51,13 +55,12 @@ function patvis2(plotTitle, featureVals, featurespecfile, plotspec, ...
     color = colorcell{1};
     linestylecell = linespec(7);
     linestyle = linestylecell{1};
+end
 
-    contour = assembleContour(side, code, featureVals, featureList);
-    contour = contour * ygain + ybase;
-    plotContour(contour, ybase, label, color, linestyle, 2);
-  end
 
-  axis([leftEdgeMs rightEdgeMs -10 125]); % shouldn't be hardcoded
+function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, plotTitle);
+  topPixel = numberOfLines * 10 + 5 ;
+  axis([leftEdgeMs rightEdgeMs -10 topPixel]);
   set(gca, 'YTick', []);   % turn off y-axis ticks
   set(gca, 'XTick', [-2000 -1500 -1000 -500  0 500 1000 1500 2000]);
   plot([0 0], [-1000 1000], 'color', [.8 .8 .8]);    % vertical hairline
@@ -66,60 +69,6 @@ function patvis2(plotTitle, featureVals, featurespecfile, plotspec, ...
   pbaspect([1.1 1. 1]);
 end
 
-
-% given a feature type, e.g. self volume, returns a vector ready to plot 
-function contour = assembleContour(side, code, featureVals, featureList)
-   global leftEdgeMs;
-   global rightEdgeMs;
-
-   % first handle two special-case codes that don't refer to actual features
-   if strcmp(code, 'ph')
-     thContour = assembleContour(side, 'th', featureVals, featureList);
-     tlContour = assembleContour(side, 'tl', featureVals, featureList);
-     contour = thContour - tlContour;
-     return 
-   end 
-   if strcmp(code, 'pr')
-     wpContour = assembleContour(side, 'wp', featureVals, featureList);
-     npContour = assembleContour(side, 'np', featureVals, featureList);
-     contour = wpContour - npContour;
-     return 
-   end 
-
-   contourLength = rightEdgeMs - leftEdgeMs;
-   contour = zeros(contourLength+1, 1);    % a point every millisecond
-
-  % extract information from all features that match this code
-  for i = 1:length(featureList)
-    featurespec = featureList(i);
-    if (strcmp(side, featurespec.side) && ...
-        strcmp(featureList(i).featname, code))
-      startx = featurespec.startms;
-      endx =   featurespec.endms;
-      value = featureVals(i);
-      startShifted = max(-leftEdgeMs + startx, 1);
-      endShifted = min(-leftEdgeMs + endx, -leftEdgeMs + rightEdgeMs);
-      contour(startShifted:endShifted) = value;
-    end 
-  end
-end
-
-
-% yposition and contour are both in pixels by this point 
-function plotContour(contour, ybase, cLabel, color, lineStyle, linewidth)
-    global interFeatureYOffset;
-    global leftEdgeMs;
-    global rightEdgeMs;
-    plot(leftEdgeMs:rightEdgeMs, contour, ...
-	 'color', color, 'lineStyle', lineStyle, 'lineWidth', linewidth);
-    labelWidth = 960;   % fragile; depends on the aspect ratio
-    text(leftEdgeMs - labelWidth, ybase, cLabel);  
-    % now create a dotted line to show the 0 level     
-    dotXValues = leftEdgeMs:100:rightEdgeMs;
-    dotZeros = zeros(1,length(dotXValues));
-    dotSizes = ones(1,length(dotXValues));
-    scatter(dotXValues, ybase + dotZeros, dotSizes, 'k');
-end
 
 
 

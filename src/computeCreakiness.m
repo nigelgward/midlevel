@@ -35,6 +35,11 @@ creakArray = vertcat(zeros(headFramesToPad,1), ...
 		     zeros(tailFramesToPad,1));
 creakValues =  creakArray / framesPerWindow;
 
+%!!!!!!!!!!!!!! should speaker-normalize, to exclude the effects of
+% speaker-voice physiology etc, like this:
+% creakValues = creakValues / avg(creakValues)
+
+
 % test cases 
 % y = [1 1 1 1 1 1 1 1 1 1 1 1 1.1 0.8 1.0 .9 1 1 1 1.01 1.02 1.01 2 1 2 1 .5 .5 .5 1 1 1 1]
 % computeCreakiness(y', 50)
