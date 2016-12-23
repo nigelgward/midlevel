@@ -1,0 +1,23 @@
+Notes on various prosodic featuresets
+
+midlevel/doc/featuresets.txt.  Note that the featureset files are in ../flowtest
+
+Nigel Ward, December 2016
+
+
+
+april.fss. 176 features.  April 2015.  This is the set used in the
+non-native prosody paper.
+
+mono.fss. 88 featurs.  Just the left-track half of april.fss.  Used in
+the stance experiments.
+
+largest.fss.  224 features.  December 2016.  This is april.fss plus le
+and pd features and some more vo features. 
+
+
+minicrunch.fss.  11 features.  December 2012. Just to test the basic
+workflow.
+
+volume.fss.  32 features.  December 2016.  The set used in the case
+study in the methods chapter of the book.
