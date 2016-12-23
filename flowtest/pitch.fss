@@ -1,0 +1,82 @@
+# pitch.fss
+# pitch height only (tl, th)
+# Nigel Ward, UTEP, April 2015
+ 
+tl -3200 to -1600 self
+tl -1600 to  -800 self
+tl  -800 to  -400 self
+tl  -400 to  -300 self
+tl  -300 to  -200 self
+tl  -200 to  -100 self
+tl  -100 to   -50 self
+tl   -50 to     0 self
+
+tl     0 to    50 self
+tl    50 to   100 self
+tl   100 to   200 self
+tl   200 to   300 self
+tl   300 to   400 self
+tl   400 to   800 self
+tl   800 to  1600 self
+tl  1600 to  3200 self
+
+
+
+tl -3200 to -1600 inte
+tl -1600 to  -800 inte
+tl  -800 to  -400 inte
+tl  -400 to  -300 inte
+tl  -300 to  -200 inte
+tl  -200 to  -100 inte
+tl  -100 to   -50 inte
+tl   -50 to     0 inte
+
+tl     0 to    50 inte
+tl    50 to   100 inte
+tl   100 to   200 inte
+tl   200 to   300 inte
+tl   300 to   400 inte
+tl   400 to   800 inte
+tl   800 to  1600 inte
+tl   1600 to  3200 inte
+
+
+ 
+th -3200 to -1600 self
+th -1600 to  -800 self
+th  -800 to  -400 self
+th  -400 to  -300 self
+th  -300 to  -200 self
+th  -200 to  -100 self
+th  -100 to   -50 self
+th   -50 to     0 self
+
+th     0 to    50 self
+th    50 to   100 self
+th   100 to   200 self
+th   200 to   300 self
+th   300 to   400 self
+th   400 to   800 self
+th   800 to  1600 self
+th  1600 to  3200 self
+
+
+
+th -3200 to -1600 inte
+th -1600 to  -800 inte
+th  -800 to  -400 inte
+th  -400 to  -300 inte
+th  -300 to  -200 inte
+th  -200 to  -100 inte
+th  -100 to   -50 inte
+th   -50 to     0 inte
+
+th     0 to    50 inte
+th    50 to   100 inte
+th   100 to   200 inte
+th   200 to   300 inte
+th   300 to   400 inte
+th   400 to   800 inte
+th   800 to  1600 inte
+th    1600 to  3200 inte
+

@@ -1,7 +1,7 @@
 function [rate, signals] = readtracks(file)
 % Given a stereo audio filename 
 %  reads the file and returns two signals 
-% Best to avoid wav files; they can cause strong problems downstream
+% It's best to avoid wav files; since they can cause errors downstream
 
 % test with [r,s] = readtracks('../minitest/21d.au')
 
@@ -25,9 +25,7 @@ function [rate, signals] = readtracks(file)
   channels = dimensions(2);
   if channels ~= 2 
 %      warning ('not a stereo file');
-      return
   end
-
 end
   
   

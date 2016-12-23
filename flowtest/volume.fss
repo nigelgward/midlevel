@@ -1,0 +1,41 @@
+# volume.fss
+# Nigel Ward, UTEP, April 2015
+
+vo -3200 to -1600 self
+vo -1600 to  -800 self
+vo  -800 to  -400 self
+vo  -400 to  -300 self
+vo  -300 to  -200 self
+vo  -200 to  -100 self
+vo  -100 to   -50 self
+vo   -50 to     0 self
+
+vo     0 to    50 self
+vo    50 to   100 self
+vo   100 to   200 self
+vo   200 to   300 self
+vo   300 to   400 self
+vo   400 to   800 self
+vo   800 to  1600 self
+vo  1600 to  3200 self
+
+
+
+vo -3200 to -1600 inte
+vo -1600 to  -800 inte
+vo  -800 to  -400 inte
+vo  -400 to  -300 inte
+vo  -300 to  -200 inte
+vo  -200 to  -100 inte
+vo  -100 to   -50 inte
+vo   -50 to     0 inte
+
+vo     0 to    50 inte
+vo    50 to   100 inte
+vo   100 to   200 inte
+vo   200 to   300 inte
+vo   300 to   400 inte
+vo   400 to   800 inte
+vo   800 to  1600 inte
+vo  1600 to  3200 inte
+

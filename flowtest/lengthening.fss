@@ -1,0 +1,30 @@
+# lengthening.fss
+# Nigel Ward, UTEP, Dec 2016
+
+### Self Features
+le -3200 to -1600 self
+le -1600 to  -800 self
+le  -800 to  -400 self
+le  -400 to  -200 self
+le  -200 to     0 self
+
+le     0 to   200 self
+le   200 to   400 self
+le   400 to   800 self
+le   800 to  1600 self
+le  1600 to  3200 self
+
+
+###  Interlocutor Features 
+
+le -3200 to -1600 inte
+le -1600 to  -800 inte
+le  -800 to  -400 inte
+le  -400 to  -200 inte
+le  -200 to     0 inte
+
+le     0 to   200 inte
+le   200 to   400 inte
+le   400 to   800 inte
+le   800 to  1600 inte
+le  1600 to  3200 inte

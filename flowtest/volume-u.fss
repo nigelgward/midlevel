@@ -1,0 +1,43 @@
+# volume-u.fss
+# Nigel Ward, UTEP, Dec 2016
+# volume, with uniformly-spaced windows
+
+### Self Features
+vo -3200 to -2800 self
+vo -2800 to -2400 self
+vo -2400 to -2000 self
+vo -2000 to -1600 self
+vo -1600 to -1200 self
+vo -1200 to -0800 self
+vo -0800 to -0400 self
+vo -0400 to -0000 self
+
+vo  2800 to  3200 self
+vo  2400 to  2800 self
+vo  2000 to  2400 self
+vo  1600 to  2000 self
+vo  1200 to  1600 self
+vo  0800 to  1200 self
+vo  0400 to  0800 self
+vo  0000 to  0400 self
+
+
+###  Interlocutor Features 
+vo -3200 to -2800 inte
+vo -2800 to -2400 inte
+vo -2400 to -2000 inte
+vo -2000 to -1600 inte
+vo -1600 to -1200 inte
+vo -1200 to -0800 inte
+vo -0800 to -0400 inte
+vo -0400 to -0000 inte
+
+vo  2800 to  3200 inte
+vo  2400 to  2800 inte
+vo  2000 to  2400 inte
+vo  1600 to  2000 inte
+vo  1200 to  1600 inte
+vo  0800 to  1200 inte
+vo  0400 to  0800 inte
+vo  0000 to  0400 inte
+

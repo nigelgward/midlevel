@@ -304,13 +304,13 @@ window end, and the channel, for example
     cr    400    600 inte
 }\end{quote}
 
-where the first line means the speaker's average volume over a 100ms
-window that starts 200ms before the point of interest, and the second
-line the interlocutor's average creakiness over a 200ms window that
-starts 400ms after the point of interest.  ``Self'' refers to the
-primary track, ``inte'' to the other track, with the interlocutor's
-voice.  The primary track is  specified in the
-tracklist file, as either left (l) or right (r).
+where the first line means the speaker's average intensity (volume)
+over a 100ms window that starts 200ms before the point of interest,
+and the second line the interlocutor's average creakiness over a 200ms
+window that starts 400ms after the point of interest.  ``Self'' refers
+to the primary track, ``inte'' to the other track, with the
+interlocutor's voice.  The primary track is specified in the tracklist
+file, as either left (l) or right (r).
 
 
 In these files currently the following codes are recognized:
@@ -318,7 +318,7 @@ In these files currently the following codes are recognized:
 New two-letter codes: 
 
 \begin{tabular}{ll}
-  vo  & intensity/volume \\
+  vo  & intensity (volume) \\
   sr  & speaking-rate proxy, enunciation/reduction \\
   cr  & creakiness \\
   fp  & flat pitch: degree of flatness \\

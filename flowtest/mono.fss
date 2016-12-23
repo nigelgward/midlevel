@@ -1,0 +1,113 @@
+# mono.fss
+# Nigel Ward, UTEP, October 2015
+# just the one half of april.fss
+
+### Self Features
+## volume 
+vo -3200 to -1600 self
+vo -1600 to  -800 self
+vo  -800 to  -400 self
+vo  -400 to  -300 self
+vo  -300 to  -200 self
+vo  -200 to  -100 self
+vo  -100 to   -50 self
+vo   -50 to     0 self
+
+vo     0 to    50 self
+vo    50 to   100 self
+vo   100 to   200 self
+vo   200 to   300 self
+vo   300 to   400 self
+vo   400 to   800 self
+vo   800 to  1600 self
+vo  1600 to  3200 self
+
+## creaky
+cr -1600 to  -800 self
+cr  -800 to  -400 self
+cr  -400 to  -300 self
+cr  -300 to  -200 self
+cr  -200 to  -100 self
+cr  -100 to   -50 self
+cr   -50 to     0 self
+
+cr     0 to    50 self
+cr    50 to   100 self
+cr   100 to   200 self
+cr   200 to   300 self
+cr   300 to   400 self
+cr   400 to   800 self
+cr   800 to  1600 self
+#
+### pitch lowness
+tl -1600 to  -800 self
+tl  -800 to  -400 self
+tl  -400 to  -300 self
+tl  -300 to  -200 self
+tl  -200 to  -100 self
+tl  -100 to   -50 self
+tl   -50 to     0 self
+
+tl     0 to    50 self
+tl    50 to   100 self
+tl   100 to   200 self
+tl   200 to   300 self    
+tl   300 to   400 self
+tl   400 to   800 self
+tl   800 to  1600 self
+
+## pitch highness
+th -1600 to  -800 self
+th  -800 to  -400 self
+th  -400 to  -300 self
+th  -300 to  -200 self
+th  -200 to  -100 self
+th  -100 to   -50 self
+th   -50 to     0 self
+
+th     0 to    50 self
+th    50 to   100 self
+th   100 to   200 self
+th   200 to   300 self
+th   300 to   400 self
+th   400 to   800 self
+th   800 to  1600 self
+
+## narrow pitch
+np -1600 to  -800 self
+np  -800 to  -400 self
+np  -400 to  -300 self
+np  -300 to  -200 self
+np  -200 to    -0 self
+
+np     0 to   200 self
+np   200 to   300 self
+np   300 to   400 self
+np   400 to   800 self
+np   800 to  1600 self
+
+## wide pitch
+wp -1600 to  -800 self
+wp  -800 to  -400 self
+wp  -400 to  -300 self
+wp  -300 to  -200 self
+wp  -200 to    -0 self
+
+wp     0 to   200 self
+wp   200 to   300 self
+wp   300 to   400 self
+wp   400 to   800 self
+wp   800 to  1600 self
+
+## speaking rate 
+sr -1600 to  -800 self
+sr  -800 to  -400 self
+sr  -400 to  -200 self
+sr  -200 to  -100 self
+sr  -100 to    -0 self
+
+sr     0 to   100 self
+sr   100 to   200 self
+sr   200 to   400 self
+sr   400 to   800 self
+sr   800 to  1600 self
