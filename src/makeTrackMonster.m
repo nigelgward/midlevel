@@ -19,6 +19,8 @@ function [firstCompleteFrame, monster] = makeTrackMonster(trackspec, featurelist
 % efficiency issues: 
 %   lots of redundant computation
 %   compute everything every 10ms, then in the last step downsample to 20ms
+% testing:
+%   the simplest test harness is validateFeature.m
 
 % Nigel Ward, UTEP, 2014-2015
 
@@ -42,7 +44,7 @@ for featureNum = 1 : length(featurelist)
    if  ismember(thisfeature.featname, ['rf', 'mi', 'ju'])
 	processKeystrokes = true;
    end
-   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le'])
+   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le', 'vf'])
 	processAudio = true;
    end
 end
@@ -123,7 +125,6 @@ end
 
 % ------ Second, compute derived features, and add to monster ------
 
-
 for featureNum = 1 : length(featurelist)
   thisfeature = featurelist(featureNum);
   duration = thisfeature.duration;
@@ -173,6 +174,13 @@ for featureNum = 1 : length(featurelist)
   switch feattype
     case 'vo'    % volume/energy/intensity/amplitude
       featurevec = windowEnergy(relevantEnergy, duration)';  % note, transpose
+      fprintf('size of vo featurevec is %d, %d\n', size(featurevec))
+    case 'vf' % voicing fraction
+      'rp'
+      size(relevantPitch)
+      featurevec = windowize(~isnan([0 relevantPitch' 0]), duration)';
+      fprintf('size of vf featurevec is %d, %d\n', size(featurevec))
+      size(featurevec)
     case 'th'    % pitch truly high-ness
       featurevec = computePitchInBand(relevantPitchPer, 'th', duration);
     case 'tl'    % pitch truly low-ness

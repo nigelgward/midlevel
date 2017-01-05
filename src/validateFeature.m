@@ -10,15 +10,15 @@ function validateFeature()
 
   % csv produced with tweakElanOutput.awk; see instructions there
   annotationFile = '../flowtest/21d-lengthening.csv';  
-  %trackspec = makeTrackspec('l', 'prefix21d.au', '../flowtest/');
-  %trackspec = makeTrackspec('l', 'prefix21d-10.au', '../flowtest/');
-  trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
+  trackspec = makeTrackspec('l', 'prefix21d.au', '../flowtest/');
+  %trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
   
-  featureList(1) = makeFeatureSpec('le', 0, 200, 200, 'self', 0);
-  featureList(2) = makeFeatureSpec('le', 0, 200, 200, 'inte', 0);
-  featureList(3) = makeFeatureSpec('sr', 0, 200, 200, 'self', 0);
-  featureList(4) = makeFeatureSpec('sr', 0, 200, 200, 'inte', 0);
-  featureList(5) = makeFeatureSpec('vo', 0,  10,  10, 'self', 0);
+  featureList(1) = makeFeatureSpec('le', -100, 100, 200, 'self', 0);
+  featureList(2) = makeFeatureSpec('le', -100, 100, 200, 'inte', 0);
+  featureList(3) = makeFeatureSpec('sr', -100, 100, 200, 'self', 0);
+  featureList(4) = makeFeatureSpec('sr', -100, 100, 200, 'inte', 0);
+  featureList(5) = makeFeatureSpec('vo',    0,  10,  10, 'self', 0);
+  featureList(6) = makeFeatureSpec('vf', -100, 100, 200, 'self', 0);
  
   [~, vecset] = makeTrackMonster(trackspec, featureList);
   leftLE = vecset(:,1);
@@ -38,8 +38,10 @@ function validateFeature()
   compareVals(vecset(:,4), .22, rightFastTarget,'Right:    sr for fast');
   lengthToPlot = length(leftLenghteningTarget);
   xaxis = 1:lengthToPlot;
-  plot(xaxis,leftLenghteningTarget,  xaxis, 4 * vecset(1:lengthToPlot,1));
-  legend('target', 'predicted');
+%  plot(xaxis,leftLenghteningTarget,  xaxis, 4 * vecset(1:lengthToPlot,1));
+%  legend('target', 'predicted');
+
+  plot(xaxis,vecset(:,6));
 
   corr = corrcoef(vecset(:,1), vecset(:,3));
   fprintf('correlation between le and sr on left is %.2f\n', corr(1,2));
