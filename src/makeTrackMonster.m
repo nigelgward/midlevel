@@ -173,14 +173,11 @@ for featureNum = 1 : length(featurelist)
     
   switch feattype
     case 'vo'    % volume/energy/intensity/amplitude
-      featurevec = windowEnergy(relevantEnergy, duration)';  % note, transpose
-      fprintf('size of vo featurevec is %d, %d\n', size(featurevec))
+      featurevec = windowEnergy(relevantEnergy, duration)';  
     case 'vf' % voicing fraction
-      'rp'
-      size(relevantPitch)
       featurevec = windowize(~isnan([0 relevantPitch' 0]), duration)';
-      fprintf('size of vf featurevec is %d, %d\n', size(featurevec))
-      size(featurevec)
+    case 'sf' % speaking fraction
+      featurevec = speakingFraction(relevantEnergy, duration)';
     case 'th'    % pitch truly high-ness
       featurevec = computePitchInBand(relevantPitchPer, 'th', duration);
     case 'tl'    % pitch truly low-ness

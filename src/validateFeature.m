@@ -1,14 +1,12 @@
 function validateFeature()
-%function validateFeature(featureFunction, aufile, annotationFile)
 
 % Nigel Ward, December 2016
-% compares the performance of featureFunction on aufile
+% compares the performance of a feature dectector on aufile
 % to the ideal hand-labeled feature presences, in annotationFile
 
 % The annotation file is created by first labeling with elan,
-%  then reformatting using tweakElanOutput.awk  
+%  then reformatting into csv using tweakElanOutput.awk  
 
-  % csv produced with tweakElanOutput.awk; see instructions there
   annotationFile = '../flowtest/21d-lengthening.csv';  
   trackspec = makeTrackspec('l', 'prefix21d.au', '../flowtest/');
   %trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
@@ -19,6 +17,7 @@ function validateFeature()
   featureList(4) = makeFeatureSpec('sr', -100, 100, 200, 'inte', 0);
   featureList(5) = makeFeatureSpec('vo',    0,  10,  10, 'self', 0);
   featureList(6) = makeFeatureSpec('vf', -100, 100, 200, 'self', 0);
+  featureList(7) = makeFeatureSpec('sf', -100, 100, 200, 'self', 0);
  
   [~, vecset] = makeTrackMonster(trackspec, featureList);
   leftLE = vecset(:,1);
@@ -26,19 +25,19 @@ function validateFeature()
 
   nframes = size(vecset,1);
   data = csvread(annotationFile);
-  leftLenghteningTarget  = createTargets(1, data, nframes);
-  rightLenghteningTarget = createTargets(2, data, nframes);
+  leftLengtheningTarget  = createTargets(1, data, nframes);
+  rightLengtheningTarget = createTargets(2, data, nframes);
   leftFastTarget = createTargets(3, data, nframes);
   rightFastTarget = createTargets(4, data, nframes);
 
-  compareVals(leftLE, .06, leftLenghteningTarget,  'Left: le for lengthening');
-  compareVals(rightLE, .06, rightLenghteningTarget, 'Right: le for lenthening');
+  compareVals(leftLE, .06, leftLengtheningTarget,  'Left: le for lengthening');
+  compareVals(rightLE, .06, rightLengtheningTarget, 'Right: le for lenthening');
 
   compareVals(vecset(:,3), .22, leftFastTarget, 'Left:     sr for fast');
   compareVals(vecset(:,4), .22, rightFastTarget,'Right:    sr for fast');
-  lengthToPlot = length(leftLenghteningTarget);
+  lengthToPlot = length(leftLengtheningTarget);
   xaxis = 1:lengthToPlot;
-%  plot(xaxis,leftLenghteningTarget,  xaxis, 4 * vecset(1:lengthToPlot,1));
+%  plot(xaxis,leftLengtheningTarget,  xaxis, 4 * vecset(1:lengthToPlot,1));
 %  legend('target', 'predicted');
 
   plot(xaxis,vecset(:,6));
@@ -81,7 +80,7 @@ function printErrorTimes(misses, falarms)
 end
 
 
-% given lables, returns a vector of per-frame targets
+% given labels, returns a vector of per-frame targets
 function vec = createTargets(track, annotations, nframes)
   msPerFrame = 10;
   vec = zeros(nframes,1);
