@@ -16,13 +16,15 @@ function windowValues = windowize(frameFeatures, msPerWindow)
 % Nigel Ward, UTEP, Feb 2015
 
 integralImage = [0 cumsum(frameFeatures)];
-framesPerWindow = msPerWindow / 10;
-windowSum = integralImage(1+framesPerWindow:end) - integralImage(1:end-framesPerWindow);
+framesPerWindow = msPerWindow / 10 
+windowSum = integralImage(1+framesPerWindow:end) - ...
+	    integralImage(1:end-framesPerWindow);
 
 % align so first value is for window centered at 10 ms 
 %  (or 15ms if, an odd number of frames)
 headFramesToPad = floor(framesPerWindow / 2) - 1  ;
 tailFramesToPad = ceil(framesPerWindow / 2) - 1  ;
+tailFramesToPad = ceil(framesPerWindow / 2);
 windowValues = horzcat(zeros(1,headFramesToPad), ...
 		       windowSum, ...
 		       zeros(1,tailFramesToPad));

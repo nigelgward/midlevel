@@ -38,13 +38,13 @@ for featureNum = 1 : length(featurelist)
    %previously the above commented line was used. it would evaluate rf is a member of the given set ['gf', 'gu', 'gd', 'gl', 'gr', 'go'], 
    %thus processGaze would be true
    %saif 
-   if ismember(thisfeature.featname, {'ga'; 'gu'; 'gd'; 'gl'; 'gr'; 'go'})
+   if ismember(thisfeature.featname, ['ga', 'gu', 'gd', 'gl', 'gr', 'go'])
        processGaze = true;
    end
    if  ismember(thisfeature.featname, ['rf', 'mi', 'ju'])
 	processKeystrokes = true;
    end
-   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le', 'vf'])
+   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le', 'vf', 'sf', 'cd'])
 	processAudio = true;
    end
 end
@@ -77,20 +77,20 @@ if processAudio
   
   samplesPerFrame = msPerFrame * (rate / 1000);
 
+  signall = signalPair(:,1);
   [plraw, pCenters] = lookupOrComputePitch(...
-        trackspec.directory, [trackspec.filename 'l'], signalPair(:,1), rate);
-  energyl = computeLogEnergy(signalPair(:,1)', samplesPerFrame);
+        trackspec.directory, [trackspec.filename 'l'], signall, rate);
+  energyl = computeLogEnergy(signall', samplesPerFrame);
   pitchl = plraw;  
-  leftSignal = signalPair(:,1);
-  cepstralFluxl = cepstralFlux(leftSignal, rate, energyl);
+  cepstralFluxl = cepstralFlux(signall, rate, energyl);
 
   if stereop
-    [prraw, pCenters] = lookupOrComputePitch( ...
-	trackspec.directory, [trackspec.filename 'r'], signalPair(:,2), rate);
-    energyr = computeLogEnergy(signalPair(:,2)', samplesPerFrame);
+    signalr = signalPair(:,2);
+    [prraw, pCenters] = lookupOrComputePitch(...
+         trackspec.directory, [trackspec.filename 'r'], signalr, rate);
+    energyr = computeLogEnergy(signalr', samplesPerFrame);
+    cepstralFluxr = cepstralFlux(signalr, rate, energyr);
     [pitchl, pitchr] = killBleeding(plraw, prraw, energyl, energyr);
-    rightSignal= signalPair(:,2);
-    cepstralFluxr = cepstralFlux(rightSignal, rate, energyr);
   end
   
 nframes = floor(length(signalPair(:,1)) / samplesPerFrame);
@@ -141,12 +141,14 @@ for featureNum = 1 : length(featurelist)
       relevantPitchPer = pitchLper;
       relevantEnergy = energyl;
       relevantFlux = cepstralFluxl;
+      relevantSig = signall;
     else 
       % if stereop is false then this should not be reached 
       relevantPitch = pitchr;
       relevantPitchPer = pitchRper;
       relevantEnergy = energyr;
       relevantFlux = cepstralFluxr;
+      relevantSig = signalr;
     end
   end 
 
@@ -168,16 +170,23 @@ for featureNum = 1 : length(featurelist)
     end
   end
 
-%  fprintf('processing feature %s %d %d %s \n', ...
-%	  feattype, thisfeature.startms, thisfeature.endms, side); 
+  fprintf('processing feature %s %d %d %s \n', ...
+	  feattype, thisfeature.startms, thisfeature.endms, side); 
     
   switch feattype
     case 'vo'    % volume/energy/intensity/amplitude
       featurevec = windowEnergy(relevantEnergy, duration)';  
-    case 'vf' % voicing fraction
+      fprintf('size(featurevec) is %d %d\n', size(featurevec));
+    case 'vf'    % voicing fraction
       featurevec = windowize(~isnan([0 relevantPitch' 0]), duration)';
-    case 'sf' % speaking fraction
+    case 'sf'    % speaking fraction
       featurevec = speakingFraction(relevantEnergy, duration)';
+    case 'cd'    % cepstral distinctiveness
+      featurevec = cepstralDistinctness(relevantSig, rate, relevantPitch, duration, 'enunciation')';
+      fprintf('size(featurevec) is %d %d\n', size(featurevec));
+    case 'cb'    % cepstral blandness
+      featurevec = cepstralDistinctness(relevantSig, rate, relevantPitch, duration, 'reduction')';
+      fprintf('size(featurevec) is %d %d\n', size(featurevec));
     case 'th'    % pitch truly high-ness
       featurevec = computePitchInBand(relevantPitchPer, 'th', duration);
     case 'tl'    % pitch truly low-ness
@@ -279,12 +288,12 @@ end
 % true if trackspec is a right channel or any feature is inte
 function stereop = decideIfStereo(trackspec, featurelist)
   stereop = false;
-  if trackspec.side == 'r'
+  if strcmp(trackspec.side, 'r')
     stereop = true;
   end
   for featureNum = 1 : length(featurelist)
     thisfeature = featurelist(featureNum);
-    if thisfeature.side == 'inte'
+    if strcmp(thisfeature.side, 'inte')
       stereop = true;
     end
   end

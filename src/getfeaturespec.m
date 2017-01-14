@@ -10,13 +10,15 @@ function flist = getfeaturespec(crunchspec);
 
 validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 		 'lp', 'hp', 'cr', 'fp', 'np', 'wp', ...
-		 'tl', 'th', 'vf', 'sf', ...
+		 'tl', 'th', 'vf', 'sf', 'cd', 'cb', 'le', ...
 		 'rf', 'mi', 'ju', ...
 		 'go', 'gf', 'ga', 'gl', 'gr', 'gu', 'gd', ...
 		 'pd', 'le'};
-% vo = volume
+% vo = intensity (volume)
+
 % vf = voicing fraction
 % sf = speaking fraction 
+
 % ph = (old) pitch height
 % lp = low pitch 
 % hp = high pitch 
@@ -27,6 +29,11 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 % fp = flat pitch
 % np = narrow pitch 
 % wp = wide pitch 
+
+% cb = cepstral blandness (articulatory reduction)
+% cd = cepstral distinctiveness (articulatory precision, enunciation)
+% le = lengthening
+
 % rf = running fraction
 % mi = motion initiation count
 % ju = jump count 

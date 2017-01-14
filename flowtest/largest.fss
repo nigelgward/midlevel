@@ -1,4 +1,4 @@
-# larger.fss, april.fss plus .le and .pd features
+# larger.fss, april.fss plus le, cd, cb, and .pd features, plus vf, sf
 # Nigel Ward, UTEP, December 2016
 
 # on my desktop machine, with social.tl, takes 14 minutes, with
@@ -7,6 +7,7 @@
 ### Self Features
 # add some extra volume features to increase it's effecive weight
 # might instead do this in findDimensions
+
 
 ## volume 
 vo -3200 to -1600 self
@@ -146,6 +147,62 @@ pd   200 to   400 self
 pd   400 to   800 self
 pd   800 to  1600 self
 pd  1600 to  3200 self
+
+## enunciation
+en -3200 to -1600 self
+en -1600 to  -800 self
+en  -800 to  -400 self
+en  -400 to  -200 self
+en  -200 to     0 self
+
+en     0 to   200 self
+en   200 to   400 self
+en   400 to   800 self
+en   800 to  1600 self
+en  1600 to  3200 self
+
+## reduction
+re -3200 to -1600 self
+re -1600 to  -800 self
+re  -800 to  -400 self
+re  -400 to  -200 self
+re  -200 to     0 self
+
+re     0 to   200 self
+re   200 to   400 self
+re   400 to   800 self
+re   800 to  1600 self
+re  1600 to  3200 self
+
+
+## speaking fraction 
+sf -3200 to -1600 self
+sf -1600 to  -800 self
+sf  -800 to  -400 self
+sf  -400 to  -200 self
+sf  -200 to     0 self
+
+sf     0 to   200 self
+sf   200 to   400 self
+sf   400 to   800 self
+sf   800 to  1600 self
+sf  1600 to  3200 self
+
+## voicing fraction 
+vf -3200 to -1600 self
+vf -1600 to  -800 self
+vf  -800 to  -400 self
+vf  -400 to  -200 self
+vf  -200 to     0 self
+
+vf     0 to   200 self
+vf   200 to   400 self
+vf   400 to   800 self
+vf   800 to  1600 self
+vf  1600 to  3200 self
+
+
+
 
 
 ###  Interlocutor Features 
@@ -288,4 +345,60 @@ pd     0 to   200 inte
 pd   200 to   400 inte
 pd   400 to   800 inte
 pd   800 to  1600 inte
-pd  1600 to  3200 self
+pd  1600 to  3200 inte
+
+
+## enunciation
+en -3200 to -1600 inte
+en -1600 to  -800 inte
+en  -800 to  -400 inte
+en  -400 to  -200 inte
+en  -200 to     0 inte
+
+en     0 to   200 inte
+en   200 to   400 inte
+en   400 to   800 inte
+en   800 to  1600 inte
+en  1600 to  3200 inte
+
+## reduction
+re -3200 to -1600 inte
+re -1600 to  -800 inte
+re  -800 to  -400 inte
+re  -400 to  -200 inte
+re  -200 to     0 inte
+
+re     0 to   200 inte
+re   200 to   400 inte
+re   400 to   800 inte
+re   800 to  1600 inte
+re  1600 to  3200 inte
+
+
+## speaking fraction 
+sf -3200 to -1600 inte
+sf -1600 to  -800 inte
+sf  -800 to  -400 inte
+sf  -400 to  -200 inte
+sf  -200 to     0 inte
+
+sf     0 to   200 inte
+sf   200 to   400 inte
+sf   400 to   800 inte
+sf   800 to  1600 inte
+sf  1600 to  3200 inte
+
+## voicing fraction 
+vf -3200 to -1600 inte
+vf -1600 to  -800 inte
+vf  -800 to  -400 inte
+vf  -400 to  -200 inte
+vf  -200 to     0 inte
+
+vf     0 to   200 inte
+vf   200 to   400 inte
+vf   400 to   800 inte
+vf   800 to  1600 inte
+vf  1600 to  3200 inte
+
+

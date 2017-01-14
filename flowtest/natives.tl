@@ -1,4 +1,4 @@
-..//../comparisons/natives-au/
+../../comparisons/en-natives/
 
 l eng001.au
 r eng001.au

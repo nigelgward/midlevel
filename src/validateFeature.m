@@ -9,15 +9,22 @@ function validateFeature()
 
   annotationFile = '../flowtest/21d-lengthening.csv';  
   trackspec = makeTrackspec('l', 'prefix21d.au', '../flowtest/');
-  %trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
+  trackspec = makeTrackspec('l', '10sec-21d.au', '../flowtest/');
+    trackspec = makeTrackspec('l', '30sec-21d.au', '../flowtest/');
+
+    trackspec = makeTrackspec('l', 'second10s-21d.au', '../flowtest/');
+  trackspec = makeTrackspec('l', 'ten-twelve-21d.au', '../flowtest/');
+  trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
   
-  featureList(1) = makeFeatureSpec('le', -100, 100, 200, 'self', 0);
-  featureList(2) = makeFeatureSpec('le', -100, 100, 200, 'inte', 0);
-  featureList(3) = makeFeatureSpec('sr', -100, 100, 200, 'self', 0);
-  featureList(4) = makeFeatureSpec('sr', -100, 100, 200, 'inte', 0);
-  featureList(5) = makeFeatureSpec('vo',    0,  10,  10, 'self', 0);
-  featureList(6) = makeFeatureSpec('vf', -100, 100, 200, 'self', 0);
-  featureList(7) = makeFeatureSpec('sf', -100, 100, 200, 'self', 0);
+  featureList(1) = makeFeatureSpec('le', -100, 100, 'self', 0);
+  featureList(2) = makeFeatureSpec('le', -100, 100, 'inte', 0);
+  featureList(3) = makeFeatureSpec('sr', -100, 100, 'self', 0);
+  featureList(4) = makeFeatureSpec('sr', -100, 100, 'inte', 0);
+  featureList(5) = makeFeatureSpec('vo',    0,  10, 'self', 0);
+  featureList(6) = makeFeatureSpec('vf', -100, 100, 'self', 0);
+  featureList(7) = makeFeatureSpec('sf', -100, 100, 'self', 0);
+  featureList(8) = makeFeatureSpec('cd', -150, 150, 'self', 0);
+  featureList(9) = makeFeatureSpec('cb', -150, 150, 'self', 0);
  
   [~, vecset] = makeTrackMonster(trackspec, featureList);
   leftLE = vecset(:,1);
@@ -35,12 +42,19 @@ function validateFeature()
 
   compareVals(vecset(:,3), .22, leftFastTarget, 'Left:     sr for fast');
   compareVals(vecset(:,4), .22, rightFastTarget,'Right:    sr for fast');
-  lengthToPlot = length(leftLengtheningTarget);
-  xaxis = 1:lengthToPlot;
+%  lengthToPlot = 200; % frames   ...  length(leftLengtheningTarget);
+%  xaxis = 1:lengthToPlot;
 %  plot(xaxis,leftLengtheningTarget,  xaxis, 4 * vecset(1:lengthToPlot,1));
 %  legend('target', 'predicted');
 
-  plot(xaxis,vecset(:,6));
+%  clf
+%  hold on 
+%  plot(xaxis, vecset(:,1), 'g', ...
+%       xaxis, vecset(:,8), 'r', ...
+%       xaxis, vecset(:,9), 'k' ...
+%      );
+
+%    plot(xaxis,vecset(:,9));
 
   corr = corrcoef(vecset(:,1), vecset(:,3));
   fprintf('correlation between le and sr on left is %.2f\n', corr(1,2));
@@ -101,11 +115,11 @@ function vec = createTargets(track, annotations, nframes)
 end
 
 
-function fs = makeFeatureSpec(code, startms, endms, duration, side, color)
+function fs = makeFeatureSpec(code, startms, endms, side, color)
   fs.featname = code;
   fs.startms = startms;
   fs.endms = endms;
-  fs.duration = duration;
+  fs.duration =  endms - startms;
   fs.side = side;
   fs.plotcolor = color;
 end

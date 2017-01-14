@@ -29,7 +29,7 @@ function flux = cepstralFlux(signal, rate, energy)
   diffSquared = diff .*diff;
   sumdiffsq = sum(diffSquared,2);
   smoothed = smooth(sumdiffsq, smoothingSize);  
-  plot(smoothed);
+  % plot(smoothed);
   flux = smoothed;
 end
 
