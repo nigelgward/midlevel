@@ -176,31 +176,27 @@ re  1600 to  3200 self
 
 
 ## speaking fraction 
-sf -3200 to -1600 self
-sf -1600 to  -800 self
-sf  -800 to  -400 self
-sf  -400 to  -200 self
-sf  -200 to     0 self
+sf -3000 to -1200 self
+sf -1200 to  -600 self
+sf  -600 to  -300 self
+sf  -300 to    -0 self
 
-sf     0 to   200 self
-sf   200 to   400 self
-sf   400 to   800 self
-sf   800 to  1600 self
-sf  1600 to  3200 self
+sf     0 to   300 self
+sf   300 to   600 self
+sf   600 to  1200 self
+sf  1200 to  3000 self
 
-## voicing fraction 
-vf -3200 to -1600 self
-vf -1600 to  -800 self
-vf  -800 to  -400 self
-vf  -400 to  -200 self
-vf  -200 to     0 self
 
-vf     0 to   200 self
-vf   200 to   400 self
-vf   400 to   800 self
-vf   800 to  1600 self
-vf  1600 to  3200 self
+## speaking fraction 
+vf -3000 to -1200 self
+vf -1200 to  -600 self
+vf  -600 to  -300 self
+vf  -300 to    -0 self
 
+vf     0 to   300 self
+vf   300 to   600 self
+vf   600 to  1200 self
+vf  1200 to  3000 self
 
 
 
@@ -374,31 +370,27 @@ re   400 to   800 inte
 re   800 to  1600 inte
 re  1600 to  3200 inte
 
-
 ## speaking fraction 
-sf -3200 to -1600 inte
-sf -1600 to  -800 inte
-sf  -800 to  -400 inte
-sf  -400 to  -200 inte
-sf  -200 to     0 inte
+sf -3000 to -1200 inte
+sf -1200 to  -600 inte
+sf  -600 to  -300 inte
+sf  -300 to    -0 inte
 
-sf     0 to   200 inte
-sf   200 to   400 inte
-sf   400 to   800 inte
-sf   800 to  1600 inte
-sf  1600 to  3200 inte
+sf     0 to   300 inte
+sf   300 to   600 inte
+sf   600 to  1200 inte
+sf  1200 to  3000 inte
+
 
 ## voicing fraction 
-vf -3200 to -1600 inte
-vf -1600 to  -800 inte
-vf  -800 to  -400 inte
-vf  -400 to  -200 inte
-vf  -200 to     0 inte
+vf -3000 to -1200 inte
+vf -1200 to  -600 inte
+vf  -600 to  -300 inte
+vf  -300 to    -0 inte
 
-vf     0 to   200 inte
-vf   200 to   400 inte
-vf   400 to   800 inte
-vf   800 to  1600 inte
-vf  1600 to  3200 inte
+vf     0 to   300 inte
+vf   300 to   600 inte
+vf   600 to  1200 inte
+vf  1200 to  3000 inte
 
 

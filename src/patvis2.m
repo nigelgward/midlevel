@@ -11,12 +11,12 @@ function patvis2(plotTitle, featureVals, featureList, plotspec, ...
 % - showing the values of all raw features (unnormalized and unrotated)
 %   at one specific timepoint in a file
 
-% units for leftedge and rightedge ar milliseconds
+% units for leftedge and rightedge are milliseconds
 
 % time is on the x axis
 % we aggregate all features of a certain type, and draw one line for them
-% Design Flaw: can't visually distinguish features with value zero over
-%  and features not include in the featurespec over some time
+% Design Flaw: can't visually distinguish between features with value zero 
+%  and features not included in the featurespec over some time
 
 	 % NB ygains appropriate for unnormalized feature values are: 
 	 %  [0.6, 0.3, 5.0, 0.1, 2.4];  
@@ -59,7 +59,9 @@ end
 
 
 function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, plotTitle);
-  topPixel = numberOfLines * 10 + 5 ;
+  headroom = 10;
+  headroom = 23;   % better for largePlotspec
+  topPixel = numberOfLines * 10 + headroom;
   axis([leftEdgeMs rightEdgeMs -10 topPixel]);
   set(gca, 'YTick', []);   % turn off y-axis ticks
   set(gca, 'XTick', [-2000 -1500 -1000 -500  0 500 1000 1500 2000]);

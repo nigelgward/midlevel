@@ -23,8 +23,8 @@ function validateFeature()
   featureList(5) = makeFeatureSpec('vo',    0,  10, 'self', 0);
   featureList(6) = makeFeatureSpec('vf', -100, 100, 'self', 0);
   featureList(7) = makeFeatureSpec('sf', -100, 100, 'self', 0);
-  featureList(8) = makeFeatureSpec('cd', -150, 150, 'self', 0);
-  featureList(9) = makeFeatureSpec('cb', -150, 150, 'self', 0);
+  featureList(8) = makeFeatureSpec('en', -150, 150, 'self', 0);
+  featureList(9) = makeFeatureSpec('re', -150, 150, 'self', 0);
  
   [~, vecset] = makeTrackMonster(trackspec, featureList);
   leftLE = vecset(:,1);
@@ -42,19 +42,9 @@ function validateFeature()
 
   compareVals(vecset(:,3), .22, leftFastTarget, 'Left:     sr for fast');
   compareVals(vecset(:,4), .22, rightFastTarget,'Right:    sr for fast');
-%  lengthToPlot = 200; % frames   ...  length(leftLengtheningTarget);
-%  xaxis = 1:lengthToPlot;
-%  plot(xaxis,leftLengtheningTarget,  xaxis, 4 * vecset(1:lengthToPlot,1));
-%  legend('target', 'predicted');
 
-%  clf
-%  hold on 
-%  plot(xaxis, vecset(:,1), 'g', ...
-%       xaxis, vecset(:,8), 'r', ...
-%       xaxis, vecset(:,9), 'k' ...
-%      );
-
-%    plot(xaxis,vecset(:,9));
+  smallplot(vecset(:,5), vecset(:,8), vecset(:,9));
+  legend('volume', 'enunciation', 'reduction');
 
   corr = corrcoef(vecset(:,1), vecset(:,3));
   fprintf('correlation between le and sr on left is %.2f\n', corr(1,2));
@@ -130,4 +120,15 @@ function trackspec = makeTrackspec(side, filename, directory)
   trackspec.filename = filename;
   trackspec.directory = directory;
   trackspec.path = [directory filename];
+end
+
+
+function smallplot(vec1, vec2, vec3)
+  clf
+  hold on 
+  lengthToPlot = 200;
+  lengthToPlot = length(vec1);
+  xaxis = 1:lengthToPlot;
+  plot(xaxis, vec1, xaxis, vec2 + 3, xaxis, vec3 + 6);
+  set(gca, 'XTick', 0:200:length(vec1));
 end

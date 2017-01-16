@@ -44,7 +44,7 @@ for featureNum = 1 : length(featurelist)
    if  ismember(thisfeature.featname, ['rf', 'mi', 'ju'])
 	processKeystrokes = true;
    end
-   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le', 'vf', 'sf', 'cd'])
+   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le', 'vf', 'sf', 're', 'en'])
 	processAudio = true;
    end
 end
@@ -170,23 +170,20 @@ for featureNum = 1 : length(featurelist)
     end
   end
 
-  fprintf('processing feature %s %d %d %s \n', ...
-	  feattype, thisfeature.startms, thisfeature.endms, side); 
+%  fprintf('processing feature %s %d %d %s \n', ...
+%	  feattype, thisfeature.startms, thisfeature.endms, side); 
     
   switch feattype
     case 'vo'    % volume/energy/intensity/amplitude
       featurevec = windowEnergy(relevantEnergy, duration)';  
-      fprintf('size(featurevec) is %d %d\n', size(featurevec));
     case 'vf'    % voicing fraction
       featurevec = windowize(~isnan([0 relevantPitch' 0]), duration)';
     case 'sf'    % speaking fraction
       featurevec = speakingFraction(relevantEnergy, duration)';
-    case 'cd'    % cepstral distinctiveness
+    case 'en'    % cepstral distinctiveness
       featurevec = cepstralDistinctness(relevantSig, rate, relevantPitch, duration, 'enunciation')';
-      fprintf('size(featurevec) is %d %d\n', size(featurevec));
-    case 'cb'    % cepstral blandness
+    case 're'    % cepstral blandness
       featurevec = cepstralDistinctness(relevantSig, rate, relevantPitch, duration, 'reduction')';
-      fprintf('size(featurevec) is %d %d\n', size(featurevec));
     case 'th'    % pitch truly high-ness
       featurevec = computePitchInBand(relevantPitchPer, 'th', duration);
     case 'tl'    % pitch truly low-ness

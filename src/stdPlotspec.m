@@ -1,4 +1,4 @@
-function ps = makeStdPlotspec()
+function ps = stdPlotspec()
 
 % A specification for how patvis2 should behave.
 % Since this is for normalized features,

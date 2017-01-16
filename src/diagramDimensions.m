@@ -31,7 +31,8 @@ function diagramDimensions(rotationspecfile, fssfile)
   fprintf(sfp, 'plots for %s\n', rotation_provenance);
   fclose(sfp);
 
-  plotspec = makeStdPlotspec();
+  plotspec = stdPlotspec();
+  plotspec = largePlotspec();
 
   featurespec = getfeaturespec(fssfile);
   for dim = 1:min(30,length(coeff))

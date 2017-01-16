@@ -16,7 +16,7 @@ function windowValues = windowize(frameFeatures, msPerWindow)
 % Nigel Ward, UTEP, Feb 2015
 
 integralImage = [0 cumsum(frameFeatures)];
-framesPerWindow = msPerWindow / 10 
+framesPerWindow = msPerWindow / 10;
 windowSum = integralImage(1+framesPerWindow:end) - ...
 	    integralImage(1:end-framesPerWindow);
 

@@ -53,6 +53,7 @@ rotation_provenance = ...
 save rotationspec nmeans nstds coeff latent rotation_provenance  ...
 	flist fsspecFile;
 
+fprintf('Writing loadings\n');
 % also write in human-readable format 
 writeLoadings(coeff, flist, rotation_provenance, './'); 
 
