@@ -1,1 +1,1 @@
-plots for rotation generated from '../../comparisons/social-tiny.tl', using features 'largest.fss', at 22-Dec-2016 12:12:38 
+plots for rotation generated from 'natives.tl', using features 'largest.fss', at 16-Jan-2017 10:30:04 

@@ -1,7 +1,9 @@
 % pattern visualization helper function
 % Nigel Ward, UTEP, December 2016.  based on old patvis2.m
 
-% side is 'self' or 'inte'
+% input:
+%   side is 'self' or 'inte'
+%   fcode is the feature to plot, e.g. vo or th
 
 function assembleAndPlotContour(side, fcode, featureVals, featureList, ...
 				ybase, ygain, label, color, linestyle)
@@ -29,17 +31,23 @@ function contour = assembleContour(side, fcode, featureVals, featureList)
   leftEdgeMs = -4000;   
   rightEdgeMs = +4000;
 
-   % first handle two special-case fcodes that don't refer to actual features
-   if strcmp(fcode, 'ph')
+   % first handle three special-case fcodes that don't refer to actual features
+   if strcmp(fcode, 'ph')  % pitch height 
      thContour = assembleContour(side, 'th', featureVals, featureList);
      tlContour = assembleContour(side, 'tl', featureVals, featureList);
      contour = thContour - tlContour;
      return 
    end 
-   if strcmp(fcode, 'pr')
+   if strcmp(fcode, 'pr')  % pitch range 
      wpContour = assembleContour(side, 'wp', featureVals, featureList);
      npContour = assembleContour(side, 'np', featureVals, featureList);
      contour = wpContour - npContour;
+     return
+   end
+   if strcmp(fcode, 'ap')  % articulatory precision
+     enContour = assembleContour(side, 'en', featureVals, featureList);
+     reContour = assembleContour(side, 're', featureVals, featureList);
+     contour = enContour - reContour;
      return 
    end 
 

@@ -62,7 +62,7 @@ function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, plotTitle);
   headroom = 10;
   headroom = 23;   % better for largePlotspec
   topPixel = numberOfLines * 10 + headroom;
-  axis([leftEdgeMs rightEdgeMs -10 topPixel]);
+  axis([leftEdgeMs rightEdgeMs 10 topPixel]);
   set(gca, 'YTick', []);   % turn off y-axis ticks
   set(gca, 'XTick', [-2000 -1500 -1000 -500  0 500 1000 1500 2000]);
   plot([0 0], [-1000 1000], 'color', [.8 .8 .8]);    % vertical hairline
