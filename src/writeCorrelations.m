@@ -32,7 +32,7 @@ for columni = 1:length(cmatrix)
     fprintf(fd, '\n     #%d %s   at %.2f', ...
             topf, featurelist(topf).abbrev, cmatrix(columni,topf));
   end
-  fprintf(fd, '\n   the least correlated feature is: ');
+  fprintf(fd, '\n   the most anti-correlated feature is: ');
 bx = bottomIndex;
   fprintf(fd, '\n       #%d %s    at %.2f\n', ...
 	  bx, featurelist(bx).abbrev, cmatrix(columni,bx));

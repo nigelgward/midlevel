@@ -21,8 +21,7 @@ if sum(sum(isnan(totalMonster))) > 0
 end
 
 
-% downsample; convert from every 10ms to every 20ms to same time and space
-totalMonster = totalMonster(2:2:end,:);
+% downsample; convert from every 10ms to every 30ms to same time and space
 totalMonster = totalMonster(3:3:end,:); 
 
 tic
