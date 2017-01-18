@@ -27,3 +27,10 @@ end
 % "Ums" were detected as slow, nicely.
 % Regions of silence were low on this measure, as expected.
 
+% Jan 2017,
+% Further testing showed that this was not consistently indicating rate.
+% It also responds to creaky voice, and to articulatory precision;
+% it may also respond to consonants vs vowels.
+% So it's now less important, now that I have lengthening and articulatory
+%  precision features.
+% But it correlates quite weakly with all of these, so keep it for now.
