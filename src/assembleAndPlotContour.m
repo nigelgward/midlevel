@@ -76,7 +76,7 @@ function plotContour(contour, ybase, cLabel, color, lineStyle, linewidth, ...
     plot(leftEdgeMs:rightEdgeMs, contour, ...
 	 'color', color, 'lineStyle', lineStyle, 'lineWidth', linewidth);
     labelWidth = 960;   % fragile; depends on the aspect ratio
-    text(-2150, ybase, cLabel);  
+    text(-2250, ybase, cLabel);  
     % now create a dotted line to show the 0 level     
     dotXValues = leftEdgeMs:100:rightEdgeMs;
     dotZeros = zeros(1,length(dotXValues));
