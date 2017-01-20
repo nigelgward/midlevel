@@ -28,6 +28,8 @@ function flux = cepstralFlux(signal, rate, energy)
   end
   diffSquared = diff .*diff;
   sumdiffsq = sum(diffSquared,2);
+	    % the function smooth is only in the latest Matlab release,
+	    % but there's an alternative implmentation in smoothJcc.m
   smoothed = smooth(sumdiffsq, smoothingSize);  
   % plot(smoothed);
   flux = smoothed;

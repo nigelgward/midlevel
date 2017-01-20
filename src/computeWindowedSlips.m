@@ -32,6 +32,7 @@ end
 
 % (Implementation note: maybe rewrite the other windowization functions
 %  to use convolution like this)
+% This has the same name as the builtin function smooth; risky
 function smoothed = smooth(signal, filter)
   smoothed = conv(signal, filter, 'same');
 end
