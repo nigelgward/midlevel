@@ -8,7 +8,7 @@
 % NB, unlike all the other mid-level features, this one is almost everywhere
 %  very near zero
 
-function smoothed = computeWindowedSlips(energy, pitch, duration)
+function smoothed = computeWindowedSlips(energy, pitch, duration, trackspec)
     if length(energy) == length(pitch) + 1
       % not sure why this sometimes happens, but just patch it
       energy = energy(1:end-1);
@@ -24,6 +24,13 @@ function smoothed = computeWindowedSlips(energy, pitch, duration)
 %  smoothedOld = smooth(slippage, rectangularFilter(duration));
 
   misa = misalignment(epeaky', ppeaky);
+  % intent is to do this only once per track.  Kludge.
+  if ~exist('extremeMisalignmentsWritten')  
+    writeExtremesToFile('highlyMisaligned.txt', 1000 * misa, ...
+			sprintf('%s %s', trackspec.filename, trackspec.side));
+    extremeMisalignmentsWritten = true;
+  end
+  
   smoothed = smooth(misa, rectangularFilter(duration))';
   % plot, useful for debugging and tuning  
   plotSlips(24000, 30000, energy, pitch, epeaky, ppeaky, misa, smoothed);
