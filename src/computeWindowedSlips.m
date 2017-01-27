@@ -24,16 +24,16 @@ function smoothed = computeWindowedSlips(energy, pitch, duration, trackspec)
 %  smoothedOld = smooth(slippage, rectangularFilter(duration));
 
   misa = misalignment(epeaky', ppeaky);
-  % intent is to do this only once per track.  Kludge.
-  if ~exist('extremeMisalignmentsWritten')  
-    writeExtremesToFile('highlyMisaligned.txt', 1000 * misa, ...
+
+     % useful for interpreting the functions of late pitch peak
+     % for dimension-based analysis etc. can comment this out
+     % flowtestmisalignment.fss is the minimal fss to get this invoked
+  writeExtremesToFile('highlyMisaligned.txt', 1000 * misa, ...
 			sprintf('%s %s', trackspec.filename, trackspec.side));
-    extremeMisalignmentsWritten = true;
-  end
-  
+ 
   smoothed = smooth(misa, rectangularFilter(duration))';
   % plot, useful for debugging and tuning  
-  plotSlips(24000, 30000, energy, pitch, epeaky, ppeaky, misa, smoothed);
+  % plotSlips(24000, 30000, energy, pitch, epeaky, ppeaky, misa, smoothed);
 end
 
 
