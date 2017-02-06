@@ -44,7 +44,7 @@ for featureNum = 1 : length(featurelist)
    if  ismember(thisfeature.featname, ['rf', 'mi', 'ju'])
 	processKeystrokes = true;
    end
-   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le', 'vf', 'sf', 're', 'en'])
+   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le', 'vf', 'sf', 're', 'en', 'ts', 'te'])
 	processAudio = true;
    end
 end
@@ -203,14 +203,13 @@ for featureNum = 1 : length(featurelist)
     case 'cr'    % creakiness
       featurevec = computeCreakiness(relevantPitch, duration); 
     case 'pd'    % peakDisalignment
-      featurevec = computeWindowedSlips(relevantEnergy, relevantPitchPer, duration)';
-      if ~exist('extremeMisalignmentsWritten')
-        writeExtremesToFile('highlyMisaligned.txt', featurevec, ...
-			  sprintf('%s %s', trackspec.filename, trackspec.side));
-        extremeMisalignmentsWritten = true;
-      end
+      featurevec = computeWindowedSlips(relevantEnergy, relevantPitchPer, duration,trackspec)';
     case 'le'    % lengthening
-      featurevec = computeLengthening(relevantEnergy, relevantFlux);
+      featurevec = computeLengthening(relevantEnergy, relevantFlux, duration);
+    case 'ts'  % time from start
+      featurevec =  windowize(1:length(relevantPitch), duration)';
+    case 'te'  % time until end
+      featurevec =  windowize((length(relevantPitch) - (1:length(relevantPitch))), duration)';
 
     case 'rf'    % running fraction
       featurevec = windowize(relevantRF, duration)';  % note, transpose

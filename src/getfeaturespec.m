@@ -13,7 +13,7 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 		 'tl', 'th', 'vf', 'sf', 're', 'en', 'le', ...
 		 'rf', 'mi', 'ju', ...
 		 'go', 'gf', 'ga', 'gl', 'gr', 'gu', 'gd', ...
-		 'pd', 'le'};
+		 'pd', 'le', 'ts', 'te'};
 % vo = intensity (volume)
 
 % vf = voicing fraction
@@ -33,10 +33,15 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 % re = cepstral blandness (articulatory reduction)
 % en = cepstral distinctiveness (articulatory precision, enunciation)
 % le = lengthening
+% pd = peak disalignment
+
+% ts = time since start of recording
+% te = time until end of recording 
 
 % rf = running fraction
 % mi = motion initiation count
 % ju = jump count 
+
 % go = gaze on or off (boolean)
 % gu = gaze up
 % gd = gaze down
@@ -44,8 +49,6 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 % gr = gaze right
 % gf = gaze face  % old
 % ga = gaze awayness (distance)
-% pd = peak disalignment
-% le = lengthening
 
 fprintf('reading %s\n', crunchspec);
 
@@ -110,5 +113,5 @@ while ischar(tline);
   end
   % process the next line
   tline = fgetl(fid);
-
-end
+end 
+fclose(fid);

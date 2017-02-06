@@ -36,4 +36,5 @@ for columni = 1:length(cmatrix)
 bx = bottomIndex;
   fprintf(fd, '\n       #%d %s    at %.2f\n', ...
 	  bx, featurelist(bx).abbrev, cmatrix(columni,bx));
-end
+end 
+fclose(fd);

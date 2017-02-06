@@ -59,7 +59,6 @@ end
 
 
 function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, plotTitle);
-  headroom = 10;
   headroom = 23;   % better for largePlotspec
   topPixel = numberOfLines * 10 + headroom;
   axis([leftEdgeMs rightEdgeMs 10 topPixel]);
