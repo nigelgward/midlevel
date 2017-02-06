@@ -2,11 +2,12 @@
 % Nigel Ward, University of Texas at El Paso and Kyoto University
 % January 2016
 
-% Given a vector of energy-vs-time
-% return another vector, of the same size whose
-%  value at each point represents the likelihood/strength of a peak there
+% Input: a vector of energy-vs-time
+%    positive and typicallly ranges from about 5 to 10 
+% Output: a vector of the same size whose
+%    value at each point represents the likelihood/strength of a peak there
 %
-% Note that this decision has three components: 
+% To count as a peak, three properties are important:
 % 1. the point globally high-energy, relative to the whole dialog
 % 2. the point is high footwise, that is, it's high relative to
 %    the average over the local few syllables, to see if this
@@ -19,7 +20,13 @@
 %  or 20 frames, so create a LoG with a half-width (sigma) of 10  
 % (Or so I thought when I was tring to do everything sith a single LoG filter)
 
-% the energy vector input, vec, is positive and ranges from about 5 to 10 
+% The downstream use of this is to compare the location of the pitch peak,
+%  to find places where the pitch peak is late relative to the energy peak
+
+% This seems to work decently well for English, mostly falling
+% in syllable centers.  However for Slovak it often falls earlier, 
+% at the initial consonant release, since they lack the aspiration which
+% in English attenuates the intensity of such bursts. 
 
 function peakness = epeakness(vec)
   iSFW = 6;  % in-syllable filter width, in frames
