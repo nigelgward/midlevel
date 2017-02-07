@@ -40,9 +40,12 @@ function [subsetAverage] = averageOfNearValues(values, near_mean, far_mean)
 % returns the averages of all points which are closer to the near mean
 % than to the far mean
 
-% to save time, approximate by taking a sample of 1000 values 
-nsamples = 1000;
-if length(values) < 1000
+% To save time, approximate by taking a sample of 2000 values.
+% Note 1000 is faster, but A. Nath found that with only 1000 samples,
+% this can fail in rare cases, for example when there is a lot of music,
+% since that can cause the distribution to look unimodal.
+nsamples = 2000;    
+if length(values) < 2000
   samples = values;
 else
   samples = values(1:round(end/nsamples):end);
