@@ -81,6 +81,9 @@ if processAudio
   [plraw, pCenters] = lookupOrComputePitch(...
         trackspec.directory, [trackspec.filename 'l'], signall, rate);
   energyl = computeLogEnergy(signall', samplesPerFrame);
+  fprintf('pitch found at %d points\n', sum(plraw > 0)); % not-isNan count
+  fprintf('pitch undefined  at %d points\n', sum(isnan(plraw)));
+
   pitchl = plraw;  
   cepstralFluxl = cepstralFlux(signall, rate, energyl);
 
@@ -93,6 +96,10 @@ if processAudio
     [pitchl, pitchr] = killBleeding(plraw, prraw, energyl, energyr);
   end
   
+  fprintf('pitch found at %d points\n', sum(pitchl > 0)); % not-isNan count
+  fprintf('pitch undefined  at %d points\n', sum(isnan(pitchl)));
+
+
 nframes = floor(length(signalPair(:,1)) / samplesPerFrame);
 lastCompleteFrame = min(nframes, lastCompleteFrame);
 
@@ -206,6 +213,9 @@ for featureNum = 1 : length(featurelist)
       featurevec = computeWindowedSlips(relevantEnergy, relevantPitchPer, duration,trackspec)';
     case 'le'    % lengthening
       featurevec = computeLengthening(relevantEnergy, relevantFlux, duration);
+    case 'vr'    % voiced-unvoiced energy ratio
+      featurevec = voicedUnvoicedIR(relevantEnergy, relevantPitch, duration)';
+
     case 'ts'  % time from start
       featurevec =  windowize(1:length(relevantPitch), duration)';
     case 'te'  % time until end
