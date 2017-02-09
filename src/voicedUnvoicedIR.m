@@ -9,8 +9,8 @@ function ratio = voicedUnvoicedIR(logEnergy, pitch, msPerWindow)
   logEnergy = logEnergy';
 
   if (length(logEnergy) == length(pitch) + 1)
-    fprintf('length(logEnergy) = %d; length(pitch) = %d \n', ...
-	    length(logEnergy), length(pitch));
+%    fprintf('length(logEnergy) = %d; length(pitch) = %d \n', ...
+%	    length(logEnergy), length(pitch));
     pitch = [0; pitch];
   end
 
@@ -18,8 +18,8 @@ function ratio = voicedUnvoicedIR(logEnergy, pitch, msPerWindow)
 
   voicedSpeechVec = (~isnan(pitch) & isSpeech);
   unvoicedSpeechVec = (isnan(pitch) & isSpeech);
-  fprintf('sum(voicedSpeechVec) %d, sum(unvoicedSpeechVec) %d\n', ...
-	  sum(voicedSpeechVec), sum(unvoicedSpeechVec));
+%  fprintf('sum(voicedSpeechVec) %d, sum(unvoicedSpeechVec) %d\n', ...
+%	  sum(voicedSpeechVec), sum(unvoicedSpeechVec));
 
   nonVoicedEnergiesZeroed = voicedSpeechVec .* logEnergy;
   nonUnvoicedEnergiesZeroed = unvoicedSpeechVec .* logEnergy;
@@ -59,13 +59,13 @@ function ratio = voicedUnvoicedIR(logEnergy, pitch, msPerWindow)
   ratio(isnan(ratio)) = averageOfValid;
   ratio(isinf(ratio)) = averageOfValid;
 
-  clf
-  hold on 
-  plot(1:length(pitch), 100 * isSpeech, ...
-       1:length(pitch), 10 * logEnergy, ...
-       1:length(pitch), pitch, ...
-       1:length(pitch), 100 * ratio);
-    legend('isSpeech', 'logEnergy', 'pitch', 'v-uv i ratio');
+%  clf
+%  hold on 
+%  plot(1:length(pitch), 100 * isSpeech, ...
+%       1:length(pitch), 10 * logEnergy, ...
+%       1:length(pitch), pitch, ...
+%       1:length(pitch), 100 * ratio);
+%    legend('isSpeech', 'logEnergy', 'pitch', 'v-uv i ratio');
 end
 
 % test data

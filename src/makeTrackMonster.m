@@ -81,8 +81,8 @@ if processAudio
   [plraw, pCenters] = lookupOrComputePitch(...
         trackspec.directory, [trackspec.filename 'l'], signall, rate);
   energyl = computeLogEnergy(signall', samplesPerFrame);
-  fprintf('pitch found at %d points\n', sum(plraw > 0)); % not-isNan count
-  fprintf('pitch undefined  at %d points\n', sum(isnan(plraw)));
+%  fprintf('pitch found at %d points\n', sum(plraw > 0)); % not-isNan count
+%  fprintf('pitch undefined  at %d points\n', sum(isnan(plraw)));
 
   pitchl = plraw;  
   cepstralFluxl = cepstralFlux(signall, rate, energyl);
@@ -96,10 +96,6 @@ if processAudio
     [pitchl, pitchr] = killBleeding(plraw, prraw, energyl, energyr);
   end
   
-  fprintf('pitch found at %d points\n', sum(pitchl > 0)); % not-isNan count
-  fprintf('pitch undefined  at %d points\n', sum(isnan(pitchl)));
-
-
 nframes = floor(length(signalPair(:,1)) / samplesPerFrame);
 lastCompleteFrame = min(nframes, lastCompleteFrame);
 

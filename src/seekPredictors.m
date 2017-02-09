@@ -1,71 +1,84 @@
-% seekPredictors.m,    in nigel/comparisons/soudan/
-% 
+% seekPredictors.m   in h:/nigel/comparisons/jp-toyota/src/
 % January 2016, Nigel Ward, UTEP and Kyoto U
 
-% run in directory c:/nigel/comparisons/soudan/
+% Creates a graph showing typical prosodic-feature values
+%  before some events of interests
+%  And some stats suggestind whether those are likely good predictors
+% The main function is displayDifferences() below;
+% It's called by the driver function seekPredictors(),
+%  which will need to be edited for any specific experiment.
 
-  % run in ../../comparisons/soudan
-  % currently parseSoudan returns onsets for only one file
-  % which is okay for now, since soundan1.tl lists only one file
-
-% backchannel version
+% run in comparisons/jp-toyota/july2016/
 function seekPredictors()
-  displayDifferences(parseSoudan('s4-left.txt'), ...
-		     gettracklist('soudan4.tl'), ...
-		     'wide.fss', ...
-		     'Pre-Backchannel Averages (of z-normalized features)');
+  [targetTimestamps, targets] = readTargets('evaluation_label_f01.csv');
+  nowTurnstatusVec = targets(:,1);  % 0 is silence, 1 BC, 2 filler, 3  full turn
+  nextTurnstatusVec = targets(:,2);
+  turnStartVec = nowTurnstatusVec < 2 & nextTurnstatusVec >=2;
+  turnStartTimes = targetTimestamps(find(turnStartVec==1));
+  displayDifferences(.001 * turnStartTimes, ...
+		     gettracklist('../dummy.tl'), ...
+		     '../../../midlevel/flowtest/slim2.fss', ...
+		     'Averages (of z-normalized features) around turn starts');
 end
 
-%         	     '../../ppca/sliptest/toneslip.fss', ...
-		  %   'earlyPredictors.fss', ...
+  % run in directory c:/nigel/comparisons/soudan/
+  % currently parseSoudan returns onsets for only one file
+  % which is okay for now, since soundan1.tl lists only one file
+  % backchannel version
+  %function seekPredictors()
+  %  displayDifferences(parseSoudan('s4-left.txt'), ...
+  %		     gettracklist('soudan4.tl'), ...
+  %		     'wide.fss', ...
+  %		     'Pre-Backchannel Averages (of z-normalized features)');
+  % end
 
-% fillers version.  Also need to go into parseSoudan and edit to use isFiller
-%function seekPredictors()
-%  displayDifferences(parseSoudan('one-l.txt'), ...
-%	     gettracklist('soudan1.tl'), ...
-%	     '../../ppca/sliptest/toneslip.fss', ...
-%             'Prosody around Filler Onsets: counselor above, student below');
-%end
-
-
-  
-% This is to help identify features useful for prediction.
 % Display differences between the feature values at the listed times
-%  and the feature values at other times
+%  and the feature values at other times (the "control set")
+% This is to help identify features useful for prediction.
+% Inputs
+%  times = timepoints of interest, in seconds
+%  tracklist = specifies just one track (in future should handle multiple tracks)
+%  featurespecfile = features to use 
+%  title = title of plot
+% In future, might want to exclude points within 500ms of a listed time
+%  from the control set.
+% In future, might want to compare two sets of timepoints: aTimes, and bTimes
 function displayDifferences(times, tracklist, featurespecfile, title)
+  interestingFrames = floor(times * 100);
+
+% temporary, for testing, if only running on the first 10 seconds
+%  interestingFrames = interestingFrames(1:6)   
+%  fprintf('REMOVE PREVIOUS LINE FOR ACTUAL RUN!! REMOVE PREVIOUS LINE FOR ACTUAL RUN!!\n');
 
   featurelist =  getfeaturespec(featurespecfile);
   monster = makeMultiTrackMonster(tracklist, featurelist);
-  % normalize
+  fprintf('size(monster) is %d %d\n', size(monster));
+  % z-normalize
   for col=1:length(featurelist)
     nmeans(col) = mean(monster(:,col));
     nstds(col) = std(monster(:,col));
     normalizedMonster(:,col) = (monster(:,col) - nmeans(col)) / nstds(col);
   end
 
-  interestingFrames = floor(times * 100);
-
-  % for backchannel onsets, actually ought to exclude not just such moments,
-  % but everything within 500ms of one
-  otherOnsetFrames = setdiff(1:length(monster), interestingFrames);
+  controlsetFrames = setdiff(1:length(monster), interestingFrames);
+  size(controlsetFrames)
 
   interestingLines = normalizedMonster(interestingFrames,:);
-  otherLines =  normalizedMonster(otherOnsetFrames,:);
+  controlsetLines =  normalizedMonster(controlsetFrames,:);
 
   interestingMeans = mean(interestingLines);
   interestingStds = std(interestingLines);
 
-  globalMeans = mean(otherLines); % will be close to zero, thanks to normalization
-  globalStds = std(otherLines);   % will be close to one, ditto
+  globalMeans = mean(controlsetLines); % will be close to zero, thanks to normalization
+  globalStds = std(controlsetLines);   % will be close to one, ditto
   
-  patvis2(title, 0.3 * interestingMeans, featurespecfile, makePlotspec(), ...
-	  -10000, 10000);
+  patvis2(title, 0.3 * interestingMeans, featurelist, midPlotspec2(.5), -2500, 2500);
 
   % report some t-tests
   for f = 1:length(featurelist)
      featurespec = featurelist(f);
      [h, p] = ttest(interestingLines(:, f), globalMeans(f));
-     fprintf('feature %3d: %17s, mean = %5.2f, p-value=%.5f', ...
+     fprintf('feature %3d: %20s, mean = %5.2f, p-value=%.5f', ...
 	     f, featurespec.abbrev, interestingMeans(f), p);
      if h == 1
        fprintf('*\n');
@@ -76,7 +89,7 @@ function displayDifferences(times, tracklist, featurespecfile, title)
 end
 
 
-function ps = makePlotspec()
+function ps = makePredictorsPlotspec()
   dustyPurple = [140/256 106/256 186/256];    
   darkGreen  = [127/256 190/256 92/256];     
   mexicanFlagRed = [206/256  17/256  38/256]; 

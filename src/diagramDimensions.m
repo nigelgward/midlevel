@@ -32,7 +32,7 @@ function diagramDimensions(rotationspecfile, fssfile)
   fclose(sfp);
 
   plotspec = largePlotspec();  % suitable for largest.fss
-  plotspec = midPlotspec();    % suitable for midslim.fss
+  plotspec = midPlotspec(1.0);    % suitable for midslim.fss
 %  plotspec = midPlotspecSeparate();    % suitable for midslim.fss
 %  plotspec = stdPlotspecSeparate();    % suitable for april.fss
 %  plotspec = stdPlotspec();    % suitable for april.fss
