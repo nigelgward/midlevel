@@ -30,10 +30,4 @@ function ps = midPlotspec(overallGain)
 	{'inte'}, {'sr'}, {'Energy Flux'}, 30, ygain, darkGreen, {'-'}; ...
 	{'inte'}, {'ap'}, {'Articu. Prec.'},20, ygain, darkGreen, {'-'}; ...
        ];
-
-
-  overallGain
-
-
-
 end

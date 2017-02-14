@@ -15,8 +15,10 @@ function seekPredictors()
   nextTurnstatusVec = targets(:,2);
   turnStartVec = nowTurnstatusVec < 2 & nextTurnstatusVec >=2;
   turnStartTimes = targetTimestamps(find(turnStartVec==1));
+  fprintf('analyzing over %d turnstarts, %d other points\n', ...
+	  length(turnStartTimes), length(nowTurnstatusVec) - length(turnStartTimes));
   displayDifferences(.001 * turnStartTimes, ...
-		     gettracklist('../dummy.tl'), ...
+		     gettracklist('../single.tl'), ...
 		     '../../../midlevel/flowtest/slim2.fss', ...
 		     'Averages (of z-normalized features) around turn starts');
 end
@@ -37,7 +39,7 @@ end
 % This is to help identify features useful for prediction.
 % Inputs
 %  times = timepoints of interest, in seconds
-%  tracklist = specifies just one track (in future should handle multiple tracks)
+%  tracklist = specifies just one track 
 %  featurespecfile = features to use 
 %  title = title of plot
 % In future, might want to exclude points within 500ms of a listed time
@@ -50,9 +52,12 @@ function displayDifferences(times, tracklist, featurespecfile, title)
 %  interestingFrames = interestingFrames(1:6)   
 %  fprintf('REMOVE PREVIOUS LINE FOR ACTUAL RUN!! REMOVE PREVIOUS LINE FOR ACTUAL RUN!!\n');
 
+  if length(tracklist) > 1
+    fprintf('!!!!!!!Warning: seekPredictors cannot yet handle multiple files\n');
+  end 
   featurelist =  getfeaturespec(featurespecfile);
   monster = makeMultiTrackMonster(tracklist, featurelist);
-  fprintf('size(monster) is %d %d\n', size(monster));
+  %fprintf('size(monster) is %d %d\n', size(monster));
   % z-normalize
   for col=1:length(featurelist)
     nmeans(col) = mean(monster(:,col));
@@ -61,7 +66,6 @@ function displayDifferences(times, tracklist, featurespecfile, title)
   end
 
   controlsetFrames = setdiff(1:length(monster), interestingFrames);
-  size(controlsetFrames)
 
   interestingLines = normalizedMonster(interestingFrames,:);
   controlsetLines =  normalizedMonster(controlsetFrames,:);
@@ -72,7 +76,7 @@ function displayDifferences(times, tracklist, featurespecfile, title)
   globalMeans = mean(controlsetLines); % will be close to zero, thanks to normalization
   globalStds = std(controlsetLines);   % will be close to one, ditto
   
-  patvis2(title, 0.3 * interestingMeans, featurelist, midPlotspec2(.5), -2500, 2500);
+  patvis2(title, 0.3 * interestingMeans, featurelist, midPlotspec2(0.7), -2500, 2500);
 
   % report some t-tests
   for f = 1:length(featurelist)

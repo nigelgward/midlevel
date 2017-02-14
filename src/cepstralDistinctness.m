@@ -18,6 +18,8 @@ function windowVec = cepstralDistinctness(signal, rate, pitch, duration, flag)
   %  could multiply by energy and/or exclude frames without a valid 
   %  pitch point on both sides.
 
+  % This code fails on the Toyota data, producing lots of NaNs; don't know why.
+
   cc = mfcc(signal, rate, 25, 10, .97, @hamming, [300 3700], 20, 13, 22);
   cc = [zeros(13,1)  cc  zeros(13,1)];  % pad, due to the window size
   cct = cc';

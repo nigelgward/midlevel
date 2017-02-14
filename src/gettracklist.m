@@ -1,4 +1,4 @@
-function trackspecs = gettracklist3(file)
+function trackspecs = gettracklist(file)
 % From the file, gets information on which audio to process.
 % Returns a cell array of trackspecs, 
 %  where each trackspec is a channel spec, a path, etc.
@@ -12,6 +12,10 @@ trackindex = 1;
 directoryseen = false;
 
 fid = fopen(file);
+if fid == -1
+  fprintf('  Failed to open feature file %s!!\n', file);
+end
+
 tline = fgets(fid);
 
 while ischar(tline)

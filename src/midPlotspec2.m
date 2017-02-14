@@ -32,10 +32,4 @@ function ps = midPlotspec2(overallGain)
 	{'inte'}, {'ap'}, {'Articu. Prec.'},30, ygain, darkGreen, {'-'}; ...
 	{'inte'}, {'vr'}, {'V/U I Ratio'},  20, ygain, darkGreen, {'-'}; ...
        ];
-
-
-  overallGain
-
-
-
 end

@@ -57,6 +57,9 @@ validFeatures = {'vo', 'ph', 'pr', 'sr', ...
 fprintf('reading %s\n', crunchspec);
 
 fid = fopen(crunchspec);
+if fid == -1
+  fprintf('   Failed to open feature file %s!!\n', crunchspec);
+end
 fcounter = 1;
 tline = fgets(fid);
 while ischar(tline);
