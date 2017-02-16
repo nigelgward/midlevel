@@ -1,5 +1,5 @@
 function patvis2(plotTitle, featureVals, featureList, plotspec, ...
-		 leftedge, rightedge)
+		 leftedge, rightedge, provenance)
 
 % pattern visualization, Nigel Ward, UTEP and Kyoto U
 % Janaury 2016.  based on patvis.m, but more flexible
@@ -37,7 +37,7 @@ function patvis2(plotTitle, featureVals, featureList, plotspec, ...
 			   ybase, ygain, label, color, linestyle, ...
 			   leftedge, rightedge);
   end
-  reshapeAndDecorate(leftedge, rightedge, numberOfLines, plotTitle);
+  reshapeAndDecorate(leftedge, rightedge, numberOfLines, plotTitle, provenance);
 end
 
     
@@ -59,7 +59,8 @@ function [side, fcode, label, ybase, ygain, color, linestyle] = parseLinespec(li
 end
 
 
-function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, plotTitle);
+function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, ...
+			    plotTitle, provenance);
   headroom = 23;   % better for largePlotspec
   topPixel = numberOfLines * 10 + headroom;
   axis([leftEdgeMs rightEdgeMs 10 topPixel]);
@@ -69,6 +70,7 @@ function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, plotTitle);
   xlabel('milliseconds');
   title(plotTitle);
   pbaspect([1.1 1. 1]);
+  text(leftEdgeMs, -10, provenance, 'FontSize', 8);
 end
 
 

@@ -27,7 +27,8 @@ function diagramDimensions(rotationspecfile, fssfile)
   else
      fprintf('warning: overwriting directory contents\n');
   end 
-  sfp = fopen('source.txt', 'w');
+  provenanceFilename = sprintf('%s/provenance.txt', directoryName);
+  sfp = fopen(provenanceFilename, 'w');
   fprintf(sfp, 'plots for %s\n', rotation_provenance);
   fclose(sfp);
 
@@ -51,7 +52,7 @@ function diagramDimensions(rotationspecfile, fssfile)
       end
       patvis2(titleString, side * coeff(:,dim), ...
 	      featurespec, plotspec, ...
-	     -1700, 1700);
+	     -1700, 1700, rotation_provenance);
       set(gcf, 'PaperPositionMode', 'auto');
       saveas(gcf, filename, 'png');
     end

@@ -11,13 +11,15 @@
 % run in comparisons/jp-toyota/july2016/
 function seekPredictors()
   [targetTimestamps, targets] = readTargets('evaluation_label_f01.csv');
+%    [targetTimestamps, targets] = readTargets('evaluation_label_f02.csv');  %TEMPORARY
+    offset = 32;  % predict this many milliseconds ahead 
   nowTurnstatusVec = targets(:,1);  % 0 is silence, 1 BC, 2 filler, 3  full turn
   nextTurnstatusVec = targets(:,2);
   turnStartVec = nowTurnstatusVec < 2 & nextTurnstatusVec >=2;
-  turnStartTimes = targetTimestamps(find(turnStartVec==1));
+  turnStartTimesMs = targetTimestamps(find(turnStartVec==1)) - offset;  
   fprintf('analyzing over %d turnstarts, %d other points\n', ...
-	  length(turnStartTimes), length(nowTurnstatusVec) - length(turnStartTimes));
-  displayDifferences(.001 * turnStartTimes, ...
+	  length(turnStartTimesMs), length(nowTurnstatusVec) - length(turnStartTimesMs));
+  displayDifferences(.001 * turnStartTimesMs, ...
 		     gettracklist('../single.tl'), ...
 		     '../../../midlevel/flowtest/slim2.fss', ...
 		     'Averages (of z-normalized features) around turn starts');
@@ -45,8 +47,8 @@ end
 % In future, might want to exclude points within 500ms of a listed time
 %  from the control set.
 % In future, might want to compare two sets of timepoints: aTimes, and bTimes
-function displayDifferences(times, tracklist, featurespecfile, title)
-  interestingFrames = floor(times * 100);
+function displayDifferences(timesSec, tracklist, featurespecfile, title)
+  interestingFrames = floor(timesSec * 100);
 
 % temporary, for testing, if only running on the first 10 seconds
 %  interestingFrames = interestingFrames(1:6)   
@@ -76,13 +78,14 @@ function displayDifferences(times, tracklist, featurespecfile, title)
   globalMeans = mean(controlsetLines); % will be close to zero, thanks to normalization
   globalStds = std(controlsetLines);   % will be close to one, ditto
   
-  patvis2(title, 0.3 * interestingMeans, featurelist, midPlotspec2(0.7), -2500, 2500);
+  patvis2(title, 0.3 * interestingMeans, featurelist, midPlotspec2(0.7), ...
+	  -2500, 2500, 'from seekPredictors');
 
   % report some t-tests
   for f = 1:length(featurelist)
      featurespec = featurelist(f);
      [h, p] = ttest(interestingLines(:, f), globalMeans(f));
-     fprintf('feature %3d: %20s, mean = %5.2f, p-value=%.5f', ...
+     fprintf('feature %3d: %20s, mean = %5.2f, p-value=%.2f', ...
 	     f, featurespec.abbrev, interestingMeans(f), p);
      if h == 1
        fprintf('*\n');
