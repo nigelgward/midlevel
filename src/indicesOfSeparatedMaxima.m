@@ -5,16 +5,14 @@ function indices = indicesOfSeparatedMaxima(vec)
 
   minInterPeakDistance = 200;   % 2 seconds spacing
   numOfExtremesPerTrack = 10;
-  indices = ones(numOfExtremesPerTrack,1);
+  indices = zeros(numOfExtremesPerTrack,1);  
 
+  minvalue = min(vec);
   for j=1:numOfExtremesPerTrack    
     [maxvalue, maxindex] = max(vec);
-    if maxvalue > 0 
-       indices(j) = maxindex;   % else leave it at one, as a flag for failure
-    end 
+    indices(j) = maxindex;   
     startErase= max(maxindex - minInterPeakDistance, 1);
     endErase  = min(maxindex + minInterPeakDistance, length(vec));
-    vec(startErase:endErase) = zeros(endErase-startErase+1, 1);
+    vec(startErase:endErase) = minvalue * ones(endErase-startErase+1, 1);
   end 
 end
-

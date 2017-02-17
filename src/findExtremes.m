@@ -45,6 +45,7 @@ end
 end
 
 
+% this could possibly be replaced with writeExtremesToFiles
 function  writeExtrema(fid, indices, dim, rotated, timestamps, trackname, side)
     numOfExtremesPerTrack = 10;
     for i = 1:numOfExtremesPerTrack;

@@ -20,16 +20,17 @@ function smoothed = computeWindowedSlips(energy, pitch, duration, trackspec)
   epeaky = epeakness(energy);
   ppeaky = ppeakness(pitch);
 
-%  [slippage, pulls] = computeSlip(epeaky', ppeaky);
-%  smoothedOld = smooth(slippage, rectangularFilter(duration));
-
+       %  [slippage, pulls] = computeSlip(epeaky', ppeaky);
+       %  smoothedOld = smooth(slippage, rectangularFilter(duration));
+  
   misa = misalignment(epeaky', ppeaky);
-
-     % useful for interpreting the functions of late pitch peak
-     % for dimension-based analysis etc. can comment this out
-     % flowtestmisalignment.fss is the minimal fss to get this invoked
-  writeExtremesToFile('highlyMisaligned.txt', 1000 * misa, ...
-			sprintf('%s %s', trackspec.filename, trackspec.side));
+  
+  %% useful for interpreting the functions of late pitch peak
+  %% for dimension-based analysis etc. can comment this out
+  %% flowtestmisalignment.fss is the minimal fss to get this invoked
+  writeExtremesToFile('highlyMisaligned.txt', misa, 1000 * misa, ...
+		      'times of high misalignment', ...
+		      sprintf('%s %s', trackspec.filename, trackspec.side));
  
   smoothed = smooth(misa, rectangularFilter(duration))';
   % plot, useful for debugging and tuning  
