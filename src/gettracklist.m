@@ -13,7 +13,7 @@ directoryseen = false;
 
 fid = fopen(file);
 if fid == -1
-  fprintf('  Failed to open feature file %s!!\n', file);
+  fprintf('  Failed to open tracklist file %s!!\n', file);
 end
 
 tline = fgets(fid);
