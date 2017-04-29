@@ -1,7 +1,7 @@
 # medslim.fss,   a medium-slim set of features
 # Nigel Ward, UTEP, January 2017
 # includes the classics: vo th tl wp np cr sr
-# and the new ones: dp le en re
+# and some new ones: dp le en re
 # but excludes the mostly-redundant ones: vf sf 
 
 ### Self Features
@@ -171,7 +171,6 @@ re   200 to   400 self
 re   400 to   800 self
 re   800 to  1600 self
 re  1600 to  3200 self
-
 
 
 ###  Interlocutor Features 
@@ -344,5 +343,4 @@ re   200 to   400 inte
 re   400 to   800 inte
 re   800 to  1600 inte
 re  1600 to  3200 inte
-
 

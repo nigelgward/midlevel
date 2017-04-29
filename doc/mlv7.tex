@@ -294,21 +294,13 @@ file specifies which features to use.  These thus describe how to
 composite matrix suitable for machine learning or dimensionality
 reduction.
 
-Various {\tt .fss} files exist, including {\tt fulltest/al.fss}, an
-``assumption light'' new set of mid-level features, including about
-168 features, and {\tt comparisons/april.fss}, which has more features
-for the primary-track talker than for the other talker. 
-****
-`standard' feature specifications, including minitest/minicrunch.fss,
-11 features for testing the workflow; social/symmetric.fss, 96
-features, used for social speech; and fulltest/slim.fss, 78 features
-(48 self and 30 interlocutor), as used for the narrow-pitch work.
-This involved two features which are now obsolete: ph (pitch height)
-and pr (pitch range).  
-
-
-% need to ensure that the .fss files get included in a future 
-% distributions
+Many {\tt .fss} files exist, each designed for a specific purpose.
+{\tt april.fss}, has more features for the primary-track talker than
+for the other talker, so can be used to analyze one speaker's
+behavior.  {\tt medslim.fss} has features evenly distributed across
+the two speakers.  {\tt mono4.fss} is useful for information retrieval
+in broadcast news.  {\tt minicrunch.fss} is a small set for testing
+the workflow
 
 In a {\tt .fss} file each line specifies a feature, window start,
 window end, and the channel, for example
@@ -611,7 +603,7 @@ mid-level features should be the ones to use.
 %----------------------
 \subsubsection{Window Energy}
 
-We calse the energy to normalize for individual differences and
+We scale the energy to normalize for individual differences and
 recording-condition differences, specifically regarding typical
 speaking volume and noise floor.  To do this we find typical-silence
 and typical-speech values of energy, using {\tt findClusterMeans.m}.
