@@ -1,6 +1,6 @@
 function vec = speakingFraction(logEnergy, msPerWindow)
 
-% returns the fraction of time in th each window with speech 
+% returns the fraction of time in each window with speech 
 % This will correlate highly with the vo (windowEnergy) feature,
 %  except that it will be affected less by speech that's quiet or loud
 

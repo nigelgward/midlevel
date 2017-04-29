@@ -65,6 +65,7 @@ function plotContour(contour, ybase, cLabel, color, lineStyle, linewidth, ...
     plot(leftEdgeMs:rightEdgeMs, contour, ...
 	 'color', color, 'lineStyle', lineStyle, 'lineWidth', linewidth);
     labelWidth = 600;   % in units of milliseconds; odd but works
+        labelWidth = 780;   % in units of milliseconds; odd but works
     text(leftEdgeMs - labelWidth, ybase, cLabel);  
     % now create a dotted line to show the 0 level     
     dotXValues = leftEdgeMs:100:rightEdgeMs;
