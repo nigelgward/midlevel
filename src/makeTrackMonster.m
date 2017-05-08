@@ -218,11 +218,10 @@ for featureNum = 1 : length(featurelist)
       featurevec =  windowize((length(relevantPitch) - (1:length(relevantPitch))), duration)';
 
     case 'ns' % near to start
-      featurevec = 1.0 ./ (1 - log (.0001 + windowize(1:length(relevantPitch), duration)'));
+      featurevec = distanceToNearness(windowize(1:length(relevantPitch), duration)');
 
     case 'ne' % near to end
-      te = windowize((length(relevantPitch) - (1:length(relevantPitch))), duration)';
-      featurevec = 1.0 ./ (1 - log (.0001 + te));
+      featurevec = distanceToNearness(windowize((length(relevantPitch) - (1:length(relevantPitch))), duration)');
 
     case 'rf'    % running fraction
       featurevec = windowize(relevantRF, duration)';  % note, transpose
