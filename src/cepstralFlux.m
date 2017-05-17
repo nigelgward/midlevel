@@ -24,9 +24,10 @@ function flux = cepstralFlux(signal, rate, energy)
   cct = cc';
   diff = cct(2:end,:) - cct(1:end-1,:);
   if length(diff) < length(energy)
-    % pad it with a convenient value, say a small one 
-    mindiff = min(abs(diff));
-    diff = [mindiff; diff];  
+     % pad it with a convenient value
+    avgdiff = mean(abs(diff));
+    diff = [avgdiff; diff];  
+
   end
   diffSquared = diff .*diff;
   sumdiffsq = sum(diffSquared,2);

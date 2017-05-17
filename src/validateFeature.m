@@ -1,4 +1,4 @@
-function validateFeature()
+function leftLE =  validateFeature()
 
 % Nigel Ward, December 2016
 % compares the performance of a feature dectector on aufile
@@ -15,8 +15,9 @@ function validateFeature()
     trackspec = makeTrackspec('l', 'second10s-21d.au', '../flowtest/');
   trackspec = makeTrackspec('l', 'ten-twelve-21d.au', '../flowtest/');
   trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
+
   
-  featureList(1) = makeFeatureSpec('le', -100, 100, 'self', 0);
+  featureList(1) = makeFeatureSpec('le', -800, -400, 'self', 0);
   featureList(2) = makeFeatureSpec('le', -100, 100, 'inte', 0);
   featureList(3) = makeFeatureSpec('sr', -100, 100, 'self', 0);
   featureList(4) = makeFeatureSpec('sr', -100, 100, 'inte', 0);
@@ -60,9 +61,7 @@ function compareVals(prediction, threshold, target, title)
   hits    = (prediction > threshold)  & (target > 0);
   misses  = (prediction <= threshold) & (target > 0);
   falarms = (prediction > threshold)  & (target <= 0);
-  
 				%printErrorTimes(misses, falarms);
-  
   coverage = sum(hits) / (sum(hits) + sum(misses));
   accuracy = sum(hits) / (sum(hits) + sum(falarms));
   fprintf('%s: coverage, %.2f accuracy %.2f, F %.2f \n', ...
@@ -102,24 +101,6 @@ function vec = createTargets(track, annotations, nframes)
       end
     end
   end
-end
-
-
-function fs = makeFeatureSpec(code, startms, endms, side, color)
-  fs.featname = code;
-  fs.startms = startms;
-  fs.endms = endms;
-  fs.duration =  endms - startms;
-  fs.side = side;
-  fs.plotcolor = color;
-end
-
-
-function trackspec = makeTrackspec(side, filename, directory)
-  trackspec.side = side;
-  trackspec.filename = filename;
-  trackspec.directory = directory;
-  trackspec.path = [directory filename];
 end
 
 
