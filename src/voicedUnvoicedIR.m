@@ -1,17 +1,24 @@
 function ratio = voicedUnvoicedIR(logEnergy, pitch, msPerWindow)
   % compute voiced-unvoiced intensity ratio
-  % Nigel Ward, UTEP, February 2017
+  % Nigel Ward, UTEP, February 2017; rescaled May 2017
 
   % for windows which lack unvoiced frames or lack voiced frames,
   %  return the average value, since we only care about departures
   %  from the norm
+  % there really should be two features (like the two features for pitch height):
+  % - one a measure of the evidence for high vvir,
+  % - one a measure of the evidence for low vvir
+  % with no evidence for either in cases where there is no speech
+  % However for economy I use just one feature.
+  % It's normalized so 0 means no evidence, positive is high, and negative is low.
+  % having a default of 0 is convenient since makeTrackMonster does padding with 0
 
   logEnergy = logEnergy';
 
   if (length(logEnergy) == length(pitch) + 1)
 %    fprintf('length(logEnergy) = %d; length(pitch) = %d \n', ...
 %	    length(logEnergy), length(pitch));
-    pitch = [0; pitch];
+    pitch = [NaN; pitch];
   end
 
   isSpeech = speakingFrames(logEnergy);
@@ -55,12 +62,15 @@ function ratio = voicedUnvoicedIR(logEnergy, pitch, msPerWindow)
   ratio = avgVoicedIntensity ./ avgUnvoicedIntensity;
   % exclude zeros, NaNs, and Infs
   averageOfValid = mean(ratio(~isinf(ratio) & ratio>0));
-  ratio(ratio==0) = averageOfValid;
-  ratio(isnan(ratio)) = averageOfValid;
-  ratio(isinf(ratio)) = averageOfValid;
+  ratio = ratio - averageOfValid;
+  ratio(ratio==0) = 0;
+  ratio(isnan(ratio)) = 0;
+  ratio(isinf(ratio)) = 0;
 
   writeExtremesToFile('highVUIR.txt', ratio, ratio, 'times of high vuir', '  ');
   writeExtremesToFile('lowVUIR.txt', -ratio, ratio, 'times of low vuir',  '  ');
+
+  ratio(1:80)
 
 %  clf
 %  hold on 
