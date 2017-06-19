@@ -67,8 +67,8 @@ function ratio = voicedUnvoicedIR(logEnergy, pitch, msPerWindow)
   ratio(isnan(ratio)) = 0;
   ratio(isinf(ratio)) = 0;
 
-  writeExtremesToFile('highVUIR.txt', ratio, ratio, 'times of high vuir', '  ');
-  writeExtremesToFile('lowVUIR.txt', -ratio, ratio, 'times of low vuir',  '  ');
+ % writeExtremesToFile('highVUIR.txt', ratio, ratio, 'times of high vuir', '  ');
+ % writeExtremesToFile('lowVUIR.txt', -ratio, ratio, 'times of low vuir',  '  ');
 
 %  clf
 %  hold on 
