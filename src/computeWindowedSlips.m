@@ -28,10 +28,10 @@ function smoothed = computeWindowedSlips(energy, pitch, duration, trackspec)
   %% useful for interpreting the functions of late pitch peak
   %% for dimension-based analysis etc. can comment this out
   %% flowtestmisalignment.fss is the minimal fss to get this invoked
-  writeExtremesToFile('highlyMisaligned.txt', misa, 1000 * misa, ...
-		      'times of high misalignment', ...
-		      sprintf('%s %s', trackspec.filename, trackspec.side));
- 
+  %%  writeExtremesToFile('highlyMisaligned.txt', misa, 1000 * misa, ...
+  %%		      'times of high misalignment', ...
+  %%		      sprintf('%s %s', trackspec.filename, trackspec.side));
+
   smoothed = smooth(misa, rectangularFilter(duration))';
   % plot, useful for debugging and tuning  
   % plotSlips(24000, 30000, energy, pitch, epeaky, ppeaky, misa, smoothed);
