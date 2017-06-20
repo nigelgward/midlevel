@@ -32,12 +32,14 @@ function diagramDimensions(rotationspecfile, fssfile)
   fprintf(sfp, 'plots for %s\n', rotation_provenance);
   fclose(sfp);
 
+  % really this should automatically select, or even generate, an appropriate plotspec
   plotspec = largePlotspec();  % suitable for largest.fss
   plotspec = midPlotspec(1.0);    % suitable for midslim.fss
   plotspec = slim3Plotspec(1.0);    
 %  plotspec = midPlotspecSeparate();    % suitable for midslim.fss
 %  plotspec = stdPlotspecSeparate();    % suitable for april.fss
 %  plotspec = stdPlotspec();    % suitable for april.fss
+  plotspec = pbookPlotspec(1.0);    
 
   featurespec = getfeaturespec(fssfile);
   for dim = 1:min(30,length(coeff))
