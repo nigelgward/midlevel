@@ -26,6 +26,10 @@ function [rate, signals] = readtracks(file)
   if channels ~= 2 
 %      warning ('not a stereo file');
   end
+  if rate ~= 8000
+    %% higher rates seem to confuse the pitch tracker, tho 16000 may work
+    error('sorry: sampling rate must be 8000, not %d\n', rate);
+  end
 end
   
   

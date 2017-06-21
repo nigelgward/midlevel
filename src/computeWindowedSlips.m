@@ -13,6 +13,7 @@ function smoothed = computeWindowedSlips(energy, pitch, duration, trackspec)
       % not sure why this sometimes happens, but just patch it
       energy = energy(1:end-1);
     else if length(energy) ~= length(pitch)
+	   fprintf('length(energy) is %d but length(pitch) is %d\n', length(energy), length(pitch));
       return;  % if a larger discrepancy, can't patch it
     end
   end

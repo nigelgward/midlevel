@@ -13,18 +13,23 @@ if ~exist(pitchCacheDir, 'dir')
   mkdir (pitchCacheDir);
 end
 
+audioFileName = [directory, savekey(1:end-1)];
+
 pitchFileName = [pitchCacheDir '/pitch'  savekey '.mat'];
 
-if (exist(pitchFileName, 'file' ) == 2)
-   fprintf('reading cached pitch file %s\n', pitchFileName);
-   load(pitchFileName)
-else
+if (~exist(pitchFileName, 'file' ) == 2)
   fprintf('computing pitch for %s %s  \n', savekey);
-
-  tic
   [pitch, startsAndEnds] = fxrapt(signal, rate, 'u');
-toc
-  save( pitchFileName, 'pitch', 'startsAndEnds');      % write it as a .mat file
+  save(pitchFileName, 'pitch', 'startsAndEnds');      
+else
+  if file1isOlder(pitchFileName, audioFileName)
+    fprintf('recomputing pitch for %s %s  \n', savekey);
+    [pitch, startsAndEnds] = fxrapt(signal, rate, 'u');
+    save(pitchFileName, 'pitch', 'startsAndEnds');     
+  else
+    fprintf('reading cached pitch file %s\n', pitchFileName);
+    load(pitchFileName)
+  end
 end
 
 % The first pitch point fxrapt returns is for a frame from 15ms to 25ms, 
@@ -37,7 +42,17 @@ pitchCenters = 0.5 * (startsAndEnds(:,1) + startsAndEnds(:,2)) * msPerSample;
 % we know that pitchpoints are 10 milliseconds apart
 paddedCenters = vertcat([pitchCenters(1) - 10], pitchCenters, [pitchCenters(end) + 10]);
 
+end
 
 % test with 
 % [r, ss] = readtracks('../minitest/short.au');
 % lookupOrComputePitch('temporary', ss(:,1), 8000);
+
+
+%% ------------------------------------------------------------------
+function isOlder = file1isOlder(file1, file2)
+  file1Info = dir(file1);
+  file2Info = dir(file2);
+  isOlder = datenum(file1Info.date) < datenum(file2Info.date);
+end
+
