@@ -17,12 +17,13 @@ audioFileName = [directory, savekey(1:end-1)];
 
 pitchFileName = [pitchCacheDir '/pitch'  savekey '.mat'];
 
-if (~exist(pitchFileName, 'file' ) == 2)
+if exist(pitchFileName, 'file') ~= 2)
   fprintf('computing pitch for %s %s  \n', savekey);
   [pitch, startsAndEnds] = fxrapt(signal, rate, 'u');
   save(pitchFileName, 'pitch', 'startsAndEnds');      
 else
   if file1isOlder(pitchFileName, audioFileName)
+
     fprintf('recomputing pitch for %s %s  \n', savekey);
     [pitch, startsAndEnds] = fxrapt(signal, rate, 'u');
     save(pitchFileName, 'pitch', 'startsAndEnds');     
@@ -53,6 +54,6 @@ end
 function isOlder = file1isOlder(file1, file2)
   file1Info = dir(file1);
   file2Info = dir(file2);
-  isOlder = datenum(file1Info.date) < datenum(file2Info.date);
+  isOlder = file1Info.datenum < file2Info.datenum;
 end
 
