@@ -17,7 +17,7 @@ audioFileName = [directory, savekey(1:end-1)];
 
 pitchFileName = [pitchCacheDir '/pitch'  savekey '.mat'];
 
-if exist(pitchFileName, 'file') ~= 2)
+if exist(pitchFileName, 'file') ~= 2
   fprintf('computing pitch for %s %s  \n', savekey);
   [pitch, startsAndEnds] = fxrapt(signal, rate, 'u');
   save(pitchFileName, 'pitch', 'startsAndEnds');      
