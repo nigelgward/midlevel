@@ -16,6 +16,8 @@ function [firstCompleteFrame, monster, speechish] = makeTrackMonster(trackspec, 
 %     we pad it with zeros, rather than truncating the audio.  This is because
 %     we compute times using not timestamps, but implicitly, e.g. frame 0 
 %     is anchored at time zero (in the audio track)
+%   speechish is true if the input is plausibly speech, rather than
+%     mostly music or mostly corrupted speech
 % efficiency issues: 
 %   lots of redundant computation
 %   compute everything every 10ms, then in the last step downsample to 20ms
