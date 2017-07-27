@@ -137,6 +137,7 @@ for featureNum = 1 : length(featurelist)
   plotcolor = thisfeature.plotcolor;
 
   if processAudio
+    speechish = true;
     if (strcmp(side,'self') && strcmp(trackspec.side,'l')) || ...
        (strcmp(side,'inte') && strcmp(trackspec.side,'r'))
       relevantPitch = pitchl;
@@ -145,7 +146,10 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxl;
       relevantSig = signall;
       [lsilenceMean, lspeechMean] = findClusterMeans(energyl);
-      speechish = lspeechMean > lsilenceMean;
+      if lspeechMean <= lsilenceMean
+	speechish = false;
+	return
+      end
     else 
       % if stereop is false then this should not be reached 
       relevantPitch = pitchr;
@@ -154,7 +158,10 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxr;
       relevantSig = signalr;
       [rsilenceMean, rspeechMean] = findClusterMeans(energyr);
-      speechish = speechish && (rspeechMean > rsilenceMean);
+      if rspeechMean <= rsilenceMean
+	speechish = false;
+	return
+      end
     end
   end 
 
