@@ -1,11 +1,11 @@
-function [firstCompleteFrame, monster] = makeTrackMonster(trackspec, featurelist)
+function [firstCompleteFrame, monster, speechish] = makeTrackMonster(trackspec, featurelist)
 
 % inputs:
 %   trackspec: includes au pathname plus track (left or right)
 %   fsspec: feature set specification
 % output:
 %   monster is a large 2-dimensional array, 
-%     where every row is a timepoint, 20ms apart, starting at 20ms
+  %     where every row is a timepoint, 10ms apart, starting at 10ms (?)
 %     and every column a feature
 %   firstCompleteFrame, is the first frame for which all data tracks
 %     are present.   This considers only the fact that the gaze
@@ -31,13 +31,10 @@ processKeystrokes = false;
 processAudio = false;
 firstCompleteFrame = 1;
 lastCompleteFrame = 9999999999999;
+speechish = false; 
 
 for featureNum = 1 : length(featurelist)
    thisfeature = featurelist(featureNum);
-   %if ismember(thisfeature.featname, ['gf', 'gu', 'gd', 'gl', 'gr', 'go'])
-   %previously the above commented line was used. it would evaluate rf is a member of the given set ['gf', 'gu', 'gd', 'gl', 'gr', 'go'], 
-   %thus processGaze would be true
-   %saif 
    if ismember(thisfeature.featname, ['ga', 'gu', 'gd', 'gl', 'gr', 'go'])
        processGaze = true;
    end
@@ -81,8 +78,8 @@ if processAudio
   [plraw, pCenters] = lookupOrComputePitch(...
         trackspec.directory, [trackspec.filename 'l'], signall, rate);
   energyl = computeLogEnergy(signall', samplesPerFrame);
-%  fprintf('pitch found at %d points\n', sum(plraw > 0)); % not-isNan count
-%  fprintf('pitch undefined  at %d points\n', sum(isnan(plraw)));
+  %%  fprintf('pitch found at %d points\n', sum(plraw > 0)); % not-isNan count
+  %%  fprintf('pitch undefined  at %d points\n', sum(isnan(plraw)));
 
   pitchl = plraw;  
   cepstralFluxl = cepstralFlux(signall, rate, energyl);
@@ -114,7 +111,7 @@ if  plotThings
   scatter(pCentersToPlot, 2.0 * pitchl(1:length(pCentersToPlot)), 'y', '.'); % doubled
   offset = 0;  
   scatter(pCentersToPlot, pitchr(1:length(pCentersToPlot)) + offset, 'k.');   
-  %plot((1:length(energyl)) * msPerFrame, energyl * yScalingEnergy,'g') 
+  %%plot((1:length(energyl)) * msPerFrame, energyl * yScalingEnergy,'g') 
   xlabel('seconds');
 end
 
@@ -145,6 +142,8 @@ for featureNum = 1 : length(featurelist)
       relevantEnergy = energyl;
       relevantFlux = cepstralFluxl;
       relevantSig = signall;
+      [lsilenceMean, lspeechMean] = findClusterMeans(energyl);
+      speechish = lspeechMean > lsilenceMean;
     else 
       % if stereop is false then this should not be reached 
       relevantPitch = pitchr;
@@ -152,6 +151,8 @@ for featureNum = 1 : length(featurelist)
       relevantEnergy = energyr;
       relevantFlux = cepstralFluxr;
       relevantSig = signalr;
+      [rsilenceMean, rspeechMean] = findClusterMeans(energyr);
+      speechish = speechish && (rspeechMean > rsilenceMean);
     end
   end 
 

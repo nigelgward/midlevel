@@ -33,9 +33,9 @@ function diagramDimensions(rotationspecfile, fssfile)
   fclose(sfp);
 
   % really this should automatically select, or even generate, an appropriate plotspec
-  plotspec = largePlotspec();  % suitable for largest.fss
-  plotspec = midPlotspec(1.0);    % suitable for midslim.fss
-  plotspec = slim3Plotspec(1.0);    
+%  plotspec = largePlotspec();  % suitable for largest.fss
+%  plotspec = midPlotspec(1.0);    % suitable for midslim.fss
+%  plotspec = slim3Plotspec(1.0);    
 %  plotspec = midPlotspecSeparate();    % suitable for midslim.fss
 %  plotspec = stdPlotspecSeparate();    % suitable for april.fss
 %  plotspec = stdPlotspec();    % suitable for april.fss
