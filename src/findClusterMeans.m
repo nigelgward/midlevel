@@ -23,6 +23,10 @@ function [lowCenter, highCenter] = findClusterMeans(values)
     previousLowCenter = lowCenter;  
   end
   warning('findClusterMeans exceeded maxIterations without converging');
+  display(previousHighCenter);
+  display(highCenter);
+  display(previousLowCenter);
+  display(lowCenter);
 end
 
 
@@ -53,5 +57,10 @@ function [subsetAverage] = averageOfNearValues(values, near_mean, far_mean)
     samples = values(1:round(end/nsamples):end);
   end
   closerSamples = samples(abs(samples - near_mean) < abs(samples - far_mean));
-  subsetAverage = mean(closerSamples);
+  if length(closerSamples) == 0
+    % unlikely, but can happen
+    subsetAverage = .9 * near_mean + .1 * far_mean;
+  else
+    subsetAverage = mean(closerSamples);
+  end
 end

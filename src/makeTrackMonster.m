@@ -1,4 +1,4 @@
-function [firstCompleteFrame, monster, speechish] = makeTrackMonster(trackspec, featurelist)
+function [firstCompleteFrame, monster] = makeTrackMonster(trackspec, featurelist)
 
 % inputs:
 %   trackspec: includes au pathname plus track (left or right)
@@ -16,8 +16,6 @@ function [firstCompleteFrame, monster, speechish] = makeTrackMonster(trackspec, 
 %     we pad it with zeros, rather than truncating the audio.  This is because
 %     we compute times using not timestamps, but implicitly, e.g. frame 0 
 %     is anchored at time zero (in the audio track)
-%   speechish is true if the input is plausibly speech, rather than
-%     mostly music or mostly corrupted speech
 % efficiency issues: 
 %   lots of redundant computation
 %   compute everything every 10ms, then in the last step downsample to 20ms
@@ -33,7 +31,6 @@ processKeystrokes = false;
 processAudio = false;
 firstCompleteFrame = 1;
 lastCompleteFrame = 9999999999999;
-speechish = false; 
 
 for featureNum = 1 : length(featurelist)
    thisfeature = featurelist(featureNum);
@@ -70,8 +67,9 @@ if processAudio
   stereop = decideIfStereo(trackspec, featurelist);
   [rate, signalPair] = readtracks(trackspec.path);
   if size(signalPair,2) < 2 && stereop
-    fprintf('contrary to expectation, %s is not a stereo file, exiting\n', ...
-	    trackspec.path)'
+    fprintf('%s is not a stereo file, though the feature list ', trackspec.path);
+    fprintf('and/or \n the channel in the trackspec suggested it was.  Exiting\n');
+    error('not stereo');
   end
   
   samplesPerFrame = msPerFrame * (rate / 1000);
@@ -137,7 +135,6 @@ for featureNum = 1 : length(featurelist)
   plotcolor = thisfeature.plotcolor;
 
   if processAudio
-    speechish = true;
     if (strcmp(side,'self') && strcmp(trackspec.side,'l')) || ...
        (strcmp(side,'inte') && strcmp(trackspec.side,'r'))
       relevantPitch = pitchl;
@@ -146,10 +143,6 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxl;
       relevantSig = signall;
       [lsilenceMean, lspeechMean] = findClusterMeans(energyl);
-      if lspeechMean <= lsilenceMean
-	speechish = false;
-	return
-      end
     else 
       % if stereop is false then this should not be reached 
       relevantPitch = pitchr;
@@ -158,10 +151,6 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxr;
       relevantSig = signalr;
       [rsilenceMean, rspeechMean] = findClusterMeans(energyr);
-      if rspeechMean <= rsilenceMean
-	speechish = false;
-	return
-      end
     end
   end 
 
@@ -294,6 +283,7 @@ for featureNum = 1 : length(featurelist)
 end   % loop back to do the next feature
 
 monster = cell2mat(features_array);  % flatten it to be ready for princomp
+
 end
 
 
