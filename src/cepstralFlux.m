@@ -1,13 +1,13 @@
 function flux = cepstralFlux(signal, rate, energy)
 
-   % Nigel Ward, December 2016
+  %% Nigel Ward, UTEP, December 2016
 
-   % Testing on ../flowtest/prefix21d.au, I observe that:
-   % - this is strongly high when the speaking rate is high
-   % - and also during very creaky regions, even if they sound lengthened,
-   % - very low during silence
-   % - generally moderately low during lengthenings
-   % For detecting lengthenings, energy / this value
+  %% Testing on ../flowtest/prefix21d.au, I observe that:
+  %% - this is strongly high when the speaking rate is high
+  %% - and also during very creaky regions, even if they sound lengthened,
+  %% - very low during silence
+  %% - generally moderately low during lengthenings
+  %% computeLengthening() the flux returned by this function
 
   %  [r,s] = readtracks(aufile);
   %  speech = s(:,1);  % left track
