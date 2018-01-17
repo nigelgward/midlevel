@@ -31,8 +31,12 @@ function flux = cepstralFlux(signal, rate, energy)
   end
   diffSquared = diff .*diff;
   sumdiffsq = sum(diffSquared,2);
+  %% perhaps we should normalize at this point,
+  %%   e.g. sumdiffsq = summdiffsq / mean(summdiffsq)
+  %% to compensate for speaker variation in how much they habitually enunciate
+  %%  and or variation in typical speaking rate
 	    % the function smooth is only in the latest Matlab release,
-	    % but there's an alternative implmentation in smoothJcc.m
+	    % but there's an alternative implementation in smoothJcc.m
   smoothed = smooth(sumdiffsq, smoothingSize);  
   % plot(smoothed);
   flux = smoothed;
