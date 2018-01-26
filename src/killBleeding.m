@@ -13,7 +13,7 @@ clearDifference = 0.8;
 
   % the energy features are centered at 5ms, 15ms, 25ms etc
   % the pitch features are center at 10ms, 20ms, 30ms etc. 
-  leftTwentyMsEnergy  = energyl(1:end-1) + energyr(2:end);
+  leftTwentyMsEnergy  = energyl(1:end-1) + energyl(2:end);
   rightTwentyMsEnergy = energyr(1:end-1) + energyr(2:end);
 
   leftLouder = leftTwentyMsEnergy > rightTwentyMsEnergy + clearDifference;
