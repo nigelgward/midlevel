@@ -18,32 +18,34 @@ function writeSummaryStats(filename, header, matrix)
 %%   actually behave the way these stats would indicate.
 %%   They invariably did. 
 
-fd = fopen('summary-stats.txt', 'a');
-
-fprintf(fd, '\nSummary statistics for track %s ', filename);
-fprintf(fd, header);
-fprintf(fd, '\n');
-
-meanval = [];
-meanabsval = [];
-[height, width] = size(matrix);
-dimensionsToWrite = min(50, width);
-
-fprintf(fd, '\n              means:');
-for col = 1:dimensionsToWrite
-	meanval(col) = mean(matrix(:,col));
-	fprintf(fd, ' %5.2f', meanval(col));
-end
-
-fprintf(fd, '\n  mean absolute vals:');
-for col = 1:dimensionsToWrite       
-	meanabsval(col) = mean(abs(matrix(:,col)));
-	fprintf(fd, ' %5.2f', meanabsval(col));
-end
-fprintf(fd, '\n  rms values:');
-for col = 1:dimensionsToWrite       
-	rmsval(col) = rms(matrix(:,col));
-	fprintf(fd, ' %5.2f', rmsval(col));
+  fd = fopen('summary-stats.txt', 'a');
+  
+  fprintf(fd, '\nSummary statistics for track %s ', filename);
+  fprintf(fd, header);
+  fprintf(fd, '\n');
+  
+  meanval = [];
+  meanabsval = [];
+  [height, width] = size(matrix);
+  dimensionsToWrite = min(50, width);
+  
+  fprintf(fd, '\n              means:');
+  for col = 1:dimensionsToWrite
+    meanval(col) = mean(matrix(:,col));
+    fprintf(fd, ' %5.2f', meanval(col));
+  end
+  
+  fprintf(fd, '\n  mean absolute vals:');
+  for col = 1:dimensionsToWrite       
+    meanabsval(col) = mean(abs(matrix(:,col)));
+    fprintf(fd, ' %5.2f', meanabsval(col));
+  end
+  fprintf(fd, '\n  rms values:');
+  for col = 1:dimensionsToWrite       
+    rmsval(col) = rms(matrix(:,col));
+    fprintf(fd, ' %5.2f', rmsval(col));
+  end
+  fclose(fd);
 end
 
 %fprintf('mean values are');

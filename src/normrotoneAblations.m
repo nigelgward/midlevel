@@ -1,5 +1,4 @@
-function rotated = ...
-         normrotoneAblations(trackspec, featurelist, ...
+function rotated = normrotoneAblations(trackspec, featurelist, ...
 		    nmeans, nstds, coeff, provenance, extremesdir, pcfilesdir)
 
   % Nigel Ward, UTEP, April 2015
@@ -10,6 +9,11 @@ function rotated = ...
 
   [ignore, ff] = makeTrackMonster(trackspec, featurelist);
   normalizedff = [];  
+
+  %%fprintf('featurelist has size %d %d\n',size(featurelist));
+  %%fprintf('ff has size %d %d\n',size(ff));
+  %%fprintf('nmeans has size %d %d\n',size(nmeans));
+  %%fprintf('ncstds has size %d %d\n',size(nstds));
 
   %normalize using rotationspec nmeans and nstds
   for col=1:length(featurelist)
@@ -40,8 +44,8 @@ function rotated = ...
 
   pcfile = [pcfilesdir filecode  '-'  trackcode  '.pc'];
   pcheader = [provenance];
-%  fprintf('writing to %s\n', pcfile);  % commented out since slow
-%  writePcFileBis(pcfile, pcheader, rotated);  
+%%  fprintf('writing to %s\n', pcfile);  % commented out since slow
+%%  writePcFileBis(pcfile, pcheader, rotated);   %nigel
 
   findExtremes(rotated, trackspec.side, trackspec.filename, ...
 	       extremesdir, provenance);   

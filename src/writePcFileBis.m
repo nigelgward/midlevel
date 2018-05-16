@@ -7,7 +7,7 @@ tic
 [height, width] = size(matrix);
 timestamps = 0.01:0.01:height/100;     % 0.01 second (10-millisecond) timestamps
 %disp(size(matrix));       % display size of matrix
-dimensionsToWrite = min(50, length(matrix(1,:)));
+dimensionsToWrite = min(10, length(matrix(1,:)));
 writeable  = horzcat(timestamps', matrix(:,1:dimensionsToWrite)); 
 writeable  = writeable(2:2:end, :);    % downsample 
 

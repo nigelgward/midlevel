@@ -33,7 +33,7 @@ firstCompleteFrame = 1;
 lastCompleteFrame = 9999999999999;
 
 for featureNum = 1 : length(featurelist)
-   thisfeature = featurelist(featureNum);
+  thisfeature = featurelist(featureNum);
    if ismember(thisfeature.featname, ['ga', 'gu', 'gd', 'gl', 'gr', 'go'])
        processGaze = true;
    end
@@ -68,8 +68,8 @@ if processAudio
   [rate, signalPair] = readtracks(trackspec.path);
   if size(signalPair,2) < 2 && stereop
     fprintf('%s is not a stereo file, though the feature list ', trackspec.path);
-    fprintf('and/or \n the channel in the trackspec suggested it was.  Exiting\n');
-    error('not stereo');
+    fprintf('and/or \n the channel in the trackspec suggested it was.  Exiting...\n');
+    error('Not Stereo.');
   end
   
   samplesPerFrame = msPerFrame * (rate / 1000);

@@ -70,7 +70,7 @@ function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, ...
   xlabel('milliseconds');
   title(plotTitle);
   pbaspect([1.1 1. 1]);
-  text(leftEdgeMs, -20, provenance, 'FontSize', 8);
+%  text(leftEdgeMs, -20, provenance, 'FontSize', 8);
 end
 
 

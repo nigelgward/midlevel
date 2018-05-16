@@ -31,3 +31,8 @@ end
 % vec = lapacianOfGaussian(8);
 % c = conv(x, vec, 'same');
 % plot(1:200, c);
+
+%% to make a pretty picture
+%% vec = laplacianOfGaussian(100);
+%% plot( (-249:250)/250, vec * 10000)
+%% axis([-1 1 -0.6 1.1])

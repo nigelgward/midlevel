@@ -39,24 +39,34 @@ function diagramDimensions(rotationspecfile, fssfile)
 %  plotspec = midPlotspecSeparate();    % suitable for midslim.fss
 %  plotspec = stdPlotspecSeparate();    % suitable for april.fss
 %  plotspec = stdPlotspec();    % suitable for april.fss
-  plotspec = pbookPlotspec(1.0);    
+  plotspec = pbookPlotspec(1.0);   % for the book
+  plotspec = mono4Plotspec(1.1); 
+%  plotspec = uncompressedSpec(1.0);  % for the book 
 
   featurespec = getfeaturespec(fssfile);
-  for dim = 1:min(30,length(coeff))
+  for dim = 1:min(14,length(coeff))
     fprintf('doing dimension %2d\n', dim);
     for side =  -1:2:1
-       if side == -1
-         filename = sprintf('%s/dim%02dlo', directoryName, dim);
-    	 titleString = sprintf('dimension %2d low', dim);
+      if side == -1
+        filename = sprintf('%s/dim%02dlo', directoryName, dim);
+    	titleString = sprintf('dimension %2d low', dim);
       else
-         filename = sprintf('%s/dim%02dhi', directoryName, dim);
-    	 titleString = sprintf('dimension %2d high', dim);
+        filename = sprintf('%s/dim%02dhi', directoryName, dim);
+    	titleString = sprintf('dimension %2d high', dim);
       end
+      actualPlotspec = plotspec;
+%% if uncommented, will generate custom plots for the book
+%        actualPlotspec = lookupSpecialPlotspec(dim, side, plotspec);  
       patvis2(titleString, side * coeff(:,dim), ...
-	      featurespec, plotspec, ...
-	     -1700, 1700, rotation_provenance);
+	      featurespec, actualPlotspec, ...
+	      -1700, 1700, rotation_provenance);
+      nlines = size(actualPlotspec, 1);
+      ylim([0 260]);    % should be set automatically based on nlines
+
       set(gcf, 'PaperPositionMode', 'auto');
       saveas(gcf, filename, 'png');
+      %% if uncommented, will create pdf plots for the book
+      %%      print(filename, '-dpdf');
     end
   end
 end

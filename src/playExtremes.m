@@ -24,6 +24,6 @@ playerObjR = audioplayer(signalPair(:,2),rate);
 
 play(playerObjR);
 
-
+fclose(openExtremesFile);
 end
 

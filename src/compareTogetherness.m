@@ -44,4 +44,5 @@ fd = fopen('dim-diffs.txt', 'w');
     fprintf(fd, '%3d:  %6.2f  \n', togetherness1(i), dist1);
     fprintf(fd, '%3d:  %6.2f (sum-squared) \n', togetherness1(i), dist2);
   end
+  fclose(fd);
 end

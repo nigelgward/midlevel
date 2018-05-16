@@ -25,10 +25,10 @@ function intensityOnlyPatvis()
     inteYbase = ybase - interTrackSpacing;
     label = sprintf(' %2d: A', dim);
     assembleAndPlotContour('self', fcode, coeff(:,dim), ...
-			featurespec, ybase, ygain, label, 'k', '-');
+			featurespec, ybase, ygain, label, 'k', '-', -1600, 1600);
     label = sprintf(' %2d: B', dim);
     assembleAndPlotContour('inte', fcode, coeff(:,dim), ...
-			featurespec, inteYbase, ygain, label, 'g', '-');
+			featurespec, inteYbase, ygain, label, [15 15 15], '--', -1600, 1600);
 
   end
   reshapeAndDecorate(-1800, +1800, 'intensity-only');

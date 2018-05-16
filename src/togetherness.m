@@ -41,6 +41,7 @@ function avgsAtExtremes =  togetherness(allRotated)
     end 
   end
   fprintf(fd, '\n');
+  fclose(fd);
 end
 
 
