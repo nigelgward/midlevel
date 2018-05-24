@@ -1,22 +1,20 @@
 function patvis2(plotTitle, featureVals, featureList, plotspec, ...
 		 leftedge, rightedge, provenance)
 
-% pattern visualization, Nigel Ward, UTEP and Kyoto U
-% Janaury 2016.  based on patvis.m, but more flexible
+%% pattern visualization, Nigel Ward, UTEP and Kyoto U
+%% January 2016.  based on patvis.m, but more flexible
 
-% used for three things, potentially:
-% - showing the loadings of all features, for some specific dimension
-% - showing the average values of all feature, across 
-%   some set of interesting timepoints, for example backchannel onsets
-% - showing the values of all raw features (unnormalized and unrotated)
-%   at one specific timepoint in a file
+%% used for three things, potentially:
+%% - showing the loadings of all features, for some specific dimension
+%% - showing the average values of all feature, across 
+%%   some set of interesting timepoints, for example backchannel onsets
+%% - showing the values of all raw features (unnormalized and unrotated)
+%%   at one specific timepoint in a file
 
-% units for leftedge and rightedge are milliseconds
+%% units for leftedge and rightedge are milliseconds
 
-% time is on the x axis
-% we aggregate all features of a certain type, and draw one line for them
-% Design Flaw: can't visually distinguish between features with value zero 
-%  and features not included in the featurespec over some time
+%% time is on the x axis
+%% we aggregate all features of a certain type, and draw one line for them
 
 	 % NB ygains appropriate for unnormalized feature values are: 
 	 %  [0.6, 0.3, 5.0, 0.1, 2.4];  
@@ -85,4 +83,4 @@ end
 
 %  or look at factor weightings on low side of dimension 8
 %  load(rotationspec)
-%  ?patvis(-1 *coeff(:,8), 'al_corrected.fss', 'dimension 8 low', true);
+%  ?patvis2(-1 *coeff(:,8), 'al_corrected.fss', 'dimension 8 low', true);
