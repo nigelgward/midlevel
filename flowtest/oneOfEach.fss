@@ -1,0 +1,20 @@
+# oneOfEach.fss
+# Nigel Ward, UTEP, May 2018
+# used for later passing through mean and/or stddev to get file-level stats
+vo -50 to 0 self
+
+tl -50 to 0 self
+th -50 to 0 self
+np -50 to 0 self
+wp -50 to 0 self
+
+sr -50 to 0 self
+le -50 to 0 self
+re -50 to 0 self
+en -50 to 0 self
+
+pd -50 to 0 self
+vr -100 to 0 self  # dodge an apparent bug 
+sf -50 to 0 self
+vf -50 to 0 self
+
