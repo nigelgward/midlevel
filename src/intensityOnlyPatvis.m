@@ -34,6 +34,7 @@ function intensityOnlyPatvis()
   reshapeAndDecorate(-1800, +1800, 'intensity-only');
   set(gcf, 'PaperPositionMode', 'auto');
   saveas(gcf, 'intensity-only', 'png');
+  saveas(gcf, 'intensity-only', 'pdf');
 end
 
 

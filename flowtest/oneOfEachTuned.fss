@@ -1,0 +1,21 @@
+# oneOfEach.fss
+# Nigel Ward, UTEP, Jun 2018 
+# used for later passing through mean and/or stddev to get file-level stats
+# tuned based on English alone
+vo -50 to 0 self   # shouldn't matter for avg; for std dev, any < 100 is fine 
+
+tl -50 to 0 self   # little effect on avgs, for std should be 100 or less
+th -50 to 0 self   # ditto 
+np -50 to 0 self   # width has little effect 
+wp -50 to 0 self   # 50 or less better for both avgs and stddevs
+
+sr -50 to 0 self   # ditto 
+le -1000 to 0 self  # helps stddevs
+re -50 to 0 self   # 50 best for both 
+en -50 to 0 self   # helps stddevs
+
+pd -50 to 0 self   # doesn't matter either way 
+vr -500 to 0 self  # 
+sf -1000 to 0 self  # mostly for stddevs
+vf -500 to 0 self
+

@@ -5,7 +5,9 @@ function diagramDimensions(rotationspecfile, fssfile)
 
 % Nigel Ward,  UTEP, May 2015
 
+  ndims = 1;    %14;
   % get coeff, fsspecFile, rotation_provenance, saved earlier by findDimensions
+
   load(rotationspecfile);    
   if exist('fsspecFile') 
     fssfile = fsspecFile;
@@ -44,7 +46,7 @@ function diagramDimensions(rotationspecfile, fssfile)
 %  plotspec = uncompressedSpec(1.0);  % for the book 
 
   featurespec = getfeaturespec(fssfile);
-  for dim = 1:min(14,length(coeff))
+  for dim = 1:min(ndims,length(coeff))
     fprintf('doing dimension %2d\n', dim);
     for side =  -1:2:1
       if side == -1
@@ -61,12 +63,16 @@ function diagramDimensions(rotationspecfile, fssfile)
 	      featurespec, actualPlotspec, ...
 	      -1700, 1700, rotation_provenance);
       nlines = size(actualPlotspec, 1);
-      ylim([0 260]);    % should be set automatically based on nlines
+      %%  ylim([0 nlines * 13]); 
+      ylim([0 260]);    
 
+      %% improve the x-axis labels
+      set(gca, 'fontname', 'Arial');
+      set(gca, 'fontsize', 9);
       set(gcf, 'PaperPositionMode', 'auto');
       saveas(gcf, filename, 'png');
-      %% if uncommented, will create pdf plots for the book
-      %%      print(filename, '-dpdf');
+      saveas(gcf, filename, 'pdf');
+      %%      print(filename, '-dpdf');  % another way to save pdf plots 
     end
   end
 end

@@ -28,7 +28,7 @@ else
     [pitch, startsAndEnds] = fxrapt(signal, rate, 'u');
     save(pitchFileName, 'pitch', 'startsAndEnds');     
   else
-    fprintf('reading cached pitch file %s\n', pitchFileName);
+%    fprintf('reading cached pitch file %s\n', pitchFileName);
     load(pitchFileName)
   end
 end

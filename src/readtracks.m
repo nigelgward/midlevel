@@ -1,4 +1,5 @@
 function [rate, signals] = readtracks(file)
+
 % Given a stereo audio filename 
 %  reads the file and returns two signals 
 % It's best to avoid wav files; since they can cause errors downstream
