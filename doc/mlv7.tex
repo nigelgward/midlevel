@@ -97,11 +97,11 @@ The code is at {\tt https://github.com/nigelgward/midlevel }.  It requires
 
 
 To see if it runs for you, download both of the above, enter Matlab,
-do {\tt addpath} for {\tt midlevel/src} and voicebox, {\tt cd} to the
-{\tt flowtest} subdirectory, and do {\tt
-  findDimensions('singletrack.tl', 'minicrunch.fss');}. In a minute or
-so this should create a {\tt loadings.txt} file; if so, the code is
-probably working fine.
+do {\tt addpath} for {\tt midlevel/src} and {\tt
+  midlevel/src/voicebox}, {\tt cd} to the {\tt flowtest} subdirectory,
+and do {\tt findDimensions('singletrack.tl', 'minicrunch.fss');}. In a
+minute or so this should create a {\tt loadings.txt} file; if so, the
+code is probably working fine.
 
 If you are only interested in using the features, skip ahead to read
 Section \ref{sec:features}, and then back to Section
@@ -109,7 +109,7 @@ Section \ref{sec:features}, and then back to Section
 
 In general, to prepare to work on your own data, you'll need to do
 three things: 1) convert it to the right format, 2) create an
-inventory of audio fiels to process, and 3) select a feature set to
+inventory of audio files to process, and 3) select a feature set to
 use, as described in Section \ref{sec:file-formats}.
 
 
@@ -568,7 +568,7 @@ where the percentile is based on the distribution of pitch values in
 all voiced regions in the entire track.  These are mapped to the range
 0 to 1; thus the lowest pitch value in the track maps to 0.0, the
 highest to 1.0, and the median pitch value to 0.5.  As described
-below, percentalized pitch is used for the highness and lowless
+below, percentilized pitch is used for the highness and lowless
 features; but raw pitch is used for the for creaky, wide and narrow
 features.
 
@@ -583,7 +583,7 @@ energy is too variable to be clearly bimodal.)
 The mid-level features are as listed in Section
 \ref{featurespec-files}.  Each summarizes something about the values
 of the frame-level features across some window.  The motivations for
-chosing these specific features and these specific implementations are
+choosing these specific features and these specific implementations are
 given in \cite{mid-level-features}.  There are many desiderata for
 feature sets, some in conflict.  For this feature set, the primary
 considerations were that it be everywhere-defined, robust, and simple.

@@ -11,7 +11,9 @@
 
 # this set of features is just for testing the workflow; 
 # larger sets will be used for the actual PCA work
+# this set won't work for testing mono files; for those use minicrunch-mono.fss
 
+le   -400 to 400 self 
 vo   -50 to     0 self     r # volume window immediately to the left of now
 vo  -100 to   -50 self
 vo  -200 to  -100 self
@@ -33,3 +35,10 @@ fp  -200 to     0 self
 np  -200 to     0 self 
 
 wp  -200 to     0 self 
+
+vr -300 to 300 self
+
+ns  -10 to 10 self
+ne  -10 to 10 inte
+
+
