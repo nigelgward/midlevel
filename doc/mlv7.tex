@@ -30,11 +30,11 @@
 \medskip
 
 
-{\LARGE \bf Version 7}
+{\LARGE \bf Version 7.1}
 \vspace{7mm}
 
 
-{\bf Nigel Ward, University of Texas at El Paso and Kyoto University}
+{\bf Nigel Ward, University of Texas at El Paso}
 
 {\bf \today }
 
@@ -85,21 +85,23 @@ welcome.
 %==========================================================
 \section{Getting Started}
 
-The code is at {\tt https://github.com/nigelgward/midlevel }.  It requires:
-\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
-\item Matlab (this was developed mostly on release r2015a, but seems
-  to work on earlier releases back through 2010)
-\item Mike Brookes' Voicebox code, for audio file input and the pitch
-  computation, available from {\tt
-    http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html }.
-\item {\tt mfcc.m} and related files from Kamil Wojcicki, included 
-\end{itemize}
+The code is at {\tt https://github.com/nigelgward/midlevel }.  It requires
+%\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+ Matlab (this was developed mostly on release r2015a, but seems to
+ work on earlier releases back through 2010).
+
+
+% from voicebox: readau, voicebox, fxrapt, winenvar,
+%rfft, irfft, v_findpeaks, lpcauto, distitar,
+% lpcar2ra, lpcar2rr, lpcar2rf, lpcrf2rr
+
 
 To see if it runs for you, download both of the above, enter Matlab,
-do addpath for midlevel/src and voicebox, cd to the flowtest
-subdirectory, and do {\tt findDimensions('singletrack.tl',
-  'minicrunch.fss');}. In a minute or so this should create a {\tt
-  loadings.txt} file; if so, the code is probably working fine.
+do {\tt addpath} for {\tt midlevel/src} and voicebox, {\tt cd} to the
+{\tt flowtest} subdirectory, and do {\tt
+  findDimensions('singletrack.tl', 'minicrunch.fss');}. In a minute or
+so this should create a {\tt loadings.txt} file; if so, the code is
+probably working fine.
 
 If you are only interested in using the features, skip ahead to read
 Section \ref{sec:features}, and then back to Section
@@ -901,14 +903,21 @@ but also computes a number of useful midlevel prosodic features, and
 to be generally clearer.  The code was made to work on Windows as well
 as Linux.
 
-Version 6, April 2016.  I added the late-pitch-peak feature was added,
-and documented the feature computations.
+Version 6, April 2016.  I added the late-pitch-peak feature and
+documented the feature computations.  This work was done at Kyoto
+University.
 
-Version 7, April 2017.  I added the cepstrum-based features and the
-temporal features.
+Version 7, April 2017.  I added the cepstrum-based features ({\tt
+  mfcc.m} and related files), and the temporal features.
 
-%Thanks for comments on code and/or documentation: Divesh Lala,
-%Narimasa Watanabe.
+Version 7.1, May 2019.  I incorporated the all needed functions from
+Voicebox for audio file input and the pitch computation.
+%, available from {\tt
+%  http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html }.
+
+I thank Mike Brookes for the Voicebox functions, and Kamil Wojcicki
+for the cepstral code.  For comments on the code and documentation, I
+thank Divesh Lala and Narimasa Watanabe.
 
 %==================================================================
 \section{Future Work}

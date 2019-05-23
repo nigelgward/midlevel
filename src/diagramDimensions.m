@@ -2,10 +2,11 @@ function diagramDimensions(rotationspecfile, fssfile)
 % makes loadings plots for each dimension and saves them to files
 %   in the loadingplots subdirectory of the current directory
 % typical call: diagramDimensions('rotationspec.mat');
+% to create the figures for the book, instead use figsForBook.m
 
 % Nigel Ward,  UTEP, May 2015
 
-  ndims = 1;    %14;
+  ndims = 15;    %14;  % *****
   % get coeff, fsspecFile, rotation_provenance, saved earlier by findDimensions
 
   load(rotationspecfile);    
@@ -27,7 +28,7 @@ function diagramDimensions(rotationspecfile, fssfile)
   if isdir(directoryName) == false
     mkdir(directoryName);
   else
-     fprintf('warning: overwriting directory contents\n');
+     fprintf('warning: overwriting contents of directory "%s"\n', directoryName);
   end 
   provenanceFilename = sprintf('%s/provenance.txt', directoryName);
   sfp = fopen(provenanceFilename, 'w');
@@ -42,7 +43,9 @@ function diagramDimensions(rotationspecfile, fssfile)
 %  plotspec = stdPlotspecSeparate();    % suitable for april.fss
 %  plotspec = stdPlotspec();    % suitable for april.fss
   plotspec = pbookPlotspec(1.0);   % for the book
-  plotspec = mono4Plotspec(1.1); 
+%    plotspec = pbookPlotspec(1.3);   % for the book
+%    plotspec = pbookPlotspec(3.9);   % for the book, dimension 1 ***
+%  plotspec = mono4Plotspec(1.1);
 %  plotspec = uncompressedSpec(1.0);  % for the book 
 
   featurespec = getfeaturespec(fssfile);
@@ -57,8 +60,6 @@ function diagramDimensions(rotationspecfile, fssfile)
     	titleString = sprintf('dimension %2d high', dim);
       end
       actualPlotspec = plotspec;
-%% if uncommented, will generate custom plots for the book
-%        actualPlotspec = lookupSpecialPlotspec(dim, side, plotspec);  
       patvis2(titleString, side * coeff(:,dim), ...
 	      featurespec, actualPlotspec, ...
 	      -1700, 1700, rotation_provenance);
