@@ -75,7 +75,8 @@ workflow for analysis including Principal Components Analysis (PCA)
 and various support for automated and human-in-the-loop analyses.
 
 This document assumes a basic familiarity with prosody and its
-acoustic measures, as obtainable, for example, from Chapter 4 of
+acoustic measures, as obtainable, for example, from \cite{me-cup},
+Chapter 4 of \cite{ogden-phonetics} or Chapter 4 of
 \cite{ladefoged03}.
 
 This document is a work in progress.  Comments and suggestions are
@@ -163,7 +164,8 @@ each track of one or more audio files; it does this in five steps:
 \item normalize them, using  precomputed parameters (means and
   standard deviations)
 \item  rotate them, using a precomputed rotation
-\item  write the results to {\tt .pc} files.
+\item write the results to {\tt .pc} files, and also locations of dimension
+  extremes.
 \end{itemize}
 
 The resulting dimension-based representation can then be as input to
@@ -329,7 +331,9 @@ In fss files currently the following codes are recognized:
   sf  & speaking fraction \\
   sr  & speaking-rate proxy (also reflects enunciated vs.~reduced, and creaky vs.~modal) \\
   cr  & creakiness \\
-\\
+\end{tabular}
+
+\begin{tabular}{ll}
   fp  & flat pitch: degree of flatness \\
   np  & narrow pitch range: degree of narrowness \\
   tp  & typical pitch range (not often used)\\
@@ -338,13 +342,17 @@ In fss files currently the following codes are recognized:
   lp  & low pitch (obsolete) \\
   th  & true high pitch: degree of highness  \\ 
   tl  & true low pitch: degree of lowness \\
-\\
+\end{tabular}
+
+\begin{tabular}{ll}
   pd  & late (delayed) pitch peak \\
   le  & lengthening, of a vowel etc. \\
   en  & enunciation (articulatory precision) \\
   re  & phonetic reduction \\
   vr & voiced-unvoiced intensity ratio \\
-\\
+\end{tabular}
+
+\begin{tabular}{ll}
   ts  & time since start of the recording (window start/end times ignored) \\
   te  & time until end of the recording (ditto) \\
   ns  & nearness to start of the recording (ditto) \\
@@ -411,10 +419,11 @@ version of the PCA coefficients.
 \section{Interpreting the Dimensions}  \label{sec:interpreting}
 
 An important reason to use Principal Components Analysis is to
- understand what's going on in the data.  Indeed, for all data
-sets tried so far, the dimensions output by PCA turn out to be readily
-interpretable as patterns of behavior.  There are three techniques
-that help arrive at an interpretation, as described in this section.
+understand what's going on in the data.  Indeed, for all data sets
+tried so far, the dimensions output by PCA turn out to be readily
+interpretable as meaningful patterns of behavior.  There are three
+techniques that help arrive at an interpretation, as described in this
+section.
 
 As a preliminary, you may first want to look at the variance and
 cumulative variance explained by the PCA-found dimensions, using
@@ -475,7 +484,7 @@ Elan and VLC are also good choices.
 The last source of insight for interpreting the dimensions is to see
 find which words co-occur with values high/low on each dimension.  Of
 course this is only possible if we have transcribed data,
-e.g.~Switchboard.  THe workflow for this needs to be revived.
+e.g.~Switchboard.  The workflow for this needs to be revived.
 
 
 %=======================================================
@@ -571,8 +580,8 @@ features; but raw pitch is used for the for creaky, wide and narrow
 features.
 
 Energy is normalized as described below. (It is not done at the frame
-level, but over larger windows, because I suspect that frame-level
-energy is too variable to be clearly bimodal.)
+level, but over larger windows, because  frame-level
+energy may be less clearly bimodal.)
 
 
 %--------------------------------------------
@@ -581,9 +590,9 @@ energy is too variable to be clearly bimodal.)
 The mid-level features are as listed in Section
 \ref{featurespec-files}.  Each summarizes something about the values
 of the frame-level features across some window.  The motivations for
-choosing these specific features and these specific implementations are
-given in \cite{mid-level-features}.  There are many desiderata for
-feature sets, some in conflict.  For this feature set, the primary
+choosing these specific features and these specific implementations
+are given in Chapter 9 of \cite{me-cup}.  There are many desiderata
+for feature sets, some in conflict.  For this feature set, the primary
 considerations were that it be everywhere-defined, robust, and simple.
 Other considerations were that they be useful, have at least some
 perceptual validity, and are reasonably fast to compute.  All of these
@@ -908,8 +917,9 @@ University.
 Version 7, April 2017.  I added the cepstrum-based features ({\tt
   mfcc.m} and related files), and the temporal features.
 
-Version 7.1, May 2019.  I incorporated the all needed functions from
-Voicebox for audio file input and the pitch computation.
+Version 7.1, May 2019.  I copied all needed functions from Voicebox
+(for audio file input and the pitch computation) into the new {\tt
+  voicebox} subdirectory, so a separate download is no longer needed.
 %, available from {\tt
 %  http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html }.
 
@@ -959,19 +969,16 @@ efficiency.
 
 The repository is https://github.com/nigelgward/midlevel/ .
 
-This file is in the doc directory, as mlv7.tex and mlv7.pdf.
+This file is in the doc directory, as mlv7.tex and mlv7.pdf.  The code
+is in the src directory. 
 
-The src directory includes everything needed besides 
-{\tt readau.m}, {\tt readwav.m} and {\tt fxrapt.m} (the pitch
-  tracker, which are in the {\tt voicebox/} release.
-
-The draft of a survey of prosodic features is locally in {\tt
-  l:/papers/features/}, and another is in {\tt
-  h:/nigel/book/ch-methods/}.
+%The draft of a survey of prosodic features is locally in {\tt
+%  l:/papers/features/}, and another is in {\tt
+%  h:/nigel/book/ch-methods/}.
 
 %%=========================================================
 \bibliographystyle{IEEEtran}
-\bibliography{l:/z/bib}
+\bibliography{../../book/bib}
 
 %%=========================================================
 \end{document}
