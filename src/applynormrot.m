@@ -1,7 +1,7 @@
 function allRotated = applynormrot(tlfile, featuresetSpec, outdir)
 %% Nigel Ward, UTEP, February 2015
 %% Apply the pre-saved normalization-and-rotation to the specified files,
-%% writing a .pc file for each
+%% writing a .pc file for each, and also a file of extremes for each dimension
 
 %% To test
 %%   1. findDimensions.m('minitracklist.tl', 'minicrunch.fss');
@@ -28,7 +28,7 @@ end
 for filenum = 1:length(tracklist)
   trackspec = tracklist{filenum};
   provenance = sprintf(...
-      'generated from %s of %s , using features %s and rotation %s at %s', ...
+      'generated from %s of %s , using features %s and rotation [%s] at %s', ...
       trackspec.side,  trackspec.filename, ...
       featuresetSpec, rotation_provenance, datestr(clock));
    rotated = normrotoneAblations(trackspec, featurelist, ...

@@ -42,15 +42,14 @@ function rotated = normrotoneAblations(trackspec, featurelist, ...
   aufilename = trackspec.filename;
   filecode = aufilename(1:length(aufilename) - 3);    % remove extension to get, e.g. sw2105
 
-  if pcfilesdir ~= ''
+  if ~strcmp(pcfilesdir, '')
     pcfile = [pcfilesdir filecode  '-'  trackcode  '.pc'];
     pcheader = [provenance];
     %%fprintf('writing to %s\n', pcfile);  % very slow; avoid unless needed
     %%writePcFileBis(pcfile, pcheader, rotated);   
   end
-  
 
-  if extremesdir ~= ''
+  if ~strcmp(extremesdir, '')
     findExtremes(rotated, trackspec.side, trackspec.filename, ...
 		 extremesdir, provenance);   
 %  writeSummaryStats([filecode '-' trackcode], pcheader, rotated);  

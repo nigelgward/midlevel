@@ -6,7 +6,7 @@ function diagramDimensions(rotationspecfile, fssfile)
 
 % Nigel Ward,  UTEP, May 2015
 
-  ndims = 15;    %14;  % *****
+  ndims = 20;    % 15
   % get coeff, fsspecFile, rotation_provenance, saved earlier by findDimensions
 
   load(rotationspecfile);    

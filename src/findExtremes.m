@@ -12,10 +12,9 @@ function findExtremes(rotated, side, trackname, outdir, provenance)
 [ntimepoints, ndimensions] = size(rotated);
 nseconds = ntimepoints/100;
 timestamps = 0.01:0.01:nseconds;     % 0.01 second (10-millisecond) timestamps
-%Read only first 50 dimensions (or ndimensions if dimensions < 50)
-dimensionsToWrite = min(50, ndimensions) ;
-
-%set up working-copy matrices to find local max and min values in rotated
+%Read only first 25 dimensions (or ndimensions if dimensions < 50)
+dimensionsToWrite = min(25, ndimensions) ;
+stddevs = std(rotated(:,1:dimensionsToWrite));  % per-track, not global, but okay
 
 for dim=1:dimensionsToWrite
   filename = sprintf('dim%.2d.txt', dim);
@@ -26,38 +25,57 @@ for dim=1:dimensionsToWrite
       fid = fopen(pathname,'w');
     end
 
-    dimslice = rotated(:,dim);
-    dimsliceForMax = dimslice;
-    dimsliceForMin = -1 * dimslice;
-      
-    maxIndices = indicesOfSeparatedMaxima(dimsliceForMax);
-    minIndices = indicesOfSeparatedMaxima(dimsliceForMin);
+    dimSlice = rotated(:,dim);
+    maxIndices = indicesOfSeparatedMaxima(dimSlice);
+    minIndices = indicesOfSeparatedMaxima(-1 * dimSlice);
  
     fprintf(fid, '%s\n', provenance);
     fprintf(fid, 'Low\n');
     writeExtrema(fid, minIndices, dim, ...
-	   rotated, timestamps, trackname, side);
+	   rotated, stddevs, timestamps, trackname, side);
     fprintf(fid, 'High\n');
     writeExtrema(fid, maxIndices, dim, ...
-	   rotated, timestamps, trackname, side);
+	   rotated, stddevs, timestamps, trackname, side);
     fclose(fid);
 end  
 end
 
 
 % this could possibly be replaced with writeExtremesToFiles
-function  writeExtrema(fid, indices, dim, rotated, timestamps, trackname, side)
+function  writeExtrema(fid, indices, dim, rotated, stddevs, timestamps, trackname, side)
     numOfExtremesPerTrack = 10;
     for i = 1:numOfExtremesPerTrack;
      index = indices(i);
      actualValue = rotated(index, dim);
      time = timestamps(index);
 
-     lineToWrite = sprintf('   %d %.2f at %6.2f (%2d:%05.2f) in %s on %s\n', ...
+     lineToWrite = sprintf('  %2d %.1f at %5.1f (%2d:%04.1f) in %s on %s ', ...
 			   dim, actualValue, time, floor(time/60), mod(time,60),  ...
 			   trackname, side);
      fprintf(fid, lineToWrite);
+     writeSalientDims(fid, rotated(index,:), stddevs);
+     fprintf(fid, '\n');
     end
+end
+
+
+%% if the current dimension value is not on this list, but other
+%% dimensions are then this timepoint is a better example of something
+%% else, than it is of this dimension
+function writeSalientDims(fid, values, stddevs)
+  displayThreshold = 2.5;
+  ndims = min(15, size(stddevs, 2));
+  values = values(1:ndims);
+  stddevs = stddevs(1:ndims);
+  infoString = ' bigdims: ';
+  salientIndices = abs(values) > displayThreshold * stddevs;
+  
+  for dim = 1:ndims
+    if salientIndices(dim) 
+      infoString = strcat(infoString, ' ', sprintf(' dim%2d %.1f ', dim, values(dim)));
+    end
+  end
+  fprintf(fid, infoString);
 end
 
 
