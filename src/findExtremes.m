@@ -62,7 +62,7 @@ end
 %% if the current dimension value is not on this list, but other
 %% dimensions are then this timepoint is a better example of something
 %% else, than it is of this dimension
-qfunction writeSalientDims(fid, values, stddevs)
+function writeSalientDims(fid, values, stddevs)
   displayThreshold = 2.5;
   ndims = min(15, size(stddevs, 2));
   values = values(1:ndims);

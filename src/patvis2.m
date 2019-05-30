@@ -66,9 +66,9 @@ function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, ...
   set(gca, 'XTick', [-2000 -1500 -1000 -500  0 500 1000 1500 2000]);
   plot([0 0], [-1000 topPixel], 'color', [.8 .8 .8]);    % vertical hairline
   xlabel('milliseconds');
-  %  title(plotTitle);
+  title(plotTitle);
   pbaspect([1.1 1. 1]);  % stretch out x-axis by 10%
-%  text(leftEdgeMs, -20, provenance, 'FontSize', 8);
+  text(leftEdgeMs, -20, provenance, 'FontSize', 8);
 end
 
 
