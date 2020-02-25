@@ -1,0 +1,295 @@
+# pbook.fss,
+# set of features designed for the book, derived from slim3.fss
+# this does not include
+# - sr since its percept is not clear,
+# - vr since it's not even marginally prosodic
+# Nigel Ward, UTEP, May 2017
+
+# the window sizes are set based on various considerations
+# 1. not too many, so as not to exceed memory limitations (32GB)
+# 2. what's been most valuable in systematic studies for LM and IR
+# 3. what sensible (e.g. not a 50-ms window for lenghtening)
+# 4. examination of loading plots for dimensions, nothing that nothing
+#   really varies over 50ms except for garbage dimensions
+# 5. lots for 'vo' since it's the sole intensity feature and it should
+#  have a goodly amount of effective weight
+
+### Self Features
+
+## volume (22)
+vo -3200 to -1600 self
+vo -1600 to -1200 self
+vo -1200 to  -800 self
+vo  -800 to  -600 self
+vo  -600 to  -400 self
+vo  -400 to  -300 self
+vo  -300 to  -200 self
+vo  -200 to  -150 self
+vo  -150 to  -100 self
+vo  -100 to   -50 self
+vo   -50 to     0 self
+
+vo     0 to    50 self
+vo    50 to   100 self
+vo   100 to   150 self
+vo   150 to   200 self
+vo   200 to   300 self
+vo   300 to   400 self
+vo   400 to   600 self
+vo   600 to   800 self
+vo   800 to  1200 self
+vo  1200 to  1600 self
+vo  1600 to  3200 self
+
+## creaky (12)
+cr -1600 to  -800 self
+cr  -800 to  -400 self
+cr  -400 to  -300 self
+cr  -300 to  -200 self
+cr  -200 to  -100 self
+cr  -100 to     0 self
+
+cr     0 to   100 self
+cr   100 to   200 self
+cr   200 to   300 self
+cr   300 to   400 self
+cr   400 to   800 self
+cr   800 to  1600 self
+
+#
+### pitch lowness (12)
+tl -1600 to  -800 self
+tl  -800 to  -400 self
+tl  -400 to  -300 self
+tl  -300 to  -200 self
+tl  -200 to  -100 self
+tl  -100 to     0 self
+
+tl     0 to   100 self
+tl   100 to   200 self
+tl   200 to   300 self    
+tl   300 to   400 self
+tl   400 to   800 self
+tl   800 to  1600 self
+
+## pitch highness
+th -1600 to  -800 self
+th  -800 to  -400 self
+th  -400 to  -300 self
+th  -300 to  -200 self
+th  -200 to  -100 self
+th  -100 to     0 self
+
+th     0 to   100 self
+th   100 to   200 self
+th   200 to   300 self
+th   300 to   400 self
+th   400 to   800 self
+th   800 to  1600 self
+
+## narrow pitch
+np -1600 to  -800 self
+np  -800 to  -400 self
+np  -400 to  -200 self
+np  -200 to    -0 self
+
+np     0 to   200 self
+np   200 to   400 self
+np   400 to   800 self
+np   800 to  1600 self
+
+## wide pitch
+wp -1600 to  -800 self
+wp  -800 to  -400 self
+wp  -400 to  -200 self
+wp  -200 to    -0 self
+
+wp     0 to   200 self
+wp   200 to   400 self
+wp   400 to   800 self
+wp   800 to  1600 self
+
+## lengthening
+le -1600 to  -800 self
+le  -800 to  -400 self
+le  -400 to  -200 self
+le  -200 to     0 self
+
+le     0 to   200 self
+le   200 to   400 self
+le   400 to   800 self
+le   800 to  1600 self
+
+## pitch disalignment
+pd -1600 to  -800 self
+pd  -800 to  -400 self
+pd  -400 to  -200 self
+pd  -200 to     0 self
+
+pd     0 to   200 self
+pd   200 to   400 self
+pd   400 to   800 self
+pd   800 to  1600 self
+
+## enunciation
+en -1600 to  -800 self
+en  -800 to  -400 self
+en  -400 to  -200 self
+en  -200 to     0 self
+
+en     0 to   200 self
+en   200 to   400 self
+en   400 to   800 self
+en   800 to  1600 self
+
+## reduction 
+re -1600 to  -800 self
+re  -800 to  -400 self
+re  -400 to  -200 self
+re  -200 to     0 self
+
+re     0 to   200 self
+re   200 to   400 self
+re   400 to   800 self
+re   800 to  1600 self
+
+
+### Interlocutor Features
+
+
+## volume (22)
+vo -3200 to -1600 inte
+vo -1600 to -1200 inte
+vo -1200 to  -800 inte
+vo  -800 to  -600 inte
+vo  -600 to  -400 inte
+vo  -400 to  -300 inte
+vo  -300 to  -200 inte
+vo  -200 to  -150 inte
+vo  -150 to  -100 inte
+vo  -100 to   -50 inte
+vo   -50 to     0 inte
+
+vo     0 to    50 inte
+vo    50 to   100 inte
+vo   100 to   150 inte
+vo   150 to   200 inte
+vo   200 to   300 inte
+vo   300 to   400 inte
+vo   400 to   600 inte
+vo   600 to   800 inte
+vo   800 to  1200 inte
+vo  1200 to  1600 inte
+vo  1600 to  3200 inte
+
+## creaky (12)
+cr -1600 to  -800 inte
+cr  -800 to  -400 inte
+cr  -400 to  -300 inte
+cr  -300 to  -200 inte
+cr  -200 to  -100 inte
+cr  -100 to     0 inte
+
+cr     0 to   100 inte
+cr   100 to   200 inte
+cr   200 to   300 inte
+cr   300 to   400 inte
+cr   400 to   800 inte
+cr   800 to  1600 inte
+#
+### pitch lowness
+tl -1600 to  -800 inte
+tl  -800 to  -400 inte
+tl  -400 to  -300 inte
+tl  -300 to  -200 inte
+tl  -200 to  -100 inte
+tl  -100 to     0 inte
+
+tl     0 to   100 inte
+tl   100 to   200 inte
+tl   200 to   300 inte    
+tl   300 to   400 inte
+tl   400 to   800 inte
+tl   800 to  1600 inte
+
+## pitch highness
+th -1600 to  -800 inte
+th  -800 to  -400 inte
+th  -400 to  -300 inte
+th  -300 to  -200 inte
+th  -200 to  -100 inte
+th  -100 to     0 inte
+
+th     0 to   100 inte
+th   100 to   200 inte
+th   200 to   300 inte
+th   300 to   400 inte
+th   400 to   800 inte
+th   800 to  1600 inte
+
+## narrow pitch
+np -1600 to  -800 inte
+np  -800 to  -400 inte
+np  -400 to  -200 inte
+np  -200 to    -0 inte
+
+np     0 to   200 inte
+np   200 to   400 inte
+np   400 to   800 inte
+np   800 to  1600 inte
+
+## wide pitch
+wp -1600 to  -800 inte
+wp  -800 to  -400 inte
+wp  -400 to  -200 inte
+wp  -200 to    -0 inte
+
+wp     0 to   200 inte
+wp   200 to   400 inte
+wp   400 to   800 inte
+wp   800 to  1600 inte
+
+## lengthening
+le -1600 to  -800 inte
+le  -800 to  -400 inte
+le  -400 to  -200 inte
+le  -200 to     0 inte
+
+le     0 to   200 inte
+le   200 to   400 inte
+le   400 to   800 inte
+le   800 to  1600 inte
+
+## pitch disalignment
+pd -1600 to  -800 inte
+pd  -800 to  -400 inte
+pd  -400 to  -200 inte
+pd  -200 to     0 inte
+
+pd     0 to   200 inte
+pd   200 to   400 inte
+pd   400 to   800 inte
+pd   800 to  1600 inte
+
+## enunciation
+en -1600 to  -800 inte
+en  -800 to  -400 inte
+en  -400 to  -200 inte
+en  -200 to     0 inte
+
+en     0 to   200 inte
+en   200 to   400 inte
+en   400 to   800 inte
+en   800 to  1600 inte
+
+## reduction 
+re -1600 to  -800 inte
+re  -800 to  -400 inte
+re  -400 to  -200 inte
+re  -200 to     0 inte
+
+re     0 to   200 inte
+re   200 to   400 inte
+re   400 to   800 inte
+re   800 to  1600 inte     
+
