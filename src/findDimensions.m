@@ -11,6 +11,7 @@ function findDimensions(tracklistFile, fsspecFile)
 %  so maybe the correlations could be computed piecewise 
 % Anyway, for now, I fix this by downsampling to a sample every 20ms,
 %  which lets me process twice as much; all's well
+%% pca used to be called princomp in earlier Matlab releases
 
 flist = getfeaturespec(fsspecFile);
 trackspecs = gettracklist(tracklistFile);
@@ -39,9 +40,9 @@ fprintf('  starting Principal Components Analysis \n');
 
 
 tic
-[coeff, score, latent] = princomp(nmonster);  % mostly for the coeffs
+[coeff, score, latent] = pca(nmonster);  % mostly for the coeffs
 [xsize ysize] = size(nmonster);
-fprintf('  Time spent for princomp on a %d x %d array was : ', xsize, ysize);
+fprintf('  Time spent for pca on a %d x %d array was : ', xsize, ysize);
 toc 
 
 rotation_provenance = ...

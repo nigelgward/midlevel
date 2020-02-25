@@ -84,7 +84,7 @@ function plotContour(contour, ybase, cLabel, color, lineStyle, linewidth, ...
 
     labelWidth = 740;   % in units of milliseconds; odd but works
     t = text(leftEdgeMs - labelWidth, ybase+1, cLabel);
-    t.FontSize = 9;
+    t.FontSize = 10;  % was 9
     t.FontName = 'Arial';
 
     plotRangeStart = 1+max(leftEdgeMs, startms);

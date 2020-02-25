@@ -1,4 +1,4 @@
-function ps = mono4Plotspec(overallGain)
+function ps = pbookPlotspec(overallGain)
 
   dustyPurple = [130/256 96/256 176/256];    
   darkGreen  = [117/256 180/256 82/256];     

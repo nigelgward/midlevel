@@ -35,9 +35,9 @@ function flux = cepstralFlux(signal, rate, energy)
   %%   e.g. sumdiffsq = summdiffsq / mean(summdiffsq)
   %% to compensate for speaker variation in how much they habitually enunciate
   %%  and or variation in typical speaking rate
-	    % the function smooth is only in the latest Matlab release,
-	    % but there's an alternative implementation in smoothJcc.m
-  smoothed = smooth(sumdiffsq, smoothingSize);  
+	    % the function smooth is not in every Matlab release,
+	    % but there's an alternative implementation here in smoothJcc.m
+  smoothed = smoothJcc(sumdiffsq, smoothingSize);  
   % plot(smoothed);
   flux = smoothed;
 end

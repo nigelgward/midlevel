@@ -1,7 +1,8 @@
 function flist = getfeaturespec(crunchspec);
-% from the crunchspec (features set specification file), 
+% from the crunchspec (feature set specification file), 
 % parse out the descriptions of what features we need
 % and return that information as an array of structs
+%% can't simply use readtable() because the fss file may contain comments
 
 % Nigel Ward, 2014
 
@@ -58,7 +59,7 @@ fprintf('reading %s\n', crunchspec);
 
 fid = fopen(crunchspec);
 if fid == -1
-  fprintf('   Failed to open feature file %s!!\n', crunchspec);
+  error('   Failed to open feature file %s.  Exiting.\n', crunchspec);
 end
 fcounter = 1;
 tline = fgets(fid);

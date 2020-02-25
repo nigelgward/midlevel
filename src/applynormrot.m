@@ -31,13 +31,18 @@ for filenum = 1:length(tracklist)
       'generated from %s of %s , using features %s and rotation [%s] at %s', ...
       trackspec.side,  trackspec.filename, ...
       featuresetSpec, rotation_provenance, datestr(clock));
-   rotated = normrotoneAblations(trackspec, featurelist, ...
-				 nmeans, nstds, coeff, provenance, ...
-				 extremesdir, pcfilesdir);
-   if allRotatedInitialized
-     allRotated = vertcat(allRotated,rotated);
-   else 
-     allRotated = rotated;
-     allRotatedInitialized = true;
-   end
+  rotated = normrotoneAblations(trackspec, featurelist, ...
+				nmeans, nstds, coeff, provenance, ...
+				extremesdir, pcfilesdir);
+  if allRotatedInitialized
+    allRotated = vertcat(allRotated,rotated);
+  else 
+    allRotated = rotated;
+    allRotatedInitialized = true;
+  end
 end
+sigmas = std(allRotated);
+csvwrite('sigmas.csv', sigmas);
+
+end
+

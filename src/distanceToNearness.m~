@@ -1,0 +1,2 @@
+function nearnessVec = distanceToNearness(distanceVec)
+  nearness = 1.0 ./ (1 - log(.0001 + 
