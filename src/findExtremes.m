@@ -9,6 +9,11 @@ function findExtremes(rotated, side, trackname, outdir, provenance)
 
 % Paola Gallardo, UTEP, March 2015, modified by Nigel Ward, April 2015
 
+if ~exist(outdir, 'dir')
+  fprintf('findExtremes: output directory %s not found, so skipping write\n', outdir);
+  return
+end
+
 [ntimepoints, ndimensions] = size(rotated);
 nseconds = ntimepoints/100;
 timestamps = 0.01:0.01:nseconds;     % 0.01 second (10-millisecond) timestamps
@@ -16,28 +21,28 @@ timestamps = 0.01:0.01:nseconds;     % 0.01 second (10-millisecond) timestamps
 dimensionsToWrite = min(25, ndimensions) ;
 stddevs = std(rotated(:,1:dimensionsToWrite));  % per-track, not global, but okay
 
-for dim=1:dimensionsToWrite
-  filename = sprintf('dim%.2d.txt', dim);
-  pathname = [outdir filename];   % outdir should already have been created
+  for dim=1:dimensionsToWrite
+    filename = sprintf('dim%.2d.txt', dim);
+    pathname = [outdir filename];   
     if (exist(pathname, 'file' ) == 2)
       fid = fopen(pathname,'at');
     else
       fid = fopen(pathname,'w');
     end
-
+    
     dimSlice = rotated(:,dim);
     maxIndices = indicesOfSeparatedMaxima(dimSlice);
     minIndices = indicesOfSeparatedMaxima(-1 * dimSlice);
- 
+    
     fprintf(fid, '%s\n', provenance);
     fprintf(fid, 'Low\n');
     writeExtrema(fid, minIndices, dim, ...
-	   rotated, stddevs, timestamps, trackname, side);
+		 rotated, stddevs, timestamps, trackname, side);
     fprintf(fid, 'High\n');
     writeExtrema(fid, maxIndices, dim, ...
-	   rotated, stddevs, timestamps, trackname, side);
+		 rotated, stddevs, timestamps, trackname, side);
     fclose(fid);
-end  
+  end  
 end
 
 

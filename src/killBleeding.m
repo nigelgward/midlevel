@@ -1,23 +1,34 @@
-function [cleanPitchl, cleanPitchr] = killBleeding(pitchl, pitchr, energyl, energyr)
+function [cleanPitchl, cleanPitchr, npoints] = killBleeding(pitchl, pitchr, energyl, energyr)
   
-% Nigel Ward, UTEP, 2015
-% if the pitch is the same in both tracks, 
-%  and one track is clearly louder than the other,
-% assume bleeding, and set the pitch value in the quieter track value to NaN
+  %% Nigel Ward, UTEP, 2015 if the pitch is the same in both tracks,
+  %% and one track is clearly louder than the other, then assume
+  %% bleeding, and set the pitch value in the quieter track value to  NaN
 
-% threshold: the min difference in log-energy values between tracks
-%  to say there's speech in one but not in the other
-% This was by looking at 21d.au and trying different thresholds
-% In general, this will depend on microphone placements etc.
-clearDifference = 0.8;    
+  %% clearDifference is the threshold, that is, the min difference in
+  %% log-energy values between tracks to say there's speech in one but
+  %% not in the other.  This was set by trying different thresholds for
+  %% 21d.au. In general, this will depend on microphone placements etc.
+  clearDifference = 0.8;
+  
+  %% the pitch features are centered at 10ms, 20ms, 30ms etc. 
+  %% the energy features are centered at 5ms, 15ms, 25ms, so adjust 
+  energylShifted  = energyl(1:end-1) + energyl(2:end);
+  energyrShifted = energyr(1:end-1) + energyr(2:end);
 
-  % the energy features are centered at 5ms, 15ms, 25ms etc
-  % the pitch features are center at 10ms, 20ms, 30ms etc. 
-  leftTwentyMsEnergy  = energyl(1:end-1) + energyl(2:end);
-  rightTwentyMsEnergy = energyr(1:end-1) + energyr(2:end);
+  %% fprintf('size of energylShifted is %d %d\n', size(energylShifted));
+  %% fprintf('size of energyrShifted is %d %d\n', size(energyrShifted));
+  %% fprintf('size of pitchl is %d %d\n', size(pitchl));
+  %% fprintf('size of pitchr is %d %d\n', size(pitchr));
 
-  leftLouder = leftTwentyMsEnergy > rightTwentyMsEnergy + clearDifference;
-  rightLouder = rightTwentyMsEnergy > leftTwentyMsEnergy + clearDifference;
+  %% needed since it seems that reaper pitch output can be randomly one more or less
+  nPitchPoints = min([size(pitchl,1), size(pitchr,1), length(energylShifted), length(energyrShifted)]);
+  pitchl = pitchl(1:nPitchPoints);
+  pitchr = pitchr(1:nPitchPoints);
+  energylShifted = energylShifted(1:nPitchPoints);
+  energyrShifted = energyrShifted(1:nPitchPoints);
+
+  leftLouder = energylShifted > energyrShifted + clearDifference;
+  rightLouder = energyrShifted > energylShifted + clearDifference;
   pitchesSame = pitchl./pitchr > .95 & pitchl./pitchr < 1.05;
   pitchesDoubled = pitchl./pitchr > .475 & pitchl./pitchr < .525;
   pitchesHalved = pitchl./pitchr > 1.90 & pitchl./pitchr < 2.10;
@@ -30,6 +41,8 @@ clearDifference = 0.8;
   cleanPitchl(bleedingToLeft) = NaN;
   cleanPitchr = pitchr;
   cleanPitchr(bleedingToRight) = NaN;
+
+  npoints = nPitchPoints;
 end
 
 % test data, assuming left speaker is male, right speaker is female,

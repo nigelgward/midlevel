@@ -26,15 +26,16 @@ function windowVec = cepstralDistinctness(signal, rate, pitch, duration, flag)
 
   nframes = length(pitch);
   cctlen = length(cct);
-  if cctlen - nframes == 2 
-    cct = cct(2:end-1,:);  % drop the first point and the last one
-  else
-    if cctlen - nframes == 1
-      cct = cct(2:end,:);  % drop the first point 
-    else
-      fprintf('warning: in cepstralDistinctness nframes=%d, cctlen=%d\n', nframes, cctlen);
-    end
-  end
+  cct = cct(1:nframes,:);   % truncate as needed; following few lines now redundant
+  %if cctlen - nframes == 2 
+  %    cct = cct(2:end-1,:);  % drop the first point and the last one
+%  else
+%    if cctlen - nframes == 1
+%      cct = cct(2:end,:);  % drop the first point 
+%    else
+%      fprintf('warning: in cepstralDistinctness nframes=%d, cctlen=%d\n', nframes, cctlen);
+%    end
+%  end
     
   pitchIndices = find(~isnan(pitch));
 

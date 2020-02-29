@@ -11,11 +11,11 @@ function [rate, signals] = readtracks(file)
   [pathstr, name, ext] = fileparts(file);
   switch ext
     case '.au'
-      [signals, rate, headerinfo] = readau(file);
+      [signals, rate] = audioread(file); % in earlier Matlab versions was readau
     case '.wav' 
-      [signals, rate, wmode, fidx] = readwav(file);
+      [signals, rate] = audioread(file); % in earlier Matlab versions was readwav
     case '.WAV' 
-      [signals, rate, wmode, fidx] = readwav(file);
+      [signals, rate] = audioread(file); % in earlier Matlab versions was readwav
     otherwise
       disp(ext)
       warning ('for file %s, unexpected extension %s , so  skipping it', file, ext);

@@ -90,11 +90,17 @@ if processAudio
          trackspec.directory, [trackspec.filename 'r'], signalr, rate);
     energyr = computeLogEnergy(signalr', samplesPerFrame);
     cepstralFluxr = cepstralFlux(signalr, rate, energyr);
-    [pitchl, pitchr] = killBleeding(plraw, prraw, energyl, energyr);
+    [pitchl, pitchr, npoints] = killBleeding(plraw, prraw, energyl, energyr);
+    pitchl = pitchl(1:npoints);
+    pitchr = pitchr(1:npoints);
+    energyl = energyl(1:npoints);
+    energyr = energyr(1:npoints);
+    cepstralFluxl = cepstralFluxl(1:npoints);
+    cepstralFluxr = cepstralFluxr(1:npoints);
   end
   
 nframes = floor(length(signalPair(:,1)) / samplesPerFrame);
-lastCompleteFrame = min(nframes, lastCompleteFrame);
+lastCompleteFrame = min([nframes, lastCompleteFrame, npoints]);
 
 % --- plot left-track signal, for visual inspection ---
 if  plotThings
