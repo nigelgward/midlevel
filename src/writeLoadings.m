@@ -1,13 +1,13 @@
-function writeLoadings(coeff, flist, header, outdir)
-  %% sadly this is slow
-
+function writeLoadings(coeff, featuresCellArray, header, outdir)
+  numberToWrite = min(length(coeff),30);
   lfd = fopen([outdir 'loadings.txt'], 'w');
   fprintf(lfd, '%s\n', header);
-  for col = 1:min(30, length(coeff))
+  for col = 1:numberToWrite
     fprintf(lfd, '\n');
-    for row = 1:length(coeff)
+    for row = 1:numberToWrite
+      featureNameCell = featuresCellArray(row);
       fprintf(lfd, 'dimension%d  %5.2f  %s\n', ...
-	      col, coeff(row,col), flist(row).abbrev);
+	      col, coeff(row,col), featureNameCell{1});
     end
   end
   fclose(lfd);

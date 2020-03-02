@@ -35,7 +35,7 @@ fprintf('  Time spent to normalize: ');
 toc
 
 cmatrix = corrcoef(totalMonster);
-writeCorrelations(cmatrix, flist, './', 'correlations.txt');
+writeCorrelations(cmatrix, flist2CellArray(flist), './', 'correlations.txt');
 fprintf('  starting Principal Components Analysis \n');
 
 
@@ -55,7 +55,6 @@ save rotationspec nmeans nstds coeff latent rotation_provenance  ...
 
 fprintf('writing loadings\n');
 % also write in human-readable format 
-writeLoadings(coeff, flist, rotation_provenance, './'); 
-
+writeLoadings(coeff, flist2CellArray(flist), rotation_provenance, './'); 
 end
 
