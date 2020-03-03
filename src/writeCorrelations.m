@@ -21,7 +21,7 @@ function writeCorrelations(cmatrix, featurelist, outdir, filename);
     [sortedValues,sortIndex] = sort(cmatrix(columni,:), 'descend');
     topIndices = sortIndex(1:4);
     bottomIndex = sortIndex(length(cmatrix));
-    
+
     fCell1 = featurelist(columni);
     fprintf(fd, 'for feature #%d %s, ', columni, fCell1{1});
     fprintf(fd, '   the three most correlated features are ');
