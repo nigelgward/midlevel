@@ -30,7 +30,7 @@
 \medskip
 
 
-{\LARGE \bf Version 7.1}
+{\LARGE \bf Version 7.2}
 \vspace{7mm}
 
 
@@ -41,22 +41,23 @@
 \vspace{-1ex}
 
 \begin{tabular}{p{7cm}rl}
-& 1 & Overview  \\
-& 2 & Getting Started \\
-& 3 & PCA-based Analysis Overview \\
-& 4 & File Formats \\
-& 5 & Interpreting the Dimensions \\
-& 6 & Comparing Populations \\
-& 7 & Feature Computations\\ 
-& 8 & Validation \\
-& 9 & History \\
-& 10 & Future Work \\
-& 11 & Local Notes
+  & \ref{sec:overview} & Overview  \\
+  & \ref{sec:starting} & Getting Started \\
+  & \ref{sec:blackbox} & Using it as a Black Box, for Pattern Discovery \\
+  & \ref{sec:pca-overview} & PCA-based Analysis Overview \\
+  & \ref{sec:file-formats} & File Formats \\
+  & \ref{sec:interpreting}  & Interpreting the Dimensions \\
+  & \ref{sec:subpopulations}  & Comparing Populations \\
+  & \ref{sec:features} & Feature Computations\\ 
+  & 9 & Validation \\
+  & 10 & History \\
+  & 11 & Future Work \\
+  & 12 & Local Notes
 \end{tabular}
 
 \vspace{-3.5ex}
 %%=========================================================
-\section{Overview} 
+\section{Overview}    \label{sec:overview}
 
 This toolkit supports prosodic analysis of speech, especially dialog,
 and especially statistical and machine-learning work.
@@ -84,7 +85,7 @@ welcome.
 
 
 %==========================================================
-\section{Getting Started}
+\section{Getting Started}  \label{sec:starting}
 
 The code is at {\tt https://github.com/nigelgward/midlevel }.  It requires
 %\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
@@ -102,6 +103,8 @@ and do {\tt findDimensions('singletrack.tl', 'minicrunch.fss');}. In a
 minute or so this should create a {\tt loadings.txt} file; if so, the
 code is probably working fine.
 
+
+
 If you are interested only in using the features, skip ahead to read
 Section \ref{sec:features}, and then back to Section
 \ref{sec:file-formats} for the file formats.
@@ -112,8 +115,30 @@ inventory of audio files to process, and 3) select a feature set to
 use, as described in Section \ref{sec:file-formats}.
 
 
+%===========================================================
+\section{Using it as a Black Box, for Pattern Discovery} \label{sec:blackbox}
+
+If your aim is simply to derive insight on the prosodic constructions
+of a language or dataset:
+
+\begin{itemize}   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item download this toolkit to a directory called {\tt midlevel} somewhere 
+\item start up Matlab
+\item {\tt addpath} for three directories: {\tt midlevel/src}, {\tt
+  midlevel/src/voicebox}, and {\tt midlevel/src/voicebox}, with the
+  exact directory names depending on your download destination
+\item {\tt cd} to the directory containing your audio files
+\item {\tt c2c();}
+\item examine the loadings, as seen in the figures in the {\tt
+  loadingplots} directory
+\item listen to timepoints in your data where a dimension has extreme
+  high or low values, as listed in the files in the {\tt extremes}
+  directory
+\end{itemize}
+
+
 %==========================================================
-\section{PCA-Based Analysis Overview }
+\section{PCA-Based Analysis Overview }   \label{sec:pca-overview}
 
 This toolkit was designed to apply Principal Components Analysis over
 prosodic feature collections computed over dialog datasets of an hour
@@ -182,7 +207,7 @@ for various tasks, or can be interpreted, as described in Section
 
 In order to do the above, there of course needs to be a
 normalization-and-rotation available to work with.  {\tt
-  findDimensions.m} creates this.  The steps are:
+  findDimensions.m} creates this.  The steps it performs are:
 \begin{itemize}   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
 \item read in an audio file or files
 \item compute the raw  features
@@ -419,23 +444,17 @@ version of the PCA coefficients.
 \section{Interpreting the Dimensions}  \label{sec:interpreting}
 
 An important reason to use Principal Components Analysis is to
-understand what's going on in the data.  Indeed, for all data sets
-tried so far, the dimensions output by PCA turn out to be readily
-interpretable as meaningful patterns of behavior.  There are three
-techniques that help arrive at an interpretation, as described in this
-section.
+understand what's going on in the data.  For all data sets tried so
+far, the dimensions output by PCA have turned out to be readily
+interpretable as meaningful patterns of behavior.  
 
-As a preliminary, you may first want to look at the variance and
-cumulative variance explained by the PCA-found dimensions, using
+One preliminary is
+to look at the variance and cumulative variance explained by the
+PCA-found dimensions, which is written to {\tt variance.txt} by
+findDimensions. 
 
-\begin{quote}
-\begin{verbatim}
-load rotationspec
-latent ./ sum(latent) 
-cumsum(latent) ./ sum(latent) 
-pareto(latent ./ sum(latent))   # produces a cool graph
-\end{verbatim}
-\end{quote}
+Then there are three techniques to help you arrive at
+interpretations:
 
 
 %---------------------------------
@@ -450,7 +469,7 @@ to visualize the loadings.  This can be done with:
    diagramDimensions('rotationspec.mat', 'xxx.fss');
 \end{verbatim}
 
-Where xxx.fss is the name of the feature file used to create the
+Where {\tt xxx.fss} is the name of the feature file used to create the
 rotationspec.  This second parameter is optional unless you're using
 an rotationspec that was written by a very early version of
 {\tt findDimensions}.
@@ -482,13 +501,14 @@ Elan and VLC are also good choices.
 \subsection{Consider Co-occurring words} 
 
 The last source of insight for interpreting the dimensions is to see
-find which words co-occur with values high/low on each dimension.  Of
-course this is only possible if we have transcribed data,
-e.g.~Switchboard.  The workflow for this needs to be revived.
+find which words co-occur with values high/low on each dimension.
+However this is only possible if we have transcribed data, and even
+then, since the file formats vary, it requires custom code for each
+case.
 
 
 %=======================================================
-\section{Comparing Populations}
+\section{Comparing Populations}    \label{sec:subpopulations}
 
 Different populations may use prosody in different ways.  Examining
 their behavior with respect to the dimensions may be informative.  One
@@ -975,7 +995,8 @@ is in the src directory.
 
 %%=========================================================
 \bibliographystyle{IEEEtran}
-\bibliography{../../book/bib}
+%\bibliography{../../book/bib}
+\bibliography{bib}     % temporary local copy 
 
 %%=========================================================
 \end{document}
