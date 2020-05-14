@@ -64,7 +64,7 @@ end
 
 if processAudio 
   % ------ First, compute frame-level features: left track then right track ------
-  stereop = decideIfStereo(trackspec, featurelist);
+  stereop = decideIfStereo(trackspec, featurelist);  % error-prone
   [rate, signalPair] = readtracks(trackspec.path);
   if size(signalPair,2) < 2 && stereop
     fprintf('%s is not a stereo file, though the feature list ', trackspec.path);
