@@ -84,12 +84,31 @@ if processAudio
   pitchl = plraw;  
   cepstralFluxl = cepstralFlux(signall, rate, energyl);
 
+  if isnan(sum(cepstralFluxl))
+    bfp = fopen('badfiles.txt', 'a');
+    nanFraction = sum(isnan(cepstralFluxl))/length(cepstralFluxl);
+    fprintf('                      fraction of NaNs in cepstral Flux l  is %.4f\n',  nanFraction);
+    fprintf(bfp, '                      fraction of NaNs in cepstral Flux l  is %.4f\n',  nanFraction);
+    fprintf(bfp, 'NaN in cepstralFlux l for %s\n', trackspec.filename);
+    fclose(bfp);
+  end
+  
+
   if stereop
     signalr = signalPair(:,2);
     [prraw, pCenters] = lookupOrComputePitch(...
          trackspec.directory, [trackspec.filename 'r'], signalr, rate);
     energyr = computeLogEnergy(signalr', samplesPerFrame);
     cepstralFluxr = cepstralFlux(signalr, rate, energyr);
+    if isnan(sum(cepstralFluxr))
+      bfp = fopen('badfiles.txt', 'a');
+      nanFraction = sum(isnan(cepstralFluxr))/length(cepstralFluxr);
+      fprintf('                      fraction of NaNs in cepstralFlux r is %.4f\n',  nanFraction);
+      fprintf(bfp, '                      fraction of NaNs in cepstralFlux r is %.4f\n',  nanFraction);
+      fprintf(bfp, 'NaN in cepstralFlux r for %s\n', trackspec.filename);
+      fclose(bfp);
+    end
+
     [pitchl, pitchr, npoints] = killBleeding(plraw, prraw, energyl, energyr);
     pitchl = pitchl(1:npoints);
     pitchr = pitchr(1:npoints);

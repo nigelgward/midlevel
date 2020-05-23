@@ -13,10 +13,11 @@ function[paddedPitch, paddedCenters] = ...
   %%  saved in reaperf0/, a sister directory of the wavfiles
   %%  directory, and then read here. 
 
-  %% Otherwise I just call fxrapt.  Howver, since it's slow, I cache
-  %%   those results as a matlab file.  Thus, if  a cached pitch file
-  %%   exists, then use that data otherwise call fxrapt to compute the
-  %%   pitch and save it
+  %% If that directory doesn't exist,  I just call fxrapt.  Howver,
+  %%   since it's slow, I cache those results as a matlab file.  Thus,
+  %%   if  a cached pitch file exists, then use that data otherwise
+  %%   call fxrapt to compute the pitch and save it
+
   %% Savekey encodes the audio filename and the track, for caching purposes
 
   msPerSample = 1000 / rate;
@@ -28,6 +29,13 @@ function[paddedPitch, paddedCenters] = ...
   if exist(reaperF0Dir, 'dir')
     reaperFile =  sprintf('%s-%s-f0.txt', audioFileBase, channel);
     reaperPath =  [reaperF0Dir '/' reaperFile];
+    if ~exist(reaperPath)
+      %% then this may be a trimmed file, so seek the f0 of the original 
+      originalAudioFileBase = audioFileBase(1:length(audioFileBase) -2);   % strip off 'tr'
+      reaperFile2 =  sprintf('%s-%s-f0.txt', originalAudioFileBase, channel);
+      reaperPath =  [reaperF0Dir '/' reaperFile2];
+    end 
+    
     reaperOutput =  readmatrix(reaperPath, 'NumHeaderLines', 7);
     pitch = reaperOutput(:,3);   % note that these are -1 if no pitch
     pitch(pitch == -1) = NaN;
@@ -37,7 +45,7 @@ function[paddedPitch, paddedCenters] = ...
     return
   end
   
-  %% otherwise the reaperF0 files were not created, since not needed, so can use fxrapt
+  %% otherwise the reaperF0 files were not created, so fallback to fxrapt
 
   pitchCacheDir = [directory 'pitchCache'];
   if ~exist(pitchCacheDir, 'dir')
@@ -83,7 +91,7 @@ end
 
 
 %% ------------------------------------------------------------------
-function isOlder = file1isOlder(file1, file2)
+function isOlder = fileIsOlder(file1, file2)
   file1Info = dir(file1);
   file2Info = dir(file2);
   isOlder = file1Info.datenum < file2Info.datenum;

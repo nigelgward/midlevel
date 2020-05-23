@@ -11,8 +11,7 @@
 % run in comparisons/jp-toyota/july2016/
 function seekPredictors()
   [targetTimestamps, targets] = readTargets('evaluation_label_f01.csv');
-%    [targetTimestamps, targets] = readTargets('evaluation_label_f02.csv');  %TEMPORARY
-    offset = 32;  % predict this many milliseconds ahead 
+  offset = 32;  % predict this many milliseconds ahead 
   nowTurnstatusVec = targets(:,1);  % 0 is silence, 1 BC, 2 filler, 3  full turn
   nextTurnstatusVec = targets(:,2);
   turnStartVec = nowTurnstatusVec < 2 & nextTurnstatusVec >=2;

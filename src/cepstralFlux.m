@@ -16,6 +16,8 @@ function flux = cepstralFlux(signal, rate, energy)
   cc = mfcc(signal, rate, 25, 10, .97, @hamming, [300 3700], 20, 13, 22);
   cc = [zeros(13,1)  cc  zeros(13,1)];  % pad, due to the window size
 
+  %%fprintf('sum of cc in cepstralFlux is %.2f\n', sum(cc));
+
   % these two lines are experimental
   %denominator = repmat(energy, size(cc,1), 1);
   %cc = cc ./ denominator;

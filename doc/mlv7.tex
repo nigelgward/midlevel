@@ -49,10 +49,11 @@
   & \ref{sec:interpreting}  & Interpreting the Dimensions \\
   & \ref{sec:subpopulations}  & Comparing Populations \\
   & \ref{sec:features} & Feature Computations\\ 
-  & 9 & Validation \\
-  & 10 & History \\
-  & 11 & Future Work \\
-  & 12 & Local Notes
+  & \ref{sec:pitch} & Pitch Trackers \\ 
+  & \ref{sec:validation} & Validation \\
+  & \ref{sec:history} & History \\
+  & \ref{sec:future} & Future Work \\
+  & \ref{sec:location} & Availability and Location Notes
 \end{tabular}
 
 \vspace{-3.5ex}
@@ -564,8 +565,8 @@ The  raw pitch,
 
 
 is obtained with {\tt lookupOrComputePitch.m}, which is a wrapper for
-Mike Brookes's Voicebox function {\tt fxrapt.m}; this gives values in
-hertz, or NaNs if there is no detectable pitch.
+various functions as described in the next section.  This returns
+values in hertz, or NaNs if there is no detectable pitch.
 
 The cepstrum is computed using {\tt mfcc.m}.
 
@@ -846,10 +847,48 @@ don't want to lose that information.  (When Shreyas tried normalizing,
 file-by-file, to have each individual file have zero mean, all
 language-modeling benefit was lost.)
 
+%%=========================================================
+\section{Pitch Trackers}   \label{sec:pitch}
 
+At the root of many of the midlevel features is the frame-level pitch.
+The toolkit supports two ways of computing this.  
+
+The first is Mike Brookes's Voicebox function {\tt fxrapt.m}, which is
+conveniently in Matlab and very well documented.
+
+The second is David Talkin's Reaper.  The reason I added it was
+because it can handle the Switchboard files that fxrapt cannot.  (I'm
+guessing that the problem is due to recording issues with some files,
+as discussed in {\tt
+  https://catalog.ldc.upenn.edu/docs/LDC97S62/swb1\_manual.txt} in
+Section 13.)  Another advantage is that it is about 7 times faster.
+
+(Other alternatives explored were Matlab's built-in pitch tracker,
+which seems to have a lot of outliers and false alarms, and {\tt
+  Yappt}, which also fails on many Switchboard files, including some
+that {\tt fxrapt} could handle, and {\tt Praat}, which seems slow and
+awkward for integrating.)
+
+Reaper is in C++, and it runs only on {\it mono} files, so the
+integration with the midlevel toolkit is awkward. The bash code {\tt
+  reaperize.sh} does what's needed in the context of processing
+Switchboard files, and serves as an illustration of the necessary
+steps.
+
+Since the midlevel features depend on the pitch detector, and were
+tuned (somewhat) to work well with the quirks of {\tt fxrapt}, it's
+worth noting that, on a tiny sample, {\tt reaper}'s output looked
+visually smoother and more accurate than that of {\tt fxrapt}, which
+raises the question of whether this behavior messes up the creaky
+voice feature.  I haven't investigated this yet.
+
+Another issue is the question of whether to set the bounds differently
+for male and female speakers.  This makes a huge difference for {\tt
+  Praat}, but appears not to matter much at all for {\tt reaper}, so I
+don't.
 
 %%=========================================================
-\section{Validation}
+\section{Validation}   \label{sec:validation}
 
 Testing for most of the feature computation methods was done using
 both synthetic test data and small audio test files.  Details are
@@ -871,7 +910,7 @@ correlated and most anticorrelated other features.  (This is output by
 
 
 %%=========================================================
-\section{History}
+\section{History}           \label{sec:history}
 
 Version 1.  In our language  modeling work, we observed
 problems due to the non-independence of our prosodic feature set.
@@ -929,32 +968,34 @@ as Linux.
 
 Version 6, April 2016.  I added the late-pitch-peak feature and
 documented the feature computations.  This work was done at Kyoto
-University.
+University.  While there Divesh Lala and Narimasa Watanabe kindly
+provided helpful comments on the code and documentation.
 
 Version 7, April 2017.  I added the cepstrum-based features ({\tt
-  mfcc.m} and related files), and the temporal features.
+  mfcc.m} and related files), and the temporal features.  Thanks to
+Kamil Wojcicki for writing this code.
 
-Version 7.1, May 2019.  I copied all needed functions from Voicebox
-(for audio file input and the pitch computation) into the new {\tt
-  voicebox} subdirectory, so a separate download is no longer needed.
+Version 7.1, May 2019.  With the kind permission of Mike Brookes, I
+copied all needed functions from Voicebox (for audio file input and
+the pitch computation) into the new {\tt voicebox} subdirectory, so a
+separate download is no longer needed.
 %, available from {\tt
 %  http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html }.
 
-I thank Mike Brookes for the Voicebox functions, and Kamil Wojcicki
-for the cepstral code.  For comments on the code and documentation, I
-thank Divesh Lala and Narimasa Watanabe.
+Version 7.2, February 2020. I added an interface to alternatively use
+{\tt reaper}-derived pitch values. 
+
 
 %==================================================================
-\section{Future Work}
+\section{Future Work}               \label{sec:future}
 
 Implement features that relate better to human perception.  The
 current features are inspired by perception, but for the
 implementation the major considerations were instead simplicity and
 robustness.
 
-Clean up the codebase.  The current code includes
-all sorts of things found useful for one project or another over the past
-few years.
+Clean up the codebase.  The current code includes all sorts of things
+found useful for one project or another over the past few years.
 
 Use a pitch tracker that also outputs probability
 of voicing and exploit that information.
@@ -964,14 +1005,13 @@ can be easily browsed, without having to manually enter timepoints for
 didi or manually scroll the Elan timeline.  Perhaps use the matlab
 {\tt sound} command for this.
 
-Improve efficiency.  In particular,
-work is repeated across features that share computations (such as
-narrow pitch and wide pitch), and across different window sizes of the
-same feature, and for same-feature-same-window-size features across
-different offsets, and (if the same files are being used to compute
-the rotation and to be rotated) for {\tt findDimensions} and {\tt
-  applynormrot.m}.  But for now, modularity is more valuable than
-efficiency.
+Improve efficiency.  In particular, work is repeated across features
+that share computations (such as narrow pitch and wide pitch), and
+across different window sizes of the same feature, and for
+same-feature-same-window-size features across different offsets, and
+(if the same files are being used to compute the rotation and to be
+rotated) for {\tt findDimensions} and {\tt applynormrot.m}.  But for
+now, modularity is more valuable than efficiency.
 
 
 %Futuristic stuff
@@ -982,7 +1022,7 @@ efficiency.
 
 
 %==================================================================
-\section{Location Notes}
+\section{Location Notes}            \label{sec:location}
 
 The repository is https://github.com/nigelgward/midlevel/ .
 

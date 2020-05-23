@@ -2,8 +2,10 @@ function findDimensions(tracklistFile, fsspecFile)
 
 % this is one of the top-level functions
 
-% test call:
-%   findDimensions('../flowtest/singletrack.tl','../flowtest/minicrunch.fss')
+% test call, when in midlevel/flowtest
+%   findDimensions('.','minicrunch.fss')
+%  or 
+%   findDimensions('singletrack.tl', 'minicrunch.fss')
 
 % This is memory intensive: the princomp phase freezes my machine (6GB)
 %  if more than about 200 features x 6 files x 2 sides x 10 minutes per file

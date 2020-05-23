@@ -7,9 +7,11 @@ function trackspecs = gettracklist(tlfile)
   %% Nigel Ward, UTEP, 2014-2020
 
   if isfolder(tlfile)
-    trackspecs = createTrackspecs(tlfile);
+    trackspecs = createTrackspecs(tlfile);    % get all .au or .wav files in the directory
     return
   end
+
+
   fprintf('reading tracklist %s\n', tlfile);
   
   trackspecs = []; 
