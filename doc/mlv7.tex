@@ -98,13 +98,12 @@ The code is at {\tt https://github.com/nigelgward/midlevel }.  It requires
 % lpcar2ra, lpcar2rr, lpcar2rf, lpcrf2rr
 
 For an initial test of whether it runs for you, download the code,
-enter Matlab, do {\tt addpath} for {\tt midlevel/src} and {\tt
-  midlevel/src/voicebox}, {\tt cd} to the {\tt flowtest} subdirectory,
-and do {\tt findDimensions('singletrack.tl', 'minicrunch.fss');}. In a
-minute or so this should create a {\tt loadings.txt} file; if so, the
-code is probably working fine.
-
-
+enter Matlab, do {\tt addpath} for {\tt midlevel/src}, {\tt
+  midlevel/src/voicebox}, and {\tt midlevel/flowtest}, then {\tt cd}
+to the {\tt flowtest} subdirectory, and do {\tt
+  findDimensions('., 'minicrunch.fss');}. In a minute or
+so this should create a {\tt loadings.txt} file; if so, the code is
+probably working fine.
 
 If you are interested only in using the features, skip ahead to read
 Section \ref{sec:features}, and then back to Section
@@ -983,7 +982,10 @@ separate download is no longer needed.
 %  http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html }.
 
 Version 7.2, February 2020. I added an interface to alternatively use
-{\tt reaper}-derived pitch values. 
+{\tt reaper}-derived pitch values, and simplified the getting-started
+procedure to as a default process all {\tt au} or {\tt wav} files in
+the current directory, thus avoiding the need to create a tracklist
+file.
 
 
 %==================================================================

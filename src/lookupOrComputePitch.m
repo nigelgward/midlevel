@@ -91,7 +91,7 @@ end
 
 
 %% ------------------------------------------------------------------
-function isOlder = fileIsOlder(file1, file2)
+function isOlder = file1isOlder(file1, file2)
   file1Info = dir(file1);
   file2Info = dir(file2);
   isOlder = file1Info.datenum < file2Info.datenum;
