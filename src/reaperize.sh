@@ -2,9 +2,10 @@
 # cd to directory where the sph files are,
 #   e.g. discx/data, or istyles/testaudio
 # then mkdir ../f0reaper
-# run this with bash sph-to-splittrack-wav.bash
+# run this with bash reaperize.bash
 # will write f0 files to the ../f0reaper directory 
-for infile in $(ls sw02[0123]*sph)  #  *sph (TEMPORARY change, to redo files skipped before)
+# note that reaper is picky regarding file formats, and may silently do nothing if wrong
+for infile in $(ls sw02[0123]*sph)  
 do
     echo "${infile%%.*}".wav
     echo nice sox $infile -r 16000 -b 16 ../wavfiles/"${infile%%.*}"-l.wav remix 1

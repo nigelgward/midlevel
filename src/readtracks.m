@@ -6,21 +6,25 @@ function [rate, signals] = readtracks(file)
 
 %% test with [r,s] = readtracks('../flowtest/21d.au')
 
-%% since this code requires readau, will need to do:  addpath('../voicebox');
 
   [pathstr, name, ext] = fileparts(file);
-  switch ext
-    case '.au'
-      [signals, rate] = audioread(file); % in earlier Matlab versions was readau
-    case '.wav' 
-      [signals, rate] = audioread(file); % in earlier Matlab versions was readwav
-    case '.WAV' 
-      [signals, rate] = audioread(file); % in earlier Matlab versions was readwav
-    otherwise
-      disp(ext)
-      warning ('for file %s, unexpected extension %s , so  skipping it', file, ext);
-      return
+  try
+    switch ext
+      case '.au'
+	[signals, rate] = audioread(file); % in earlier Matlab versions was readau
+      case '.wav' 
+	[signals, rate] = audioread(file); % in earlier Matlab versions was readwav
+      case '.WAV' 
+	[signals, rate] = audioread(file); % in earlier Matlab versions was readwav
+      otherwise
+	disp(ext)
+	warning ('for file %s, unexpected extension %s , so  skipping it', file, ext);
+	return
+    end
+  catch
+    warning('problem trying to audioread from file %s; does it exist?\n', file);
   end
+  
 
   dimensions = size(signals);
   channels = dimensions(2);
