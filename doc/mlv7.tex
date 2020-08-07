@@ -90,8 +90,12 @@ welcome.
 
 The code is at {\tt https://github.com/nigelgward/midlevel }.  It requires
 %\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
- Matlab (this was developed mostly on release r2015a, but seems to
- work on earlier releases back through 2010).
+ Matlab. (This was developed mostly on release r2015a, but seems to
+ work on some earlier releases and forward through r2019a.  r2020
+ apparently renamed the function {\tt hanning} to {\tt hann} and moved
+ it to the Signal Processing Toolkit, so if that causes problems, it
+ may be enough to just edit {\tt fxrapt.m} to rename {\tt hanning} to
+ {\tt hann}.)
 
 % from voicebox: readau, voicebox, fxrapt, winenvar,
 %rfft, irfft, v_findpeaks, lpcauto, distitar,
@@ -101,7 +105,7 @@ For an initial test of whether it runs for you, download the code,
 enter Matlab, do {\tt addpath} for {\tt midlevel/src}, {\tt
   midlevel/src/voicebox}, and {\tt midlevel/flowtest}, then {\tt cd}
 to the {\tt flowtest} subdirectory, and do {\tt
-  findDimensions('., 'minicrunch.fss');}. In a minute or
+  findDimensions('.', 'minicrunch.fss');}. In a minute or
 so this should create a {\tt loadings.txt} file; if so, the code is
 probably working fine.
 
@@ -855,12 +859,11 @@ The toolkit supports two ways of computing this.
 The first is Mike Brookes's Voicebox function {\tt fxrapt.m}, which is
 conveniently in Matlab and very well documented.
 
-The second is David Talkin's Reaper.  The reason I added it was
-because it can handle the Switchboard files that fxrapt cannot.  (I'm
-guessing that the problem is due to recording issues with some files,
-as discussed in {\tt
-  https://catalog.ldc.upenn.edu/docs/LDC97S62/swb1\_manual.txt} in
-Section 13.)  Another advantage is that it is about 7 times faster.
+The second is David Talkin's Reaper.  I added because it can handle
+the Switchboard files that {\tt fxrapt} cannot.  (I'm guessing that
+the problem is due to recording issues with some files, as discussed
+in {\tt https://catalog.ldc.upenn.edu/docs/LDC97S62/swb1\_manual.txt}
+in Section 13.)  Another advantage is that it is about 7 times faster.
 
 (Other alternatives explored were Matlab's built-in pitch tracker,
 which seems to have a lot of outliers and false alarms, and {\tt
@@ -870,9 +873,8 @@ awkward for integrating.)
 
 Reaper is in C++, and it runs only on {\it mono} files, so the
 integration with the midlevel toolkit is awkward. The bash code {\tt
-  reaperize.sh} does what's needed in the context of processing
-Switchboard files, and serves as an illustration of the necessary
-steps.
+  reaperize.sh} does what's needed for processing Switchboard files,
+and serves as an illustration of the necessary steps.
 
 Since the midlevel features depend on the pitch detector, and were
 tuned (somewhat) to work well with the quirks of {\tt fxrapt}, it's
