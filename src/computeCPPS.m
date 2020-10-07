@@ -40,7 +40,7 @@ function [CPPS_midlevel] = computeCPPS(s, samp_freq)
 
     %% Compute spectrum and cepstrum
 
-    spec = spectrogram(s, gausswin(win_len), win_overlap);
+    spec = spectrogram(s, hanning(win_len), win_overlap);
     spec_log = 10 * log10(abs(spec).^2);
     ceps_log = 10 * log10(abs(fft(spec_log)).^2);
 
