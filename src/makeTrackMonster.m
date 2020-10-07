@@ -235,6 +235,8 @@ for featureNum = 1 : length(featurelist)
       featurevec = computeLengthening(relevantEnergy, relevantFlux, duration);
     case 'vr'    % voiced-unvoiced energy ratio
       featurevec = voicedUnvoicedIR(relevantEnergy, relevantPitch, duration)';
+    case 'cp'    % CPPS
+      featurevec = computeCPPS(relevantSig, rate);
 
     case 'ts'  % time from start
       featurevec =  windowize(1:length(relevantPitch), duration)';
