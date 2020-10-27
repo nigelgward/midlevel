@@ -22,6 +22,8 @@ function trackspecs = createTrackspecs(directory)
   for i=1:length(files)
     filename = files(i).name;
     trackspecs = createOne('l', filename, directory, trackspecs);
+    %% comment out the next line if the conversations are not symmetric
+    %% for example, when the children are in the left tracks, and the adult in the right
     trackspecs = createOne('r', filename, directory, trackspecs);
   end
 end
