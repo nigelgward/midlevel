@@ -22,20 +22,23 @@ function writeCorrelations(cmatrix, featurelist, outdir, filename);
     topIndices = sortIndex(1:4);
     bottomIndex = sortIndex(length(cmatrix));
 
-    fCell1 = featurelist(columni);
-    fprintf(fd, 'for feature #%d %s, ', columni, fCell1{1});
+    fprintf(fd, 'for feature #%d %s, ', columni, getAbbreviation(featurelist, columni));
     fprintf(fd, '   the three most correlated features are ');
     for ix = 1:4
       topf = topIndices(ix);
-      fCell2 = featurelist(topf);
       fprintf(fd, '\n     #%d %s   at %.2f', ...
-              topf, fCell2{1} , cmatrix(columni,topf));
+              topf, getAbbreviation(featurelist,topf), cmatrix(columni,topf));
     end
     fprintf(fd, '\n   the most anti-correlated feature is: ');
     bx = bottomIndex;
-    fCell3 = featurelist(bx);
     fprintf(fd, '\n       #%d %s    at %.2f\n', ...
-	    bx, fCell3{1}, cmatrix(columni,bx));
+	    bx, getAbbreviation(featurelist, bx), cmatrix(columni,bx));
   end 
   fclose(fd);
 end
+
+function abbrevString = getAbbreviation(featurelist, index)
+  cell = featurelist(7, 1, index);
+  abbrevString = cell{1};
+end
+

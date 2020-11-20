@@ -1,20 +1,23 @@
 function rotated = normrotoneAblations(trackspec, featurelist, ...
 		    nmeans, nstds, coeff, provenance, extremesdir, pcfilesdir)
 
-  % Nigel Ward, UTEP, April 2015
-  % based on normrotone, modified to support the experiments in gaze prediction
-  % and in prosody/action prediction using fewer features.
+  %% Nigel Ward, UTEP, April 2015
+  %% based on normrotone, modified to support the experiments in gaze prediction
+  %%  and in prosody/action prediction using fewer features.
   fprintf('applying norm+rot+ablations to %s channel features for "%s" ... \n', ...
 	   trackspec.side, trackspec.filename);
 
   [ignore, ff] = makeTrackMonster(trackspec, featurelist);
   normalizedff = [];  
 
-  %%fprintf('featurelist has size %d %d\n',size(featurelist));
-  %%fprintf('ff has size %d %d\n',size(ff));
-  %%fprintf('nmeans has size %d %d\n',size(nmeans));
-  %%fprintf('ncstds has size %d %d\n',size(nstds));
-
+  if size(featurelist, 2) ~= size(nmeans, 2)
+    fprintf('featurelist has size %d %d\n',size(featurelist));
+    fprintf('ff has size %d %d\n',size(ff));
+    fprintf('nmeans has size %d %d\n',size(nmeans));
+    fprintf('nstds has size %d %d\n',size(nstds));
+    fprintf('probably a mismatch between rotationspec.m and the featurelist file\n');
+  end
+  
   %normalize using rotationspec nmeans and nstds
   for col=1:length(featurelist)
      normalizedff(:,col) = (ff(:,col) - nmeans(col)) / nstds(col);
