@@ -79,4 +79,5 @@ function [CPPS_midlevel] = computeCPPS(s, samp_freq)
     % Replace NaNs with median CPPS.
     CPPS_midlevel(isnan(CPPS_midlevel)) = median(CPPS_midlevel, 'omitnan');
 
+    %plot(CPPS_midlevel)  %% debug 
 end

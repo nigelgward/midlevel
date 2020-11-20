@@ -42,3 +42,4 @@ ns  -10 to 10 self
 ne  -10 to 10 inte
 
 
+%cp -10 to 10 self   % as slow as a pitch computation 

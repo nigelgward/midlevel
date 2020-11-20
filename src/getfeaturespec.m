@@ -115,7 +115,7 @@ function flist = getfeaturespec(crunchspec);
       end 
       
 			   %% for example se-vo-100-50 or in-vo+100+200
-      abbrev = sprintf('%s %s %s %s', side(1:2), feat, startcode, endcode)
+      abbrev = sprintf('%s %s %s %s', side(1:2), feat, startcode, endcode);
       flist(fcounter).abbrev = abbrev;
       
       fcounter = fcounter + 1;
@@ -123,6 +123,5 @@ function flist = getfeaturespec(crunchspec);
     %% process the next line
     tline = fgetl(fid);
   end 
-  flist  % debug
   fclose(fid);
 end

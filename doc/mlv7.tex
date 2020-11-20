@@ -30,7 +30,7 @@
 \medskip
 
 
-{\LARGE \bf Version 7.2}
+{\LARGE \bf Version 7.3}
 \vspace{7mm}
 
 
@@ -387,6 +387,11 @@ In fss files currently the following codes are recognized:
   ns  & nearness to start of the recording (ditto) \\
   ne  & nearness to end of the recording (ditto) \\
 \end{tabular}
+
+\begin{tabular}{ll}  
+  cp  & smoothed cepstral peak prominence, representing breathiness, etc. \\
+\end{tabular}
+
 
 Reserved two-letter code (implementation pending): 
 
@@ -988,6 +993,13 @@ Version 7.2, February 2020. I added an interface to alternatively use
 procedure to as a default process all {\tt au} or {\tt wav} files in
 the current directory, thus avoiding the need to create a tracklist
 file.
+
+Version 7.3, November 2020.  Marcin Wlodarczak's implementation of
+Smooted Cepstral Peak Prominence added.  Note 1: This is very time
+consuming; taking as much time as a pitch computation. Note 2 At the
+moment the low-level 40-ms CPPS frames are "indexed" by their end
+times, which means there is more padding at the beginning. It might be
+nicer to anchor them by their midpoints though.
 
 
 %==================================================================
