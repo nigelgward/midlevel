@@ -50,6 +50,7 @@
   & \ref{sec:subpopulations}  & Comparing Populations \\
   & \ref{sec:features} & Feature Computations\\ 
   & \ref{sec:pitch} & Pitch Trackers \\ 
+  & \ref{sec:robustness} & Robustness \\
   & \ref{sec:validation} & Validation \\
   & \ref{sec:history} & History \\
   & \ref{sec:future} & Future Work \\
@@ -862,7 +863,7 @@ At the root of many of the midlevel features is the frame-level pitch.
 The toolkit supports two ways of computing this.  
 
 The first is Mike Brookes's Voicebox function {\tt fxrapt.m}, which is
-conveniently in Matlab and very well documented.
+conveniently written in Matlab and very well documented.
 
 The second is David Talkin's Reaper.  I added because it can handle
 the Switchboard files that {\tt fxrapt} cannot.  (I'm guessing that
@@ -885,13 +886,27 @@ Since the midlevel features depend on the pitch detector, and were
 tuned (somewhat) to work well with the quirks of {\tt fxrapt}, it's
 worth noting that, on a tiny sample, {\tt reaper}'s output looked
 visually smoother and more accurate than that of {\tt fxrapt}, which
-raises the question of whether this behavior messes up the creaky
-voice feature.  I haven't investigated this yet.
+likely  changes the behavior of the creaky voice feature.
 
 Another issue is the question of whether to set the bounds differently
 for male and female speakers.  This makes a huge difference for {\tt
   Praat}, but appears not to matter much at all for {\tt reaper}, so I
 don't.
+
+
+%%=========================================================
+\section{Robustness}           \label{sec:robustness}
+
+The toolkit is designed to be robust to normal human voice variation
+and modest noise, but it is not robust to every form of
+corruption. Files that contain splices mess up the default pitch
+tracker, as noted above, and also the cepstrum computation.  The
+symptom in both cases manifests as NaN values.  The easiest cure is to
+exclude the offending file, e.g.\ English Callhome 4065, or to trim the
+file to exclude the troublesome region, for example with {\tt sox
+  bad.au cleaned.au fade 0 -1 0.01}, as for some Switchboard files.
+Background music can also be a problem.
+
 
 %%=========================================================
 \section{Validation}   \label{sec:validation}
@@ -996,7 +1011,7 @@ file.
 
 Version 7.3, November 2020.  Marcin Wlodarczak's implementation of
 Smooted Cepstral Peak Prominence added.  Note 1: This is very time
-consuming; taking as much time as a pitch computation. Note 2 At the
+consuming; taking as much time as a pitch computation. Note 2: At the
 moment the low-level 40-ms CPPS frames are "indexed" by their end
 times, which means there is more padding at the beginning. It might be
 nicer to anchor them by their midpoints though.
