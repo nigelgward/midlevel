@@ -1,10 +1,8 @@
 function[paddedPitch, paddedCenters] = ...
 	lookupOrComputePitch(directory, savekey, signal, rate)
 
-  %% Return a vector of pitch points and a vector of where they are, in ms
-  %% called by makeTrackMonster
-
-  %% the savekey is just the concatenation of a filename with 'l' or 'r' 
+  %% Return a vector of pitch points and a vector of where they are, in ms.
+  %% Called by makeTrackMonster.
 
   %% This is a little messy  since I modified it to work also for
   %%  Switchboard, since fxrapt sometimes fails on those files.  For
@@ -14,11 +12,12 @@ function[paddedPitch, paddedCenters] = ...
   %%  directory, and then read here. 
 
   %% If that directory doesn't exist,  I just call fxrapt.  Howver,
-  %%   since it's slow, I cache those results as a matlab file.  Thus,
-  %%   if  a cached pitch file exists, then use that data otherwise
-  %%   call fxrapt to compute the pitch and save it
+  %%   since fxrapt is slow, I cache the computed results as a matlab
+  %%   file. Thus, if  a cached pitch file exists, then use that data,
+  %%   otherwise call fxrapt to compute the pitch and save it.
 
-  %% Savekey encodes the audio filename and the track, for caching purposes
+  %% Savekey encodes the audio filename and the track, for caching purposes.
+  %% the savekey is just the concatenation of a filename with 'l' or 'r' 
 
   msPerSample = 1000 / rate;
   audioFileName = [directory, savekey(1:end-1)];
