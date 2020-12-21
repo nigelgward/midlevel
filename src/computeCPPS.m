@@ -66,9 +66,9 @@ function [CPPS_midlevel] = computeCPPS(s, samp_freq)
     cpps = peak - ceps_norm;
 
     %% Pad the CPPS vector and calculate means in 10-ms window
-
-    prepad_size = floor(win_len / win_step - 1);
-    postpad_from = floor(s_len / win_step) * win_step;
+    win_halflen = win_len / 2;
+    prepad_size = floor(win_halflen / win_step - 1);
+    postpad_from = floor(s_len / win_step) * win_step - win_halflen / win_step;
     postpad_to = ceil(s_len / mid_win_len) * mid_win_len;
     postpad_size = floor((postpad_to - postpad_from) / win_step);
     cpps_padded = [nan(1, prepad_size), cpps, nan(1, postpad_size)];
