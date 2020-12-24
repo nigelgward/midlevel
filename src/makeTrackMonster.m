@@ -118,9 +118,13 @@ if processAudio
     cepstralFluxr = cepstralFluxr(1:npoints);
   end
   
-nframes = floor(length(signalPair(:,1)) / samplesPerFrame);
-lastCompleteFrame = min([nframes, lastCompleteFrame, npoints]);
-
+  nframes = floor(length(signalPair(:,1)) / samplesPerFrame);
+  if stereop
+    lastCompleteFrame = min([nframes, lastCompleteFrame, npoints]);
+  else
+    lastCompleteFrame = min([nframes, lastCompleteFrame]);
+  end
+  
 % --- plot left-track signal, for visual inspection ---
 if  plotThings
   plotEndSec = 8;  % plot the first few seconds of the signal and featueres
