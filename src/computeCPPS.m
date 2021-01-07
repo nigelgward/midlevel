@@ -22,7 +22,7 @@ function [CPPS_midlevel] = computeCPPS(s, samp_freq)
 
     % Window size and step
     win_len = round(0.04 * samp_freq);
-    win_step = round(0.002 * samp_freq);
+    win_step = round(0.002 * samp_freq); 
     win_overlap = win_len - win_step;
 
     % Size of the midlevel analysis window
@@ -70,14 +70,16 @@ function [CPPS_midlevel] = computeCPPS(s, samp_freq)
     prepad_size = floor(win_halflen / win_step - 1);
     postpad_from = floor(s_len / win_step) * win_step - win_halflen / win_step;
     postpad_to = ceil(s_len / mid_win_len) * mid_win_len;
-    postpad_size = floor((postpad_to - postpad_from) / win_step);
+    postpad_size = floor((postpad_to - postpad_from) / win_step);  % 1+ added by Nigel
     cpps_padded = [nan(1, prepad_size), cpps, nan(1, postpad_size)];
-    
+
     cpps_win = reshape(cpps_padded(3:end-3), 5, [])';
     CPPS_midlevel = median(cpps_win, 2, 'omitnan');
 
-    % Replace NaNs with median CPPS.
+    % Replace NaNs with median CPPS
     CPPS_midlevel(isnan(CPPS_midlevel)) = median(CPPS_midlevel, 'omitnan');
 
-    %plot(CPPS_midlevel)  %% debug 
+    CPPS_midlevel = [CPPS_midlevel; NaN];   %% extra padding, added by Nigel
+
+    %% plot(CPPS_midlevel(1:1000))  %% debug 
 end
