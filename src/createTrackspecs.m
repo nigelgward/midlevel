@@ -4,15 +4,15 @@ function trackspecs = createTrackspecs(directory)
   %% does this for both left and right tracks for all audio files in the directory,
   %% if .au files exist, use them, otherwise use the .wav files 
 
-  %% Nigel Ward, UTEP, 2020
+  %% Nigel Ward, UTEP, 2020, with corrections by Jonathan E. Avila
 
   fprintf('assembling tracklist for  %s\n', directory);
   
   trackspecs = []; 
   
-  files = dir([directory '/*.au']);
+  files = dir([directory '*.au']);
   if length(files) == 0
-    files = dir([directory '/*.wav']);
+    files = dir([directory '*.wav']);
   end
   if length(files) == 0
     error('no .wav or .au files found ... wrong directory perhaps?');
