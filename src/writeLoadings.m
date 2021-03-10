@@ -1,6 +1,6 @@
 function writeLoadings(coeff, featuresCellArray, header, outdir)
   numberToWrite = min(length(coeff),12);
-  lfd = fopen([outdir 'loadings.txt'], 'w');
+  lfd = fopen([outdir 'hrloadings.txt'], 'w');  % hr loadings = human-readable loadings
   fprintf(lfd, '%s\n', header);
   for col = 1:numberToWrite
     fprintf(lfd, '\n');

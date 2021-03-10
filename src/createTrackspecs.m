@@ -10,9 +10,9 @@ function trackspecs = createTrackspecs(directory)
   
   trackspecs = []; 
   
-  files = dir('*.au');
+  files = dir([directory '/*.au']);
   if length(files) == 0
-    files = dir('*.wav');
+    files = dir([directory '/*.wav']);
   end
   if length(files) == 0
     error('no .wav or .au files found ... wrong directory perhaps?');
