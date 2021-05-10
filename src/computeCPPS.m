@@ -76,10 +76,9 @@ function [CPPS_midlevel] = computeCPPS(s, samp_freq)
     cpps_win = reshape(cpps_padded(3:end-3), 5, [])';
     CPPS_midlevel = median(cpps_win, 2, 'omitnan');
 
-    % Replace NaNs with median CPPS
-    CPPS_midlevel(isnan(CPPS_midlevel)) = median(CPPS_midlevel, 'omitnan');
-
     CPPS_midlevel = [CPPS_midlevel; NaN];   %% extra padding, added by Nigel
+    %% replace NaNs with median CPPS
+    CPPS_midlevel(isnan(CPPS_midlevel)) = median(CPPS_midlevel, 'omitnan');
 
     %% plot(CPPS_midlevel(1:1000))  %% debug 
 end
