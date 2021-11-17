@@ -241,10 +241,12 @@ for featureNum = 1 : length(featurelist)
     case 'vr'    % voiced-unvoiced energy ratio
       featurevec = voicedUnvoicedIR(relevantEnergy, relevantPitch, duration)';
     case 'cp'    % CPPS
-      featurevec = lookupOrComputeCpps(...
+      cppsVec = lookupOrComputeCpps(...
             trackspec.directory, [trackspec.filename trackspec.side], ...
             relevantSig, rate);
-      featurevec = windowize(featurevec,duration);
+      featurevec = windowize(cppsVec',duration)';
+      
+      
     case 'ts'  % time from start
       featurevec =  windowize(1:length(relevantPitch), duration)';
     case 'te'  % time until end
