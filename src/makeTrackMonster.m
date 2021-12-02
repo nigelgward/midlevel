@@ -5,7 +5,7 @@ function [firstCompleteFrame, monster] = makeTrackMonster(trackspec, featurelist
 %   fsspec: feature set specification
 % output:
 %   monster is a large 2-dimensional array, 
-  %     where every row is a timepoint, 10ms apart, starting at 10ms (?)
+%     where every row is a timepoint, 10ms apart, starting at 10ms (?)
 %     and every column a feature
 %   firstCompleteFrame, is the first frame for which all data tracks
 %     are present.   This considers only the fact that the gaze
@@ -77,6 +77,7 @@ if processAudio
   signall = signalPair(:,1);
   [plraw, pCenters] = lookupOrComputePitch(...
         trackspec.directory, [trackspec.filename 'l'], signall, rate);
+  
   energyl = computeLogEnergy(signall', samplesPerFrame);
   %%  fprintf('pitch found at %d points\n', sum(plraw > 0)); % not-isNan count
   %%  fprintf('pitch undefined  at %d points\n', sum(isnan(plraw)));
@@ -240,8 +241,12 @@ for featureNum = 1 : length(featurelist)
     case 'vr'    % voiced-unvoiced energy ratio
       featurevec = voicedUnvoicedIR(relevantEnergy, relevantPitch, duration)';
     case 'cp'    % CPPS
-      featurevec = computeCPPS(relevantSig, rate);
-
+      cppsVec = lookupOrComputeCpps(...
+            trackspec.directory, [trackspec.filename trackspec.side], ...
+            relevantSig, rate);
+      featurevec = windowize(cppsVec',duration)';
+      
+      
     case 'ts'  % time from start
       featurevec =  windowize(1:length(relevantPitch), duration)';
     case 'te'  % time until end
@@ -303,11 +308,16 @@ for featureNum = 1 : length(featurelist)
 
   if plotThings && plotcolor ~= 0
      plot(pCentersToPlot, featurevec(1:length(pCentersToPlot)) * 100, plotcolor);
-  end 
+  end
+  %Some features on some tracks end up with a shifted that is less than
+  %lastCompleteFrame - 1.  Pads it with zeros to make it equal to
+  %lastCompleteFrame - 1, so the next line of code does not error out.
+  if size(shifted,1) < lastCompleteFrame-1
+      shifted = [shifted; zeros(lastCompleteFrame-1-size(shifted,1), 1)];
+  end
   % might convert from every 10ms to every 20ms to same time and space,
   % here, instead of doing it at the very end in writePcFilesBis
   %  downsampled = shifted(2:2:end);   
- 
   shifted = shifted(1:lastCompleteFrame-1);
 
   features_array{featureNum} = shifted;  % append shifted values to monster
