@@ -287,7 +287,7 @@ for featureNum = 1 : length(featurelist)
     otherwise
       warning([feattype ' :  unknown feature type']);
   end 
-  hold off;
+  %hold off;
   [h, w] = size(featurevec);
   %fprintf('    size of featurevec is %d, %d\n', h, w);
 
