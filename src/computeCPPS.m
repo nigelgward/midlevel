@@ -27,7 +27,7 @@ function [CPPS_midlevel] = computeCPPS(s, samp_freq)
 
     % Size of the midlevel analysis window
     mid_win_len = round(0.01 * samp_freq);
-
+    
     % Quefrency range
     quef_bot = round(samp_freq ./ 300);
     quef_top = round(samp_freq ./ 60);
