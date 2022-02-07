@@ -20,11 +20,11 @@ function [firstCompleteFrame, monster] = makeTrackMonster(trackspec, featurelist
 %   lots of redundant computation
 %   compute everything every 10ms, then in the last step downsample to 20ms
 % testing:
-%   the simplest test harness is validateFeature.m
+%   the simplest test harness is validateFeature.m, with plotThings=true
 
-% Nigel Ward, UTEP, 2014-2015
+% Nigel Ward, UTEP, 2014-2022
 
-plotThings = false;
+plotThings = true;
 
 processGaze = false;
 processKeystrokes = false;  
@@ -83,16 +83,8 @@ if processAudio
 
   pitchl = plraw;  
   cepstralFluxl = cepstralFlux(signall, rate, energyl);
-
-  if isnan(sum(cepstralFluxl))
-    bfp = fopen('badfiles.txt', 'a');
-    nanFraction = sum(isnan(cepstralFluxl))/length(cepstralFluxl);
-    fprintf('                      fraction of NaNs in cepstral Flux l  is %.4f\n',  nanFraction);
-    fprintf(bfp, '                      fraction of NaNs in cepstral Flux l  is %.4f\n',  nanFraction);
-    fprintf(bfp, 'NaN in cepstralFlux l for %s\n', trackspec.filename);
-    fclose(bfp);
-  end
-  
+  isNanDiagnostics(cepstralFluxl, 'cepstral flux l');
+  cppsl = normalize(computeCPPS(signall, rate)); 
 
   if stereop
     signalr = signalPair(:,2);
@@ -100,14 +92,8 @@ if processAudio
          trackspec.directory, [trackspec.filename 'r'], signalr, rate);
     energyr = computeLogEnergy(signalr', samplesPerFrame);
     cepstralFluxr = cepstralFlux(signalr, rate, energyr);
-    if isnan(sum(cepstralFluxr))
-      bfp = fopen('badfiles.txt', 'a');
-      nanFraction = sum(isnan(cepstralFluxr))/length(cepstralFluxr);
-      fprintf('                      fraction of NaNs in cepstralFlux r is %.4f\n',  nanFraction);
-      fprintf(bfp, '                      fraction of NaNs in cepstralFlux r is %.4f\n',  nanFraction);
-      fprintf(bfp, 'NaN in cepstralFlux r for %s\n', trackspec.filename);
-      fclose(bfp);
-    end
+    isNanDiagnostics(cepstralFluxr, 'cepstral flux r');
+    cppsr = normalize(computeCPPS(signalr, rate)); 
 
     [pitchl, pitchr, npoints] = killBleeding(plraw, prraw, energyl, energyr);
     pitchl = pitchl(1:npoints);
@@ -125,31 +111,17 @@ if processAudio
     lastCompleteFrame = min([nframes, lastCompleteFrame]);
   end
   
-% --- plot left-track signal, for visual inspection ---
-if  plotThings
-  plotEndSec = 8;  % plot the first few seconds of the signal and featueres
-  hold on
-  yScalingSignal = .005;
-  yScalingEnergy = 6;
-  plot(1/rate:1/rate:plotEndSec, signalPair(1:rate*plotEndSec,1)* yScalingSignal);
-  % plot pitch, useful for checking for uncorrected bleeding
-  pCentersSeconds = pCenters / 1000;
-  pCentersToPlot = pCentersSeconds(pCentersSeconds<plotEndSec);
-  scatter(pCentersToPlot, pitchl(1:length(pCentersToPlot)), 'g', '.');
-  scatter(pCentersToPlot, 0.5 * pitchl(1:length(pCentersToPlot)), 'y', '.'); % halved
-  scatter(pCentersToPlot, 2.0 * pitchl(1:length(pCentersToPlot)), 'y', '.'); % doubled
-  offset = 0;  
-  scatter(pCentersToPlot, pitchr(1:length(pCentersToPlot)) + offset, 'k.');   
-  %%plot((1:length(energyl)) * msPerFrame, energyl * yScalingEnergy,'g') 
-  xlabel('seconds');
-end
+  if plotThings     % for visual inspection 
+    plotLeftTrack(signalPair, rate, msPerFrame, pCenters, pitchl, energyl);  
+  end
 
-maxPitch = 500;
-pitchLper = percentilizePitch(pitchl, maxPitch);
-if stereop
-  pitchRper = percentilizePitch(pitchr, maxPitch);
-end
-
+  
+  maxPitch = 500;
+  pitchLper = percentilizePitch(pitchl, maxPitch);
+  if stereop
+    pitchRper = percentilizePitch(pitchr, maxPitch);
+  end
+  
 end
 
 % ------ Second, compute derived features, and add to monster ------
@@ -171,7 +143,8 @@ for featureNum = 1 : length(featurelist)
       relevantEnergy = energyl;
       relevantFlux = cepstralFluxl;
       relevantSig = signall;
-      [lsilenceMean, lspeechMean] = findClusterMeans(energyl);
+      relevantCpps = cppsl;
+      %%[lsilenceMean, lspeechMean] = findClusterMeans(energyl);
     else 
       % if stereop is false then this should not be reached 
       relevantPitch = pitchr;
@@ -179,7 +152,8 @@ for featureNum = 1 : length(featurelist)
       relevantEnergy = energyr;
       relevantFlux = cepstralFluxr;
       relevantSig = signalr;
-      [rsilenceMean, rspeechMean] = findClusterMeans(energyr);
+      relevantCpps = cppsr;
+      %%[rsilenceMean, rspeechMean] = findClusterMeans(energyr);
     end
   end 
 
@@ -201,8 +175,8 @@ for featureNum = 1 : length(featurelist)
     end
   end
 
-%  fprintf('processing feature %s %d %d %s \n', ...
-%	  feattype, thisfeature.startms, thisfeature.endms, side); 
+  fprintf('processing feature %s %d %d %s \n', ...
+	  feattype, thisfeature.startms, thisfeature.endms, side); 
     
   switch feattype
     case 'vo'    % volume/energy/intensity/amplitude
@@ -240,8 +214,7 @@ for featureNum = 1 : length(featurelist)
     case 'vr'    % voiced-unvoiced energy ratio
       featurevec = voicedUnvoicedIR(relevantEnergy, relevantPitch, duration)';
     case 'cp'    % CPPS
-      featurevec = computeCPPS(relevantSig, rate);
-
+      featurevec = windowize(relevantCpps', duration)';
     case 'ts'  % time from start
       featurevec =  windowize(1:length(relevantPitch), duration)';
     case 'te'  % time until end
@@ -318,12 +291,6 @@ monster = cell2mat(features_array);  % flatten it to be ready for princomp
 end
 
 
-% this is tested by calling findDimensions for a small audio file (e.g. short.au)
-%  and a small set of features (e.g. minicrunch.fss)
-% and then uncommenting various of the "scatter" commands above
-%  and examining whether the feature values look appropriate for the audio input
-
-
 % true if trackspec is a right channel or any feature is inte
 function stereop = decideIfStereo(trackspec, featurelist)
   stereop = false;
@@ -338,4 +305,28 @@ function stereop = decideIfStereo(trackspec, featurelist)
   end
 end
 
+
+function plotLeftTrack(signalPair, rate, msPerFrame, pCenters, pitchl, energyl)
+  plotEndSec = 8;  % plot the first few seconds of the signal and featueres
+  hold on
+  yScalingSignal = 100;
+  yScalingEnergy = 10;
+  plot(1/rate:1/rate:plotEndSec, signalPair(1:rate*plotEndSec,1)* yScalingSignal, 'b');
+  plot(.01:.01:plotEndSec, pitchl(1:100*plotEndSec), 'g');
+  plot(.01:.01:plotEndSec, energyl(1:100*plotEndSec) * yScalingEnergy, 'r') 
+  xlabel('seconds');
+  hold off
+end
+
+
+function isNanDiagnostics(cepstralFlux, description)
+  if isnan(sum(cepstralFlux))
+    bfp = fopen('badfiles.txt', 'a');
+    nanFraction = sum(isnan(cepstralFlux))/length(cepstralFlux);
+    fprintf('  fraction of NaNs in %s is %.4f\n', description, nanFraction);
+    fprintf(bfp, '  fraction of NaNs in %s is %.4f\n', description, nanFraction);
+    fprintf(bfp, 'NaN in %s for %s\n', description, trackspec.filename);
+    fclose(bfp);
+  end
+end
 

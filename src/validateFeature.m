@@ -1,4 +1,4 @@
-function leftLE =  validateFeature()
+function featureOfInterest =  validateFeature()
 
 % Nigel Ward, December 2016
 % compares the performance of a feature dectector on aufile
@@ -8,12 +8,11 @@ function leftLE =  validateFeature()
 %  then reformatting into csv using tweakElanOutput.awk  
 
   annotationFile = '../flowtest/21d-lengthening.csv';  
-  trackspec = makeTrackspec('l', 'prefix21d.au', '../flowtest/');
-  trackspec = makeTrackspec('l', '10sec-21d.au', '../flowtest/');
-    trackspec = makeTrackspec('l', '30sec-21d.au', '../flowtest/');
-
-    trackspec = makeTrackspec('l', 'second10s-21d.au', '../flowtest/');
-  trackspec = makeTrackspec('l', 'ten-twelve-21d.au', '../flowtest/');
+  %%trackspec = makeTrackspec('l', 'prefix21d.au', '../flowtest/');
+  %%trackspec = makeTrackspec('l', '10sec-21d.au', '../flowtest/');
+  %%trackspec = makeTrackspec('l', '30sec-21d.au', '../flowtest/');
+  %%trackspec = makeTrackspec('l', 'second10s-21d.au', '../flowtest/');
+  %%trackspec = makeTrackspec('l', 'ten-twelve-21d.au', '../flowtest/');
   trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
 
   
@@ -26,12 +25,21 @@ function leftLE =  validateFeature()
   featureList(7) = makeFeatureSpec('sf', -100, 100, 'self', 0);
   featureList(8) = makeFeatureSpec('en', -150, 150, 'self', 0);
   featureList(9) = makeFeatureSpec('re', -150, 150, 'self', 0);
+  featureList(10)= makeFeatureSpec('cp', -200, 200, 'self', 0);
  
+tic
   [~, vecset] = makeTrackMonster(trackspec, featureList);
+toc
+  featureOfInterest = vecset(:,10);
+  plot(featureOfInterest);
+return 
+
   leftLE = vecset(:,1);
   rightLE = vecset(:,2);
 
   nframes = size(vecset,1);
+
+
   data = csvread(annotationFile);
   leftLengtheningTarget  = createTargets(1, data, nframes);
   rightLengtheningTarget = createTargets(2, data, nframes);
