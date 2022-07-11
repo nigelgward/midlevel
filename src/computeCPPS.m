@@ -14,33 +14,39 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-function [CPPS_midlevel] = computeCPPS(s, samp_freq)
+function [CPPS_midlevel] = computeCPPSmodifiedOld(signal, sampleRate)
+
+    % NOTE: This function modifies computeCPPS.m so that the length of
+    % CPPS_midlevel is the expected length (so that each column represents
+    % 10 ms). For the improved version, see computeCPPSmodified.m.
 
     %% Window analysis settings
     
-    s_len = length(s);
+    s_len = length(signal);
 
     % Window size and step
-    win_len = round(0.04 * samp_freq);
-    win_step = round(0.002 * samp_freq); 
+    win_step_s = 0.002; % Step size in seconds
+    win_len = round(0.04 * sampleRate);
+    win_step = round(win_step_s * sampleRate); 
     win_overlap = win_len - win_step;
 
     % Size of the midlevel analysis window
-    mid_win_len = round(0.01 * samp_freq);
+    mid_win_len = round(0.01 * sampleRate);
     
     % Quefrency range
-    quef_bot = round(samp_freq ./ 300);
-    quef_top = round(samp_freq ./ 60);
+    quef_bot = round(sampleRate ./ 300);
+    quef_top = round(sampleRate ./ 60);
     quefs = (quef_bot:quef_top)';
 
     %% Pre-emphasis from 50 Hz
 
-    alpha = exp(-2 * pi * 50 / samp_freq);
-    s = filter([1, -alpha], 1, s);
+    alpha = exp(-2 * pi * 50 / sampleRate);
+    signal = filter([1, -alpha], 1, signal);
 
     %% Compute spectrum and cepstrum
-
-    spec = spectrogram(s, hanning(win_len), win_overlap);
+    % spec will have length equal to
+    % fix((s_len - win_overlap)/(win_len - win_overlap))
+    spec = spectrogram(signal, hanning(win_len), win_overlap);
     spec_log = 10 * log10(abs(spec).^2);
     ceps_log = 10 * log10(abs(fft(spec_log)).^2);
 
@@ -66,17 +72,22 @@ function [CPPS_midlevel] = computeCPPS(s, samp_freq)
     cpps = peak - ceps_norm;
 
     %% Pad the CPPS vector and calculate means in 10-ms window
-    win_halflen = win_len / 2;
-    prepad_size = floor(win_halflen / win_step - 1);
-    postpad_from = floor(s_len / win_step) * win_step - win_halflen / win_step;
-    postpad_to = ceil(s_len / mid_win_len) * mid_win_len;
-    postpad_size = floor((postpad_to - postpad_from) / win_step);  % 1+ added by Nigel
-    cpps_padded = [nan(1, prepad_size), cpps, nan(1, postpad_size)];
-
-    cpps_win = reshape(cpps_padded(3:end-3), 5, [])';
+    midlevelFrameWidth_ms = 10;
+    midlevelFrameWidth_s = midlevelFrameWidth_ms / 1000;
+    % Reshape cpps so that each column represents 10 ms. Since win_step_s
+    % and midlevelFrameWidth_s are fixed, cppsReshapeNumCols is always 5,
+    % but is added here for clarity.
+    cppsReshapeNumCols = round(midlevelFrameWidth_s / win_step_s);
+    signalDuration_s = length(signal) / sampleRate;
+    signalDuration_ms = signalDuration_s * 1000;
+    expectedCPPSmidlevelLen = floor(signalDuration_ms / midlevelFrameWidth_ms);
+    totalPaddingSize = expectedCPPSmidlevelLen * cppsReshapeNumCols - size(cpps,2);
+    prepadSize = floor(totalPaddingSize / 2);
+    postpadSize = totalPaddingSize - prepadSize;
+    cpps_padded = [nan(1, prepadSize), cpps, nan(1, postpadSize)];
+    cpps_win = reshape(cpps_padded, cppsReshapeNumCols, [])';
     CPPS_midlevel = median(cpps_win, 2, 'omitnan');
 
-    CPPS_midlevel = [CPPS_midlevel; NaN];   %% extra padding, added by Nigel
     %% replace NaNs with median CPPS
     CPPS_midlevel(isnan(CPPS_midlevel)) = median(CPPS_midlevel, 'omitnan');
 
