@@ -7,7 +7,7 @@ function winEnergy = windowEnergy(logEnergy, msPerWindow)
   %% output:
   %%   energy over windows of the designated size, centered at 10ms, 20ms, etc.
   %%   (the centering is off, at 15ms, 25ms, etc, if msPerWindow is 30ms, 50ms etc)
-  %%   but we're not doing syllable-level prosody, so it doesn't matter.
+  %%   but we're not doing phone-aligned prosody, so it doesn't matter.
   %%  Values returned are zero if either end of the window would go outside  
   %%   what we have data for. 
   
