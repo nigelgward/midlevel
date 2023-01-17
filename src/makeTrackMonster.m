@@ -252,6 +252,9 @@ for featureNum = 1 : length(featurelist)
     case 'ga'
       featurevec = windowize(relGa, duration)'; 
 
+    case 'ti'
+      featurevec = computeSpectralTilt(relevantSig, rate)';
+
     otherwise
       warning([feattype ' :  unknown feature type']);
   end 
@@ -276,9 +279,11 @@ for featureNum = 1 : length(featurelist)
     shifted = [featurevec(shift+1:end); zeros(shift,1)];  
   end
 
-  if plotThings && plotcolor ~= 0
-     plot(pCentersToPlot, featurevec(1:length(pCentersToPlot)) * 100, plotcolor);
-  end
+  %if plotThings && plotcolor ~= 0
+  %  plot(pCentersToPlot, featurevec(1:length(pCentersToPlot)) * 100, plotcolor);
+  %end
+
+
   %Some features on some tracks end up with a shifted that is less than
   %lastCompleteFrame - 1.  Pads it with zeros to make it equal to
   %lastCompleteFrame - 1, so the next line of code does not error out.
