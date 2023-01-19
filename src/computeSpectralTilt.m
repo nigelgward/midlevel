@@ -51,11 +51,11 @@ function tilts = computeSpectralTilt(signal, samplesPerSecond)
     end
     
     %% Plot spectral tilt acrossa the signal
-    figure(3);
-    x = (1:nframes)*0.01; % create array of time values for every 10ms window
-    plot(x,tilts);
-    xlabel('Time (s)');
-    ylabel('Spectral tilt');
+    %%figure(3);
+    %%x = (1:nframes)*0.01; % create array of time values for every 10ms window
+    %%plot(x,tilts);
+    %%xlabel('Time (s)');
+    %%ylabel('Spectral tilt');
    
 %%   % Write the vector containing spectral tilt every 10ms to a csv.
 %%   writematrix(coefs.', outputPath)

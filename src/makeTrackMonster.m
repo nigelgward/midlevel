@@ -22,9 +22,9 @@ function [firstCompleteFrame, monster] = makeTrackMonster(trackspec, featurelist
 % testing:
 %   the simplest test harness is validateFeature.m, with plotThings=true
 
-% Nigel Ward, UTEP, 2014-2022
+% Nigel Ward, UTEP, 2014-2023
 
-plotThings = true;
+plotThings = false;  % set true for debug
 
 processGaze = false;
 processKeystrokes = false;  
@@ -85,8 +85,8 @@ if processAudio
   pitchl = plraw;  
   cepstralFluxl = cepstralFlux(signall, rate, energyl);
   isNanDiagnostics(cepstralFluxl, 'cepstral flux l');
-
   cppsl = normalize(computeCPPS(signall, rate));  % should use lookupOrComputeCpps
+  spectralTiltl = computeSpectralTilt(signall, rate);
 
   if stereop
     signalr = signalPair(:,2);
@@ -96,6 +96,7 @@ if processAudio
     cepstralFluxr = cepstralFlux(signalr, rate, energyr);
     isNanDiagnostics(cepstralFluxr, 'cepstral flux r');
     cppsr = normalize(computeCPPS(signalr, rate)); % should use lookupOrComputeCpps
+    spectralTiltr = computeSpectralTilt(signalr, rate);
 
     [pitchl, pitchr, npoints] = killBleeding(plraw, prraw, energyl, energyr);
     pitchl = pitchl(1:npoints);
@@ -146,6 +147,7 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxl;
       relevantSig = signall;
       relevantCpps = cppsl;
+      relevantTilt = spectralTiltl;
       %%[lsilenceMean, lspeechMean] = findClusterMeans(energyl);
     else 
       % if stereop is false then this should not be reached 
@@ -155,6 +157,7 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxr;
       relevantSig = signalr;
       relevantCpps = cppsr;
+      relevantTilt = spectralTiltr;
       %%[rsilenceMean, rspeechMean] = findClusterMeans(energyr);
     end
   end 
@@ -217,6 +220,9 @@ for featureNum = 1 : length(featurelist)
       featurevec = voicedUnvoicedIR(relevantEnergy, relevantPitch, duration)';
     case 'cp'    % CPPS
       featurevec = windowize(relevantCpps', duration)';
+    case 'st'
+      featurevec = windowize(relevantTilt, duration)';
+
     case 'ts'  % time from start
       featurevec =  windowize(1:length(relevantPitch), duration)';
     case 'te'  % time until end
@@ -251,9 +257,6 @@ for featureNum = 1 : length(featurelist)
       featurevec = windowize(relGr, duration)';
     case 'ga'
       featurevec = windowize(relGa, duration)'; 
-
-    case 'ti'
-      featurevec = computeSpectralTilt(relevantSig, rate)';
 
     otherwise
       warning([feattype ' :  unknown feature type']);
