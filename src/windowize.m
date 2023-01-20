@@ -11,7 +11,10 @@ function windowValues = windowize(frameFeatures, msPerWindow)
 %     (the centering is off, at 15ms, etc, if msPerWindow is 30ms, 50ms etc)
 %      but we're not doing syllable-level prosody, so it doesn't matter.
 %   values are zero if either end of the window would go outside  
-%     what we have data for. 
+%     what we have data for.
+
+%% There are other ways to windowize (mean, std-dev, range, etc),
+%%  so this should probably be called windowizeSum 
 
 % Nigel Ward, UTEP, Feb 2015
 

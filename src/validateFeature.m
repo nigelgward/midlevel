@@ -14,10 +14,11 @@ function featureOfInterest =  validateFeature()
   %%trackspec = makeTrackspec('l', 'second10s-21d.au', '../flowtest/');
   %%trackspec = makeTrackspec('l', 'ten-twelve-21d.au', '../flowtest/');
   trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
+%  trackspec = makeTrackspec('l', 'prefix-21d.wav', '../flowtest/');
+  trackspec = makeTrackspec('r', 'utep04.au', 'f:/comparisons/en-social/');
 
-  
-  featureList(1) = makeFeatureSpec('le', -800, -400, 'self', 0);
-  featureList(2) = makeFeatureSpec('le', -100, 100, 'inte', 0);
+  featureList(1) = makeFeatureSpec('st',  -20,  20, 'self', 0);
+  featureList(2) = makeFeatureSpec('le', -100, 100, 'self', 0);
   featureList(3) = makeFeatureSpec('sr', -100, 100, 'self', 0);
   featureList(4) = makeFeatureSpec('sr', -100, 100, 'inte', 0);
   featureList(5) = makeFeatureSpec('vo',    0,  10, 'self', 0);
@@ -30,7 +31,8 @@ function featureOfInterest =  validateFeature()
 tic
   [~, vecset] = makeTrackMonster(trackspec, featureList);
 toc
-  featureOfInterest = vecset(:,10);
+  featureOfInterest = vecset(:,1);
+  figure(97)
   plot(featureOfInterest);
 return 
 
@@ -52,7 +54,7 @@ return
   compareVals(vecset(:,3), .22, leftFastTarget, 'Left:     sr for fast');
   compareVals(vecset(:,4), .22, rightFastTarget,'Right:    sr for fast');
 
-  smallplot(vecset(:,5), vecset(:,8), vecset(:,9));
+  %smallplot(vecset(:,5), vecset(:,8), vecset(:,9));
   legend('volume', 'enunciation', 'reduction');
 
   corr = corrcoef(vecset(:,1), vecset(:,3));

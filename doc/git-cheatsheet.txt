@@ -1,4 +1,10 @@
 
+git pull
+
+
+git status
+ 
+
 git add    <changed files>
 
 git commit -m "comment"
@@ -9,6 +15,3 @@ git push origin master
 
 
 https://github.com/nigelgward/midlevel
-
-git status
- 

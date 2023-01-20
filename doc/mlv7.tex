@@ -395,6 +395,7 @@ In fss files currently the following codes are recognized:
 
 \begin{tabular}{ll}  
   cp  & smoothed cepstral peak prominence, representing breathiness, etc. \\
+  st  & spectral tilt, higher (negative but non-zero) values, maybe emphasis \\
 \end{tabular}
 
 
@@ -405,7 +406,7 @@ Reserved two-letter code (implementation pending):
   br  & breathiness
 \end{tabular}
 
-Adding a new prosodic feature requires changing three things.  First
+Adding a new prosodic feature requires changing a few things.  First
 you create an entry for your new feature in the featurespec file,
 choosing any unused two-letter code and an appropriate window size and
 offset.  Second, you write a new matlab function to compute that
@@ -413,7 +414,7 @@ feature.  This might compute it from the audio, or from multimodal
 data, or it might read values from a file that was written by an
 external program.  Third, you add a new case to the big {\tt switch}
 statement in {\tt makeTrackMonster} to associate your new
-feature-computing function with the two-letter code.
+feature-computing function with the two-letter code. Fourth, you add it to the list in {\tt getfeaturespec}.
 
 Every feature-computing function is responsible for returning a vector
 of values for windows centered every 10 milliseconds throughout the
