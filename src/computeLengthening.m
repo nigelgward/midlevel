@@ -1,7 +1,11 @@
 function winLengthening = computeLengthening(relevantEnergy, relevantFlux, duration)
 
-  %% Nigel Ward, UTEP, December 2016
+%% Nigel Ward, UTEP, December 2016
   
+  %% Note that we wieght by relevantEnergy, which mean in effect that
+  %% at times of no speech, the evidence for lengthing will be very
+  %% close to zero, as it should be
+
 
   %%nanFraction = sum(isnan(relevantFlux))/length(relevantFlux);
   %%fprintf('                      fraction of NaNs in relevantFlux is %.4f\n', ...

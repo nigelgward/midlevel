@@ -1,9 +1,9 @@
 function bandValues = computePitchInBand(percentiles, bandFlag, windowSizeMs)
 % compute evidence for the pitch being strongly in the specified band
 %  bandflag 'l' is low pitch; 'h' is high pitch
-%   'tl' and 'th' are "truly high" and "truly low", mosre strictly
+%   'tl' and 'th' are "truly high" and "truly low", more strictly
 %  in future, may have a mid-range band, etc. 
-% both percentils and bandValues are column vectors
+% both percentiles and bandValues are column vectors
 
 % Nigel Ward February 2015
 
