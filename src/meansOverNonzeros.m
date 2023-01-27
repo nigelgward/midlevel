@@ -9,9 +9,9 @@ function means = meansOverNonzeros(featVec, isValid, frPerWindow, filler)
   integralImage = [0 cumsum(featVec)];
   integralIsValidCount = [0 cumsum(isValid)];
   windowSums = integralImage(1+frPerWindow:end) - ...
-    	       integralImage(1:end-frPerWindow)
+    	       integralImage(1:end-frPerWindow);
   windowDenominators = integralIsValidCount(1+frPerWindow:end) - ...
-		       integralIsValidCount(1:end-frPerWindow)
+		       integralIsValidCount(1:end-frPerWindow);
   means = windowSums ./ windowDenominators;
   means(isnan(means)) = filler;
 
@@ -22,7 +22,7 @@ function means = meansOverNonzeros(featVec, isValid, frPerWindow, filler)
     headPadding = globalMeanOfValids * ones(1,headFramesToPad);
     tailPadding = globalMeanOfValids * ones(1,tailFramesToPad);
     means = horzcat(headPadding, means, tailPadding);
-  means(isnan(means)) = globalMeanOfValids
+    means(isnan(means)) = globalMeanOfValids;
 end 
 
 

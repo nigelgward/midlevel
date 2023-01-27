@@ -1,4 +1,4 @@
-function featureOfInterest =  validateFeature()
+function vecset =  validateFeature()
 
 % Nigel Ward, December 2016
 % compares the performance of a feature dectector on aufile
@@ -13,27 +13,35 @@ function featureOfInterest =  validateFeature()
   %%trackspec = makeTrackspec('l', '30sec-21d.au', '../flowtest/');
   %%trackspec = makeTrackspec('l', 'second10s-21d.au', '../flowtest/');
   %%trackspec = makeTrackspec('l', 'ten-twelve-21d.au', '../flowtest/');
-  trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
+ trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
 %  trackspec = makeTrackspec('l', 'prefix-21d.wav', '../flowtest/');
-  trackspec = makeTrackspec('r', 'utep04.au', 'f:/comparisons/en-social/');
+%  trackspec = makeTrackspec('r', 'utep04.au', 'f:/comparisons/en-social/');
 
   featureList(1) = makeFeatureSpec('st',  -20,  20, 'self', 0);
-  featureList(2) = makeFeatureSpec('le', -100, 100, 'self', 0);
-  featureList(3) = makeFeatureSpec('sr', -100, 100, 'self', 0);
-  featureList(4) = makeFeatureSpec('sr', -100, 100, 'inte', 0);
-  featureList(5) = makeFeatureSpec('vo',    0,  10, 'self', 0);
-  featureList(6) = makeFeatureSpec('vf', -100, 100, 'self', 0);
-  featureList(7) = makeFeatureSpec('sf', -100, 100, 'self', 0);
-  featureList(8) = makeFeatureSpec('en', -150, 150, 'self', 0);
-  featureList(9) = makeFeatureSpec('re', -150, 150, 'self', 0);
-  featureList(10)= makeFeatureSpec('cp', -200, 200, 'self', 0);
+  featureList(2) = makeFeatureSpec('tr',  -50,  50, 'self', 0);
+  featureList(3) = makeFeatureSpec('tf',  -50,  50, 'self', 0);
+  featureList(4) = makeFeatureSpec('tm',  -50,  50, 'self', 0);
+  featureList(5) = makeFeatureSpec('tn',  -50,  50, 'self', 0);
+  
+  featureList(6) = makeFeatureSpec('vo',    0,  10, 'self', 0);
+  featureList(7) = makeFeatureSpec('vf', -100, 100, 'self', 0);
+  featureList(8) = makeFeatureSpec('sf', -100, 100, 'self', 0);
+  featureList(9) = makeFeatureSpec('en', -150, 150, 'self', 0);
+  featureList(10) = makeFeatureSpec('re', -150, 150, 'self', 0);
+  featureList(11)= makeFeatureSpec('cp', -200, 200, 'self', 0);
  
 tic
   [~, vecset] = makeTrackMonster(trackspec, featureList);
 toc
   featureOfInterest = vecset(:,1);
-  figure(97)
-  plot(featureOfInterest);
+  figure(96)
+  hold on 
+  plot(1000*vecset(:,1), 'k');  % mean 
+%  plot(1000*vecset(:,2), 'r');  % range
+%  plot(vecset(:,3), 'b');       % flattish 
+%  plot(vecset(:,4), 'g');       % middling
+  plot(1000*vecset(:,5), 'c');       % negative
+  plot(vecset(:,6), 'm'); 
 return 
 
   leftLE = vecset(:,1);

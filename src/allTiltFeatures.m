@@ -1,8 +1,12 @@
 %% Nigel Ward, January 2023
 
 function [st, tiltRange, tf, tm, tn] = allTiltFeatures( ...
-      perFrameTilts, isSpeakingVec, msPerWindow)
+      perFrameTilts, logEnergy, msPerWindow)
 
+  isSpeakingVec = speakingFrames(logEnergy);
+  if size(isSpeakingVec,2) <  size(perFrameTilts,2)
+    isSpeakingVec = [0 isSpeakingVec];
+  end
   frPerWindow = msPerWindow / 10;
   globalMeanOfValids = mean(perFrameTilts(isSpeakingVec==true));
   st = meansOverNonzeros(perFrameTilts, isSpeakingVec, frPerWindow,globalMeanOfValids);
@@ -10,10 +14,11 @@ function [st, tiltRange, tf, tm, tn] = allTiltFeatures( ...
 
   prunedTilts = perFrameTilts;
   prunedTilts(isSpeakingVec == 0) = 0;
-  nonzeroTilts = prunedTilts(prunedTilts~=0)
+  nonzeroTilts = prunedTilts(prunedTilts~=0);
   [bincounts, binedges] = histcounts(nonzeroTilts, 100);
   cumPerc = cumsum(bincounts * 1.0 / sum(bincounts));
-  veryNegThreshold       = ftfp(bincounts, binedges, cumPerc, .20);
+  veryNegThreshold       = ftfp(bincounts, binedges, cumPerc, .20)
+  min(prunedTilts)
   nearlyFlatThreshold    = ftfp(bincounts, binedges, cumPerc, .50);
   ninetyEighthPercentile = ftfp(bincounts, binedges, cumPerc, .98);
   
@@ -25,7 +30,7 @@ function [st, tiltRange, tf, tm, tn] = allTiltFeatures( ...
   		  prunedTilts <= nearlyFlatThreshold & ...
 		  prunedTilts > veryNegThreshold;
   veryNegFrames = prunedTilts;
-  veryNegFrames(veryNegFrames > veryNegThreshold) = 0
+  veryNegFrames(veryNegFrames <= veryNegThreshold) = 0;
 
   tf = meansOverNonzeros(nearlyFlatFrames,  isSpeakingVec, frPerWindow, 0);
   tm = meansOverNonzeros(middlingNegFrames, isSpeakingVec, frPerWindow, 0);

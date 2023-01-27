@@ -15,7 +15,7 @@ function [firstCompleteFrame, monster] = makeTrackMonster(trackspec, featurelist
 %     The reason for this is that, in case the gaze data starts late,
 %     we pad it with zeros, rather than truncating the audio.  This is because
 %     we compute times using not timestamps, but implicitly, e.g. frame 0 
-%     is anchored at time zero (in the audio track)
+%     is anchored at time zero in the audio track
 % efficiency issues: 
 %   lots of redundant computation
 %   compute everything every 10ms, then in the last step downsample to 20ms
@@ -220,8 +220,22 @@ for featureNum = 1 : length(featurelist)
       featurevec = voicedUnvoicedIR(relevantEnergy, relevantPitch, duration)';
     case 'cp'    % CPPS
       featurevec = windowize(relevantCpps', duration)';
-    case 'st'
-      featurevec = windowize(relevantTilt, duration)';
+
+    case 'st'   % spectral tilt, mean
+      [featurevec, ~, ~, ~, ~] = allTiltFeatures(relevantTilt, relevantEnergy, duration);
+      featurevec = featurevec';
+    case 'tr'   % spectral tilt, range
+      [~, featurevec, ~, ~, ~] = allTiltFeatures(relevantTilt, relevantEnergy, duration);
+      featurevec = featurevec';
+    case 'tf'   % spectral tilt, flatish, very shallow negative
+      [~, ~, featurevec, ~, ~] = allTiltFeatures(relevantTilt, relevantEnergy, duration);
+      featurevec = featurevec';
+    case 'tm'   % spectral tilt, middling negative
+      [~, ~, ~, featurevec, ~] = allTiltFeatures(relevantTilt, relevantEnergy, duration);
+      featurevec = featurevec';
+    case 'tn'   % spectral tilt, negative and steep
+      [~, ~, ~, ~, featurevec] = allTiltFeatures(relevantTilt, relevantEnergy, duration);
+      featurevec = featurevec';
 
     case 'ts'  % time from start
       featurevec =  windowize(1:length(relevantPitch), duration)';
