@@ -20,7 +20,7 @@ trackspecs = gettracklist(tracklistFile);
 
 totalMonster = makeMultiTrackMonster(trackspecs, flist);
 if sum(sum(isnan(totalMonster))) > 0
-  fprintf('NaN in totalMonster\n');
+  fprintf('!! NaN in totalMonster\n');
 end
 
 
