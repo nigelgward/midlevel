@@ -1,4 +1,5 @@
 %% Nigel Ward, January 2023
+%% see comments below the code
 
 function [st, tiltRange, tf, tm, tn] = allTiltFeatures( ...
       perFrameTilts, logEnergy, msPerWindow)
@@ -10,15 +11,13 @@ function [st, tiltRange, tf, tm, tn] = allTiltFeatures( ...
   frPerWindow = msPerWindow / 10;
   globalMeanOfValids = mean(perFrameTilts(isSpeakingVec==true));
   st = meansOverNonzeros(perFrameTilts, isSpeakingVec, frPerWindow,globalMeanOfValids);
-  
 
   prunedTilts = perFrameTilts;
   prunedTilts(isSpeakingVec == 0) = 0;
   nonzeroTilts = prunedTilts(prunedTilts~=0);
   [bincounts, binedges] = histcounts(nonzeroTilts, 100);
   cumPerc = cumsum(bincounts * 1.0 / sum(bincounts));
-  veryNegThreshold       = ftfp(bincounts, binedges, cumPerc, .20)
-  min(prunedTilts)
+  veryNegThreshold       = ftfp(bincounts, binedges, cumPerc, .20);
   nearlyFlatThreshold    = ftfp(bincounts, binedges, cumPerc, .50);
   ninetyEighthPercentile = ftfp(bincounts, binedges, cumPerc, .98);
   
@@ -30,11 +29,11 @@ function [st, tiltRange, tf, tm, tn] = allTiltFeatures( ...
   		  prunedTilts <= nearlyFlatThreshold & ...
 		  prunedTilts > veryNegThreshold;
   veryNegFrames = prunedTilts;
-  veryNegFrames(veryNegFrames <= veryNegThreshold) = 0;
+  veryNegFrames(veryNegFrames > veryNegThreshold) = 0; % not negative enough
 
   tf = meansOverNonzeros(nearlyFlatFrames,  isSpeakingVec, frPerWindow, 0);
   tm = meansOverNonzeros(middlingNegFrames, isSpeakingVec, frPerWindow, 0);
-  tn = - meansOverNonzeros(veryNegFrames,isSpeakingVec, frPerWindow, 0);
+  tn = - meansOverNonzeros(veryNegFrames,   isSpeakingVec, frPerWindow, 0);
 
   for firstFrame = 1:length(perFrameTilts)
     lastFrame = min(firstFrame + frPerWindow - 1, length(perFrameTilts));
@@ -140,3 +139,14 @@ end
 %% Note that these 4 features will all have only ever 0-or-positive
 %% values, and be far from normally distributed.
 
+
+%% some observations on correlations with other features:
+%% negative tilt correlates with high cpps, or low breathiness ... odd
+%%  high spectral tilt correlates with reduction and lengthening ... odd
+%% high tilt range correlates with lots of very negative tilts, obviously
+%%   and high volume, and high pitch, and low overall tilt
+%% tilt flattish correlates with low pitch, and high voicing fraction,
+%%   and vew very negative tilts
+%% tilt middling correlates with pitch, both narrow and wide, and high volume
+%% tilt very negative correlates with wide tilt range,
+%%   and enunciation, odddly, and high pitch, and negative overall tilt, of course

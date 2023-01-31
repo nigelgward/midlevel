@@ -13,11 +13,12 @@ function vecset =  validateFeature()
   %%trackspec = makeTrackspec('l', '30sec-21d.au', '../flowtest/');
   %%trackspec = makeTrackspec('l', 'second10s-21d.au', '../flowtest/');
   %%trackspec = makeTrackspec('l', 'ten-twelve-21d.au', '../flowtest/');
- trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
+  trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
+  trackspec = makeTrackspec('l', 'dral-es_001.wav', '../../research/reduction/');
 %  trackspec = makeTrackspec('l', 'prefix-21d.wav', '../flowtest/');
 %  trackspec = makeTrackspec('r', 'utep04.au', 'f:/comparisons/en-social/');
 
-  featureList(1) = makeFeatureSpec('st',  -20,  20, 'self', 0);
+  featureList(1) = makeFeatureSpec('st',  -10,  10, 'self', 0);
   featureList(2) = makeFeatureSpec('tr',  -50,  50, 'self', 0);
   featureList(3) = makeFeatureSpec('tf',  -50,  50, 'self', 0);
   featureList(4) = makeFeatureSpec('tm',  -50,  50, 'self', 0);
@@ -40,8 +41,8 @@ toc
 %  plot(1000*vecset(:,2), 'r');  % range
 %  plot(vecset(:,3), 'b');       % flattish 
 %  plot(vecset(:,4), 'g');       % middling
-  plot(1000*vecset(:,5), 'c');       % negative
-  plot(vecset(:,6), 'm'); 
+  plot(1000*vecset(:,5), 'c');       % negative    !! broken
+%  plot(vecset(:,6), 'm'); 
 return 
 
   leftLE = vecset(:,1);

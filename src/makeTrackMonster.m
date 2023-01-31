@@ -224,6 +224,7 @@ for featureNum = 1 : length(featurelist)
     case 'st'   % spectral tilt, mean
       [featurevec, ~, ~, ~, ~] = allTiltFeatures(relevantTilt, relevantEnergy, duration);
       featurevec = featurevec';
+
     case 'tr'   % spectral tilt, range
       [~, featurevec, ~, ~, ~] = allTiltFeatures(relevantTilt, relevantEnergy, duration);
       featurevec = featurevec';

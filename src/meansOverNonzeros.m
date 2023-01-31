@@ -14,15 +14,16 @@ function means = meansOverNonzeros(featVec, isValid, frPerWindow, filler)
 		       integralIsValidCount(1:end-frPerWindow);
   means = windowSums ./ windowDenominators;
   means(isnan(means)) = filler;
+  means(isinf(means)) = filler;
 
-  globalMeanOfValids = mean(featVec(isValid==true));
   if frPerWindow > 1   % the normal case 
     headFramesToPad = floor(frPerWindow / 2) - 1;
     tailFramesToPad = ceil(frPerWindow / 2);
-    headPadding = globalMeanOfValids * ones(1,headFramesToPad);
-    tailPadding = globalMeanOfValids * ones(1,tailFramesToPad);
+    headPadding = filler * ones(1,headFramesToPad);
+    tailPadding = filler * ones(1,tailFramesToPad);
     means = horzcat(headPadding, means, tailPadding);
-    means(isnan(means)) = globalMeanOfValids;
+    means(isnan(means)) = filler;
+    means(isinf(means)) = filler;
 end 
 
 
