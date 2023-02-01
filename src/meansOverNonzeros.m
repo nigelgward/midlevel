@@ -12,6 +12,8 @@ function means = meansOverNonzeros(featVec, isValid, frPerWindow, filler)
     	       integralImage(1:end-frPerWindow);
   windowDenominators = integralIsValidCount(1+frPerWindow:end) - ...
 		       integralIsValidCount(1:end-frPerWindow);
+  %%fprintf('lengths: featVec, isValid, windowSums, windowDenominators: %d %d %d %d\n', ...
+  %% length(featVec), length(isValid), length(windowSums), length(windowDenominators));		      	      dbstop if error
   means = windowSums ./ windowDenominators;
   means(isnan(means)) = filler;
   means(isinf(means)) = filler;
