@@ -1,11 +1,12 @@
 function vecset =  validateFeature()
 
-% Nigel Ward, December 2016
-% compares the performance of a feature dectector on aufile
-% to the ideal hand-labeled feature presences, in annotationFile
-
-% The annotation file is created by first labeling with elan,
-%  then reformatting into csv using tweakElanOutput.awk  
+%% Nigel Ward, December 2016, Jan 2023
+%% Used as a driver for small-scale testing
+  
+%% One use was to compare the performance of a feature dectector on aufile
+%%  to the ideal hand-labeled feature presences, in annotationFile, 
+%%  where the annotation file was created by first labeling with elan,
+%%  then reformatting into csv using tweakElanOutput.awk  
 
   annotationFile = '../flowtest/21d-lengthening.csv';  
   %%trackspec = makeTrackspec('l', 'prefix21d.au', '../flowtest/');
@@ -15,6 +16,7 @@ function vecset =  validateFeature()
   %%trackspec = makeTrackspec('l', 'ten-twelve-21d.au', '../flowtest/');
   trackspec = makeTrackspec('l', '21d.au', '../flowtest/');
   trackspec = makeTrackspec('l', 'dral-es_001.wav', '../../research/reduction/');
+  trackspec = makeTrackspec('l', 'ES_001-downsampled.wav', '../../research/reduction/');
 %  trackspec = makeTrackspec('l', 'prefix-21d.wav', '../flowtest/');
 %  trackspec = makeTrackspec('r', 'utep04.au', 'f:/comparisons/en-social/');
 
