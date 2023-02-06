@@ -48,7 +48,7 @@ function diagramDimensions(rotationspecfile, fssfile)
 %  plotspec = stdPlotspec();    % suitable for april.fss
 %  plotspec = pbookPlotspec(1.0);   % for the book
   plotspec = interspeechPlotspec(1.1);
-  plotspec = cppsPlotspec(1.1);
+%  plotspec = cppsPlotspec(1.1);
   plotspec = tiltPlotspec(1.1);   
 %    plotspec = pbookPlotspec(1.3);   % for the book
 %    plotspec = pbookPlotspec(3.9);   % for the book, dimension 1 ***
@@ -72,7 +72,7 @@ function diagramDimensions(rotationspecfile, fssfile)
 	      -1700, 1700, rotation_provenance);
       nlines = size(actualPlotspec, 1);
       %%  ylim([0 nlines * 13]); 
-      ylim([0 260]);    
+      %ylim([0 260]);    
 
       %% improve the x-axis labels
       set(gca, 'fontname', 'Arial');

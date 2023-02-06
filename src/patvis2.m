@@ -1,11 +1,12 @@
 function patvis2(plotTitle, featureVals, featureList, plotspec, ...
 		 leftedge, rightedge, provenance)
 
-%% pattern visualization, Nigel Ward, UTEP and Kyoto U
+%% Prosodic Pattern Visualization, Nigel Ward, UTEP and Kyoto U
 %% January 2016.  based on patvis.m, but more flexible
 
-%% used for three things, potentially:
+%% Current used for
 %% - showing the loadings of all features, for some specific dimension
+%% Could also be used for
 %% - showing the average values of all feature, across 
 %%   some set of interesting timepoints, for example backchannel onsets
 %% - showing the values of all raw features (unnormalized and unrotated)
@@ -24,6 +25,7 @@ function patvis2(plotTitle, featureVals, featureList, plotspec, ...
   	  length(featureVals), length(featureList));
   end
 
+  figure(7);
   clf;    
   hold on; 
 
@@ -59,8 +61,9 @@ end
 
 function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, ...
 			    plotTitle, provenance);
-  headroom = 23;   % better for largePlotspec
+  headroom = 163;   % better for largePlotspec
   topPixel = numberOfLines * 13 + headroom;
+
   axis([leftEdgeMs rightEdgeMs 10 topPixel]);
   set(gca, 'YTick', []);   % turn off y-axis ticks
   set(gca, 'XTick', [-2000 -1500 -1000 -500  0 500 1000 1500 2000]);

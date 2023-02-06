@@ -2,6 +2,12 @@
 # Nigel Ward, UTEP, Jun 2018 
 # used for later passing through mean and/or stddev to get file-level stats
 # tuned based on English alone
+st  -10 to 0 self 
+tr  -50 to 0 self 
+tf  -50 to 0 self 
+tm  -50 to 0 self 
+tn  -50 to 0 self 
+
 vo -50 to 0 self   # shouldn't matter for avg; for std dev, any < 100 is fine 
 
 tl -50 to 0 self   # little effect on avgs, for std should be 100 or less
