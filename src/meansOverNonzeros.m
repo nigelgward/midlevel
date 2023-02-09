@@ -5,7 +5,7 @@
 
 %% Nigel Ward, January 2023
 
-function means = meansOverNonzeros2(featVec, isValid, frPerWindow, filler)
+function means = meansOverNonzeros(featVec, isValid, frPerWindow, filler)
   integralImage = [0 cumsum(featVec)];
   integralIsValidCount = [0 cumsum(isValid)];
   windowSums = integralImage(1+frPerWindow:end) - ...
@@ -17,9 +17,9 @@ function means = meansOverNonzeros2(featVec, isValid, frPerWindow, filler)
   %%fprintf('lengths: featVec, isValid, windowSums, windowDenominators: %d %d %d %d\n', ...
   %% length(featVec), length(isValid), length(windowSums), length(windowDenominators));
   %% dbstop if error
-  means = windowSums ./ windowDenominators
-  means(isnan(means)) = filler   % unlikely
-  means(isinf(means)) = filler   % common
+  means = windowSums ./ windowDenominators;
+  means(isnan(means)) = filler;   % unlikely
+  means(isinf(means)) = filler;   % common
   if frPerWindow > 1   % the normal case 
     headFramesToPad = floor(frPerWindow / 2) - 1;
     tailFramesToPad = ceil(frPerWindow / 2);
@@ -45,11 +45,11 @@ end
 %%   only single valid point to be enough to compute the mean 
 function minRequired = validFramesNeeded(frPerWindow)
   if frPerWindow < 5
-    minRequired = 1
+    minRequired = 1;
   elseif frPerWindow < 10
-    minRequired = 2
+    minRequired = 2;
   else
-    minRequired = 3
+    minRequired = 3;
   end
 end
 

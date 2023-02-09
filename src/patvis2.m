@@ -20,10 +20,10 @@ function patvis2(plotTitle, featureVals, featureList, plotspec, ...
 	 % NB ygains appropriate for unnormalized feature values are: 
 	 %  [0.6, 0.3, 5.0, 0.1, 2.4];  
 
-  if length(featureVals) ~= length(featureList)
-    fprintf('patvis2: number of values %d ~=  number of features %d\n', ...
-  	  length(featureVals), length(featureList));
-  end
+%  if length(featureVals) ~= length(featureList)
+%    fprintf('patvis2: number of values %d ~=  number of features %d\n', ...
+%  	  length(featureVals), length(featureList));
+%  end
 
   figure(7);
   clf;    
