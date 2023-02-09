@@ -48,19 +48,20 @@ function newPerFrameTilts = trimOrPadIfNeeded(perFrameTilts, isSpeakingVec);
     lengthDifference = size(perFrameTilts,2) - size(isSpeakingVec,2);
     switch lengthDifference
       case -2
-	perFrameTilts = [0 perFrameTilts 0];
+	newPerFrameTilts = [0 perFrameTilts 0];
       case -1
-	perFrameTilts = [perFrameTilts 0];
+	newPerFrameTilts = [perFrameTilts 0];
       case 0
 	error('bug')
       case 1
-	perFrameTilts = perFrameTilts(1:end-1);
+	newPerFrameTilts = perFrameTilts(1:end-1);
       case 2
-	perFrameTilts = perFrameTilts(2:end-1);
+	newPerFrameTilts = perFrameTilts(2:end-1);
       otherwise
 	error('lengths badly differ');
     end
   end
+end
   
 
 %% findThresholdForPercentile
