@@ -57,7 +57,8 @@ save rotationspec nmeans nstds coeff latent rotation_provenance  ...
 
 fprintf('writing loadings\n');
 %% also write in human-readable format 
-writeLoadings(coeff, struct2cell(flist), rotation_provenance, './'); 
+%%  writeLoadings(coeff, struct2cell(flist), rotation_provenance, './');
+%% but in fact, it's better to visualize them using diagramDimensions()
 writeVarExplained(latent);
 
 end

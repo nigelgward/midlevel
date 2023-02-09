@@ -4,26 +4,8 @@
 function [st, tiltRange, tf, tm, tn] = allTiltFeatures( ...
       perFrameTilts, logEnergy, msPerWindow)
   isSpeakingVec = speakingFrames(logEnergy);
-  if size(isSpeakingVec,2) ~=  size(perFrameTilts,2)
-    %%fprintf('allTiltFeatures: warning  size mismatch: iSV %d %d vs pFT %d %d ', ...
-    %%   size(isSpeakingVec), size(perFrameTilts));
-    lengthDifference = size(perFrameTilts,2) - size(isSpeakingVec,2);
-    switch lengthDifference
-      case -2
-	perFrameTilts = [0 perFrameTilts 0];
-      case -1
-	perFrameTilts = [perFrameTilts 0];
-      case 0
-	error('bug')
-      case 1
-	perFrameTilts = perFrameTilts(1:end-1);
-      case 2
-	perFrameTilts = perFrameTilts(2:end-1);
-      otherwise
-	error('lengths badly differ');
-    end
-  end
-  
+  perFrameTilts = trimOrPadIfNeeded(perFrameTilts, isSpeakingVec);
+
   frPerWindow = msPerWindow / 10;
   globalMeanOfValids = mean(perFrameTilts(isSpeakingVec==true));
   st = meansOverNonzeros(perFrameTilts, isSpeakingVec, frPerWindow,globalMeanOfValids);
@@ -59,10 +41,32 @@ function [st, tiltRange, tf, tm, tn] = allTiltFeatures( ...
 end
 
 
+function newPerFrameTilts = trimOrPadIfNeeded(perFrameTilts, isSpeakingVec);
+  if size(isSpeakingVec,2) ~=  size(perFrameTilts,2)
+    %%fprintf('allTiltFeatures: warning  size mismatch: iSV %d %d vs pFT %d %d ', ...
+    %%   size(isSpeakingVec), size(perFrameTilts));
+    lengthDifference = size(perFrameTilts,2) - size(isSpeakingVec,2);
+    switch lengthDifference
+      case -2
+	perFrameTilts = [0 perFrameTilts 0];
+      case -1
+	perFrameTilts = [perFrameTilts 0];
+      case 0
+	error('bug')
+      case 1
+	perFrameTilts = perFrameTilts(1:end-1);
+      case 2
+	perFrameTilts = perFrameTilts(2:end-1);
+      otherwise
+	error('lengths badly differ');
+    end
+  end
+  
+
 %% findThresholdForPercentile
 function threshold = ftfp(bincounts, binedges, cumPerc, targetPercentile)
-[ignore, thresholdBin] = min(abs(cumPerc - targetPercentile));
-threshold = binedges(thresholdBin);
+  [ignore, thresholdBin] = min(abs(cumPerc - targetPercentile));
+  threshold = binedges(thresholdBin);
 end
 
 %% to test

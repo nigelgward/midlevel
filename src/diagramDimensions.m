@@ -11,7 +11,7 @@ function diagramDimensions(rotationspecfile, fssfile)
 
 % Nigel Ward,  UTEP, May 2015
 
-  ndims = 12;    
+  ndims = 16;    
   % get coeff, fsspecFile, rotation_provenance, saved earlier by findDimensions
   load(rotationspecfile);    
   if exist('fsspecFile') 
@@ -71,8 +71,7 @@ function diagramDimensions(rotationspecfile, fssfile)
 	      featurespec, actualPlotspec, ...
 	      -1700, 1700, rotation_provenance);
       nlines = size(actualPlotspec, 1);
-      %%  ylim([0 nlines * 13]); 
-      %ylim([0 260]);    
+      ylim([0 15 + nlines * 15]);    % may need tweaking
 
       %% improve the x-axis labels
       set(gca, 'fontname', 'Arial');

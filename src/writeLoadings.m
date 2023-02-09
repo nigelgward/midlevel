@@ -1,3 +1,4 @@
+%% buggy; not useful
 function writeLoadings(coeff, featuresCellArray, header, outdir)
   numberToWrite = min(length(coeff),12);
   lfd = fopen([outdir 'hrloadings.txt'], 'w');  % hr loadings = human-readable loadings
