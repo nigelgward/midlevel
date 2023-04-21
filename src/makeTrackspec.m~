@@ -1,8 +1,0 @@
-
-
-function trackspec = makeTrackspec(side, filename, directory)
-  trackspec.side = side;
-  trackspec.filename = filename;
-  trackspec.directory = directory;
-  trackspec.path = [directory filename];
-end
