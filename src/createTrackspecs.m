@@ -1,3 +1,4 @@
+
 function trackspecs = createTrackspecs(directory)
   %% Returns a cell array of trackspecs, where
   %%   each trackspec has: channel (left or right), filename, path, directory
@@ -13,6 +14,11 @@ function trackspecs = createTrackspecs(directory)
   files = dir([directory '*.au']);
   if length(files) == 0
     files = dir([directory '*.wav']);
+  end
+    if length(files) == 0
+    files = dir([directory '/*.au']);
+  end  if length(files) == 0
+    files = dir([directory '/*.wav']);
   end
   if length(files) == 0
     error('no .wav or .au files found ... wrong directory perhaps?');
