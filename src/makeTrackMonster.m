@@ -86,7 +86,7 @@ if processAudio
   cepstralFluxl = cepstralFlux(signall, rate, energyl);
   isNanDiagnostics(cepstralFluxl, 'cepstral flux l');
   cppsl = normalize(computeCPPS(signall, rate));  % should use lookupOrComputeCpps
-  spectralTiltl = computeSpectralTilt(signall, rate);
+%  spectralTiltl = computeSpectralTilt(signall, rate);
 
   if stereop
     signalr = signalPair(:,2);
@@ -96,7 +96,7 @@ if processAudio
     cepstralFluxr = cepstralFlux(signalr, rate, energyr);
     isNanDiagnostics(cepstralFluxr, 'cepstral flux r');
     cppsr = normalize(computeCPPS(signalr, rate)); % should use lookupOrComputeCpps
-    spectralTiltr = computeSpectralTilt(signalr, rate);
+%    spectralTiltr = computeSpectralTilt(signalr, rate);
 
     [pitchl, pitchr, npoints] = killBleeding(plraw, prraw, energyl, energyr);
     pitchl = pitchl(1:npoints);
@@ -147,7 +147,7 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxl;
       relevantSig = signall;
       relevantCpps = cppsl;
-      relevantTilt = spectralTiltl;
+%      relevantTilt = spectralTiltl;
       %%[lsilenceMean, lspeechMean] = findClusterMeans(energyl);
     else 
       % if stereop is false then this should not be reached 
@@ -157,7 +157,7 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxr;
       relevantSig = signalr;
       relevantCpps = cppsr;
-      relevantTilt = spectralTiltr;
+%      relevantTilt = spectralTiltr;
       %%[rsilenceMean, rspeechMean] = findClusterMeans(energyr);
     end
   end 
