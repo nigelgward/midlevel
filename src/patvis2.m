@@ -70,6 +70,8 @@ function reshapeAndDecorate(leftEdgeMs, rightEdgeMs, numberOfLines, ...
   plot([0 0], [-1000 20+topPixel], 'color', [.8 .8 .8]);    % vertical hairline
   xlabel('milliseconds');
   title(plotTitle);
+  tmp = gca;
+  tmp.TitleFontSizeMultiplier = 1.1;
   pbaspect([1.1 1. 1]);  % stretch out x-axis by 10%
   text(leftEdgeMs, -20, provenance, 'FontSize', 9);
 end
