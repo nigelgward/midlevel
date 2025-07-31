@@ -1,105 +1,1764 @@
-for feature #1 se le -400  +400,    the three most correlated features are 
-     #1 se le -400  +400   at 1.00
-     #4 se vo -200 -100   at 0.72
-     #2 se vo -50  +0   at 0.72
-     #3 se vo -100 -50   at 0.71
+for feature #1 se vo -3200 -1600,    the three most correlated features are 
+     #1 se vo -3200 -1600   at 1.00
+     #2 se vo -1600 -1200   at 0.39
+     #71 se np -1600 -800   at 0.35
+     #87 se le -1600 -800   at 0.27
    the most anti-correlated feature is: 
-       #13 se vr -300  +300    at -0.26
-for feature #2 se vo -50  +0,    the three most correlated features are 
-     #2 se vo -50  +0   at 1.00
-     #3 se vo -100 -50   at 0.86
-     #7 se hp -50  +0   at 0.81
-     #1 se le -400  +400   at 0.72
+       #197 in np -1600 -800    at -0.26
+for feature #2 se vo -1600 -1200,    the three most correlated features are 
+     #2 se vo -1600 -1200   at 1.00
+     #71 se np -1600 -800   at 0.79
+     #87 se le -1600 -800   at 0.75
+     #59 se th -1600 -800   at 0.69
    the most anti-correlated feature is: 
-       #13 se vr -300  +300    at -0.22
-for feature #3 se vo -100 -50,    the three most correlated features are 
-     #3 se vo -100 -50   at 1.00
-     #2 se vo -50  +0   at 0.86
-     #4 se vo -200 -100   at 0.82
-     #7 se hp -50  +0   at 0.79
+       #216 in le -200  +0    at -0.26
+for feature #3 se vo -1200 -800,    the three most correlated features are 
+     #3 se vo -1200 -800   at 1.00
+     #87 se le -1600 -800   at 0.79
+     #59 se th -1600 -800   at 0.73
+     #71 se np -1600 -800   at 0.72
    the most anti-correlated feature is: 
-       #13 se vr -300  +300    at -0.21
-for feature #4 se vo -200 -100,    the three most correlated features are 
-     #4 se vo -200 -100   at 1.00
-     #3 se vo -100 -50   at 0.82
-     #5 se vo -400 -200   at 0.76
-     #1 se le -400  +400   at 0.72
+       #217 in le  +0  +200    at -0.25
+for feature #4 se vo -800 -600,    the three most correlated features are 
+     #4 se vo -800 -600   at 1.00
+     #88 se le -800 -400   at 0.79
+     #5 se vo -600 -400   at 0.74
+     #72 se np -800 -400   at 0.71
    the most anti-correlated feature is: 
-       #13 se vr -300  +300    at -0.19
-for feature #5 se vo -400 -200,    the three most correlated features are 
-     #5 se vo -400 -200   at 1.00
-     #4 se vo -200 -100   at 0.76
-     #1 se le -400  +400   at 0.69
-     #3 se vo -100 -50   at 0.63
+       #219 in le  +400  +800    at -0.24
+for feature #5 se vo -600 -400,    the three most correlated features are 
+     #5 se vo -600 -400   at 1.00
+     #88 se le -800 -400   at 0.82
+     #6 se vo -400 -300   at 0.76
+     #4 se vo -800 -600   at 0.74
    the most anti-correlated feature is: 
-       #13 se vr -300  +300    at -0.14
-for feature #6 se lp -50  +0,    the three most correlated features are 
-     #6 se lp -50  +0   at 1.00
-     #9 se cr -200  +0   at 0.67
-     #12 se wp -200  +0   at 0.62
-     #3 se vo -100 -50   at 0.52
+       #219 in le  +400  +800    at -0.24
+for feature #6 se vo -400 -300,    the three most correlated features are 
+     #6 se vo -400 -300   at 1.00
+     #89 se le -400 -200   at 0.80
+     #7 se vo -300 -200   at 0.79
+     #5 se vo -600 -400   at 0.76
    the most anti-correlated feature is: 
-       #15 in ne -10  +10    at -0.03
-for feature #7 se hp -50  +0,    the three most correlated features are 
-     #7 se hp -50  +0   at 1.00
-     #2 se vo -50  +0   at 0.81
-     #3 se vo -100 -50   at 0.79
-     #4 se vo -200 -100   at 0.67
+       #124 se hr  +200  +400    at -0.23
+for feature #7 se vo -300 -200,    the three most correlated features are 
+     #7 se vo -300 -200   at 1.00
+     #89 se le -400 -200   at 0.83
+     #8 se vo -200 -150   at 0.82
+     #6 se vo -400 -300   at 0.79
    the most anti-correlated feature is: 
-       #13 se vr -300  +300    at -0.16
-for feature #8 se sr -1000  +0,    the three most correlated features are 
-     #8 se sr -1000  +0   at 1.00
-     #5 se vo -400 -200   at 0.57
-     #12 se wp -200  +0   at 0.52
-     #1 se le -400  +400   at 0.51
+       #220 in le  +800  +1600    at -0.22
+for feature #8 se vo -200 -150,    the three most correlated features are 
+     #8 se vo -200 -150   at 1.00
+     #9 se vo -150 -100   at 0.86
+     #7 se vo -300 -200   at 0.82
+     #90 se le -200  +0   at 0.75
    the most anti-correlated feature is: 
-       #14 se ns -10  +10    at -0.17
-for feature #9 se cr -200  +0,    the three most correlated features are 
-     #9 se cr -200  +0   at 1.00
-     #12 se wp -200  +0   at 0.70
-     #6 se lp -50  +0   at 0.67
-     #8 se sr -1000  +0   at 0.46
+       #125 se hr  +400  +800    at -0.22
+for feature #9 se vo -150 -100,    the three most correlated features are 
+     #9 se vo -150 -100   at 1.00
+     #10 se vo -100 -50   at 0.86
+     #8 se vo -200 -150   at 0.86
+     #90 se le -200  +0   at 0.80
    the most anti-correlated feature is: 
-       #15 in ne -10  +10    at -0.02
-for feature #10 se fp -200  +0,    the three most correlated features are 
-     #10 se fp -200  +0   at 1.00
-     #11 se np -200  +0   at 0.99
-     #4 se vo -200 -100   at 0.63
-     #3 se vo -100 -50   at 0.59
+       #125 se hr  +400  +800    at -0.22
+for feature #10 se vo -100 -50,    the three most correlated features are 
+     #10 se vo -100 -50   at 1.00
+     #9 se vo -150 -100   at 0.86
+     #11 se vo -50  +0   at 0.86
+     #90 se le -200  +0   at 0.82
    the most anti-correlated feature is: 
-       #13 se vr -300  +300    at -0.10
-for feature #11 se np -200  +0,    the three most correlated features are 
-     #11 se np -200  +0   at 1.00
-     #10 se fp -200  +0   at 0.99
-     #4 se vo -200 -100   at 0.64
-     #3 se vo -100 -50   at 0.60
+       #125 se hr  +400  +800    at -0.22
+for feature #11 se vo -50  +0,    the three most correlated features are 
+     #11 se vo -50  +0   at 1.00
+     #10 se vo -100 -50   at 0.86
+     #12 se vo  +0  +50   at 0.83
+     #90 se le -200  +0   at 0.79
    the most anti-correlated feature is: 
-       #13 se vr -300  +300    at -0.11
-for feature #12 se wp -200  +0,    the three most correlated features are 
-     #12 se wp -200  +0   at 1.00
-     #9 se cr -200  +0   at 0.70
-     #6 se lp -50  +0   at 0.62
-     #4 se vo -200 -100   at 0.61
+       #220 in le  +800  +1600    at -0.22
+for feature #12 se vo  +0  +50,    the three most correlated features are 
+     #12 se vo  +0  +50   at 1.00
+     #13 se vo  +50  +100   at 0.86
+     #11 se vo -50  +0   at 0.83
+     #91 se le  +0  +200   at 0.76
    the most anti-correlated feature is: 
-       #15 in ne -10  +10    at -0.05
-for feature #13 se vr -300  +300,    the three most correlated features are 
-     #13 se vr -300  +300   at 1.00
-     #6 se lp -50  +0   at 0.10
-     #9 se cr -200  +0   at 0.07
-     #12 se wp -200  +0   at 0.03
+       #220 in le  +800  +1600    at -0.22
+for feature #13 se vo  +50  +100,    the three most correlated features are 
+     #13 se vo  +50  +100   at 1.00
+     #14 se vo  +100  +150   at 0.86
+     #12 se vo  +0  +50   at 0.86
+     #91 se le  +0  +200   at 0.81
    the most anti-correlated feature is: 
-       #1 se le -400  +400    at -0.26
-for feature #14 se ns -10  +10,    the three most correlated features are 
-     #14 se ns -10  +10   at 1.00
-     #1 se le -400  +400   at 0.19
-     #2 se vo -50  +0   at 0.10
-     #3 se vo -100 -50   at 0.10
+       #220 in le  +800  +1600    at -0.22
+for feature #14 se vo  +100  +150,    the three most correlated features are 
+     #14 se vo  +100  +150   at 1.00
+     #13 se vo  +50  +100   at 0.86
+     #15 se vo  +150  +200   at 0.86
+     #91 se le  +0  +200   at 0.81
    the most anti-correlated feature is: 
-       #15 in ne -10  +10    at -0.29
-for feature #15 in ne -10  +10,    the three most correlated features are 
-     #15 in ne -10  +10   at 1.00
-     #1 se le -400  +400   at 0.07
-     #8 se sr -1000  +0   at 0.06
-     #13 se vr -300  +300   at 0.00
+       #220 in le  +800  +1600    at -0.21
+for feature #15 se vo  +150  +200,    the three most correlated features are 
+     #15 se vo  +150  +200   at 1.00
+     #14 se vo  +100  +150   at 0.86
+     #16 se vo  +200  +300   at 0.85
+     #91 se le  +0  +200   at 0.77
    the most anti-correlated feature is: 
-       #14 se ns -10  +10    at -0.29
+       #204 in np  +800  +1600    at -0.22
+for feature #16 se vo  +200  +300,    the three most correlated features are 
+     #16 se vo  +200  +300   at 1.00
+     #15 se vo  +150  +200   at 0.85
+     #92 se le  +200  +400   at 0.80
+     #17 se vo  +300  +400   at 0.79
+   the most anti-correlated feature is: 
+       #204 in np  +800  +1600    at -0.23
+for feature #17 se vo  +300  +400,    the three most correlated features are 
+     #17 se vo  +300  +400   at 1.00
+     #92 se le  +200  +400   at 0.82
+     #16 se vo  +200  +300   at 0.79
+     #18 se vo  +400  +600   at 0.76
+   the most anti-correlated feature is: 
+       #204 in np  +800  +1600    at -0.23
+for feature #18 se vo  +400  +600,    the three most correlated features are 
+     #18 se vo  +400  +600   at 1.00
+     #93 se le  +400  +800   at 0.79
+     #17 se vo  +300  +400   at 0.76
+     #19 se vo  +600  +800   at 0.74
+   the most anti-correlated feature is: 
+       #204 in np  +800  +1600    at -0.25
+for feature #19 se vo  +600  +800,    the three most correlated features are 
+     #19 se vo  +600  +800   at 1.00
+     #93 se le  +400  +800   at 0.82
+     #18 se vo  +400  +600   at 0.74
+     #69 se th  +400  +800   at 0.71
+   the most anti-correlated feature is: 
+       #204 in np  +800  +1600    at -0.24
+for feature #20 se vo  +800  +1200,    the three most correlated features are 
+     #20 se vo  +800  +1200   at 1.00
+     #78 se np  +800  +1600   at 0.79
+     #94 se le  +800  +1600   at 0.75
+     #19 se vo  +600  +800   at 0.69
+   the most anti-correlated feature is: 
+       #217 in le  +0  +200    at -0.23
+for feature #21 se vo  +1200  +1600,    the three most correlated features are 
+     #21 se vo  +1200  +1600   at 1.00
+     #94 se le  +800  +1600   at 0.77
+     #78 se np  +800  +1600   at 0.73
+     #70 se th  +800  +1600   at 0.73
+   the most anti-correlated feature is: 
+       #219 in le  +400  +800    at -0.25
+for feature #22 se vo  +1600  +3200,    the three most correlated features are 
+     #22 se vo  +1600  +3200   at 1.00
+     #21 se vo  +1200  +1600   at 0.40
+     #70 se th  +800  +1600   at 0.40
+     #94 se le  +800  +1600   at 0.34
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.28
+for feature #23 se cr -1600 -800,    the three most correlated features are 
+     #23 se cr -1600 -800   at 1.00
+     #79 se wp -1600 -800   at 0.86
+     #47 se tl -1600 -800   at 0.80
+     #2 se vo -1600 -1200   at 0.58
+   the most anti-correlated feature is: 
+       #214 in le -800 -400    at -0.28
+for feature #24 se cr -800 -400,    the three most correlated features are 
+     #24 se cr -800 -400   at 1.00
+     #80 se wp -800 -400   at 0.81
+     #48 se tl -800 -400   at 0.78
+     #88 se le -800 -400   at 0.54
+   the most anti-correlated feature is: 
+       #249 in hr  +0  +200    at -0.23
+for feature #25 se cr -400 -300,    the three most correlated features are 
+     #25 se cr -400 -300   at 1.00
+     #49 se tl -400 -300   at 0.67
+     #81 se wp -400 -200   at 0.59
+     #50 se tl -300 -200   at 0.47
+   the most anti-correlated feature is: 
+       #205 in wp -1600 -800    at -0.18
+for feature #26 se cr -300 -200,    the three most correlated features are 
+     #26 se cr -300 -200   at 1.00
+     #50 se tl -300 -200   at 0.68
+     #81 se wp -400 -200   at 0.60
+     #49 se tl -400 -300   at 0.48
+   the most anti-correlated feature is: 
+       #205 in wp -1600 -800    at -0.18
+for feature #27 se cr -200 -100,    the three most correlated features are 
+     #27 se cr -200 -100   at 1.00
+     #51 se tl -200 -100   at 0.68
+     #82 se wp -200  +0   at 0.59
+     #81 se wp -400 -200   at 0.50
+   the most anti-correlated feature is: 
+       #205 in wp -1600 -800    at -0.18
+for feature #28 se cr -100  +0,    the three most correlated features are 
+     #28 se cr -100  +0   at 1.00
+     #52 se tl -100  +0   at 0.67
+     #82 se wp -200  +0   at 0.60
+     #51 se tl -200 -100   at 0.47
+   the most anti-correlated feature is: 
+       #213 in le -1600 -800    at -0.18
+for feature #29 se cr  +0  +100,    the three most correlated features are 
+     #29 se cr  +0  +100   at 1.00
+     #53 se tl  +0  +100   at 0.68
+     #83 se wp  +0  +200   at 0.59
+     #82 se wp -200  +0   at 0.50
+   the most anti-correlated feature is: 
+       #213 in le -1600 -800    at -0.18
+for feature #30 se cr  +100  +200,    the three most correlated features are 
+     #30 se cr  +100  +200   at 1.00
+     #54 se tl  +100  +200   at 0.68
+     #83 se wp  +0  +200   at 0.60
+     #53 se tl  +0  +100   at 0.48
+   the most anti-correlated feature is: 
+       #213 in le -1600 -800    at -0.18
+for feature #31 se cr  +200  +300,    the three most correlated features are 
+     #31 se cr  +200  +300   at 1.00
+     #55 se tl  +200  +300   at 0.67
+     #84 se wp  +200  +400   at 0.59
+     #83 se wp  +0  +200   at 0.49
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.18
+for feature #32 se cr  +300  +400,    the three most correlated features are 
+     #32 se cr  +300  +400   at 1.00
+     #56 se tl  +300  +400   at 0.68
+     #84 se wp  +200  +400   at 0.60
+     #55 se tl  +200  +300   at 0.48
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.18
+for feature #33 se cr  +400  +800,    the three most correlated features are 
+     #33 se cr  +400  +800   at 1.00
+     #85 se wp  +400  +800   at 0.81
+     #57 se tl  +400  +800   at 0.78
+     #93 se le  +400  +800   at 0.55
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.24
+for feature #34 se cr  +800  +1600,    the three most correlated features are 
+     #34 se cr  +800  +1600   at 1.00
+     #86 se wp  +800  +1600   at 0.87
+     #58 se tl  +800  +1600   at 0.81
+     #20 se vo  +800  +1200   at 0.58
+   the most anti-correlated feature is: 
+       #213 in le -1600 -800    at -0.28
+for feature #35 se cp -1600 -800,    the three most correlated features are 
+     #35 se cp -1600 -800   at 1.00
+     #71 se np -1600 -800   at 0.76
+     #2 se vo -1600 -1200   at 0.63
+     #3 se vo -1200 -800   at 0.58
+   the most anti-correlated feature is: 
+       #120 se hr -800 -400    at -0.33
+for feature #36 se cp -800 -400,    the three most correlated features are 
+     #36 se cp -800 -400   at 1.00
+     #72 se np -800 -400   at 0.75
+     #4 se vo -800 -600   at 0.64
+     #5 se vo -600 -400   at 0.59
+   the most anti-correlated feature is: 
+       #123 se hr  +0  +200    at -0.29
+for feature #37 se cp -400 -300,    the three most correlated features are 
+     #37 se cp -400 -300   at 1.00
+     #73 se np -400 -200   at 0.64
+     #6 se vo -400 -300   at 0.63
+     #38 se cp -300 -200   at 0.62
+   the most anti-correlated feature is: 
+       #124 se hr  +200  +400    at -0.22
+for feature #38 se cp -300 -200,    the three most correlated features are 
+     #38 se cp -300 -200   at 1.00
+     #7 se vo -300 -200   at 0.63
+     #73 se np -400 -200   at 0.62
+     #37 se cp -400 -300   at 0.62
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.21
+for feature #39 se cp -200 -100,    the three most correlated features are 
+     #39 se cp -200 -100   at 1.00
+     #8 se vo -200 -150   at 0.65
+     #74 se np -200  +0   at 0.64
+     #40 se cp -100  +0   at 0.62
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.23
+for feature #40 se cp -100  +0,    the three most correlated features are 
+     #40 se cp -100  +0   at 1.00
+     #10 se vo -100 -50   at 0.65
+     #74 se np -200  +0   at 0.63
+     #39 se cp -200 -100   at 0.62
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.23
+for feature #41 se cp  +0  +100,    the three most correlated features are 
+     #41 se cp  +0  +100   at 1.00
+     #12 se vo  +0  +50   at 0.64
+     #75 se np  +0  +200   at 0.64
+     #40 se cp -100  +0   at 0.62
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.22
+for feature #42 se cp  +100  +200,    the three most correlated features are 
+     #42 se cp  +100  +200   at 1.00
+     #14 se vo  +100  +150   at 0.65
+     #75 se np  +0  +200   at 0.63
+     #43 se cp  +200  +300   at 0.62
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.21
+for feature #43 se cp  +200  +300,    the three most correlated features are 
+     #43 se cp  +200  +300   at 1.00
+     #76 se np  +200  +400   at 0.64
+     #16 se vo  +200  +300   at 0.64
+     #42 se cp  +100  +200   at 0.62
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.18
+for feature #44 se cp  +300  +400,    the three most correlated features are 
+     #44 se cp  +300  +400   at 1.00
+     #17 se vo  +300  +400   at 0.64
+     #76 se np  +200  +400   at 0.63
+     #43 se cp  +200  +300   at 0.62
+   the most anti-correlated feature is: 
+       #126 se hr  +800  +1600    at -0.18
+for feature #45 se cp  +400  +800,    the three most correlated features are 
+     #45 se cp  +400  +800   at 1.00
+     #77 se np  +400  +800   at 0.75
+     #18 se vo  +400  +600   at 0.64
+     #19 se vo  +600  +800   at 0.59
+   the most anti-correlated feature is: 
+       #126 se hr  +800  +1600    at -0.27
+for feature #46 se cp  +800  +1600,    the three most correlated features are 
+     #46 se cp  +800  +1600   at 1.00
+     #78 se np  +800  +1600   at 0.76
+     #20 se vo  +800  +1200   at 0.63
+     #21 se vo  +1200  +1600   at 0.58
+   the most anti-correlated feature is: 
+       #118 se re  +800  +1600    at -0.16
+for feature #47 se tl -1600 -800,    the three most correlated features are 
+     #47 se tl -1600 -800   at 1.00
+     #79 se wp -1600 -800   at 0.81
+     #23 se cr -1600 -800   at 0.80
+     #111 se re -1600 -800   at 0.39
+   the most anti-correlated feature is: 
+       #246 in hr -800 -400    at -0.20
+for feature #48 se tl -800 -400,    the three most correlated features are 
+     #48 se tl -800 -400   at 1.00
+     #24 se cr -800 -400   at 0.78
+     #80 se wp -800 -400   at 0.72
+     #49 se tl -400 -300   at 0.56
+   the most anti-correlated feature is: 
+       #249 in hr  +0  +200    at -0.20
+for feature #49 se tl -400 -300,    the three most correlated features are 
+     #49 se tl -400 -300   at 1.00
+     #25 se cr -400 -300   at 0.67
+     #50 se tl -300 -200   at 0.67
+     #48 se tl -800 -400   at 0.56
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.16
+for feature #50 se tl -300 -200,    the three most correlated features are 
+     #50 se tl -300 -200   at 1.00
+     #26 se cr -300 -200   at 0.68
+     #51 se tl -200 -100   at 0.67
+     #49 se tl -400 -300   at 0.67
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.17
+for feature #51 se tl -200 -100,    the three most correlated features are 
+     #51 se tl -200 -100   at 1.00
+     #27 se cr -200 -100   at 0.68
+     #50 se tl -300 -200   at 0.67
+     #52 se tl -100  +0   at 0.67
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.17
+for feature #52 se tl -100  +0,    the three most correlated features are 
+     #52 se tl -100  +0   at 1.00
+     #28 se cr -100  +0   at 0.67
+     #53 se tl  +0  +100   at 0.67
+     #51 se tl -200 -100   at 0.67
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.16
+for feature #53 se tl  +0  +100,    the three most correlated features are 
+     #53 se tl  +0  +100   at 1.00
+     #29 se cr  +0  +100   at 0.68
+     #54 se tl  +100  +200   at 0.67
+     #52 se tl -100  +0   at 0.67
+   the most anti-correlated feature is: 
+       #123 se hr  +0  +200    at -0.16
+for feature #54 se tl  +100  +200,    the three most correlated features are 
+     #54 se tl  +100  +200   at 1.00
+     #30 se cr  +100  +200   at 0.68
+     #53 se tl  +0  +100   at 0.67
+     #55 se tl  +200  +300   at 0.67
+   the most anti-correlated feature is: 
+       #123 se hr  +0  +200    at -0.16
+for feature #55 se tl  +200  +300,    the three most correlated features are 
+     #55 se tl  +200  +300   at 1.00
+     #31 se cr  +200  +300   at 0.67
+     #56 se tl  +300  +400   at 0.67
+     #54 se tl  +100  +200   at 0.67
+   the most anti-correlated feature is: 
+       #124 se hr  +200  +400    at -0.16
+for feature #56 se tl  +300  +400,    the three most correlated features are 
+     #56 se tl  +300  +400   at 1.00
+     #32 se cr  +300  +400   at 0.68
+     #55 se tl  +200  +300   at 0.67
+     #57 se tl  +400  +800   at 0.56
+   the most anti-correlated feature is: 
+       #252 in hr  +800  +1600    at -0.16
+for feature #57 se tl  +400  +800,    the three most correlated features are 
+     #57 se tl  +400  +800   at 1.00
+     #33 se cr  +400  +800   at 0.78
+     #85 se wp  +400  +800   at 0.72
+     #56 se tl  +300  +400   at 0.56
+   the most anti-correlated feature is: 
+       #252 in hr  +800  +1600    at -0.18
+for feature #58 se tl  +800  +1600,    the three most correlated features are 
+     #58 se tl  +800  +1600   at 1.00
+     #86 se wp  +800  +1600   at 0.81
+     #34 se cr  +800  +1600   at 0.81
+     #118 se re  +800  +1600   at 0.40
+   the most anti-correlated feature is: 
+       #149 in cr -1600 -800    at -0.23
+for feature #59 se th -1600 -800,    the three most correlated features are 
+     #59 se th -1600 -800   at 1.00
+     #3 se vo -1200 -800   at 0.73
+     #87 se le -1600 -800   at 0.71
+     #2 se vo -1600 -1200   at 0.69
+   the most anti-correlated feature is: 
+       #111 se re -1600 -800    at -0.28
+for feature #60 se th -800 -400,    the three most correlated features are 
+     #60 se th -800 -400   at 1.00
+     #88 se le -800 -400   at 0.71
+     #5 se vo -600 -400   at 0.71
+     #4 se vo -800 -600   at 0.70
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.21
+for feature #61 se th -400 -300,    the three most correlated features are 
+     #61 se th -400 -300   at 1.00
+     #6 se vo -400 -300   at 0.68
+     #62 se th -300 -200   at 0.66
+     #89 se le -400 -200   at 0.62
+   the most anti-correlated feature is: 
+       #249 in hr  +0  +200    at -0.18
+for feature #62 se th -300 -200,    the three most correlated features are 
+     #62 se th -300 -200   at 1.00
+     #7 se vo -300 -200   at 0.68
+     #63 se th -200 -100   at 0.66
+     #61 se th -400 -300   at 0.66
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.18
+for feature #63 se th -200 -100,    the three most correlated features are 
+     #63 se th -200 -100   at 1.00
+     #8 se vo -200 -150   at 0.66
+     #64 se th -100  +0   at 0.66
+     #62 se th -300 -200   at 0.66
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.19
+for feature #64 se th -100  +0,    the three most correlated features are 
+     #64 se th -100  +0   at 1.00
+     #10 se vo -100 -50   at 0.66
+     #63 se th -200 -100   at 0.66
+     #65 se th  +0  +100   at 0.66
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.19
+for feature #65 se th  +0  +100,    the three most correlated features are 
+     #65 se th  +0  +100   at 1.00
+     #12 se vo  +0  +50   at 0.67
+     #66 se th  +100  +200   at 0.66
+     #64 se th -100  +0   at 0.66
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.19
+for feature #66 se th  +100  +200,    the three most correlated features are 
+     #66 se th  +100  +200   at 1.00
+     #14 se vo  +100  +150   at 0.67
+     #67 se th  +200  +300   at 0.66
+     #65 se th  +0  +100   at 0.66
+   the most anti-correlated feature is: 
+       #245 in hr -1600 -800    at -0.18
+for feature #67 se th  +200  +300,    the three most correlated features are 
+     #67 se th  +200  +300   at 1.00
+     #16 se vo  +200  +300   at 0.68
+     #66 se th  +100  +200   at 0.66
+     #68 se th  +300  +400   at 0.66
+   the most anti-correlated feature is: 
+       #245 in hr -1600 -800    at -0.19
+for feature #68 se th  +300  +400,    the three most correlated features are 
+     #68 se th  +300  +400   at 1.00
+     #17 se vo  +300  +400   at 0.68
+     #67 se th  +200  +300   at 0.66
+     #92 se le  +200  +400   at 0.63
+   the most anti-correlated feature is: 
+       #245 in hr -1600 -800    at -0.19
+for feature #69 se th  +400  +800,    the three most correlated features are 
+     #69 se th  +400  +800   at 1.00
+     #93 se le  +400  +800   at 0.71
+     #19 se vo  +600  +800   at 0.71
+     #18 se vo  +400  +600   at 0.70
+   the most anti-correlated feature is: 
+       #245 in hr -1600 -800    at -0.24
+for feature #70 se th  +800  +1600,    the three most correlated features are 
+     #70 se th  +800  +1600   at 1.00
+     #21 se vo  +1200  +1600   at 0.73
+     #94 se le  +800  +1600   at 0.70
+     #20 se vo  +800  +1200   at 0.68
+   the most anti-correlated feature is: 
+       #118 se re  +800  +1600    at -0.27
+for feature #71 se np -1600 -800,    the three most correlated features are 
+     #71 se np -1600 -800   at 1.00
+     #2 se vo -1600 -1200   at 0.79
+     #35 se cp -1600 -800   at 0.76
+     #3 se vo -1200 -800   at 0.72
+   the most anti-correlated feature is: 
+       #213 in le -1600 -800    at -0.33
+for feature #72 se np -800 -400,    the three most correlated features are 
+     #72 se np -800 -400   at 1.00
+     #36 se cp -800 -400   at 0.75
+     #4 se vo -800 -600   at 0.71
+     #5 se vo -600 -400   at 0.66
+   the most anti-correlated feature is: 
+       #213 in le -1600 -800    at -0.29
+for feature #73 se np -400 -200,    the three most correlated features are 
+     #73 se np -400 -200   at 1.00
+     #74 se np -200  +0   at 0.68
+     #6 se vo -400 -300   at 0.64
+     #37 se cp -400 -300   at 0.64
+   the most anti-correlated feature is: 
+       #214 in le -800 -400    at -0.22
+for feature #74 se np -200  +0,    the three most correlated features are 
+     #74 se np -200  +0   at 1.00
+     #73 se np -400 -200   at 0.68
+     #75 se np  +0  +200   at 0.68
+     #39 se cp -200 -100   at 0.64
+   the most anti-correlated feature is: 
+       #214 in le -800 -400    at -0.25
+for feature #75 se np  +0  +200,    the three most correlated features are 
+     #75 se np  +0  +200   at 1.00
+     #76 se np  +200  +400   at 0.68
+     #74 se np -200  +0   at 0.68
+     #41 se cp  +0  +100   at 0.64
+   the most anti-correlated feature is: 
+       #214 in le -800 -400    at -0.24
+for feature #76 se np  +200  +400,    the three most correlated features are 
+     #76 se np  +200  +400   at 1.00
+     #75 se np  +0  +200   at 0.68
+     #16 se vo  +200  +300   at 0.65
+     #43 se cp  +200  +300   at 0.64
+   the most anti-correlated feature is: 
+       #215 in le -400 -200    at -0.24
+for feature #77 se np  +400  +800,    the three most correlated features are 
+     #77 se np  +400  +800   at 1.00
+     #45 se cp  +400  +800   at 0.75
+     #18 se vo  +400  +600   at 0.71
+     #19 se vo  +600  +800   at 0.66
+   the most anti-correlated feature is: 
+       #217 in le  +0  +200    at -0.27
+for feature #78 se np  +800  +1600,    the three most correlated features are 
+     #78 se np  +800  +1600   at 1.00
+     #20 se vo  +800  +1200   at 0.79
+     #46 se cp  +800  +1600   at 0.76
+     #21 se vo  +1200  +1600   at 0.73
+   the most anti-correlated feature is: 
+       #219 in le  +400  +800    at -0.34
+for feature #79 se wp -1600 -800,    the three most correlated features are 
+     #79 se wp -1600 -800   at 1.00
+     #23 se cr -1600 -800   at 0.86
+     #47 se tl -1600 -800   at 0.81
+     #87 se le -1600 -800   at 0.52
+   the most anti-correlated feature is: 
+       #214 in le -800 -400    at -0.27
+for feature #80 se wp -800 -400,    the three most correlated features are 
+     #80 se wp -800 -400   at 1.00
+     #24 se cr -800 -400   at 0.81
+     #48 se tl -800 -400   at 0.72
+     #88 se le -800 -400   at 0.59
+   the most anti-correlated feature is: 
+       #248 in hr -200  +0    at -0.24
+for feature #81 se wp -400 -200,    the three most correlated features are 
+     #81 se wp -400 -200   at 1.00
+     #82 se wp -200  +0   at 0.73
+     #89 se le -400 -200   at 0.65
+     #6 se vo -400 -300   at 0.61
+   the most anti-correlated feature is: 
+       #219 in le  +400  +800    at -0.26
+for feature #82 se wp -200  +0,    the three most correlated features are 
+     #82 se wp -200  +0   at 1.00
+     #83 se wp  +0  +200   at 0.73
+     #81 se wp -400 -200   at 0.73
+     #90 se le -200  +0   at 0.66
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.27
+for feature #83 se wp  +0  +200,    the three most correlated features are 
+     #83 se wp  +0  +200   at 1.00
+     #82 se wp -200  +0   at 0.73
+     #84 se wp  +200  +400   at 0.73
+     #91 se le  +0  +200   at 0.66
+   the most anti-correlated feature is: 
+       #160 in cr  +800  +1600    at -0.28
+for feature #84 se wp  +200  +400,    the three most correlated features are 
+     #84 se wp  +200  +400   at 1.00
+     #83 se wp  +0  +200   at 0.73
+     #92 se le  +200  +400   at 0.65
+     #16 se vo  +200  +300   at 0.61
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.28
+for feature #85 se wp  +400  +800,    the three most correlated features are 
+     #85 se wp  +400  +800   at 1.00
+     #33 se cr  +400  +800   at 0.81
+     #57 se tl  +400  +800   at 0.72
+     #93 se le  +400  +800   at 0.59
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.25
+for feature #86 se wp  +800  +1600,    the three most correlated features are 
+     #86 se wp  +800  +1600   at 1.00
+     #34 se cr  +800  +1600   at 0.87
+     #58 se tl  +800  +1600   at 0.81
+     #94 se le  +800  +1600   at 0.52
+   the most anti-correlated feature is: 
+       #149 in cr -1600 -800    at -0.27
+for feature #87 se le -1600 -800,    the three most correlated features are 
+     #87 se le -1600 -800   at 1.00
+     #3 se vo -1200 -800   at 0.79
+     #2 se vo -1600 -1200   at 0.75
+     #59 se th -1600 -800   at 0.71
+   the most anti-correlated feature is: 
+       #245 in hr -1600 -800    at -0.34
+for feature #88 se le -800 -400,    the three most correlated features are 
+     #88 se le -800 -400   at 1.00
+     #5 se vo -600 -400   at 0.82
+     #4 se vo -800 -600   at 0.79
+     #89 se le -400 -200   at 0.71
+   the most anti-correlated feature is: 
+       #197 in np -1600 -800    at -0.29
+for feature #89 se le -400 -200,    the three most correlated features are 
+     #89 se le -400 -200   at 1.00
+     #7 se vo -300 -200   at 0.83
+     #6 se vo -400 -300   at 0.80
+     #90 se le -200  +0   at 0.74
+   the most anti-correlated feature is: 
+       #149 in cr -1600 -800    at -0.28
+for feature #90 se le -200  +0,    the three most correlated features are 
+     #90 se le -200  +0   at 1.00
+     #10 se vo -100 -50   at 0.82
+     #9 se vo -150 -100   at 0.80
+     #11 se vo -50  +0   at 0.79
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.29
+for feature #91 se le  +0  +200,    the three most correlated features are 
+     #91 se le  +0  +200   at 1.00
+     #14 se vo  +100  +150   at 0.81
+     #13 se vo  +50  +100   at 0.81
+     #15 se vo  +150  +200   at 0.77
+   the most anti-correlated feature is: 
+       #204 in np  +800  +1600    at -0.29
+for feature #92 se le  +200  +400,    the three most correlated features are 
+     #92 se le  +200  +400   at 1.00
+     #17 se vo  +300  +400   at 0.82
+     #16 se vo  +200  +300   at 0.80
+     #91 se le  +0  +200   at 0.74
+   the most anti-correlated feature is: 
+       #204 in np  +800  +1600    at -0.31
+for feature #93 se le  +400  +800,    the three most correlated features are 
+     #93 se le  +400  +800   at 1.00
+     #19 se vo  +600  +800   at 0.82
+     #18 se vo  +400  +600   at 0.79
+     #69 se th  +400  +800   at 0.71
+   the most anti-correlated feature is: 
+       #204 in np  +800  +1600    at -0.34
+for feature #94 se le  +800  +1600,    the three most correlated features are 
+     #94 se le  +800  +1600   at 1.00
+     #21 se vo  +1200  +1600   at 0.77
+     #20 se vo  +800  +1200   at 0.75
+     #70 se th  +800  +1600   at 0.70
+   the most anti-correlated feature is: 
+       #252 in hr  +800  +1600    at -0.35
+for feature #95 se pd -1600 -800,    the three most correlated features are 
+     #95 se pd -1600 -800   at 1.00
+     #103 se en -1600 -800   at 0.58
+     #59 se th -1600 -800   at 0.57
+     #3 se vo -1200 -800   at 0.46
+   the most anti-correlated feature is: 
+       #111 se re -1600 -800    at -0.24
+for feature #96 se pd -800 -400,    the three most correlated features are 
+     #96 se pd -800 -400   at 1.00
+     #60 se th -800 -400   at 0.54
+     #104 se en -800 -400   at 0.54
+     #5 se vo -600 -400   at 0.40
+   the most anti-correlated feature is: 
+       #112 se re -800 -400    at -0.15
+for feature #97 se pd -400 -200,    the three most correlated features are 
+     #97 se pd -400 -200   at 1.00
+     #62 se th -300 -200   at 0.50
+     #105 se en -400 -200   at 0.49
+     #61 se th -400 -300   at 0.47
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.10
+for feature #98 se pd -200  +0,    the three most correlated features are 
+     #98 se pd -200  +0   at 1.00
+     #64 se th -100  +0   at 0.50
+     #106 se en -200  +0   at 0.49
+     #63 se th -200 -100   at 0.47
+   the most anti-correlated feature is: 
+       #112 se re -800 -400    at -0.09
+for feature #99 se pd  +0  +200,    the three most correlated features are 
+     #99 se pd  +0  +200   at 1.00
+     #66 se th  +100  +200   at 0.49
+     #107 se en  +0  +200   at 0.49
+     #65 se th  +0  +100   at 0.47
+   the most anti-correlated feature is: 
+       #115 se re  +0  +200    at -0.09
+for feature #100 se pd  +200  +400,    the three most correlated features are 
+     #100 se pd  +200  +400   at 1.00
+     #68 se th  +300  +400   at 0.50
+     #108 se en  +200  +400   at 0.49
+     #67 se th  +200  +300   at 0.47
+   the most anti-correlated feature is: 
+       #116 se re  +200  +400    at -0.09
+for feature #101 se pd  +400  +800,    the three most correlated features are 
+     #101 se pd  +400  +800   at 1.00
+     #69 se th  +400  +800   at 0.54
+     #109 se en  +400  +800   at 0.54
+     #19 se vo  +600  +800   at 0.40
+   the most anti-correlated feature is: 
+       #117 se re  +400  +800    at -0.15
+for feature #102 se pd  +800  +1600,    the three most correlated features are 
+     #102 se pd  +800  +1600   at 1.00
+     #110 se en  +800  +1600   at 0.59
+     #70 se th  +800  +1600   at 0.57
+     #21 se vo  +1200  +1600   at 0.46
+   the most anti-correlated feature is: 
+       #118 se re  +800  +1600    at -0.23
+for feature #103 se en -1600 -800,    the three most correlated features are 
+     #103 se en -1600 -800   at 1.00
+     #59 se th -1600 -800   at 0.59
+     #95 se pd -1600 -800   at 0.58
+     #3 se vo -1200 -800   at 0.44
+   the most anti-correlated feature is: 
+       #111 se re -1600 -800    at -0.36
+for feature #104 se en -800 -400,    the three most correlated features are 
+     #104 se en -800 -400   at 1.00
+     #60 se th -800 -400   at 0.63
+     #96 se pd -800 -400   at 0.54
+     #5 se vo -600 -400   at 0.49
+   the most anti-correlated feature is: 
+       #112 se re -800 -400    at -0.28
+for feature #105 se en -400 -200,    the three most correlated features are 
+     #105 se en -400 -200   at 1.00
+     #62 se th -300 -200   at 0.61
+     #61 se th -400 -300   at 0.57
+     #7 se vo -300 -200   at 0.53
+   the most anti-correlated feature is: 
+       #113 se re -400 -200    at -0.23
+for feature #106 se en -200  +0,    the three most correlated features are 
+     #106 se en -200  +0   at 1.00
+     #64 se th -100  +0   at 0.61
+     #63 se th -200 -100   at 0.58
+     #10 se vo -100 -50   at 0.53
+   the most anti-correlated feature is: 
+       #114 se re -200  +0    at -0.22
+for feature #107 se en  +0  +200,    the three most correlated features are 
+     #107 se en  +0  +200   at 1.00
+     #66 se th  +100  +200   at 0.61
+     #65 se th  +0  +100   at 0.57
+     #14 se vo  +100  +150   at 0.52
+   the most anti-correlated feature is: 
+       #115 se re  +0  +200    at -0.23
+for feature #108 se en  +200  +400,    the three most correlated features are 
+     #108 se en  +200  +400   at 1.00
+     #68 se th  +300  +400   at 0.61
+     #67 se th  +200  +300   at 0.57
+     #17 se vo  +300  +400   at 0.53
+   the most anti-correlated feature is: 
+       #116 se re  +200  +400    at -0.23
+for feature #109 se en  +400  +800,    the three most correlated features are 
+     #109 se en  +400  +800   at 1.00
+     #69 se th  +400  +800   at 0.63
+     #101 se pd  +400  +800   at 0.54
+     #19 se vo  +600  +800   at 0.49
+   the most anti-correlated feature is: 
+       #117 se re  +400  +800    at -0.28
+for feature #110 se en  +800  +1600,    the three most correlated features are 
+     #110 se en  +800  +1600   at 1.00
+     #102 se pd  +800  +1600   at 0.59
+     #70 se th  +800  +1600   at 0.58
+     #21 se vo  +1200  +1600   at 0.44
+   the most anti-correlated feature is: 
+       #118 se re  +800  +1600    at -0.35
+for feature #111 se re -1600 -800,    the three most correlated features are 
+     #111 se re -1600 -800   at 1.00
+     #47 se tl -1600 -800   at 0.39
+     #197 in np -1600 -800   at 0.33
+     #128 in vo -1600 -1200   at 0.25
+   the most anti-correlated feature is: 
+       #103 se en -1600 -800    at -0.36
+for feature #112 se re -800 -400,    the three most correlated features are 
+     #112 se re -800 -400   at 1.00
+     #48 se tl -800 -400   at 0.45
+     #113 se re -400 -200   at 0.31
+     #198 in np -800 -400   at 0.30
+   the most anti-correlated feature is: 
+       #104 se en -800 -400    at -0.28
+for feature #113 se re -400 -200,    the three most correlated features are 
+     #113 se re -400 -200   at 1.00
+     #49 se tl -400 -300   at 0.47
+     #50 se tl -300 -200   at 0.45
+     #51 se tl -200 -100   at 0.36
+   the most anti-correlated feature is: 
+       #105 se en -400 -200    at -0.23
+for feature #114 se re -200  +0,    the three most correlated features are 
+     #114 se re -200  +0   at 1.00
+     #51 se tl -200 -100   at 0.47
+     #52 se tl -100  +0   at 0.46
+     #50 se tl -300 -200   at 0.38
+   the most anti-correlated feature is: 
+       #106 se en -200  +0    at -0.22
+for feature #115 se re  +0  +200,    the three most correlated features are 
+     #115 se re  +0  +200   at 1.00
+     #53 se tl  +0  +100   at 0.47
+     #54 se tl  +100  +200   at 0.45
+     #52 se tl -100  +0   at 0.38
+   the most anti-correlated feature is: 
+       #107 se en  +0  +200    at -0.23
+for feature #116 se re  +200  +400,    the three most correlated features are 
+     #116 se re  +200  +400   at 1.00
+     #55 se tl  +200  +300   at 0.47
+     #56 se tl  +300  +400   at 0.45
+     #54 se tl  +100  +200   at 0.38
+   the most anti-correlated feature is: 
+       #108 se en  +200  +400    at -0.23
+for feature #117 se re  +400  +800,    the three most correlated features are 
+     #117 se re  +400  +800   at 1.00
+     #57 se tl  +400  +800   at 0.45
+     #56 se tl  +300  +400   at 0.32
+     #116 se re  +200  +400   at 0.30
+   the most anti-correlated feature is: 
+       #109 se en  +400  +800    at -0.28
+for feature #118 se re  +800  +1600,    the three most correlated features are 
+     #118 se re  +800  +1600   at 1.00
+     #58 se tl  +800  +1600   at 0.40
+     #204 in np  +800  +1600   at 0.32
+     #146 in vo  +800  +1200   at 0.25
+   the most anti-correlated feature is: 
+       #110 se en  +800  +1600    at -0.35
+for feature #119 se hr -1600 -800,    the three most correlated features are 
+     #119 se hr -1600 -800   at 1.00
+     #120 se hr -800 -400   at 0.39
+     #81 se wp -400 -200   at 0.32
+     #82 se wp -200  +0   at 0.30
+   the most anti-correlated feature is: 
+       #213 in le -1600 -800    at -0.34
+for feature #120 se hr -800 -400,    the three most correlated features are 
+     #120 se hr -800 -400   at 1.00
+     #121 se hr -400 -200   at 0.52
+     #119 se hr -1600 -800   at 0.39
+     #83 se wp  +0  +200   at 0.30
+   the most anti-correlated feature is: 
+       #35 se cp -1600 -800    at -0.33
+for feature #121 se hr -400 -200,    the three most correlated features are 
+     #121 se hr -400 -200   at 1.00
+     #122 se hr -200  +0   at 0.61
+     #120 se hr -800 -400   at 0.52
+     #123 se hr  +0  +200   at 0.32
+   the most anti-correlated feature is: 
+       #35 se cp -1600 -800    at -0.26
+for feature #122 se hr -200  +0,    the three most correlated features are 
+     #122 se hr -200  +0   at 1.00
+     #121 se hr -400 -200   at 0.61
+     #123 se hr  +0  +200   at 0.59
+     #124 se hr  +200  +400   at 0.34
+   the most anti-correlated feature is: 
+       #36 se cp -800 -400    at -0.27
+for feature #123 se hr  +0  +200,    the three most correlated features are 
+     #123 se hr  +0  +200   at 1.00
+     #124 se hr  +200  +400   at 0.63
+     #122 se hr -200  +0   at 0.59
+     #125 se hr  +400  +800   at 0.33
+   the most anti-correlated feature is: 
+       #36 se cp -800 -400    at -0.29
+for feature #124 se hr  +200  +400,    the three most correlated features are 
+     #124 se hr  +200  +400   at 1.00
+     #123 se hr  +0  +200   at 0.63
+     #125 se hr  +400  +800   at 0.56
+     #122 se hr -200  +0   at 0.34
+   the most anti-correlated feature is: 
+       #36 se cp -800 -400    at -0.24
+for feature #125 se hr  +400  +800,    the three most correlated features are 
+     #125 se hr  +400  +800   at 1.00
+     #124 se hr  +200  +400   at 0.56
+     #126 se hr  +800  +1600   at 0.43
+     #70 se th  +800  +1600   at 0.33
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.25
+for feature #126 se hr  +800  +1600,    the three most correlated features are 
+     #126 se hr  +800  +1600   at 1.00
+     #125 se hr  +400  +800   at 0.43
+     #22 se vo  +1600  +3200   at 0.28
+     #48 se tl -800 -400   at 0.23
+   the most anti-correlated feature is: 
+       #220 in le  +800  +1600    at -0.35
+for feature #127 in vo -3200 -1600,    the three most correlated features are 
+     #127 in vo -3200 -1600   at 1.00
+     #128 in vo -1600 -1200   at 0.39
+     #197 in np -1600 -800   at 0.35
+     #213 in le -1600 -800   at 0.27
+   the most anti-correlated feature is: 
+       #71 se np -1600 -800    at -0.26
+for feature #128 in vo -1600 -1200,    the three most correlated features are 
+     #128 in vo -1600 -1200   at 1.00
+     #197 in np -1600 -800   at 0.79
+     #213 in le -1600 -800   at 0.75
+     #185 in th -1600 -800   at 0.69
+   the most anti-correlated feature is: 
+       #90 se le -200  +0    at -0.26
+for feature #129 in vo -1200 -800,    the three most correlated features are 
+     #129 in vo -1200 -800   at 1.00
+     #213 in le -1600 -800   at 0.79
+     #185 in th -1600 -800   at 0.73
+     #197 in np -1600 -800   at 0.72
+   the most anti-correlated feature is: 
+       #91 se le  +0  +200    at -0.25
+for feature #130 in vo -800 -600,    the three most correlated features are 
+     #130 in vo -800 -600   at 1.00
+     #214 in le -800 -400   at 0.79
+     #131 in vo -600 -400   at 0.74
+     #198 in np -800 -400   at 0.71
+   the most anti-correlated feature is: 
+       #93 se le  +400  +800    at -0.24
+for feature #131 in vo -600 -400,    the three most correlated features are 
+     #131 in vo -600 -400   at 1.00
+     #214 in le -800 -400   at 0.82
+     #132 in vo -400 -300   at 0.76
+     #130 in vo -800 -600   at 0.74
+   the most anti-correlated feature is: 
+       #93 se le  +400  +800    at -0.24
+for feature #132 in vo -400 -300,    the three most correlated features are 
+     #132 in vo -400 -300   at 1.00
+     #215 in le -400 -200   at 0.80
+     #133 in vo -300 -200   at 0.79
+     #131 in vo -600 -400   at 0.76
+   the most anti-correlated feature is: 
+       #250 in hr  +200  +400    at -0.23
+for feature #133 in vo -300 -200,    the three most correlated features are 
+     #133 in vo -300 -200   at 1.00
+     #215 in le -400 -200   at 0.83
+     #134 in vo -200 -150   at 0.82
+     #132 in vo -400 -300   at 0.79
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.22
+for feature #134 in vo -200 -150,    the three most correlated features are 
+     #134 in vo -200 -150   at 1.00
+     #135 in vo -150 -100   at 0.86
+     #133 in vo -300 -200   at 0.82
+     #216 in le -200  +0   at 0.75
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.22
+for feature #135 in vo -150 -100,    the three most correlated features are 
+     #135 in vo -150 -100   at 1.00
+     #134 in vo -200 -150   at 0.86
+     #136 in vo -100 -50   at 0.86
+     #216 in le -200  +0   at 0.80
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.22
+for feature #136 in vo -100 -50,    the three most correlated features are 
+     #136 in vo -100 -50   at 1.00
+     #137 in vo -50  +0   at 0.86
+     #135 in vo -150 -100   at 0.86
+     #216 in le -200  +0   at 0.82
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.22
+for feature #137 in vo -50  +0,    the three most correlated features are 
+     #137 in vo -50  +0   at 1.00
+     #136 in vo -100 -50   at 0.86
+     #138 in vo  +0  +50   at 0.83
+     #216 in le -200  +0   at 0.79
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.22
+for feature #138 in vo  +0  +50,    the three most correlated features are 
+     #138 in vo  +0  +50   at 1.00
+     #139 in vo  +50  +100   at 0.86
+     #137 in vo -50  +0   at 0.83
+     #217 in le  +0  +200   at 0.76
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.22
+for feature #139 in vo  +50  +100,    the three most correlated features are 
+     #139 in vo  +50  +100   at 1.00
+     #138 in vo  +0  +50   at 0.86
+     #140 in vo  +100  +150   at 0.86
+     #217 in le  +0  +200   at 0.81
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.22
+for feature #140 in vo  +100  +150,    the three most correlated features are 
+     #140 in vo  +100  +150   at 1.00
+     #141 in vo  +150  +200   at 0.86
+     #139 in vo  +50  +100   at 0.86
+     #217 in le  +0  +200   at 0.81
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.22
+for feature #141 in vo  +150  +200,    the three most correlated features are 
+     #141 in vo  +150  +200   at 1.00
+     #140 in vo  +100  +150   at 0.86
+     #142 in vo  +200  +300   at 0.85
+     #217 in le  +0  +200   at 0.77
+   the most anti-correlated feature is: 
+       #78 se np  +800  +1600    at -0.22
+for feature #142 in vo  +200  +300,    the three most correlated features are 
+     #142 in vo  +200  +300   at 1.00
+     #141 in vo  +150  +200   at 0.85
+     #218 in le  +200  +400   at 0.80
+     #143 in vo  +300  +400   at 0.79
+   the most anti-correlated feature is: 
+       #78 se np  +800  +1600    at -0.23
+for feature #143 in vo  +300  +400,    the three most correlated features are 
+     #143 in vo  +300  +400   at 1.00
+     #218 in le  +200  +400   at 0.82
+     #142 in vo  +200  +300   at 0.79
+     #144 in vo  +400  +600   at 0.76
+   the most anti-correlated feature is: 
+       #78 se np  +800  +1600    at -0.23
+for feature #144 in vo  +400  +600,    the three most correlated features are 
+     #144 in vo  +400  +600   at 1.00
+     #219 in le  +400  +800   at 0.79
+     #143 in vo  +300  +400   at 0.76
+     #145 in vo  +600  +800   at 0.74
+   the most anti-correlated feature is: 
+       #78 se np  +800  +1600    at -0.25
+for feature #145 in vo  +600  +800,    the three most correlated features are 
+     #145 in vo  +600  +800   at 1.00
+     #219 in le  +400  +800   at 0.82
+     #144 in vo  +400  +600   at 0.74
+     #195 in th  +400  +800   at 0.71
+   the most anti-correlated feature is: 
+       #78 se np  +800  +1600    at -0.24
+for feature #146 in vo  +800  +1200,    the three most correlated features are 
+     #146 in vo  +800  +1200   at 1.00
+     #204 in np  +800  +1600   at 0.79
+     #220 in le  +800  +1600   at 0.75
+     #145 in vo  +600  +800   at 0.69
+   the most anti-correlated feature is: 
+       #91 se le  +0  +200    at -0.23
+for feature #147 in vo  +1200  +1600,    the three most correlated features are 
+     #147 in vo  +1200  +1600   at 1.00
+     #220 in le  +800  +1600   at 0.77
+     #204 in np  +800  +1600   at 0.73
+     #196 in th  +800  +1600   at 0.73
+   the most anti-correlated feature is: 
+       #93 se le  +400  +800    at -0.25
+for feature #148 in vo  +1600  +3200,    the three most correlated features are 
+     #148 in vo  +1600  +3200   at 1.00
+     #147 in vo  +1200  +1600   at 0.40
+     #196 in th  +800  +1600   at 0.40
+     #220 in le  +800  +1600   at 0.34
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.28
+for feature #149 in cr -1600 -800,    the three most correlated features are 
+     #149 in cr -1600 -800   at 1.00
+     #205 in wp -1600 -800   at 0.86
+     #173 in tl -1600 -800   at 0.80
+     #128 in vo -1600 -1200   at 0.58
+   the most anti-correlated feature is: 
+       #88 se le -800 -400    at -0.28
+for feature #150 in cr -800 -400,    the three most correlated features are 
+     #150 in cr -800 -400   at 1.00
+     #206 in wp -800 -400   at 0.81
+     #174 in tl -800 -400   at 0.78
+     #214 in le -800 -400   at 0.54
+   the most anti-correlated feature is: 
+       #123 se hr  +0  +200    at -0.23
+for feature #151 in cr -400 -300,    the three most correlated features are 
+     #151 in cr -400 -300   at 1.00
+     #175 in tl -400 -300   at 0.68
+     #207 in wp -400 -200   at 0.59
+     #176 in tl -300 -200   at 0.47
+   the most anti-correlated feature is: 
+       #79 se wp -1600 -800    at -0.18
+for feature #152 in cr -300 -200,    the three most correlated features are 
+     #152 in cr -300 -200   at 1.00
+     #176 in tl -300 -200   at 0.68
+     #207 in wp -400 -200   at 0.60
+     #208 in wp -200  +0   at 0.48
+   the most anti-correlated feature is: 
+       #79 se wp -1600 -800    at -0.18
+for feature #153 in cr -200 -100,    the three most correlated features are 
+     #153 in cr -200 -100   at 1.00
+     #177 in tl -200 -100   at 0.68
+     #208 in wp -200  +0   at 0.59
+     #207 in wp -400 -200   at 0.49
+   the most anti-correlated feature is: 
+       #79 se wp -1600 -800    at -0.18
+for feature #154 in cr -100  +0,    the three most correlated features are 
+     #154 in cr -100  +0   at 1.00
+     #178 in tl -100  +0   at 0.68
+     #208 in wp -200  +0   at 0.60
+     #177 in tl -200 -100   at 0.48
+   the most anti-correlated feature is: 
+       #87 se le -1600 -800    at -0.18
+for feature #155 in cr  +0  +100,    the three most correlated features are 
+     #155 in cr  +0  +100   at 1.00
+     #179 in tl  +0  +100   at 0.68
+     #209 in wp  +0  +200   at 0.59
+     #208 in wp -200  +0   at 0.50
+   the most anti-correlated feature is: 
+       #87 se le -1600 -800    at -0.18
+for feature #156 in cr  +100  +200,    the three most correlated features are 
+     #156 in cr  +100  +200   at 1.00
+     #180 in tl  +100  +200   at 0.68
+     #209 in wp  +0  +200   at 0.60
+     #179 in tl  +0  +100   at 0.48
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.18
+for feature #157 in cr  +200  +300,    the three most correlated features are 
+     #157 in cr  +200  +300   at 1.00
+     #181 in tl  +200  +300   at 0.68
+     #210 in wp  +200  +400   at 0.59
+     #209 in wp  +0  +200   at 0.49
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.18
+for feature #158 in cr  +300  +400,    the three most correlated features are 
+     #158 in cr  +300  +400   at 1.00
+     #182 in tl  +300  +400   at 0.68
+     #210 in wp  +200  +400   at 0.60
+     #181 in tl  +200  +300   at 0.48
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.18
+for feature #159 in cr  +400  +800,    the three most correlated features are 
+     #159 in cr  +400  +800   at 1.00
+     #211 in wp  +400  +800   at 0.81
+     #183 in tl  +400  +800   at 0.78
+     #219 in le  +400  +800   at 0.54
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.24
+for feature #160 in cr  +800  +1600,    the three most correlated features are 
+     #160 in cr  +800  +1600   at 1.00
+     #212 in wp  +800  +1600   at 0.87
+     #184 in tl  +800  +1600   at 0.81
+     #146 in vo  +800  +1200   at 0.58
+   the most anti-correlated feature is: 
+       #87 se le -1600 -800    at -0.28
+for feature #161 in cp -1600 -800,    the three most correlated features are 
+     #161 in cp -1600 -800   at 1.00
+     #197 in np -1600 -800   at 0.76
+     #128 in vo -1600 -1200   at 0.63
+     #129 in vo -1200 -800   at 0.58
+   the most anti-correlated feature is: 
+       #246 in hr -800 -400    at -0.33
+for feature #162 in cp -800 -400,    the three most correlated features are 
+     #162 in cp -800 -400   at 1.00
+     #198 in np -800 -400   at 0.75
+     #130 in vo -800 -600   at 0.64
+     #131 in vo -600 -400   at 0.59
+   the most anti-correlated feature is: 
+       #249 in hr  +0  +200    at -0.29
+for feature #163 in cp -400 -300,    the three most correlated features are 
+     #163 in cp -400 -300   at 1.00
+     #199 in np -400 -200   at 0.64
+     #132 in vo -400 -300   at 0.63
+     #164 in cp -300 -200   at 0.62
+   the most anti-correlated feature is: 
+       #250 in hr  +200  +400    at -0.22
+for feature #164 in cp -300 -200,    the three most correlated features are 
+     #164 in cp -300 -200   at 1.00
+     #133 in vo -300 -200   at 0.63
+     #199 in np -400 -200   at 0.62
+     #165 in cp -200 -100   at 0.62
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.21
+for feature #165 in cp -200 -100,    the three most correlated features are 
+     #165 in cp -200 -100   at 1.00
+     #134 in vo -200 -150   at 0.65
+     #200 in np -200  +0   at 0.64
+     #164 in cp -300 -200   at 0.62
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.23
+for feature #166 in cp -100  +0,    the three most correlated features are 
+     #166 in cp -100  +0   at 1.00
+     #136 in vo -100 -50   at 0.65
+     #200 in np -200  +0   at 0.63
+     #167 in cp  +0  +100   at 0.62
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.23
+for feature #167 in cp  +0  +100,    the three most correlated features are 
+     #167 in cp  +0  +100   at 1.00
+     #138 in vo  +0  +50   at 0.64
+     #201 in np  +0  +200   at 0.64
+     #168 in cp  +100  +200   at 0.62
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.22
+for feature #168 in cp  +100  +200,    the three most correlated features are 
+     #168 in cp  +100  +200   at 1.00
+     #140 in vo  +100  +150   at 0.64
+     #201 in np  +0  +200   at 0.63
+     #167 in cp  +0  +100   at 0.62
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.21
+for feature #169 in cp  +200  +300,    the three most correlated features are 
+     #169 in cp  +200  +300   at 1.00
+     #202 in np  +200  +400   at 0.64
+     #142 in vo  +200  +300   at 0.63
+     #170 in cp  +300  +400   at 0.62
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.18
+for feature #170 in cp  +300  +400,    the three most correlated features are 
+     #170 in cp  +300  +400   at 1.00
+     #143 in vo  +300  +400   at 0.63
+     #202 in np  +200  +400   at 0.63
+     #169 in cp  +200  +300   at 0.62
+   the most anti-correlated feature is: 
+       #252 in hr  +800  +1600    at -0.18
+for feature #171 in cp  +400  +800,    the three most correlated features are 
+     #171 in cp  +400  +800   at 1.00
+     #203 in np  +400  +800   at 0.75
+     #144 in vo  +400  +600   at 0.64
+     #145 in vo  +600  +800   at 0.59
+   the most anti-correlated feature is: 
+       #252 in hr  +800  +1600    at -0.27
+for feature #172 in cp  +800  +1600,    the three most correlated features are 
+     #172 in cp  +800  +1600   at 1.00
+     #204 in np  +800  +1600   at 0.76
+     #146 in vo  +800  +1200   at 0.63
+     #147 in vo  +1200  +1600   at 0.58
+   the most anti-correlated feature is: 
+       #244 in re  +800  +1600    at -0.16
+for feature #173 in tl -1600 -800,    the three most correlated features are 
+     #173 in tl -1600 -800   at 1.00
+     #205 in wp -1600 -800   at 0.81
+     #149 in cr -1600 -800   at 0.80
+     #237 in re -1600 -800   at 0.39
+   the most anti-correlated feature is: 
+       #120 se hr -800 -400    at -0.20
+for feature #174 in tl -800 -400,    the three most correlated features are 
+     #174 in tl -800 -400   at 1.00
+     #150 in cr -800 -400   at 0.78
+     #206 in wp -800 -400   at 0.72
+     #175 in tl -400 -300   at 0.56
+   the most anti-correlated feature is: 
+       #123 se hr  +0  +200    at -0.20
+for feature #175 in tl -400 -300,    the three most correlated features are 
+     #175 in tl -400 -300   at 1.00
+     #151 in cr -400 -300   at 0.68
+     #176 in tl -300 -200   at 0.67
+     #174 in tl -800 -400   at 0.56
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.16
+for feature #176 in tl -300 -200,    the three most correlated features are 
+     #176 in tl -300 -200   at 1.00
+     #152 in cr -300 -200   at 0.68
+     #175 in tl -400 -300   at 0.67
+     #177 in tl -200 -100   at 0.67
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.16
+for feature #177 in tl -200 -100,    the three most correlated features are 
+     #177 in tl -200 -100   at 1.00
+     #153 in cr -200 -100   at 0.68
+     #178 in tl -100  +0   at 0.67
+     #176 in tl -300 -200   at 0.67
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.17
+for feature #178 in tl -100  +0,    the three most correlated features are 
+     #178 in tl -100  +0   at 1.00
+     #154 in cr -100  +0   at 0.68
+     #177 in tl -200 -100   at 0.67
+     #179 in tl  +0  +100   at 0.67
+   the most anti-correlated feature is: 
+       #125 se hr  +400  +800    at -0.16
+for feature #179 in tl  +0  +100,    the three most correlated features are 
+     #179 in tl  +0  +100   at 1.00
+     #155 in cr  +0  +100   at 0.68
+     #178 in tl -100  +0   at 0.67
+     #180 in tl  +100  +200   at 0.67
+   the most anti-correlated feature is: 
+       #249 in hr  +0  +200    at -0.16
+for feature #180 in tl  +100  +200,    the three most correlated features are 
+     #180 in tl  +100  +200   at 1.00
+     #156 in cr  +100  +200   at 0.68
+     #181 in tl  +200  +300   at 0.67
+     #179 in tl  +0  +100   at 0.67
+   the most anti-correlated feature is: 
+       #249 in hr  +0  +200    at -0.16
+for feature #181 in tl  +200  +300,    the three most correlated features are 
+     #181 in tl  +200  +300   at 1.00
+     #157 in cr  +200  +300   at 0.68
+     #180 in tl  +100  +200   at 0.67
+     #182 in tl  +300  +400   at 0.67
+   the most anti-correlated feature is: 
+       #250 in hr  +200  +400    at -0.16
+for feature #182 in tl  +300  +400,    the three most correlated features are 
+     #182 in tl  +300  +400   at 1.00
+     #158 in cr  +300  +400   at 0.68
+     #181 in tl  +200  +300   at 0.67
+     #183 in tl  +400  +800   at 0.56
+   the most anti-correlated feature is: 
+       #126 se hr  +800  +1600    at -0.16
+for feature #183 in tl  +400  +800,    the three most correlated features are 
+     #183 in tl  +400  +800   at 1.00
+     #159 in cr  +400  +800   at 0.78
+     #211 in wp  +400  +800   at 0.73
+     #182 in tl  +300  +400   at 0.56
+   the most anti-correlated feature is: 
+       #126 se hr  +800  +1600    at -0.18
+for feature #184 in tl  +800  +1600,    the three most correlated features are 
+     #184 in tl  +800  +1600   at 1.00
+     #212 in wp  +800  +1600   at 0.81
+     #160 in cr  +800  +1600   at 0.81
+     #244 in re  +800  +1600   at 0.40
+   the most anti-correlated feature is: 
+       #23 se cr -1600 -800    at -0.23
+for feature #185 in th -1600 -800,    the three most correlated features are 
+     #185 in th -1600 -800   at 1.00
+     #129 in vo -1200 -800   at 0.73
+     #213 in le -1600 -800   at 0.71
+     #128 in vo -1600 -1200   at 0.69
+   the most anti-correlated feature is: 
+       #237 in re -1600 -800    at -0.27
+for feature #186 in th -800 -400,    the three most correlated features are 
+     #186 in th -800 -400   at 1.00
+     #214 in le -800 -400   at 0.71
+     #131 in vo -600 -400   at 0.71
+     #130 in vo -800 -600   at 0.70
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.21
+for feature #187 in th -400 -300,    the three most correlated features are 
+     #187 in th -400 -300   at 1.00
+     #132 in vo -400 -300   at 0.68
+     #188 in th -300 -200   at 0.66
+     #215 in le -400 -200   at 0.62
+   the most anti-correlated feature is: 
+       #123 se hr  +0  +200    at -0.18
+for feature #188 in th -300 -200,    the three most correlated features are 
+     #188 in th -300 -200   at 1.00
+     #133 in vo -300 -200   at 0.68
+     #187 in th -400 -300   at 0.66
+     #189 in th -200 -100   at 0.66
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.18
+for feature #189 in th -200 -100,    the three most correlated features are 
+     #189 in th -200 -100   at 1.00
+     #134 in vo -200 -150   at 0.66
+     #188 in th -300 -200   at 0.66
+     #190 in th -100  +0   at 0.66
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.19
+for feature #190 in th -100  +0,    the three most correlated features are 
+     #190 in th -100  +0   at 1.00
+     #136 in vo -100 -50   at 0.66
+     #191 in th  +0  +100   at 0.66
+     #189 in th -200 -100   at 0.66
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.19
+for feature #191 in th  +0  +100,    the three most correlated features are 
+     #191 in th  +0  +100   at 1.00
+     #138 in vo  +0  +50   at 0.67
+     #190 in th -100  +0   at 0.66
+     #192 in th  +100  +200   at 0.66
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.19
+for feature #192 in th  +100  +200,    the three most correlated features are 
+     #192 in th  +100  +200   at 1.00
+     #140 in vo  +100  +150   at 0.67
+     #191 in th  +0  +100   at 0.66
+     #193 in th  +200  +300   at 0.66
+   the most anti-correlated feature is: 
+       #119 se hr -1600 -800    at -0.18
+for feature #193 in th  +200  +300,    the three most correlated features are 
+     #193 in th  +200  +300   at 1.00
+     #142 in vo  +200  +300   at 0.68
+     #194 in th  +300  +400   at 0.66
+     #192 in th  +100  +200   at 0.66
+   the most anti-correlated feature is: 
+       #119 se hr -1600 -800    at -0.19
+for feature #194 in th  +300  +400,    the three most correlated features are 
+     #194 in th  +300  +400   at 1.00
+     #143 in vo  +300  +400   at 0.68
+     #193 in th  +200  +300   at 0.66
+     #218 in le  +200  +400   at 0.63
+   the most anti-correlated feature is: 
+       #119 se hr -1600 -800    at -0.19
+for feature #195 in th  +400  +800,    the three most correlated features are 
+     #195 in th  +400  +800   at 1.00
+     #219 in le  +400  +800   at 0.71
+     #145 in vo  +600  +800   at 0.71
+     #144 in vo  +400  +600   at 0.70
+   the most anti-correlated feature is: 
+       #119 se hr -1600 -800    at -0.23
+for feature #196 in th  +800  +1600,    the three most correlated features are 
+     #196 in th  +800  +1600   at 1.00
+     #147 in vo  +1200  +1600   at 0.73
+     #220 in le  +800  +1600   at 0.70
+     #146 in vo  +800  +1200   at 0.68
+   the most anti-correlated feature is: 
+       #244 in re  +800  +1600    at -0.27
+for feature #197 in np -1600 -800,    the three most correlated features are 
+     #197 in np -1600 -800   at 1.00
+     #128 in vo -1600 -1200   at 0.79
+     #161 in cp -1600 -800   at 0.76
+     #129 in vo -1200 -800   at 0.72
+   the most anti-correlated feature is: 
+       #87 se le -1600 -800    at -0.33
+for feature #198 in np -800 -400,    the three most correlated features are 
+     #198 in np -800 -400   at 1.00
+     #162 in cp -800 -400   at 0.75
+     #130 in vo -800 -600   at 0.71
+     #131 in vo -600 -400   at 0.66
+   the most anti-correlated feature is: 
+       #87 se le -1600 -800    at -0.29
+for feature #199 in np -400 -200,    the three most correlated features are 
+     #199 in np -400 -200   at 1.00
+     #200 in np -200  +0   at 0.68
+     #132 in vo -400 -300   at 0.64
+     #163 in cp -400 -300   at 0.64
+   the most anti-correlated feature is: 
+       #88 se le -800 -400    at -0.22
+for feature #200 in np -200  +0,    the three most correlated features are 
+     #200 in np -200  +0   at 1.00
+     #201 in np  +0  +200   at 0.68
+     #199 in np -400 -200   at 0.68
+     #165 in cp -200 -100   at 0.64
+   the most anti-correlated feature is: 
+       #88 se le -800 -400    at -0.25
+for feature #201 in np  +0  +200,    the three most correlated features are 
+     #201 in np  +0  +200   at 1.00
+     #200 in np -200  +0   at 0.68
+     #202 in np  +200  +400   at 0.68
+     #167 in cp  +0  +100   at 0.64
+   the most anti-correlated feature is: 
+       #88 se le -800 -400    at -0.24
+for feature #202 in np  +200  +400,    the three most correlated features are 
+     #202 in np  +200  +400   at 1.00
+     #201 in np  +0  +200   at 0.68
+     #142 in vo  +200  +300   at 0.65
+     #169 in cp  +200  +300   at 0.64
+   the most anti-correlated feature is: 
+       #89 se le -400 -200    at -0.24
+for feature #203 in np  +400  +800,    the three most correlated features are 
+     #203 in np  +400  +800   at 1.00
+     #171 in cp  +400  +800   at 0.75
+     #144 in vo  +400  +600   at 0.71
+     #145 in vo  +600  +800   at 0.66
+   the most anti-correlated feature is: 
+       #91 se le  +0  +200    at -0.27
+for feature #204 in np  +800  +1600,    the three most correlated features are 
+     #204 in np  +800  +1600   at 1.00
+     #146 in vo  +800  +1200   at 0.79
+     #172 in cp  +800  +1600   at 0.76
+     #147 in vo  +1200  +1600   at 0.73
+   the most anti-correlated feature is: 
+       #93 se le  +400  +800    at -0.34
+for feature #205 in wp -1600 -800,    the three most correlated features are 
+     #205 in wp -1600 -800   at 1.00
+     #149 in cr -1600 -800   at 0.86
+     #173 in tl -1600 -800   at 0.81
+     #213 in le -1600 -800   at 0.52
+   the most anti-correlated feature is: 
+       #88 se le -800 -400    at -0.27
+for feature #206 in wp -800 -400,    the three most correlated features are 
+     #206 in wp -800 -400   at 1.00
+     #150 in cr -800 -400   at 0.81
+     #174 in tl -800 -400   at 0.72
+     #214 in le -800 -400   at 0.59
+   the most anti-correlated feature is: 
+       #122 se hr -200  +0    at -0.24
+for feature #207 in wp -400 -200,    the three most correlated features are 
+     #207 in wp -400 -200   at 1.00
+     #208 in wp -200  +0   at 0.73
+     #215 in le -400 -200   at 0.65
+     #132 in vo -400 -300   at 0.61
+   the most anti-correlated feature is: 
+       #93 se le  +400  +800    at -0.26
+for feature #208 in wp -200  +0,    the three most correlated features are 
+     #208 in wp -200  +0   at 1.00
+     #207 in wp -400 -200   at 0.73
+     #209 in wp  +0  +200   at 0.73
+     #216 in le -200  +0   at 0.66
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.27
+for feature #209 in wp  +0  +200,    the three most correlated features are 
+     #209 in wp  +0  +200   at 1.00
+     #210 in wp  +200  +400   at 0.73
+     #208 in wp -200  +0   at 0.73
+     #217 in le  +0  +200   at 0.66
+   the most anti-correlated feature is: 
+       #34 se cr  +800  +1600    at -0.28
+for feature #210 in wp  +200  +400,    the three most correlated features are 
+     #210 in wp  +200  +400   at 1.00
+     #209 in wp  +0  +200   at 0.73
+     #218 in le  +200  +400   at 0.65
+     #142 in vo  +200  +300   at 0.61
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.28
+for feature #211 in wp  +400  +800,    the three most correlated features are 
+     #211 in wp  +400  +800   at 1.00
+     #159 in cr  +400  +800   at 0.81
+     #183 in tl  +400  +800   at 0.73
+     #219 in le  +400  +800   at 0.59
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.25
+for feature #212 in wp  +800  +1600,    the three most correlated features are 
+     #212 in wp  +800  +1600   at 1.00
+     #160 in cr  +800  +1600   at 0.87
+     #184 in tl  +800  +1600   at 0.81
+     #220 in le  +800  +1600   at 0.52
+   the most anti-correlated feature is: 
+       #23 se cr -1600 -800    at -0.27
+for feature #213 in le -1600 -800,    the three most correlated features are 
+     #213 in le -1600 -800   at 1.00
+     #129 in vo -1200 -800   at 0.79
+     #128 in vo -1600 -1200   at 0.75
+     #185 in th -1600 -800   at 0.71
+   the most anti-correlated feature is: 
+       #119 se hr -1600 -800    at -0.34
+for feature #214 in le -800 -400,    the three most correlated features are 
+     #214 in le -800 -400   at 1.00
+     #131 in vo -600 -400   at 0.82
+     #130 in vo -800 -600   at 0.79
+     #215 in le -400 -200   at 0.71
+   the most anti-correlated feature is: 
+       #71 se np -1600 -800    at -0.29
+for feature #215 in le -400 -200,    the three most correlated features are 
+     #215 in le -400 -200   at 1.00
+     #133 in vo -300 -200   at 0.83
+     #132 in vo -400 -300   at 0.80
+     #216 in le -200  +0   at 0.74
+   the most anti-correlated feature is: 
+       #23 se cr -1600 -800    at -0.28
+for feature #216 in le -200  +0,    the three most correlated features are 
+     #216 in le -200  +0   at 1.00
+     #136 in vo -100 -50   at 0.82
+     #135 in vo -150 -100   at 0.80
+     #137 in vo -50  +0   at 0.79
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.29
+for feature #217 in le  +0  +200,    the three most correlated features are 
+     #217 in le  +0  +200   at 1.00
+     #140 in vo  +100  +150   at 0.81
+     #139 in vo  +50  +100   at 0.81
+     #141 in vo  +150  +200   at 0.77
+   the most anti-correlated feature is: 
+       #78 se np  +800  +1600    at -0.29
+for feature #218 in le  +200  +400,    the three most correlated features are 
+     #218 in le  +200  +400   at 1.00
+     #143 in vo  +300  +400   at 0.82
+     #142 in vo  +200  +300   at 0.80
+     #217 in le  +0  +200   at 0.74
+   the most anti-correlated feature is: 
+       #78 se np  +800  +1600    at -0.31
+for feature #219 in le  +400  +800,    the three most correlated features are 
+     #219 in le  +400  +800   at 1.00
+     #145 in vo  +600  +800   at 0.82
+     #144 in vo  +400  +600   at 0.79
+     #195 in th  +400  +800   at 0.71
+   the most anti-correlated feature is: 
+       #78 se np  +800  +1600    at -0.34
+for feature #220 in le  +800  +1600,    the three most correlated features are 
+     #220 in le  +800  +1600   at 1.00
+     #147 in vo  +1200  +1600   at 0.77
+     #146 in vo  +800  +1200   at 0.75
+     #196 in th  +800  +1600   at 0.70
+   the most anti-correlated feature is: 
+       #126 se hr  +800  +1600    at -0.35
+for feature #221 in pd -1600 -800,    the three most correlated features are 
+     #221 in pd -1600 -800   at 1.00
+     #229 in en -1600 -800   at 0.58
+     #185 in th -1600 -800   at 0.57
+     #129 in vo -1200 -800   at 0.46
+   the most anti-correlated feature is: 
+       #237 in re -1600 -800    at -0.23
+for feature #222 in pd -800 -400,    the three most correlated features are 
+     #222 in pd -800 -400   at 1.00
+     #186 in th -800 -400   at 0.54
+     #230 in en -800 -400   at 0.54
+     #131 in vo -600 -400   at 0.40
+   the most anti-correlated feature is: 
+       #238 in re -800 -400    at -0.15
+for feature #223 in pd -400 -200,    the three most correlated features are 
+     #223 in pd -400 -200   at 1.00
+     #188 in th -300 -200   at 0.49
+     #231 in en -400 -200   at 0.49
+     #187 in th -400 -300   at 0.47
+   the most anti-correlated feature is: 
+       #251 in hr  +400  +800    at -0.10
+for feature #224 in pd -200  +0,    the three most correlated features are 
+     #224 in pd -200  +0   at 1.00
+     #190 in th -100  +0   at 0.49
+     #232 in en -200  +0   at 0.49
+     #189 in th -200 -100   at 0.47
+   the most anti-correlated feature is: 
+       #238 in re -800 -400    at -0.09
+for feature #225 in pd  +0  +200,    the three most correlated features are 
+     #225 in pd  +0  +200   at 1.00
+     #192 in th  +100  +200   at 0.50
+     #233 in en  +0  +200   at 0.49
+     #191 in th  +0  +100   at 0.47
+   the most anti-correlated feature is: 
+       #241 in re  +0  +200    at -0.09
+for feature #226 in pd  +200  +400,    the three most correlated features are 
+     #226 in pd  +200  +400   at 1.00
+     #194 in th  +300  +400   at 0.49
+     #234 in en  +200  +400   at 0.49
+     #193 in th  +200  +300   at 0.47
+   the most anti-correlated feature is: 
+       #242 in re  +200  +400    at -0.09
+for feature #227 in pd  +400  +800,    the three most correlated features are 
+     #227 in pd  +400  +800   at 1.00
+     #195 in th  +400  +800   at 0.54
+     #235 in en  +400  +800   at 0.54
+     #145 in vo  +600  +800   at 0.40
+   the most anti-correlated feature is: 
+       #243 in re  +400  +800    at -0.15
+for feature #228 in pd  +800  +1600,    the three most correlated features are 
+     #228 in pd  +800  +1600   at 1.00
+     #236 in en  +800  +1600   at 0.58
+     #196 in th  +800  +1600   at 0.57
+     #147 in vo  +1200  +1600   at 0.46
+   the most anti-correlated feature is: 
+       #244 in re  +800  +1600    at -0.23
+for feature #229 in en -1600 -800,    the three most correlated features are 
+     #229 in en -1600 -800   at 1.00
+     #185 in th -1600 -800   at 0.59
+     #221 in pd -1600 -800   at 0.58
+     #129 in vo -1200 -800   at 0.44
+   the most anti-correlated feature is: 
+       #237 in re -1600 -800    at -0.36
+for feature #230 in en -800 -400,    the three most correlated features are 
+     #230 in en -800 -400   at 1.00
+     #186 in th -800 -400   at 0.63
+     #222 in pd -800 -400   at 0.54
+     #131 in vo -600 -400   at 0.50
+   the most anti-correlated feature is: 
+       #238 in re -800 -400    at -0.28
+for feature #231 in en -400 -200,    the three most correlated features are 
+     #231 in en -400 -200   at 1.00
+     #188 in th -300 -200   at 0.61
+     #187 in th -400 -300   at 0.58
+     #133 in vo -300 -200   at 0.53
+   the most anti-correlated feature is: 
+       #239 in re -400 -200    at -0.22
+for feature #232 in en -200  +0,    the three most correlated features are 
+     #232 in en -200  +0   at 1.00
+     #190 in th -100  +0   at 0.61
+     #189 in th -200 -100   at 0.57
+     #136 in vo -100 -50   at 0.52
+   the most anti-correlated feature is: 
+       #240 in re -200  +0    at -0.23
+for feature #233 in en  +0  +200,    the three most correlated features are 
+     #233 in en  +0  +200   at 1.00
+     #192 in th  +100  +200   at 0.61
+     #191 in th  +0  +100   at 0.58
+     #140 in vo  +100  +150   at 0.53
+   the most anti-correlated feature is: 
+       #241 in re  +0  +200    at -0.23
+for feature #234 in en  +200  +400,    the three most correlated features are 
+     #234 in en  +200  +400   at 1.00
+     #194 in th  +300  +400   at 0.61
+     #193 in th  +200  +300   at 0.58
+     #143 in vo  +300  +400   at 0.53
+   the most anti-correlated feature is: 
+       #242 in re  +200  +400    at -0.22
+for feature #235 in en  +400  +800,    the three most correlated features are 
+     #235 in en  +400  +800   at 1.00
+     #195 in th  +400  +800   at 0.63
+     #227 in pd  +400  +800   at 0.54
+     #145 in vo  +600  +800   at 0.49
+   the most anti-correlated feature is: 
+       #243 in re  +400  +800    at -0.28
+for feature #236 in en  +800  +1600,    the three most correlated features are 
+     #236 in en  +800  +1600   at 1.00
+     #228 in pd  +800  +1600   at 0.58
+     #196 in th  +800  +1600   at 0.58
+     #147 in vo  +1200  +1600   at 0.43
+   the most anti-correlated feature is: 
+       #244 in re  +800  +1600    at -0.35
+for feature #237 in re -1600 -800,    the three most correlated features are 
+     #237 in re -1600 -800   at 1.00
+     #173 in tl -1600 -800   at 0.39
+     #71 se np -1600 -800   at 0.33
+     #2 se vo -1600 -1200   at 0.26
+   the most anti-correlated feature is: 
+       #229 in en -1600 -800    at -0.36
+for feature #238 in re -800 -400,    the three most correlated features are 
+     #238 in re -800 -400   at 1.00
+     #174 in tl -800 -400   at 0.45
+     #239 in re -400 -200   at 0.30
+     #72 se np -800 -400   at 0.30
+   the most anti-correlated feature is: 
+       #230 in en -800 -400    at -0.28
+for feature #239 in re -400 -200,    the three most correlated features are 
+     #239 in re -400 -200   at 1.00
+     #175 in tl -400 -300   at 0.48
+     #176 in tl -300 -200   at 0.46
+     #177 in tl -200 -100   at 0.37
+   the most anti-correlated feature is: 
+       #231 in en -400 -200    at -0.22
+for feature #240 in re -200  +0,    the three most correlated features are 
+     #240 in re -200  +0   at 1.00
+     #177 in tl -200 -100   at 0.47
+     #178 in tl -100  +0   at 0.45
+     #176 in tl -300 -200   at 0.38
+   the most anti-correlated feature is: 
+       #232 in en -200  +0    at -0.23
+for feature #241 in re  +0  +200,    the three most correlated features are 
+     #241 in re  +0  +200   at 1.00
+     #179 in tl  +0  +100   at 0.47
+     #180 in tl  +100  +200   at 0.46
+     #178 in tl -100  +0   at 0.38
+   the most anti-correlated feature is: 
+       #233 in en  +0  +200    at -0.23
+for feature #242 in re  +200  +400,    the three most correlated features are 
+     #242 in re  +200  +400   at 1.00
+     #181 in tl  +200  +300   at 0.48
+     #182 in tl  +300  +400   at 0.46
+     #180 in tl  +100  +200   at 0.38
+   the most anti-correlated feature is: 
+       #234 in en  +200  +400    at -0.22
+for feature #243 in re  +400  +800,    the three most correlated features are 
+     #243 in re  +400  +800   at 1.00
+     #183 in tl  +400  +800   at 0.45
+     #182 in tl  +300  +400   at 0.31
+     #242 in re  +200  +400   at 0.31
+   the most anti-correlated feature is: 
+       #235 in en  +400  +800    at -0.28
+for feature #244 in re  +800  +1600,    the three most correlated features are 
+     #244 in re  +800  +1600   at 1.00
+     #184 in tl  +800  +1600   at 0.40
+     #78 se np  +800  +1600   at 0.32
+     #20 se vo  +800  +1200   at 0.25
+   the most anti-correlated feature is: 
+       #236 in en  +800  +1600    at -0.35
+for feature #245 in hr -1600 -800,    the three most correlated features are 
+     #245 in hr -1600 -800   at 1.00
+     #246 in hr -800 -400   at 0.39
+     #207 in wp -400 -200   at 0.32
+     #208 in wp -200  +0   at 0.30
+   the most anti-correlated feature is: 
+       #87 se le -1600 -800    at -0.34
+for feature #246 in hr -800 -400,    the three most correlated features are 
+     #246 in hr -800 -400   at 1.00
+     #247 in hr -400 -200   at 0.52
+     #245 in hr -1600 -800   at 0.39
+     #209 in wp  +0  +200   at 0.30
+   the most anti-correlated feature is: 
+       #161 in cp -1600 -800    at -0.33
+for feature #247 in hr -400 -200,    the three most correlated features are 
+     #247 in hr -400 -200   at 1.00
+     #248 in hr -200  +0   at 0.61
+     #246 in hr -800 -400   at 0.52
+     #249 in hr  +0  +200   at 0.32
+   the most anti-correlated feature is: 
+       #161 in cp -1600 -800    at -0.26
+for feature #248 in hr -200  +0,    the three most correlated features are 
+     #248 in hr -200  +0   at 1.00
+     #247 in hr -400 -200   at 0.61
+     #249 in hr  +0  +200   at 0.59
+     #250 in hr  +200  +400   at 0.34
+   the most anti-correlated feature is: 
+       #162 in cp -800 -400    at -0.27
+for feature #249 in hr  +0  +200,    the three most correlated features are 
+     #249 in hr  +0  +200   at 1.00
+     #250 in hr  +200  +400   at 0.62
+     #248 in hr -200  +0   at 0.59
+     #251 in hr  +400  +800   at 0.33
+   the most anti-correlated feature is: 
+       #162 in cp -800 -400    at -0.29
+for feature #250 in hr  +200  +400,    the three most correlated features are 
+     #250 in hr  +200  +400   at 1.00
+     #249 in hr  +0  +200   at 0.62
+     #251 in hr  +400  +800   at 0.56
+     #248 in hr -200  +0   at 0.34
+   the most anti-correlated feature is: 
+       #162 in cp -800 -400    at -0.24
+for feature #251 in hr  +400  +800,    the three most correlated features are 
+     #251 in hr  +400  +800   at 1.00
+     #250 in hr  +200  +400   at 0.56
+     #252 in hr  +800  +1600   at 0.43
+     #196 in th  +800  +1600   at 0.33
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.25
+for feature #252 in hr  +800  +1600,    the three most correlated features are 
+     #252 in hr  +800  +1600   at 1.00
+     #251 in hr  +400  +800   at 0.43
+     #148 in vo  +1600  +3200   at 0.28
+     #174 in tl -800 -400   at 0.23
+   the most anti-correlated feature is: 
+       #94 se le  +800  +1600    at -0.35

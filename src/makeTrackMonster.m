@@ -29,6 +29,9 @@ plotThings = false;  % set true for debug
 processGaze = false;
 processKeystrokes = false;  
 processAudio = false;
+loadReductionE = false;
+reductionl = [];
+reductionr = [];
 firstCompleteFrame = 1;
 lastCompleteFrame = 9999999999999;
 
@@ -40,8 +43,11 @@ for featureNum = 1 : length(featurelist)
    if  ismember(thisfeature.featname, ['rf', 'mi', 'ju'])
 	processKeystrokes = true;
    end
-   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le', 'vf', 'sf', 're', 'en', 'ts', 'te'])
-	processAudio = true;
+   if  ismember(thisfeature.featname, ['vo', 'th', 'tl', 'lp', 'hp', 'fp', 'wp', 'np', 'sr', 'cr', 'pd', 'le', 'vf', 'sf', 're', 'en', 'ts', 'te', 'hr'])
+     processAudio = true;
+   end
+   if  ismember(thisfeature.featname, ['hr'])
+     loadReductionE = true;
    end
 end
 
@@ -87,6 +93,9 @@ if processAudio
   isNanDiagnostics(cepstralFluxl, 'cepstral flux l');
   cppsl = normalize(computeCPPS(signall, rate));  % should use lookupOrComputeCpps
 %  spectralTiltl = computeSpectralTilt(signall, rate);
+  if loadReductionE
+    reductionl = lookupReductionEst(trackspec.directory, trackspec.filename, 'l');
+  end 
 
   if stereop
     signalr = signalPair(:,2);
@@ -105,6 +114,9 @@ if processAudio
     energyr = energyr(1:npoints);
     cepstralFluxl = cepstralFluxl(1:npoints);
     cepstralFluxr = cepstralFluxr(1:npoints);
+    if loadReductionE
+      reductionr = lookupReductionEst(trackspec.directory, trackspec.filename, 'r');
+    end 
   end
   
   nframes = floor(length(signalPair(:,1)) / samplesPerFrame);
@@ -147,6 +159,7 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxl;
       relevantSig = signall;
       relevantCpps = cppsl;
+      relevantReduction = reductionl;
 %      relevantTilt = spectralTiltl;
       %%[lsilenceMean, lspeechMean] = findClusterMeans(energyl);
     else 
@@ -157,6 +170,7 @@ for featureNum = 1 : length(featurelist)
       relevantFlux = cepstralFluxr;
       relevantSig = signalr;
       relevantCpps = cppsr;
+      relevantReduction = reductionr;
 %      relevantTilt = spectralTiltr;
       %%[rsilenceMean, rspeechMean] = findClusterMeans(energyr);
     end
@@ -220,6 +234,8 @@ for featureNum = 1 : length(featurelist)
       featurevec = voicedUnvoicedIR(relevantEnergy, relevantPitch, duration)';
     case 'cp'    % CPPS
       featurevec = windowize(relevantCpps', duration)';
+    case 'hr'    % HuBert-based reduction estimates
+      featurevec = windowize(relevantReduction', duration)';
 
     case 'st'   % spectral tilt, mean
       [featurevec, ~, ~, ~, ~] = allTiltFeatures(relevantTilt, relevantEnergy, duration);

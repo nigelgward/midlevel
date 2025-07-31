@@ -16,6 +16,7 @@ function flist = getfeaturespec(crunchspec);
 		   'rf', 'mi', 'ju', ...
 		   'go', 'gf', 'ga', 'gl', 'gr', 'gu', 'gd', ...
 		   'cp', 'st', 'tr', 'tf', 'tm', 'tn', ...
+		   'hr', ...
 		  };
   
 % vo = intensity (volume)
@@ -55,6 +56,8 @@ function flist = getfeaturespec(crunchspec);
 % gf = gaze face  % old
 % ga = gaze awayness (distance)
 % cp = smoothed cepstral peak prominence
+
+% hr = hubert-based reduction estimates
 
   fprintf('reading %s\n', crunchspec);
   
