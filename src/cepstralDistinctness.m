@@ -5,9 +5,10 @@ function windowVec = cepstralDistinctness(signal, rate, pitch, duration, flag)
 
   % A good measure of phonetic reduction vs enuciation
   %  is the degree to which vowels are centralized vs distinct
-  % This function measures as a proxy how spectrally close or far from
-  %  the average are the voiced segments
-  % returns the degree of evidence for reduction or enunciation
+  % This function measures, as a proxy, how spectrally close or far from
+  %  the average are the voiced segments,
+  % returns how often/strongly this happens
+  % as the degree of evidence for reduction or enunciation, respectively
 
   % I'm being here careful to exclude unvoiced segments from consideration
   %  tho maybe if I sloppily included them, it wouldn't matter.
