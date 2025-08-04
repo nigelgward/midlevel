@@ -3,7 +3,7 @@ function windowVec = cepstralDistinctness(signal, rate, pitch, duration, flag)
   % Nigel Ward, January 2017
   % code derived from cepstralFlux.m; see comments there
 
-  % A good measure of phonetic reduction vs enuciation
+  % One measure of phonetic reduction vs enuciation
   %  is the degree to which vowels are centralized vs distinct
   % This function measures, as a proxy, how spectrally close or far from
   %  the average are the voiced segments,

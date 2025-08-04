@@ -382,8 +382,9 @@ In fss files currently the following codes are recognized:
 \begin{tabular}{ll}
   pd  & late (delayed) pitch peak \\
   le  & lengthening, of a vowel etc. \\
-  en  & enunciation (articulatory precision) \\
-  re  & phonetic reduction \\
+  en  & enunciation (articulatory precision) via vowel distinctiveness \\
+  re  & phonetic reduction via vowel centralization \\
+  hr  & HuBert-based reduction estimates; seelookupReductionEst.m \\
   vr & voiced-unvoiced intensity ratio \\
 \end{tabular}
 
@@ -802,7 +803,13 @@ This is described in lengthening.m, and also in doc/lengthening-rate.txt.
 %-------------
 \subsubsection{Enunciation and Reduction}
 
-These are described in the comments of cepstralDistinctness.m.
+One measure of phonetic reduction vs enuciation is the degree to which
+vowels are centralized vs distinct This function measures, as a proxy
+for that proxy, how spectrally close or far from the average are the
+voiced segments, returns how often/strongly this happens as the degree
+of evidence for reduction or enunciation, respectively.  It's not
+clear what this really measures, given especially that it doesn't relate in any
+simple way to the output of the new hr (Hubert-based reduction) feature. 
 
 %-------------
 \subsubsection{Voiced-Unvoiced Intensity Ratio}
@@ -1069,8 +1076,8 @@ is in the src directory.
 
 %%=========================================================
 \bibliographystyle{IEEEtran}
-\bibliography{../../papers-pp/biblio/bib}
-%\bibliography{bib}     % temporary local copy 
+%\bibliography{../../papers-pp/biblio/bib}
+\bibliography{bib}  
 
 %%=========================================================
 \end{document}
