@@ -11,29 +11,33 @@
 #    bash dim01.sh     # expect a few warnings about "end of audio": ignore
 #    mv d01* dim01-clips
 #  and do this for any dimension of interest
-
-BEGIN{ scanningLeft = 0}
+#  Sample resulting filename
+#    d08-+9.7-utep00.wav-7m19.1-l.wav
+#    means that this clips contains an exemplar of  dimension 8 on the high side,
+#      in utep00.wav at 7minutes, 19.1 seconds on the left side
+#    and this clip contains the 5 seconds centerd at that point
+#      we also write -l.wav and -r.wav for convenience of listening only to the left or right track,
+#      which should seldom be necessary
 {
-    if (match($0, "generated from l"))
-	{scanningLeft = 1}
-    if (match($0, "generated from r"))
-       {scanningLeft = 0}
-    # otherwise scanningLeft is unchanged
-    if (!scanningLeft)
-	next
     dim = $1
-    if (!dim == dim+0 && dim > 0) # if not a number, skip to next input line
+    if (!(dim == dim+0 && dim > 0)) # if not a number, skip to next input line
       {next}
     value = $2
     timepoint = $4
     start = timepoint - 2.5  # seconds
+    if (start < 0) {
+	next}
     duration = 5.0   # seconds
-    if ($5 == "(")     # a stray paren 
-       {timeString = $6;
-	wavFile = $8}
-    else
-       {timeString = $5
-	wavFile = $7}
+    if ($5 == "(")  {   # a stray paren 
+	timeString = $6;
+	wavFile = $8;
+	side = $10
+    }
+    else  {
+	timeString = $5;
+	wavFile = $7;
+	side = $9
+    }
 
     sub(/)/, "", timeString)
     sub(/\(/, "", timeString)
@@ -42,9 +46,11 @@ BEGIN{ scanningLeft = 0}
     wavFileBase = substr(wavFile, 1, length(wavFile)-4)
 
     valueString = sprintf("%+.2f", value)
-    eFileName = "d" dim "-" wavFileBase valueString "-" timeString ".wav"
-    eFileNameLeft  = "d" dim "-" wavFileBase valueString "-" timeString "-l.wav"
-    eFileNameRight = "d" dim "-" wavFileBase valueString "-" timeString "-r.wav"	
+    dimName = sprintf ("d%02d", dim)
+    eFileBase = dimName "-" valueString "-" wavFileBase  "-" timeString "-" toupper(side)
+    eFileName = eFileBase  ".wav"
+    eFileNameLeft  = eFileBase  "-l.wav"
+    eFileNameRight = eFileBase  "-r.wav"	
     cmd      = "sox " wavFile " " eFileName " trim " start " 5"
     cmdLeft  = "sox " wavFile " " eFileNameLeft  " trim " start " 5 remix 1"
     cmdRight = "sox " wavFile " " eFileNameRight " trim " start " 5 remix 2"

@@ -405,7 +405,8 @@ Reserved two-letter code (implementation pending):
 
 \begin{tabular}{ll}  
   ha  & harmonicity \\
-  br  & breathiness
+  br  & breathiness \\
+  na & nasality
 \end{tabular}
 
 Adding a new prosodic feature requires changing a few things.  First
@@ -739,7 +740,7 @@ noise of some kind, namely those with a ratio below .475 or above
 \subsubsection{Narrowness}
 
 \begin{equation}
-n_{a,b} = \frac{1}{b-a} \sum\limits_{i=a}^b \sum\limits_{i-50}^{i+49} \enspace 1 \enspace \operatorname{if} 0.98 <  \frac{p_i}{p_{i-1}} < 1.02 
+n_{a,b} = \frac{1}{b-a} \sum\limits_{i=a}^b \sum\limits_{j=i-50}^{i+49} \enspace 1 \enspace \operatorname{if} 0.98 <  \frac{p_i}{p_j} < 1.02 
 \end{equation}
 
 where 50 refers to 50 frames.  With the nested {\em for} loop this is
@@ -747,10 +748,8 @@ somewhat inefficient, but this has not been a problem in practice.
 
 This computation sums up the evidence for some narrow (flat) pitch
 involving the window from $a$ to $b$.  While there are many ways in
-which this could be done, this method was chosen in part because it is
-robust to pitch halving and doubling, but mostly because it is simple.
-
-
+which this could be done, this method was chosen for
+robustness to pitch halving and doubling, and for simplicity
 
 % the normal declination across utterances ranges from 8 to 1
 %semitones per second \cite{yuan-declination}.
@@ -759,7 +758,7 @@ robust to pitch halving and doubling, but mostly because it is simple.
 \subsubsection{Wideness}
 
 \begin{equation}
-w_{a,b} = \frac{1}{b-a} \sum\limits_{i=a}^b \sum\limits_{i-50}^{i+49} \enspace 1 \enspace \operatorname{if} 0.7 <  \frac{p_i}{p_{i-1}} < 0.9 \operatorname{or} 1.1 <  \frac{p_i}{p_{i-1}} < 1.3
+w_{a,b} = \frac{1}{b-a} \sum\limits_{i=a}^b \sum\limits_{j=i-50}^{i+49} \enspace 1 \enspace \operatorname{if} 0.7 <  \frac{p_i}{p_{i-1}} < 0.9 \operatorname{or} 1.1 <  \frac{p_i}{p_{j}} < 1.3
 \end{equation}
 
 Note that if the ratio is more extreme, one of the two pitch points is
