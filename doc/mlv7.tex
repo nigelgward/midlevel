@@ -138,12 +138,18 @@ of a language or dataset:
   exact directory names depending on your download destination
 \item {\tt cd} to the directory containing your audio files
 \item {\tt c2c();}
+\item do qualitative analysis, using, for example, the methods described in  Chapter 10 of \cite{me-cup}
+  \begin{itemize}
 \item examine the loadings, as seen in the figures in the {\tt
   loadingplots} directory
 \item listen to timepoints in your data where a dimension has extreme
   high or low values, as listed in the files in the {\tt extremes}
-  directory.  You can do this with Elan or a similar tool, or follow the 
-  steps in src/extremeClips.awk to create clips for faster listening. 
+  directory.  Choices for this include using Elan or a similar tool,
+  which makes it easier to hear these timepoints in the wider context,
+  at the cost of extra effort navigating through the recording, and
+  using {\tt src/extremeClips.awk} to create individual clips, which
+  are easier to peruse faster, but lack wide context.
+\end{itemize}
 \end{itemize}
 
 
@@ -610,7 +616,7 @@ where the percentile is based on the distribution of pitch values in
 all voiced regions in the entire track.  These are mapped to the range
 0 to 1; thus the lowest pitch value in the track maps to 0.0, the
 highest to 1.0, and the median pitch value to 0.5.  As described
-below, percentilized pitch is used for the highness and lowless
+below, percentilized pitch is used for the highness and lowness
 features; but raw pitch is used for the for creaky, wide and narrow
 features.
 
@@ -802,7 +808,7 @@ This is described in lengthening.m, and also in doc/lengthening-rate.txt.
 %-------------
 \subsubsection{Enunciation and Reduction}
 
-One measure of phonetic reduction vs enuciation is the degree to which
+One measure of phonetic reduction vs enunciation is the degree to which
 vowels are centralized vs distinct This function measures, as a proxy
 for that proxy, how spectrally close or far from the average are the
 voiced segments, returns how often/strongly this happens as the degree
@@ -1022,7 +1028,7 @@ the current directory, thus avoiding the need to create a tracklist
 file.
 
 Version 7.3, November 2020.  Marcin Wlodarczak's implementation of
-Smooted Cepstral Peak Prominence added.  Note: This is very time
+Smoothed Cepstral Peak Prominence added.  Note: This is very time
 consuming; taking as much time as a pitch computation. 
 
 %==================================================================
