@@ -23,7 +23,7 @@ function writeCorrelations(cmatrix, featurelist, outdir, filename);
     bottomIndex = sortIndex(length(cmatrix));
 
     fprintf(fd, 'for feature #%d %s, ', columni, getAbbreviation(featurelist, columni));
-    fprintf(fd, '   the three most correlated features are ');
+    fprintf(fd, '   the four most correlated features are ');
     for ix = 1:4
       topf = topIndices(ix);
       fprintf(fd, '\n     #%d %s   at %.2f', ...

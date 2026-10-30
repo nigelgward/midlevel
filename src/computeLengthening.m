@@ -34,5 +34,6 @@ function winLengthening = computeLengthening(relevantEnergy, relevantFlux, durat
   end    
   lengthening(lengthening == Inf) = 0;
   lengthening(lengthening == NaN) = 0;
+  plot(lengthening);     % !! temporary nigel 
   winLengthening = windowize(lengthening', duration)';
 end
