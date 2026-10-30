@@ -41,8 +41,7 @@ function [rate, signals] = readtracks(file)
   %%   between the lengthening feature and the narrow-pitch and cpps features, over some same-span
   %%  which is plausible, and removed some anti-correlations with other nearby-span  le(lengthening) features
   %%  And by observing that the lengthenings around 19s, 20s and 21s in 21d.zu were clearly seen
-  signals = signals * 32768;       
-
+signals = signals * 32768;       
 end
   
   
