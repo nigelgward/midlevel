@@ -71,3 +71,7 @@ flowtest/extremes/dim15.txt
 flowtest/extremes/dim17.txt
 flowtest/extremes/dim18.txt
 flowtest/old-correlations.txt
+flowtest/loadingplots/dim03hi.pdf
+flowtest/loadingplots/dim04hi.pdf
+/flowtest/loadingplots
+flowtest/21d.pfsx

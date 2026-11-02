@@ -33,6 +33,6 @@ function winLengthening = computeLengthening(relevantEnergy, relevantFlux, durat
     fprintf('NaN found in computeLengthening\n');
   end    
   lengthening(lengthening == Inf) = 0;
-  lengthening(lengthening == NaN) = 0;
+  lengthening(isnan(lengthening)) = 0;
     winLengthening = windowize(lengthening', duration)';
 end
