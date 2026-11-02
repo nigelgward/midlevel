@@ -157,7 +157,9 @@ function [ CC, FBE, frames ] = mfcc( speech, fs, Tw, Ts, alpha, window, R, M, N,
     H = trifbank( M, K, R, fs, hz2mel, mel2hz ); % size of H is M x K 
 
     % Filterbank application to unique part of the magnitude spectrum
-    FBE = H * MAG(1:K,:); % FBE( FBE<1.0 ) = 1.0; % apply mel floor
+    FBE = H * MAG(1:K,:);
+    %% uncommented NW, Nov 2026 per Gus Cooney; to handle all-zero-SPL segments arising from splicing
+    FBE( FBE<1.0 ) = 1.0; % apply mel floor
 
     % DCT matrix computation
     DCT = dctm( N, M );
