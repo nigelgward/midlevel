@@ -59,7 +59,7 @@ function[paddedPitch, paddedCenters] = ...
   else
     if file1isOlder(pitchFileName, audioFileName)
       fprintf('recomputing pitch for %s %s  \n', savekey);
-      [pitch, startsAndEnds] = fxrapt(signal, rate, 'u');
+      [pitch, startsAndEnds] = fxrapt(signal, rate, 'u');      % if this fails, addpath midlevel/src/voicebox
       save(pitchFileName, 'pitch', 'startsAndEnds');     
     else
       %% fprintf('reading cached pitch file %s\n', pitchFileName);

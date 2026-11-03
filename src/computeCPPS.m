@@ -14,7 +14,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-function [CPPS_midlevel] = computeCPPSmodifiedOld(signal, sampleRate)
+function [CPPS_midlevel] = computeCPPS(signal, sampleRate)
 
     % NOTE: This function modifies computeCPPS.m so that the length of
     % CPPS_midlevel is the expected length (so that each column represents
@@ -34,8 +34,8 @@ function [CPPS_midlevel] = computeCPPSmodifiedOld(signal, sampleRate)
     mid_win_len = round(0.01 * sampleRate);
     
     % Quefrency range
-    quef_bot = round(sampleRate ./ 300);
-    quef_top = round(sampleRate ./ 60);
+    quef_bot = round(sampleRate ./ 600);    % was 300 until Nov 2026, causing failure to spot peaks (F0s) over ~130Hz
+    quef_top = round(sampleRate ./ 120);    % was 60 until  Nov 2026, per Gus Cooney
     quefs = (quef_bot:quef_top)';
 
     %% Pre-emphasis from 50 Hz
