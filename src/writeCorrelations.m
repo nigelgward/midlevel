@@ -10,21 +10,23 @@ function writeCorrelations(cmatrix, featurelist, outdir, filename);
   %%   [junk featurelist] = getfeaturespec('toyFiles/dummyCrunchSpech.txt');
   %%   writeCorrelations(cmatrix, featurelist, './', 'tmpCorr.txt');
   
+  nFeaturesToShow = 8
   fd = fopen([outdir filename], 'w');
   
-  if length(cmatrix) < 4
+  if length(cmatrix) < nFeaturesToShow
     fprintf('writeCorrelations: skipping this since too few features\n');
     return
   end
   
   for columni = 1:length(cmatrix)
     [sortedValues,sortIndex] = sort(cmatrix(columni,:), 'descend');
-    topIndices = sortIndex(1:4);
+    topIndices = sortIndex(1:nFeaturesToShow);
     bottomIndex = sortIndex(length(cmatrix));
 
     fprintf(fd, 'for feature #%d %s, ', columni, getAbbreviation(featurelist, columni));
-    fprintf(fd, '   the four most correlated features are ');
-    for ix = 1:4
+
+    fprintf(fd, '   the %d most correlated features are ', nFeaturesToShow);
+    for ix = 1:nFeaturesToShow
       topf = topIndices(ix);
       fprintf(fd, '\n     #%d %s   at %.2f', ...
               topf, getAbbreviation(featurelist,topf), cmatrix(columni,topf));

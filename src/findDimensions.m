@@ -23,9 +23,8 @@ if sum(sum(isnan(totalMonster))) > 0
   fprintf('!! NaN in totalMonster\n');
 end
 
-
-% downsample; convert from every 10ms to every 30ms to same time and space
-totalMonster = totalMonster(3:3:end,:); 
+% downsample; convert from every 10ms to every 20ms to save time and space
+totalMonster = totalMonster(2:2:end,:); 
 
 tic
 for col=1:length(flist)
@@ -39,7 +38,6 @@ toc
 cmatrix = corrcoef(totalMonster);
 writeCorrelations(cmatrix, struct2cell(flist), './', 'correlations.txt');
 fprintf('  starting Principal Components Analysis \n');
-
 
 tic
 [coeff, score, latent] = pca(nmonster);  % mostly for the coeffs

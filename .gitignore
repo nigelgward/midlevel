@@ -76,3 +76,6 @@ flowtest/loadingplots/dim04hi.pdf
 /flowtest/loadingplots
 flowtest/21d.pfsx
 flowtest/correlations-old.txt
+flowtest/pbookCppsNas.fss~
+src/lookupNasalityEst.m~
+src/pbookPlotspecCppsReduNas.m~

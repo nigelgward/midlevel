@@ -93,3 +93,11 @@ function [CPPS_midlevel] = computeCPPS(signal, sampleRate)
 
     %% plot(CPPS_midlevel(1:1000))  %% debug 
 end
+
+%% email comment from Gus, Oct 28, 2026  (already addressed by the edits above)
+% computeCPPS.m (and computeCPPSfaster.m) take the FFT across the one-sided log spectrum (257 bins at 8 kHz), which halves the quefrency scale, but the peak search still uses rows round(fs/300) to round(fs/60). In effect it covers voices of about 30–150 Hz rather than 60–300 Hz, so for higher voices CPPS is taken from the wrong peak. At 8 kHz, a 200 Hz voice's first rahmonic sits near row 21, below the search floor at row 27.
+
+
+%% email comment from Marcin, Nov 11, 2026
+% It occurred to me that computing a one-sided spectrum might also change the amplitudes of the resulting cepstrum. I have done some tests (in Python, I do not have Matlab on my computer at the moment) and it does indeed seem to be the case that using a one-sided spectrum scales the cepstrum by a factor of 0.5, resulting in peak amplitude difference of about -6 dB.
+% As the effect is in principle a constant difference (the regression fit and the peak seem to be scaled somewhat differently but the difference is still close to 6-6.5 dB), I guess that does not matter for the type of analysis we have done (all input values are probably scaled before calculating PCA?) but it might be a good idea to fix that too. Probably the easiest solution would be to move to two-sided fft instead of spectrogram (and retain the original quefrency range).
