@@ -39,8 +39,4 @@ function writeCorrelations(cmatrix, featurelist, outdir, filename);
   fclose(fd);
 end
 
-function abbrevString = getAbbreviation(featurelist, index)
-  cell = featurelist(7, 1, index);
-  abbrevString = cell{1};
-end
 

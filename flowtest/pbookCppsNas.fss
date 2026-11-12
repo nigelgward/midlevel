@@ -245,7 +245,7 @@ cp   300 to   400 inte
 cp   400 to   800 inte
 cp   800 to  1600 inte
 
-## nas (12)
+o## nas (12)
 ns -1600 to  -800 inte
 ns  -800 to  -400 inte
 ns  -400 to  -300 inte

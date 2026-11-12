@@ -6,11 +6,14 @@
 %%   is located in midlevel/flowtest, which must be added to the path 
 
 function c2c ()
+  fssfile = 'minicrunch.fss';
   fssfile = 'pbook.fss';
   fssfile = 'pbookCpps.fss';
     fssfile = 'pbookCppsNas.fss';
-  fssfile = 'pbookCppsRedu.fss';
-%  fssfile = 'pbookCppsReduSlim.fss';      % maybe okay for English; no good for Spanish
+    fssfile = 'pbookCppsRedu.fss';
+    fssfile = 'pbookCppsReduNas.fss';
+
+
   findDimensions('.', fssfile);    % writes correlations and loadings
   diagramDimensions('rotationspec.mat', fssfile);   % creates dimension diagrams    
   applynormrot('.', fssfile, '.');   % also writes the extremes 
