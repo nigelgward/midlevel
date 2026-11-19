@@ -21,7 +21,7 @@ function[estimates, centers] = ...
   centers = stuff(:,1);  % not currently used
 
   %% upsampling
-  estimates = interp(estimates,2);
+  %  estimates = interp(estimates,2);  %%!! not needed
   return
 end
   

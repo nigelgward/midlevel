@@ -25,6 +25,7 @@ function [firstCompleteFrame, monster] = makeTrackMonster(trackspec, featurelist
 % Nigel Ward, UTEP, 2014-2023
 
 plotThings = false;  % set true for debug
+firstFeaturevecProcessed = false;
 
 processGaze = false;
 processKeystrokes = false;  
@@ -312,6 +313,12 @@ for featureNum = 1 : length(featurelist)
   end 
   %hold off;
   [h, w] = size(featurevec);
+  if firstFeaturevecProcessed == false
+    featurevecHeight = h;
+  elseif  abs(featurevecHeight - h) > 1
+    error("error: mismatched feature vectors %d %d\n", h, height);
+  end
+  
   %% featurevec should all be, to within one frame, the same size
   fprintf('    size of featurevec is %d, %d\n', h, w);   
 

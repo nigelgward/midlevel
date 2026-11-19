@@ -1,12 +1,12 @@
 %% corpus to constructions
 %%
-%% processes all files in the current directory
+%% processes all audio files in the current directory; for flow testing, this should be flowtest/
 %%
 %% the feature set used, e.g. pbook.fss
 %%   is located in midlevel/flowtest, which must be added to the path 
 
 function c2c ()
-  fssfile = 'minicrunch.fss';
+  fssfile = 'minicrunch.fss';     %% small; best for testing 
 %  fssfile = 'pbook.fss';
 %  fssfile = 'pbookCpps.fss';
 %    fssfile = 'pbookCppsNas.fss';
