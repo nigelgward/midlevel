@@ -19,9 +19,8 @@ function[estimates, centers] = ...
   stuff = readmatrix(redPathName);    % seems to handle both comma-separated and tab-separated
   estimates = stuff(:,2);
   centers = stuff(:,1);  % not currently used
-
   %% upsampling
-  %  estimates = interp(estimates,2);  %%!! not needed
+   estimates = interp(estimates,2);  
   return
 end
   

@@ -27,6 +27,8 @@ function[estimates, centers] = ...
   %% upsampling
   estimates = interp(estimates,2);
   return
+  fprint("size of nasality stuff is %d %d\n", size(stuff));
+
 end
   
 %% to test
