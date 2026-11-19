@@ -9,8 +9,9 @@
 # Note that getfeaturespec.m parses this by offsets
 #  so when adding new features, make sure the fields vertically align
 
-# this set of features is just for testing the workflow; 
-# larger sets will be used for the actual PCA work
+# this set of features is just for testing the workflow;
+#    larger sets will be used for the actual PCA work
+#    and in particular, the loadings diagrams with this small featureset are uninformative
 # this set won't work for testing mono files; for those use minicrunch-mono.fss
 
 le   -400 to 400 self 
@@ -38,7 +39,7 @@ wp  -200 to     0 self
 
 vr -300 to 300 self
 
-ns  -10 to 10 self
+#ns  -10 to 10 self
 ne  -10 to 10 inte
 
 

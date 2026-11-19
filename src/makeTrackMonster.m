@@ -210,7 +210,7 @@ for featureNum = 1 : length(featurelist)
     end
   end
 
-  fprintf('processing feature %s %d %d %s \n', ...
+  fprintf('processing feature %s %d %d %s ... ', ...
 	  feattype, thisfeature.startms, thisfeature.endms, side); 
     
   switch feattype
@@ -312,7 +312,8 @@ for featureNum = 1 : length(featurelist)
   end 
   %hold off;
   [h, w] = size(featurevec);
-  %fprintf('    size of featurevec is %d, %d\n', h, w);
+  %% featurevec should all be, to within one frame, the same size
+  fprintf('    size of featurevec is %d, %d\n', h, w);   
 
   
 % time-shift values as appropriate, either up or down (backward or forward in time)

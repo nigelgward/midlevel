@@ -7,7 +7,7 @@ function writeLoadings(coeff, featuresCellArray, header, outdir)
     fprintf(lfd, '\n');
     for row = 1:length(coeff) 
       fprintf(lfd, 'dimension%d  %5.2f  %s\n', ...
-	      col, coeff(row,col), getAbbreviation(featuresCellArray, row))
+	      col, coeff(row,col), getAbbreviation(featuresCellArray, row));
     end
   end
   fclose(lfd);

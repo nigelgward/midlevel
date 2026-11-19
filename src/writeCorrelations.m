@@ -10,7 +10,7 @@ function writeCorrelations(cmatrix, featurelist, outdir, filename);
   %%   [junk featurelist] = getfeaturespec('toyFiles/dummyCrunchSpech.txt');
   %%   writeCorrelations(cmatrix, featurelist, './', 'tmpCorr.txt');
   
-  nFeaturesToShow = 8
+  nFeaturesToShow = 10;
   fd = fopen([outdir filename], 'w');
   
   if length(cmatrix) < nFeaturesToShow

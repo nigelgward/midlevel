@@ -7,11 +7,11 @@
 
 function c2c ()
   fssfile = 'minicrunch.fss';
-  fssfile = 'pbook.fss';
-  fssfile = 'pbookCpps.fss';
-    fssfile = 'pbookCppsNas.fss';
-    fssfile = 'pbookCppsRedu.fss';
-    fssfile = 'pbookCppsReduNas.fss';
+%  fssfile = 'pbook.fss';
+%  fssfile = 'pbookCpps.fss';
+%    fssfile = 'pbookCppsNas.fss';
+%    fssfile = 'pbookCppsRedu.fss';
+%    fssfile = 'pbookCppsReduNas.fss';
 
 
   findDimensions('.', fssfile);    % writes correlations and loadings
